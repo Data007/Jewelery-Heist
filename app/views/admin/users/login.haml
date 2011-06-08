@@ -1,0 +1,11 @@
+#attention.grid_4.prefix_6
+  - form_for :user, @user, :url => authenticate_admin_users_path do |f|
+    = f.label :login
+    %br
+    = f.text_field :login
+    %br
+    = f.label :password
+    %br
+    = f.password_field :password
+    %br
+    .submit_form= login_or_forgot_password

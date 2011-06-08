@@ -1,0 +1,13 @@
+- content_for :page_title do
+  %h1 Viewing the #{@collection.name} collection
+
+- content_for :page_actions do
+  - if @current_user.may_destroy_collection? Collection.new
+    .button.dangerous= link_to "remove", admin_collection_path(@collection.id), :confirm => "Are you sure you want to remove this collection?", :method => :delete
+  = button_for_url "edit", edit_admin_collection_path(@collection), :class => "button"
+
+- content_for :page_content do
+  .description= @collection.description
+  - if @collection.items.length > 0
+    .containers
+      = render :partial => "admin/items/summary", :collection => @collection.items

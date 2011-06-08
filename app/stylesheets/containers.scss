@@ -1,0 +1,29 @@
+/* line 1, ../../../app/stylesheets/containers.sass */
+.container {
+  position: relative;
+  display: block;
+  float: left;
+  overflow: hidden;
+  width: 340px;
+  /* :height 315px */
+  margin: 10px;
+}
+/* line 9, ../../../app/stylesheets/containers.sass */
+.container .title {
+  padding: 5px;
+}
+/* line 11, ../../../app/stylesheets/containers.sass */
+.container .content {
+  position: relative;
+  overflow: hidden;
+  clear: both;
+  /*:max-height 272px */
+  max-width: 340px;
+}
+/* line 18, ../../../app/stylesheets/containers.sass */
+.container .content .collage_4 img {
+  position: relative;
+  max-width: 170px;
+  max-height: 136px;
+  float: left;
+}

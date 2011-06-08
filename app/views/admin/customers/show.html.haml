@@ -1,0 +1,98 @@
+- content_for :page_title do
+  %h1 Viewing #{@customer.name}
+  
+- content_for :page_actions do
+  = button_for_url "edit", edit_admin_customer_path(@customer), :class => "button"
+  
+- content_for :page_content do
+  .2-column.container
+    %h2 Contact Information
+    
+    %p
+      %strong Addresses
+      - @customer.addresses.each do |address|
+        %br
+        #{address.address_1}, 
+        - if address.address_2.present?
+          #{address.address_2},
+        #{address.city}, #{address.province} #{address.postal_code}
+    %p  
+      %strong Phone Numbers
+      - @customer.phones.each do |phone|
+        %br
+        = phone.number
+    %p 
+      %strong Email Addresses
+      - @customer.emails.each do |email|
+        %br
+        = email.address
+        
+  .2-column.container
+    %h2 Balances
+    
+    %table
+      %tbody
+        %tr
+          %td Total Spent
+          %th= number_to_currency(@customer.total_spent)
+        %tr
+          %td In-Store Credit
+          %th= number_to_currency(@customer.total_credit)
+        %tr
+          %td Balance Owing
+          %th= number_to_currency(@customer.total_owing)
+  
+  %hr
+  
+  %h2 History
+  
+  %p
+    %strong Orders
+    - paginated_section @orders do
+      %table.index.stylized
+        %thead
+          %tr
+            %th Order
+            %th Item(s)
+            %th Total
+            %th Paid
+            %th Balance
+            %th Location
+            %th Kind
+            %th Status
+        %tbody
+          - @orders.each do |order|
+            %tr{:class => cycle("normal", "alternate")}
+              %td= link_to(order.id, admin_order_path(order))
+              %td
+                - order.line_items.the_living.each do |line_item|
+                  - if line_item.variation
+                    = link_to("ID#{line_item.variation.item_id}-#{line_item.variation_id}", admin_item_path("ID#{line_item.variation.item_id}-#{line_item.variation_id}"))
+                  - else
+                    QID#{line_item.id}
+                  %br
+              %td= number_to_currency(order.total)
+              %td= number_to_currency(order.paid)
+              %td= number_to_currency(order.balance)
+              %td{:class => order.location == "website" ? "website" : "instore"}= order.location.capitalize
+              %td= order.staging_type
+              %td= order.ticket.current_stage
+  %p
+    %strong Payments
+    - paginated_section @payments do
+      %table.index.stylized
+        %thead
+          %tr
+            %th Order
+            %th Paid On
+            %th Payment Type
+            %th Check #
+            %th Payment Amount
+        %tbody
+          - @payments.each do |payment|
+            %tr
+              %td= link_to(payment.order.id, admin_order_path(payment.order.id))
+              %td #{time_ago_in_words(payment.created_at)} ago (#{payment.created_at.strftime("%b %d, %Y")})
+              %td= payment.payment_type.name
+              %td= payment.check_number
+              %td= number_to_currency(payment.amount)

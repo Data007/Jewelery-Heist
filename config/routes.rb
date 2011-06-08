@@ -1,58 +1,180 @@
 DragonHoard::Application.routes.draw do
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => "welcome#index"
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  
+  namespace :admin do
+    
+    resources :users do
+      
+      collection do
+        get :login
+        get :authenticate
+        get :logout
+        get :forgot
+      end
+      
+      resources :tickets, :controller => "tickets"
+      
+    end
+    
+    resources :customers do
+      collection do
+        get :search
+      end
+    end
+    
+    resources :orders do
+      
+      collection do
+        get :find
+      end
+      
+      member do
+        put  :info
+        post :info
+        get  :cancel
+        get  :refund
+        put  :lookup
+        post :lookup
+        put  :force_lookup
+        post :force_lookup
+        put  :address
+        post :address
+        get  :print
+      end
+      
+      resources :line_items, :controller => "orders/line_items", :action => "index", :conditions => {:method => :put}
+      resources :line_items, :controller => "orders/line_items", :action => "index", :conditions => {:method => :get}
+      resources :line_items, :except     => [:index], :controller => "orders/line_items"
+      
+      match "payments" => "orders/payments#index", :conditions => {:method => [:put, :get]}, :as => :payments
+      resources :payments, :except => [:index], :controller => "orders/payments"
+      resources :tickets, :controller => "tickets"
+    end
+    
+    resources :tickets do
+      collection do
+        get :find
+      end
+      
+      member do
+        get :accept
+        get :advance
+      end
+      
+    end
+    
+    match "search" => "searches#general", :as => :search
+    match "search/users" => "searches#users", :as => :search_users
+  
+    resources :customers
+    resources :faqs, :except => [:new, :create, :destroy]
+    
+    resources :molds do
+      member do
+        get :cancel
+      end
+      resources :attachments, :controller => 'molds/attachments'
+      match "/molds/:mold_id/attachments/update_positions/:id" => "molds/attachments#update_positions", :as => :mold_asset_update_position
+    end
+    
+    resources :collections
+    
+    resources :items do
+      collection do
+        get :current
+        get :old
+        get :instore
+        get :published
+        get :ooak
+        get :find
+      end
+      
+      member do
+        get :cancel
+        get :restore
+      end
+      
+      resources :variations, :controller => 'items/variations' do
+        member do
+          get :cancel
+        end
+        resources :attachments, :controller => 'items/variations/attachments'
+      end
+      
+      match "items/:item_id/variations/:variation_id/attachments/update_positions/:id" => "items/variations/attachments#update_positions", :as => :item_variation_asset_update_position
+      
+      match "live_searches/metals/:id" => "live_searches#metals", :as => :metals
+      match "live_searches/jewels/:id" => "live_searches#jewels", :as => :jewels
+      match "live_searches/finishes/:id" => "live_searches#finishes", :as => :finishes
+      match "live_searches/:id" => "live_searches#items", :as => :full_search
+      
+      namespace :reports do
+        namespace :items do
+          resources :items, :collection => {:current => :get}
+        end
+      end
+      
+    end
+    
+  end
+  
+  match "admin" => "admin/users#dashboard", :as => :admin_root
+  
+  resources :items
+  resources :collections, :only => [:index, :show]
+  
+  resources :users do
+    collection do
+      get  :login
+      get  :logout
+      post :authenticate
+      get  :register
+      post :registered
+      get  :forgot_password
+      post :generate_new_password
+    end
+    
+    member do
+      get :dashboard
+    end
+  end
+    
+  match "/users/fb_authenticate/:uid" => "users#fb_authenticate", :as => :fb_authenticate
+  match "dashboard" => "users#dashboard", :as => :dashboard
+  
+  match "/orders/:id/checkout" => "orders#checkout", :method => :post, :as => :checkout
+  match "/orders/:id/shipping" => "orders#shipping", :method => :post, :as => :shipping
+  match "/orders/:id/addressed" => "orders#addressed", :method => :post, :as => :addressed
+  match "/orders/:id/pay" => "orders#pay", :method => :post, :as => :pay
+  match "/orders/:id/complete" => "orders#complete", :method => :post, :as => :complete
+  
+  resources :orders do
+    member do
+      get :clear
+    end
+    
+    resources :items, :controller => "orders/items" do
+      member do
+        get :destroy, :as => :delete
+      end
+    end
+  end
+  
+  namespace :policy do
+    match "delivery" => "policies#delivery", :as => :delivery
+    match "privacy" => "policies#privacy", :as => :privacy
+    match "return" => "policies#return", :as => :return
+    match "faq" => "policies#faq", :as => :faq
+  end
+  
+  match "about-us" => "pages#about", :as => :about_us
+  match "pages/bad_route" => "pages#bad_route", :as => :bad_route
+  
+  resource :search, :only => [:show]
+  resources :colors, :only => [:show]
+  
+  match '/login' => 'users#login', :as => :login
+  match '/logout' => 'users#logout', :as => :logout
+  
+  root :to => 'pages#home'
+  
 end

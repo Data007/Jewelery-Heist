@@ -1,0 +1,18 @@
+- content_for :page_title do
+  %h1 Tickets
+
+#tickets
+  = will_paginate(@current_tickets)
+  - @current_tickets.each do |ticket|
+    - handled_by = ticket.assigned_id != nil ? ticket.user : nil
+    .ticket{:class => handled_by ? "" : "open"}
+      Ticket ##{link_to ticket.id, admin_ticket_path(ticket)}
+      - if handled_by
+        being handled by #{link_to handled_by.name, admin_user_tickets_path(handled_by)}
+      - else
+        being handled by no one (#{link_to "accept ticket", accept_admin_ticket_path(ticket), :class => "accept"})
+      and it's current stage is #{ticket.current_stage}.
+      %span.inline_action
+        Advance this to
+        = link_to ticket.next_stage?, advance_admin_ticket_path(ticket)
+  = will_paginate(@current_tickets)

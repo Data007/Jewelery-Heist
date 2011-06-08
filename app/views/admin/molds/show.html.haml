@@ -1,0 +1,16 @@
+- content_for :page_title do
+  %h1 Viewing Mold #{@mold.custom_id == nil ? @mold.id : @mold.id.to_s + "/" + @mold.custom_id}
+  
+- content_for :page_actions do
+  - if @current_user.may_destroy_mold? Mold.new
+    .button.dangerous= link_to "remove", admin_mold_path(@mold.id), :confirm => "Are you sure you want to remove this mold?", :method => :delete
+  .button= link_to "edit", edit_admin_mold_path(@mold.id)
+  
+- content_for :page_content do
+  .container
+    .content
+      .description= @mold.description
+    - if @mold.assets.length > 0
+      .assets
+        - @mold.assets.each do |asset|
+          = image_tag asset.image.url(:manage)

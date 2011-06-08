@@ -1,0 +1,178 @@
+/* line 39, ../../../app/stylesheets/effects.sass */
+/* line 2, ../../app/stylesheets/sidebar.scss */
+.box_me {
+  border: 1px solid #e4e4e4;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+/* line 46, ../../../app/stylesheets/effects.sass */
+/* line 12, ../../app/stylesheets/sidebar.scss */
+.box_me .title {
+  background-image: url(/images/layout/box_title_background.png);
+  background-repeat: repeat-x;
+  margin: -10px;
+  margin-bottom: 10px;
+  height: 18px;
+  padding: 5px;
+  padding-left: 10px;
+  color: #5f5f5f;
+  font-family: Lucida Sans;
+  font-size: 15px;
+}
+
+/* line 57, ../../../app/stylesheets/effects.sass */
+/* line 26, ../../app/stylesheets/sidebar.scss */
+.hide_me {
+  position: absolute;
+  visibility: hidden;
+  height: 1px;
+  top: 0px;
+  left: 0px;
+}
+
+/* line 3, ../../../app/stylesheets/sidebar.sass */
+/* line 35, ../../app/stylesheets/sidebar.scss */
+.sidebar_content {
+  position: relative;
+  width: 180px;
+}
+
+/* line 7, ../../../app/stylesheets/sidebar.sass */
+/* line 40, ../../app/stylesheets/sidebar.scss */
+.sidebar_content img {
+  position: relative;
+  max-width: 166px;
+}
+
+/* line 11, ../../../app/stylesheets/sidebar.sass */
+/* line 45, ../../app/stylesheets/sidebar.scss */
+.sidebar_content #main_menu {
+  position: relative;
+  width: 180px;
+  z-index: 2;
+}
+
+/* line 16, ../../../app/stylesheets/sidebar.sass */
+/* line 51, ../../app/stylesheets/sidebar.scss */
+.sidebar_content #other_menus {
+  position: relative;
+  margin-top: 340px;
+  z-index: 1;
+}
+
+/* line 20, ../../../app/stylesheets/sidebar.sass */
+/* line 57, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus {
+  margin-bottom: 1em;
+}
+
+/* line 22, ../../../app/stylesheets/sidebar.sass */
+/* line 61, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu {
+  position: relative;
+  width: 100%;
+}
+
+/* line 26, ../../../app/stylesheets/sidebar.sass */
+/* line 66, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu a:hover {
+  border: none;
+}
+
+/* line 28, ../../../app/stylesheets/sidebar.sass */
+/* line 70, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu .title {
+  position: relative;
+  padding: 5px;
+  background-image: url(/images/ui/header_background.png);
+  background-repeat: no-repeat;
+  background-position: -740px 0px;
+  color: #b0e7ff;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+/* line 36, ../../../app/stylesheets/sidebar.sass */
+/* line 82, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu .title:hover {
+  background-position: -10px 0px;
+}
+
+/* line 38, ../../../app/stylesheets/sidebar.sass */
+/* line 86, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu .title:hover a {
+  color: #fdf680;
+}
+
+/* line 40, ../../../app/stylesheets/sidebar.sass */
+/* line 90, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu .title a {
+  display: block;
+  width: 100%;
+  color: #b0e7ff;
+  text-decoration: none;
+}
+
+/* line 45, ../../../app/stylesheets/sidebar.sass */
+/* line 97, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu .links {
+  position: relative;
+  background-color: #f5f5f5;
+  margin-right: 7px;
+  margin-left: 7px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  webkit-border-bottom-left-radius: 7px;
+  webkit-border-bottom-right-radius: 7px;
+  -moz-border-radius-bottomleft: 7px;
+  -moz-border-radius-bottomright: 7px;
+}
+
+/* line 51, ../../../app/stylesheets/sidebar.sass */
+/* line 110, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu .links .link {
+  padding: 5px;
+  padding-left: 15px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  webkit-border-bottom-left-radius: 7px;
+  webkit-border-bottom-right-radius: 7px;
+  -moz-border-radius-bottomleft: 7px;
+  -moz-border-radius-bottomright: 7px;
+}
+
+/* line 55, ../../../app/stylesheets/sidebar.sass */
+/* line 121, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu .links .link:hover {
+  background-color: #1199ff;
+  color: #fdf680;
+}
+
+/* line 58, ../../../app/stylesheets/sidebar.sass */
+/* line 126, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu .links .link:hover a {
+  background-color: #1199ff;
+  color: #fdf680;
+}
+
+/* line 61, ../../../app/stylesheets/sidebar.sass */
+/* line 131, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu .links .link a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: #1199ff;
+}
+
+/* line 66, ../../../app/stylesheets/sidebar.sass */
+/* line 138, ../../app/stylesheets/sidebar.scss */
+.sidebar_content .menus .menu .links .link a:hover {
+  background-color: #1199ff;
+  color: #fdf680;
+}

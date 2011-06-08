@@ -1,0 +1,52 @@
+/* line 1, ../../../app/stylesheets/fonts.sass */
+/* line 2, ../../app/stylesheets/fonts.scss */
+html, body, * {
+  font-family: georgia, optima, verdana;
+  font-size: 14px;
+}
+
+/* line 5, ../../../app/stylesheets/fonts.sass */
+/* line 8, ../../app/stylesheets/fonts.scss */
+h1, h2 {
+  font-family: verdana;
+  font-weight: normal;
+}
+
+/* line 9, ../../../app/stylesheets/fonts.sass */
+/* line 14, ../../app/stylesheets/fonts.scss */
+h3, h4, h5, h6 {
+  font-family: garamond;
+  font-weight: normal;
+}
+
+/* line 13, ../../../app/stylesheets/fonts.sass */
+/* line 20, ../../app/stylesheets/fonts.scss */
+h1 {
+  font-size: 150%;
+}
+
+/* line 16, ../../../app/stylesheets/fonts.sass */
+/* line 25, ../../app/stylesheets/fonts.scss */
+h2 {
+  font-size: 125%;
+}
+
+/* line 19, ../../../app/stylesheets/fonts.sass */
+/* line 30, ../../app/stylesheets/fonts.scss */
+h3 {
+  font-size: 100%;
+}
+
+/* line 23, ../../../app/stylesheets/fonts.sass */
+/* line 35, ../../app/stylesheets/fonts.scss */
+#header h1 {
+  color: #fdf680;
+  font-size: 30px;
+}
+
+/* line 27, ../../../app/stylesheets/fonts.sass */
+/* line 40, ../../app/stylesheets/fonts.scss */
+#header h2 {
+  color: #e0e0e0;
+  font-size: 11px;
+}

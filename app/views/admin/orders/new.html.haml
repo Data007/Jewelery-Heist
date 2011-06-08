@@ -1,0 +1,19 @@
+- content_for :page_title do
+  %h1 #{@order.location.capitalize} #{@order.staging_type.capitalize} ##{@order.id}
+
+- content_for :page_actions do
+  = raw button_for_url "cancel order", cancel_admin_order_path(@order), :class => "button"
+
+= render :partial => "admin/orders/menu"
+- form_for :user, :url => lookup_admin_order_path(@order), :method => :post do |lookup|
+  / .field
+  /   = lookup.label :name
+  /   = lookup.text_field :name
+  / %hr
+  / %p Or
+  / %hr
+  .field
+    = lookup.label :phone
+    = lookup.text_field :phone
+  .field
+    = lookup.submit "search", :class => "button submit"

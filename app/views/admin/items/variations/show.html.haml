@@ -1,0 +1,15 @@
+:ruby
+  item = @variation.item
+  images = @variation.assets.by_position
+
+- content_for :page_title do
+  %h1 Variation for #{item.name}
+
+-content_for :page_actions do
+  - if @current_user.may_destroy_variation? Variation.new
+    .button.dangerous= link_to "remove", admin_item_variation_path(@variation.id), :confirm => "Are you sure you want to remove this variation?", :method => :delete
+  = button_for_url "edit", edit_admin_item_variation_path(:id => @variation.id, :item_id => item), :class => "button"
+  
+- content_for :page_content do
+  .variation
+    .main_image= image_tag(images.first.image.url(:manage))

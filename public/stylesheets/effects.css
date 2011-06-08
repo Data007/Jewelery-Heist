@@ -1,0 +1,36 @@
+/* line 39, ../../../app/stylesheets/effects.sass */
+/* line 2, ../../app/stylesheets/effects.scss */
+.box_me {
+  border: 1px solid #e4e4e4;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+/* line 46, ../../../app/stylesheets/effects.sass */
+/* line 12, ../../app/stylesheets/effects.scss */
+.box_me .title {
+  background-image: url(/images/layout/box_title_background.png);
+  background-repeat: repeat-x;
+  margin: -10px;
+  margin-bottom: 10px;
+  height: 18px;
+  padding: 5px;
+  padding-left: 10px;
+  color: #5f5f5f;
+  font-family: Lucida Sans;
+  font-size: 15px;
+}
+
+/* line 57, ../../../app/stylesheets/effects.sass */
+/* line 26, ../../app/stylesheets/effects.scss */
+.hide_me {
+  position: absolute;
+  visibility: hidden;
+  height: 1px;
+  top: 0px;
+  left: 0px;
+}

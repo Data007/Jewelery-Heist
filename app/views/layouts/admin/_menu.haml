@@ -1,0 +1,64 @@
+.menus
+  .menu
+    .title= link_to "Dashboard", admin_root_path
+    .links
+      .link= link_to "view current order", admin_order_path(@order)
+      .link
+        - form_tag find_admin_tickets_path, :method => :get do
+          = text_field_tag "id"
+          = submit_tag "lookup ticket", :class => "submit"
+      .link
+        - form_tag find_admin_orders_path, :method => :get do
+          = text_field_tag "order"
+          = submit_tag "lookup order", :class => "submit"
+      .link
+        - form_tag find_admin_items_path, :method => :get do
+          = text_field_tag "id"
+          = submit_tag "lookup item", :class => "submit"
+  .menu#alerts
+    .title= link_to "Tickets", admin_tickets_path
+    .links
+      .link.tickets.mine
+        = link_to "You have #{pluralize @tickets.length, 'ticket'}", admin_tickets_path(:type => "mine")
+      .link.tickets.assigned
+        = link_to "There are #{pluralize @assigned_tickets.length, 'ticket'} assigned", admin_tickets_path(:type => "assigned")
+      .link.tickets.open
+        = link_to "View all tickets", admin_tickets_path
+  .menu
+    .title= link_to "Orders", admin_orders_path
+    .links
+      .link= link_to "list all orders", admin_orders_path
+      - %w(purchase custom repair).each do |order_type|
+        .link= link_to "list #{order_type} orders", admin_orders_path(:find => order_type)
+
+  .menu
+    .title= link_to "Items", admin_items_path
+    .links
+      .link= link_to "list all items", admin_items_path
+      .link= link_to "create a new item", new_admin_item_path
+      .link= link_to "current items", current_admin_items_path
+      .link= link_to "old items", old_admin_items_path
+      .link= link_to "on website items", published_admin_items_path
+      .link= link_to "not on website items", instore_admin_items_path
+      .link= link_to "one of a kind items", ooak_admin_items_path
+  
+  .menu
+    .title= link_to "Molds", admin_molds_path
+    .links
+      .link= link_to "list all molds", admin_molds_path
+      .link= link_to "create a new mold", new_admin_mold_path
+  
+  - if @current_user.may_create_customer? User.new
+    .menu
+      .title= link_to "Customers", admin_customers_path
+      .links
+        .link= link_to "list all customers", admin_customers_path
+        .link= link_to "create a new customer", new_admin_customer_path
+
+  .menu
+    .title= link_to "Collections", admin_collections_path
+    .links
+      .link= link_to "list all collections", admin_collections_path
+      .link= link_to "create a new collection", new_admin_collection_path
+  .menu
+    .title= link_to "Faq", admin_faqs_path

@@ -1,0 +1,134 @@
+!!!
+%html{html_attrs.merge!(:xmlns => "http://www.w3.org/1999/xhtml", :"xmlns:fb" => "http://www.facebook.com/2008/fbml")}
+  %head
+    %meta{:name => "title", :content => "Wexford Jewelers | our passion is design #{yield :page_title}"}
+    %meta{:name => "decription", :content => "#{yield :meta_description} | Wexford Jewelers, designers of custom jewelry."}
+    %link{:rel => "image_src", :href => "#{yield :image_src}"}
+    %meta{:name => "keywords", :content => "ring, pendant, necklace, bracelet, custom, engagement, wedding, #{yield :meta_keywords}"}
+    %title Wexford Jewelers | our passion is design #{yield :page_title}
+    = stylesheet_link_tag "website/screen"
+    :plain
+      <!--[if lte IE 7]>
+        <link rel="stylesheet" type="text/css" media="screen, projection" href="http://universal-ie6-css.googlecode.com/files/ie6.0.3.css" />
+      <![endif]-->
+    / Load frameworks
+    = javascript_include_tag "jquery", "ejs/ejs_production", "class","jquery.truncate" , "init", "jquery.autocomplete"
+    / Load 
+    = javascript_include_tag "controllers", "website/items", "website/pagination"
+    / Load page specific scripts
+    = yield :extra_js
+    / Load init scripts
+    = javascript_include_tag "application"
+
+    = csrf_meta_tag
+    
+    - if RAILS_ENV=="production"
+      :plain
+        <script type="text/javascript">
+      
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-520761-7']);
+          _gaq.push(['_trackPageview']);
+      
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+      
+        </script>
+    %meta{:name => "google-site-verification", :content => "BW7w5f_8Uei0FEXeWXIQVWvTztGHnGkpjeluMg-Wvvw"}
+  %body
+    #wrapper
+      #left.column
+        #logo.header
+          = link_to(image_tag("logo.jpg", :width => "160px", :height => "160px"), root_path)
+        .menu
+          &nbsp;
+        #search
+          = form_tag search_path, :method => :get do
+            .row
+              = text_field_tag "q"
+              = submit_tag "search", :class => "input"
+        #life_stream
+          &nbsp;
+      #center.column
+        #banner.header
+          #slogan Wexford Jewelers | our passion is design ..
+        :javascript
+          $("#banner")
+            .css("background-image","url(/images/header.jpg)");
+        .menu
+          = link_to "Home", root_path
+          = link_to "Collections", collections_path
+          = link_to "Jewelry", items_path
+          = link_to "About Us", about_us_path
+          = link_to "Contact", about_us_path + "#contact_us"
+          = link_to "FAQ", policy_faq_path
+        :plain
+          <!--[if IE]>
+            <div class="nosupport">
+              <p>We do not support Internet Explorer. There are several reasons for this but the main one is that Internet Explorer has not kept up with the changes in the web over the last decade.</p>
+              <p>In order to experience our website to the fullest, we highly recommend that you upgrade to the following options:</p>
+              <div class="options">
+                <a href="http://google.com/chrome" class="chrome">Chrome</a>
+                <a href="http://apple.com/safari" class="safari">Safari</a>
+                <a href="http://getfirefox.com" class="firefox">Firefox</a>
+                <a href="http://opera.com" class="opera">Opera</a>
+              </div>
+            </div>
+          <![endif]-->
+        #page
+          - flash.each do |key, msg|
+            = content_tag :div, msg, :class => "#{key} message row", :id => "notice_#{key}"
+          - if @user && @user.errors.length > 0
+            - @user.errors.each do |error|
+              .error= error
+          = yield
+      #right.column
+        #user_actions.header
+          - if @current_user
+            .profile
+              .details
+                Welcome back!
+              .actions
+                = link_to "Dashboard", dashboard_path
+                = link_to "Logout", logout_users_path
+          - else
+            .login
+              = form_tag authenticate_users_path, :method => :post do
+                .row
+                  = label "user", "login"
+                  = text_field "user", "login"
+                .row
+                  = label "user", "password"
+                  = password_field "user", "password"
+                .row
+                  = submit_tag "login"
+                  = link_to "Forgot your password?", forgot_password_users_path
+              = link_to "Register an account", register_users_path
+        .menu
+          = link_to "Shopping Cart", order_path(@current_order.id)
+        #related_content
+          - if @current_order.line_items.the_living.length > 0
+            .line_item_count You have #{pluralize @current_order.line_items.the_living.length, "item"}.
+            .line_item_total You order totals #{number_to_currency @current_order.subtotal}
+            .actions
+              = link_to "View Order", order_path(@current_order.id)
+              = link_to "Checkout", checkout_path(@current_order.id), :method => :post
+            .line_items
+              - @current_order.line_items.the_living.each do |line_item|
+                .line_item
+                  = link_to image_tag(line_item.variation.assets.by_position.first.image.url(:tiny)), item_path(:id => line_item.variation.item, :variation_id => line_item.variation.id)
+            .actions
+              = link_to "View Order", order_path(@current_order.id)
+              = link_to "Checkout", checkout_path(@current_order.id), :method => :post
+          - else
+            %p Your shopping cart is empty.
+          
+    #footer
+      = link_to "About Us", about_us_path
+      = link_to "Privacy Policy", policy_privacy_path
+      = link_to "Return Policy", policy_return_path
+      = link_to "Delivery Policy", policy_delivery_path
+      = link_to "Frequently Asked Questions", policy_faq_path

@@ -1,0 +1,76 @@
+- content_for :page_title do
+  %h1 Viewing all Customers
+  
+- content_for :page_actions do
+  = button_for_url "create a new customer", new_admin_customer_path, :class => "button"
+  
+- content_for :page_content do
+  - paginated_section @customers do
+    - if @customers.length > 0
+      %table.stylized
+        %thead
+          %th Id
+          %th Login
+          %th Name
+          %th Email
+          %th Active
+          %th{:colspan => 3} Actions
+        %tbody
+          - @customers.each do |customer|
+            %tr.customer
+              %td= link_to customer.id, admin_customer_path(customer.id)
+              %td= customer.login
+              %td= customer.name
+              %td= customer.email
+              %td= customer.ghost ? image_tag("ui/deny.png") : image_tag("ui/accept.png")
+              %td= link_to "view", admin_customer_path(customer.id)
+              %td= link_to "edit", edit_admin_customer_path(customer.id)
+              %td= link_to "remove", admin_customer_path(customer.id), :confirm => "Are you sure you want to remove this customer?", :method => :delete
+    - else
+      %p The saddest state in the world of business, is the state that a business falls in to when it has no customers. Perhaps, you have some but have just not #{link_to "added them", new_admin_customer_path}?
+    
+  %hr
+  
+  .user-actions
+    %h2 Find Customers
+  
+    #search-customers
+      - form_tag admin_search_users_path, :method => :get do
+        .field
+          = label_tag "user_name", "Name"
+          = text_field_tag "user[name]", params[:user].present? ? params[:user][:name] : ""
+  
+        .field
+          = label_tag "user_phone", "Phone Number"
+          = text_field_tag "user[phone]", params[:user].present? ? params[:user][:phone] : ""
+  
+        .field
+          = label_tag "user_email", "Email"
+          = text_field_tag "user[email]", params[:user].present? ? params[:user][:email] : ""
+  
+        .field
+          = label_tag "user_address_address_1", "Address 1"
+          = text_field_tag "user[address][address_1]", params[:user].present? ? params[:user][:address][:address_1] : ""
+  
+        .field
+          = label_tag "user_address_address_2", "Address 2"
+          = text_field_tag "user[address][address_1]", params[:user].present? ? params[:user][:address][:address_2] : ""
+  
+        .field
+          = label_tag "user_address_city", "City"
+          = text_field_tag "user[address][city]", params[:user].present? ? params[:user][:address][:city] : ""
+  
+        .field
+          = label_tag "user_address_province", "State / Province"
+          = text_field_tag "user[address][province]", params[:user].present? ? params[:user][:address][:province] : ""
+  
+        .field
+          = label_tag "user_address_postal_code", "Zip Code / Postal Code"
+          = text_field_tag "user[address][postal_code]", params[:user].present? ? params[:user][:address][:postal_code] : ""
+  
+        .field
+          = label_tag "user_address_country", "Country"
+          = text_field_tag "user[address][country]", params[:user].present? ? params[:user][:address][:country] : ""
+  
+        .field
+          = submit_tag " search ", :class => "button submit"

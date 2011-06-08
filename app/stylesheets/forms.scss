@@ -1,0 +1,176 @@
+/* line 39, ../../../app/stylesheets/effects.sass */
+.box_me {
+  border: 1px solid #e4e4e4;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+/* line 46, ../../../app/stylesheets/effects.sass */
+.box_me .title {
+  background-image: url(/images/layout/box_title_background.png);
+  background-repeat: repeat-x;
+  margin: -10px;
+  margin-bottom: 10px;
+  height: 18px;
+  padding: 5px;
+  padding-left: 10px;
+  color: #5f5f5f;
+  font-family: Lucida Sans;
+  font-size: 15px;
+}
+
+/* line 57, ../../../app/stylesheets/effects.sass */
+.hide_me {
+  position: absolute;
+  visibility: hidden;
+  height: 1px;
+  top: 0px;
+  left: 0px;
+}
+
+/* line 3, ../../../app/stylesheets/forms.sass */
+label {
+  display: block;
+  font-weight: bold;
+}
+
+/* line 7, ../../../app/stylesheets/forms.sass */
+textarea, input[type=text] {
+  display: inline;
+  clear: left;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+/* line 13, ../../../app/stylesheets/forms.sass */
+textarea {
+  height: 100px;
+}
+
+/* line 16, ../../../app/stylesheets/forms.sass */
+input[type="checkbox"] {
+  display: block;
+  float: right;
+  clear: right;
+  margin-top: -13px;
+  margin-right: 580px;
+}
+
+/* line 24, ../../../app/stylesheets/forms.sass */
+table input[type="checkbox"] {
+  display: inline;
+  float: none;
+  clear: none;
+  margin: 0em;
+}
+
+/* line 30, ../../../app/stylesheets/forms.sass */
+select {
+  margin-bottom: 10px;
+}
+
+/* line 33, ../../../app/stylesheets/forms.sass */
+.submit {
+  cursor: pointer;
+  border: none;
+  background-image: url(/images/ui/header_background.png);
+  background-position: -20px 0px;
+  color: #b0e7ff;
+  height: 20px;
+  line-height: 10px;
+  text-align: center;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+/* line 45, ../../../app/stylesheets/forms.sass */
+.submit:hover {
+  background-position: -10px 0px;
+  color: #fdf680;
+}
+
+/* line 49, ../../../app/stylesheets/forms.sass */
+.field {
+  position: relative;
+  clear: both;
+}
+/* line 52, ../../../app/stylesheets/forms.sass */
+.field .button {
+  float: right;
+}
+/* line 54, ../../../app/stylesheets/forms.sass */
+.field .suggestions {
+  background-image: url(/images/ui/dropdown_menu_background.png);
+  color: #1986b5;
+}
+/* line 57, ../../../app/stylesheets/forms.sass */
+.field .suggestions div {
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+/* line 61, ../../../app/stylesheets/forms.sass */
+.field .suggestions div:hover {
+  background-color: #1986b5;
+  color: white;
+  cursor: pointer;
+}
+/* line 65, ../../../app/stylesheets/forms.sass */
+.field .field_actions {
+  position: relative;
+  display: inline;
+  clear: right;
+}
+/* line 69, ../../../app/stylesheets/forms.sass */
+.field .field_actions img {
+  cursor: pointer;
+  margin-left: 5px;
+}
+/* line 72, ../../../app/stylesheets/forms.sass */
+.field .field_actions .disabled {
+  visibility: hidden;
+}
+
+/* line 75, ../../../app/stylesheets/forms.sass */
+fieldset {
+  position: relative;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 82, ../../../app/stylesheets/forms.sass */
+.required label {
+  font-weight: bold;
+}
+/* line 84, ../../../app/stylesheets/forms.sass */
+.required label:before {
+  content: "*";
+}
+/* line 86, ../../../app/stylesheets/forms.sass */
+.required label:after {
+  content: " (this is a required field)";
+  color: #dcdcdc;
+  font-weight: normal;
+}
+
+/* line 91, ../../../app/stylesheets/forms.sass */
+.form_actions {
+  position: relative;
+  display: block;
+  clear: both;
+  width: 100%;
+  text-align: right;
+}
+
+/* line 98, ../../../app/stylesheets/forms.sass */
+ul.actions {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}

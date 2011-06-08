@@ -1,0 +1,4 @@
+.field.required
+  - form.fields_for :finish, finish do |finish_form|
+    = finish_form.label :name, "Finishes"
+    = finish_form.text_field :name, :class => "finish_field"

@@ -1,0 +1,36 @@
+- if @order.line_items.the_living.nontaxable.length > 0
+  %h2 Non-taxable Items and Services
+  %table.line-items.stylized
+    %thead
+      %tr
+        %th Id
+        %th Item
+        %th Size
+        %th Price
+        %th Qty
+        %th &nbsp;
+        %th Total
+    %tbody
+      - @order.line_items.the_living.nontaxable.each do |line_item|
+        - if line_item.is_quick_item
+          %tr
+            %td= line_item.quick_id
+            %td= line_item.name
+            %td= line_item.size
+            %td= number_to_currency line_item.price
+            %td= line_item.quantity
+            %td.refunded{:valign => "top"}= line_item.refunded ? "REFUNDED" : ""
+            %td= number_to_currency line_item.total
+          - if line_item.description
+            %tr.line_item_description
+              %td{:colspan => 9}
+                = line_item.description
+        - else
+          %tr
+            %td #{line_item.variation.item_id}-#{line_item.variation.id}
+            %td #{line_item.variation.item.name}
+            %td #{line_item.size}
+            %td #{number_to_currency line_item.price}
+            %td #{line_item.quantity}
+            %td.refunded{:valign => "top"}= line_item.refunded ? "REFUNDED" : ""
+            %td #{number_to_currency line_item.total}

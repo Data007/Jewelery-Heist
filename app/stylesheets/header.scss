@@ -1,0 +1,103 @@
+/* line 1, ../../../app/stylesheets/header.sass */
+#header {
+  position: relative;
+  left: 50%;
+  top: 0px;
+  z-index: 50;
+  height: 45px;
+  width: 930px;
+  background-image: url(/images/ui/header_background.png);
+  background-repeat: no-repeat;
+  line-height: 42px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: -477px;
+  margin-right: 10px;
+}
+/* line 16, ../../../app/stylesheets/header.sass */
+#header a {
+  font-size: 11px;
+  color: #b0e7ff;
+  text-decoration: none;
+}
+/* line 22, ../../../app/stylesheets/header.sass */
+#header #logo h1 {
+  float: left;
+  margin-right: 10px;
+  margin-top: -4px;
+}
+/* line 26, ../../../app/stylesheets/header.sass */
+#header #logo h2 {
+  float: left;
+  margin-top: -1px;
+}
+/* line 30, ../../../app/stylesheets/header.sass */
+#header #find {
+  color: #fdf680;
+  font-size: 11px;
+}
+/* line 34, ../../../app/stylesheets/header.sass */
+#header #find input[type=text] {
+  position: relative;
+  margin-left: 10px;
+  display: inline;
+  width: 330px;
+}
+/* line 39, ../../../app/stylesheets/header.sass */
+#header #find input {
+  z-index: 30;
+}
+/* line 42, ../../../app/stylesheets/header.sass */
+#header #menu {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  width: 120px;
+  height: 37px;
+  line-height: 37px;
+  padding: 0px;
+  margin: 0px;
+  text-align: right;
+  list-style: none none;
+}
+/* line 54, ../../../app/stylesheets/header.sass */
+#header #menu .active {
+  border-bottom: 5px solid #fdf680;
+}
+/* line 57, ../../../app/stylesheets/header.sass */
+#header #menu .dropdown_menu {
+  position: absolute;
+  display: block;
+  top: 35px;
+  right: 17px;
+  list-style: none none;
+  text-align: left;
+  border-bottom: none;
+}
+/* line 66, ../../../app/stylesheets/header.sass */
+#header #menu .dropdown_menu li {
+  float: right;
+  height: 15px;
+  line-height: 10px;
+  padding: 10px;
+  padding-bottom: 10px;
+  margin: 0px;
+  border-right: 1px solid #7bebe1;
+  background-image: url(/images/ui/dropdown_menu_background.png);
+}
+/* line 76, ../../../app/stylesheets/header.sass */
+#header #menu .dropdown_menu a {
+  color: #1986b5;
+}
+/* line 79, ../../../app/stylesheets/header.sass */
+#header #menu .inactive {
+  visibility: hidden;
+}
+/* line 82, ../../../app/stylesheets/header.sass */
+#header #menu .active {
+  visibility: visible;
+}
+/* line 85, ../../../app/stylesheets/header.sass */
+#header .user_action {
+  color: #fdf680;
+}
