@@ -1,2 +1,0 @@
-module Items::VariationsHelper
-end

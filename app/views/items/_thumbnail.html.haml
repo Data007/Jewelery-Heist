@@ -1,7 +1,0 @@
-- variation = @color ? thumbnail.variations.the_living.collect { |v| v if v.color_ids.include?(@color.id)}.compact.first : thumbnail.variations.the_living.first
-- variation = variation.assets.length > 0 ? variation : thumbnail.variations.the_living.first
-
-.item{:id => "item_#{thumbnail.id}"}
-  .thumbnail= link_to(image_tag(variation.assets.by_position.compact.first.image.url(:medium)), item_path(thumbnail) + "?variation_id=#{variation.id}")
-  .meta_data
-    .name= link_to truncate(thumbnail.name, :length => 45, :omission => "..."), item_path(thumbnail) + "?variation_id=#{variation.id}"

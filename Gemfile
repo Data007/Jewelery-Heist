@@ -1,30 +1,28 @@
 source 'http://rubygems.org'
 
 gem 'rake', '0.8.7'
-gem 'rails', '3.0.7'
+gem 'rails', '3.0.9'
 
 # http://collectiveidea.com/blog/archives/2010/11/29/ssl-with-rails/
 gem 'rack-ssl'
 
-gem 'pg'
-gem 'texticle'
+gem 'mongoid',  '~> 2.0.0'
+gem 'bson_ext', '~> 1.2'
+gem 'rails3-generators'
+
 gem 'nokogiri'
-gem 'bluecloth'
-gem 'RedCloth'
+gem 'formatize'
 gem 'haml'
 gem 'haml-rails'
 gem 'compass'
 gem 'will_paginate'
-gem 'mime-types', '>= 1'
-gem 'aws-s3', '>= 0.6.2', :require => 'aws/s3'
-gem 'paperclip'
+gem 'aws-s3'
+gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
 gem 'stringex'
 gem 'hoptoad_notifier'
-gem 'aegis', '=1.1.7'
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', :group => :production
 gem 'jquery-rails'
-gem 'rails3-generators'
-# gem 'acts_as_audited'
+gem 'dynamic_form'
 
 gem 'braintree'
 
@@ -32,6 +30,8 @@ gem 'factory_girl_rails'
 
 group :development do
   gem 'wirble'
+  gem 'heroku'
+  gem 'taps'
 end
 
 group :test, :development do

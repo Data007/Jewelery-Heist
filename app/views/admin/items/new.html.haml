@@ -1,9 +1,0 @@
-- content_for :page_title do
-  %h1 Create a new item
-  
-- content_for :page_actions do
-  = button_for_url "cancel", cancel_admin_item_path(@item.id), :class => "button"
-  
-- content_for :page_content do
-  - form_for :item, @item, :url => admin_items_path, :html => { :method => :post, :multipart => true } do |item|
-    = render :partial => "admin/items/form", :locals => {:item => item}

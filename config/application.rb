@@ -1,6 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "active_resource/railtie"
 
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
@@ -10,7 +12,7 @@ module DragonHoard
     
     # Generators
     config.generators do |g|
-      # g.orm                 :mongoid
+      g.orm                 :mongoid
       g.template_engine     :haml
       g.test_framework      :rspec
       g.fixture_replacement :factory_girl

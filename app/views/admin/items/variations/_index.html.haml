@@ -1,9 +1,0 @@
-.images
-  - item.variations.the_living.each do |variation|
-    .image
-      .actions
-        = link_to "edit", edit_admin_item_variation_path(:item_id => item, :id => variation.id)
-        = link_to "delete", admin_item_variation_path(:item_id => item, :id => variation.id), :method => :delete, :class => "delete"
-      - image = variation.assets.length > 0 && variation.assets.by_position.first.image_file_name != nil ? variation.assets.by_position.first.image.url(:manage) : "/images/ui/no_image.jpg"
-      = link_to image_tag(image), edit_admin_item_variation_path(:item_id => item, :id => variation.id)
-      .item_id ID#{@item.id}-#{variation.id}

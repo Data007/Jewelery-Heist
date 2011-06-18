@@ -1,2 +1,0 @@
-module Molds::AttachmentsHelper
-end
