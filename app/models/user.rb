@@ -4,14 +4,17 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :emails, :type => Array, :default => []
-  field :phones, :type => Array, :default => []
+  field :emails, type: Array, default: []
+  field :phones, type: Array, default: []
   field :login
   field :password_hash
+  field :name
 
   embeds_many :addresses
 
   attr_accessor :password, :password_confirmation
+
+  validates :name, presence: true, on: :create
 
   before_save :generate_password_hash
   

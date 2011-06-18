@@ -2,6 +2,21 @@ require 'spec_helper'
 require 'digest/sha2'
 
 describe User do
+  
+  context 'Validation' do
+
+    before do
+      @user = Factory.build :user
+    end
+
+    it 'validates presence of name' do
+      @user.errors.should_not include(:name)
+      @user.name = nil
+      @user.save
+      @user.errors.should     include(:name)
+    end
+
+  end
 
   context 'Contact Information' do
 
@@ -44,16 +59,17 @@ describe User do
     end
 
     it 'hashes password on save' do
-      user = Factory.build :user, :login => 'test', :password => 'password', :password_confirmation => 'password'
+      user = Factory.build :user
       user.password_hash.should_not be
       user.save
       user.reload.password_hash.should == User.hash_password('password')
     end
 
     it 'does not hash on save with a bad password confirmation match' do
-      user = Factory.build :user, :login => 'test', :password => 'password', :password_confirmation => 'passwor'
+      user = Factory.build :user, :password_confirmation => 'passwor'
+      user.errors.should_not include(:password_confirmation)
       user.save
-      user.errors[:password_confirmation].should be
+      user.errors.should     include(:password_confirmation)
       user.reload.password_hash.should_not == User.hash_password('password')
     end
 
@@ -62,7 +78,7 @@ describe User do
   context '#authorize' do
 
     before do
-      @user = Factory.create :user, :login => 'test', :password => 'password', :password_confirmation => 'password'
+      @user = Factory.create :user
     end
 
     it 'is not active' do
