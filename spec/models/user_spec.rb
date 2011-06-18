@@ -82,11 +82,14 @@ describe User do
     end
 
     it 'is not active' do
-      pending 'Waiting on #hash_password'
       User.authorize(@user.login, @user.password).should_not be
     end
 
-    it 'is active'
+    it 'is active' do
+      @user.update_attribute :is_active, true
+      @user.reload
+      User.authorize(@user.login, @user.password).should be
+    end
 
   end
 

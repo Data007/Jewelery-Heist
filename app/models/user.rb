@@ -4,10 +4,11 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :emails, type: Array, default: []
-  field :phones, type: Array, default: []
+  field :emails,       type: Array,   default: []
+  field :phones,       type: Array,   default: []
   field :login
   field :password_hash
+  field :is_active,    type: Boolean, default: false
   field :name
 
   embeds_many :addresses
@@ -32,6 +33,11 @@ class User
 
     def hash_password(password)
       Digest::SHA256.hexdigest password
+    end
+
+    def authorize(login, password)
+      user = first(conditions: {login: login, password_hash: hash_password(password)})
+      (user && user.is_active) ? user : nil
     end
 
   end
