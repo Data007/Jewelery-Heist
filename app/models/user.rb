@@ -9,6 +9,7 @@ class User
   field :login
   field :password_hash
   field :is_active,    type: Boolean, default: false
+  field :role,         default: 'public'
   field :name
 
   embeds_many :addresses
@@ -27,6 +28,10 @@ class User
         errors.add :password_confirmation, 'does not match the password'
       end
     end
+  end
+
+  def is_admin?
+    role == 'admin' ? true : false
   end
 
   class << self

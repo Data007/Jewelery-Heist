@@ -78,17 +78,22 @@ describe User do
   context '#authorize' do
 
     before do
-      @user = Factory.create :user
+      @user = Factory.create :user, is_active: true
     end
 
     it 'is not active' do
+      @user.update_attribute :is_active, false
       User.authorize(@user.login, @user.password).should_not be
     end
 
     it 'is active' do
-      @user.update_attribute :is_active, true
-      @user.reload
       User.authorize(@user.login, @user.password).should be
+    end
+
+    it 'is_admin' do
+      @user.is_admin?.should_not be
+      @user.role = 'admin'
+      @user.is_admin?.should be
     end
 
   end
