@@ -8,7 +8,7 @@ describe 'Manage Users' do
     @admin = Factory.create :admin
   end
 
-  context 'authenticate an admin' do
+  context 'admins' do
 
     it 'logs in to manage' do
       visit admin_root_path
@@ -31,10 +31,26 @@ describe 'Manage Users' do
 
   end
 
-  context 'manage customers' do
+  context 'customers' do
 
     before do
       @customer = Factory.create :customer
+    end
+
+    context 'finds a customer' do
+
+      it 'finds a customer by name'
+      it 'finds a customer by address'
+      it 'finds a customer by phone'
+      it 'finds a customer by email'
+
+    end
+    
+    context 'create a customer' do
+    
+      it 'creates a customer directly'
+      it 'creates a customer after a failed search'
+
     end
 
   end
