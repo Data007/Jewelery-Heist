@@ -9,8 +9,10 @@ gem 'rack-ssl'
 gem 'mongoid',  '~> 2.0.0'
 gem 'bson_ext', '~> 1.2'
 gem 'rails3-generators'
-
+ 
+gem 'escape_utils'
 gem 'nokogiri'
+gem 'httparty'
 gem 'formatize'
 gem 'haml'
 gem 'haml-rails'

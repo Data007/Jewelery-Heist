@@ -1,0 +1,48 @@
+- content_for :page_title do
+  %h1 Dashboard
+
+.user-actions
+  %h2 Find Customers
+  
+  #search-customers
+    = form_tag admin_search_users_path, :method => :get do
+      .field
+        = label_tag "user_name", "Name"
+        = text_field_tag "user[name]"
+      
+      .field
+        = label_tag "user_phone", "Phone Number"
+        = text_field_tag "user[phone]"
+        
+      .field
+        = label_tag "user_email", "Email"
+        = text_field_tag "user[email]"
+      
+      .field
+        = label_tag "user_address_address_1", "Address 1"
+        = text_field_tag "user[address][address_1]"
+        
+      .field
+        = label_tag "user_address_address_2", "Address 2"
+        = text_field_tag "user[address][address_1]"
+        
+      .field
+        = label_tag "user_address_city", "City"
+        = text_field_tag "user[address][city]"
+        
+      .field
+        = label_tag "user_address_province", "State / Province"
+        = text_field_tag "user[address][province]"
+        
+      .field
+        = label_tag "user_address_postal_code", "Zip Code / Postal Code"
+        = text_field_tag "user[address][postal_code]"
+        
+      .field
+        = label_tag "user_address_country", "Country"
+        = text_field_tag "user[address][country]"
+        
+      .field
+        = submit_tag " search ", :class => "button submit"
+        
+.clear &nbsp;

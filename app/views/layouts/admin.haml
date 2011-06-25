@@ -1,0 +1,63 @@
+!!! 5
+%html{html_attrs}
+  %head
+    %title manage.wexfordjewelers.com
+    
+    = stylesheet_link_tag "layout", "jquery.tokenizeforms"
+    = stylesheet_link_tag "print", :media => "print"
+    = yield :extra_css
+    
+    = javascript_include_tag "jquery"#, "jquery-ui", "ejs", "jquery.input-helper", "jquery.form", "jquery.livequery", "jquery.orangevolt-focused", "jquery.autocomplete", "jquery.tokenizeforms", "jquery-value-checkbox", "init", "header_menus"
+    = yield :file_uploads
+    = yield :extra_js
+    = javascript_include_tag "application"
+  %body
+    #wrapper
+      #print_logo
+        = image_tag "logo.jpg", :height => "100px"
+        %h3 Wexford Jewelers
+        %p
+          801 N. Mitchell St., Cadillac, MI 49601 <br />
+          (231) 775-1289 <br />
+          http://wexfordjewelers.com
+      #header
+        #logo
+          %h1 Manage
+          %h2 A Wexford Jewelers Tool
+        #find
+          /- if @current_user
+          /  - form_tag admin_search_path, :method => :get do
+          /    = text_field :search, :query
+          /    = submit_tag "search"
+          /- else
+          /  &nbsp;
+        #menu
+          - if @current_user
+            = link_to "(Log Out)", logout_admin_users_path, :class => "user_action"
+      #body
+        #page
+          #page_header
+            #page_title
+              = yield :page_title
+            #page_actions
+              = yield :page_actions
+          %hr
+          #messages
+            - flash.each do |key, msg|
+              = content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}"
+          #page_content
+            = yield :page_content
+            = yield
+        #sidebar
+          .sidebar_content
+            - if @current_user
+              .menus#main_menu
+                /= render :partial => "layouts/admin/menu"
+            #other_menus
+              = yield :sidebar
+          .clearfix
+      .clearfix &nbsp;
+    / #ajax-status
+    /   #ajax-status-container
+    /     %p We're processing your request
+    /     = image_tag "ui/progress_bar.gif"

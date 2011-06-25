@@ -29,3 +29,11 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
+def login_admin(user, password)
+  visit admin_root_path
+
+  fill_in 'Login',    with: user.login
+  fill_in 'Password', with: password
+  click_button 'Login'
+end

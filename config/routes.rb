@@ -5,10 +5,10 @@ DragonHoard::Application.routes.draw do
     resources :users do
       
       collection do
-        get :login
-        get :authenticate
-        get :logout
-        get :forgot
+        get  :login
+        post :authenticate
+        get  :logout
+        get  :forgot
       end
       
       resources :tickets, :controller => "tickets"
