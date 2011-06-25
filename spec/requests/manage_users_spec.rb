@@ -5,26 +5,38 @@ require 'spec_helper'
 describe 'Manage Users' do
 
   before do
-    @admin = Factory.create :user, login: 'admin', role: 'admin', is_active: true
+    @admin = Factory.create :admin
   end
 
-  it 'logs in to manage' do
-    visit admin_root_path
+  context 'authenticate an admin' do
 
-    fill_in 'Login',    with: 'admin'
-    fill_in 'Password', with: 'password'
-    click_button 'Login'
+    it 'logs in to manage' do
+      visit admin_root_path
 
-    page.should have_content("Welcome #{@admin.name}!")
+      fill_in 'Login',    with: @admin.login
+      fill_in 'Password', with: 'password'
+      click_button 'Login'
+
+      page.should have_content("Welcome #{@admin.name}!")
+    end
+
+    it 'logs out the user' do
+      login_admin(@admin, 'password')
+      page.should have_content("Welcome #{@admin.name}!")
+      
+      click_link 'Log Out'
+
+      page.should have_content('Login')
+    end
+
   end
 
-  it 'logs out the user' do
-    login_admin(@admin, 'password')
-    page.should have_content("Welcome #{@admin.name}!")
-    
-    click_link 'Log Out'
+  context 'manage customers' do
 
-    page.should have_content('Login')
+    before do
+      @customer = Factory.create :customer
+    end
+
   end
     
 end
