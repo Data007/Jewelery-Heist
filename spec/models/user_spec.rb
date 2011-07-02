@@ -109,7 +109,7 @@ describe User do
       User.any_of(login: 'customer_1').length.should == 1
     end
 
-    it 'finds users by login' do
+    it 'finds users by full login' do
       User.full_search({login: 'customer_1'}).length.should == 1
     end
 
@@ -120,9 +120,75 @@ describe User do
       users.should include(User.first(conditions: {login: 'customer_2'}))
     end
 
-    it 'finds users by phone'
-    it 'finds users by email'
-    it 'finds users by address'
+    it 'finds users by partial name' do
+      users = User.full_search({name: 'User 2'})
+      users.length.should == 1
+      users.should include(User.first(conditions: {name: 'Customer User 2'}))
+    end
+
+    it 'finds users by full phone' do
+      User.all.each_with_index do |user, index|
+        user.phones << "231-884-302#{index}"
+        user.save
+      end
+      user_one = User.first
+      user_two = User.all[1]
+      user_two.phones << '231-884-3020'
+      user_two.save
+
+      users = User.full_search({phone: '231-884-3020'})
+      users.length.should == 2
+      users.should include(user_one)
+      users.should include(user_two)
+      
+      users = User.full_search({phone: '231-884-3021'})
+      users.length.should == 1
+      users.should include(user_two)
+    end
+
+    it 'finds users by partial phone' do
+      user_1 = Factory.create :customer, phones: ['231-884-3024']
+      user_2 = Factory.create :customer, phones: ['231-884-3306']
+
+      users = User.full_search({phone: '3024'})
+      users.length.should == 1
+      users.should     include(user_1)
+      users.should_not include(user_2)
+    end
+      
+
+    it 'finds users by full email' do
+      User.all.each_with_index do |user, index|
+        user.emails << "email#{index}@example.net"
+        user.save
+      end
+      user_one = User.first
+      user_two = User.all[1]
+      user_two.emails << 'email0@example.net'
+      user_two.save
+
+      users = User.full_search({email: 'email0@example.net'})
+      users.length.should == 2
+      users.should include(user_one)
+      users.should include(user_two)
+      
+      users = User.full_search({email: 'email1@example.net'})
+      users.length.should == 1
+      users.should include(user_two)
+    end
+
+    it 'finds users by partial email' do
+      user_1 = Factory.create :customer, emails: ['email1@example.net']
+      user_2 = Factory.create :customer, emails: ['email2@example.net']
+
+      users = User.full_search({email: 'mail1'})
+      users.length.should == 1
+      users.should     include(user_1)
+      users.should_not include(user_2)
+    end
+
+    it 'finds users by full address'
+    it 'finds users by partial address'
 
   end
 

@@ -34,7 +34,7 @@ describe 'Manage Users' do
   context 'customers' do
 
     before do
-      @customer = Factory.create :customer
+      @customer = Factory.create :customer, phones: ['231-884-3024'], emails: ['customer_1@example.net']
       login_admin(@admin, 'password')
     end
 
@@ -51,8 +51,27 @@ describe 'Manage Users' do
       end
 
       it 'finds a customer by address'
-      it 'finds a customer by phone'
-      it 'finds a customer by email'
+
+      it 'finds a customer by phone' do
+        visit admin_root_path
+
+        fill_in 'Phone Number', with: '884-3024'
+        click_button 'search'
+
+        click_link @customer.name
+        page.should have_content(@customer.name)
+      end
+        
+      it 'finds a customer by email' do
+        visit admin_root_path
+
+        fill_in 'Email', with: 'customer_1'
+        click_button 'search'
+
+        click_link @customer.name
+        page.should have_content(@customer.name)
+      end
+
 
     end
     

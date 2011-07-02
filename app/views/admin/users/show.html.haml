@@ -20,12 +20,12 @@
       %strong Phone Numbers
       - @user.phones.each do |phone|
         %br
-        = phone.number
+        = phone
     %p 
       %strong Email Addresses
       - @user.emails.each do |email|
         %br
-        = email.address
+        = email
         
   .2-column.container
     %h2 Balances
@@ -44,8 +44,8 @@
   
   %hr
   
-  %h2 History
-  
+  / %h2 History
+  / 
   / %p
   /   %strong Orders
   /   - paginated_section @orders do

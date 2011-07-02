@@ -24,14 +24,17 @@ class User
   class << self
     
     def full_search(user_query)
-      address = user_query.delete(:address)
-      phone   = user_query.delete(:phone)
-      email   = user_query.delete(:email)
+      find_address = user_query.delete(:address)
+      find_phone   = Regexp.new(user_query.delete(:phone)) if (user_query[:phone] && !user_query[:phone].blank?)
+      find_email   = Regexp.new(user_query.delete(:email)) if (user_query[:email] && !user_query[:email].blank?)
 
       user_query.each { |(key, value)| user_query.delete(key.to_sym) if value.blank? }
-      user_query = user_query.inject([]) { |hashes, (key, value)| hashes << {key.to_sym => value} }
-      
-      any_of(*user_query)
+      user_query = user_query.inject([]) { |hashes, (key, value)| hashes << {key.to_sym => Regexp.new(value)} }
+
+      result = any_of(*user_query) unless user_query.empty?
+      result = (result ? result.any_in(phones: [find_phone]) : any_in(phones: [find_phone])) if find_phone
+      result = (result ? result.any_in(emails: [find_email]) : any_in(emails: [find_email])) if find_email
+      result
     end
 
   end
