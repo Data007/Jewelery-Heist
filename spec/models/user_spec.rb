@@ -98,4 +98,32 @@ describe User do
 
   end
 
+  context '#full_search' do
+
+    before do
+      3.times {|i| Factory.create :customer, login: "customer_#{i}", name: "Customer User #{i}"}
+    end
+
+    it 'finds users by any_of' do
+      User.count.should == 3
+      User.any_of(login: 'customer_1').length.should == 1
+    end
+
+    it 'finds users by login' do
+      User.full_search({login: 'customer_1'}).length.should == 1
+    end
+
+    it 'finds users by login or name' do
+      users = User.full_search({login: 'customer_1', name: 'Customer User 2'})
+      users.length.should == 2
+      users.should include(User.first(conditions: {login: 'customer_1'}))
+      users.should include(User.first(conditions: {login: 'customer_2'}))
+    end
+
+    it 'finds users by phone'
+    it 'finds users by email'
+    it 'finds users by address'
+
+  end
+
 end

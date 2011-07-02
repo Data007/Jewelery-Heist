@@ -19,7 +19,25 @@ class User
   validates :name, presence: true, on: :create
 
   before_save :generate_password_hash
+
+  # Scopes
+  class << self
+    
+    def full_search(user_query)
+      address = user_query.delete(:address)
+      phone   = user_query.delete(:phone)
+      email   = user_query.delete(:email)
+
+      user_query.each { |(key, value)| user_query.delete(key.to_sym) if value.blank? }
+      user_query = user_query.inject([]) { |hashes, (key, value)| hashes << {key.to_sym => value} }
+      
+      any_of(*user_query)
+    end
+
+  end
+  ##
   
+  # Authentication
   def generate_password_hash
     if (password.present? && password_confirmation.present?)
       if password == password_confirmation
@@ -46,4 +64,19 @@ class User
     end
 
   end
+  ##
+
+  # Financial
+  def total_spent
+    0
+  end
+
+  def total_credit
+    0
+  end
+
+  def total_owing
+    0
+  end
+  #
 end

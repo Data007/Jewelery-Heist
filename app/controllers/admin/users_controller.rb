@@ -25,4 +25,12 @@ class Admin::UsersController < AdminController
     redirect_to admin_root_path
   end
 
+  def search
+    @users = User.full_search(params[:user]).paginate(pagination_hash)
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
 end

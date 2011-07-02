@@ -9,6 +9,7 @@ DragonHoard::Application.routes.draw do
         post :authenticate
         get  :logout
         get  :forgot
+        get  :search
       end
       
       resources :tickets, :controller => "tickets"
