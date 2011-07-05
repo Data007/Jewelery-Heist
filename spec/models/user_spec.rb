@@ -187,7 +187,27 @@ describe User do
       users.should_not include(user_2)
     end
 
-    it 'finds users by full address'
+    it 'finds users by full address' do
+      user = Factory.create :customer
+      user.addresses.create!({
+        address_1:   '1 CIRCLE DR.',
+        city:        'CIRCULAR LOGIC',
+        province:    'MI',
+        postal_code: '49601'
+      })
+      user.addresses.exists?.should be
+
+      users = User.full_search( { address: {
+        address_1:   '1 CIRCLE DR.',
+        city:        'CIRCULAR LOGIC',
+        province:    'MI',
+        postal_code: '49601'
+      } } )
+      users.length.should == 1
+      users.should     include(user)
+      users.should_not include(@admin)
+    end
+
     it 'finds users by partial address'
 
   end
