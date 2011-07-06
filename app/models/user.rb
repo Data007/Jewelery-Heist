@@ -32,11 +32,10 @@ class User
       user_query = user_query.inject([]) { |hashes, (key, value)| hashes << {key.to_sym => Regexp.new(value)} }
 
       find_address.each { |(key, value)| find_address.delete(key.to_sym) if value.blank? } if find_address
-      find_address = nil if find_address.empty?
       find_address = find_address.inject([]) { |hashes, (key, value)| hashes << {"addresses.#{key}".to_sym => Regexp.new(value.upcase)} } if find_address
 
       result = any_of(*user_query) unless user_query.empty?
-      result = (result ? result.any_of(*find_address)        : any_of(*find_address))        if find_address
+      result = (result ? result.any_of(*find_address)        : any_of(*find_address))        if find_address && !find_address.empty?
       result = (result ? result.any_in(phones: [find_phone]) : any_in(phones: [find_phone])) if find_phone
       result = (result ? result.any_in(emails: [find_email]) : any_in(emails: [find_email])) if find_email
       result
