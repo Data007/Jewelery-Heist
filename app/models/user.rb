@@ -32,7 +32,8 @@ class User
       user_query = user_query.inject([]) { |hashes, (key, value)| hashes << {key.to_sym => Regexp.new(value)} }
 
       find_address.each { |(key, value)| find_address.delete(key.to_sym) if value.blank? } if find_address
-      find_address = find_address.inject([]) { |hashes, (key, value)| hashes << {"addresses.#{key}".to_sym => value} } if find_address
+      find_address = nil if find_address.empty?
+      find_address = find_address.inject([]) { |hashes, (key, value)| hashes << {"addresses.#{key}".to_sym => Regexp.new(value.upcase)} } if find_address
 
       result = any_of(*user_query) unless user_query.empty?
       result = (result ? result.any_of(*find_address)        : any_of(*find_address))        if find_address

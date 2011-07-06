@@ -219,8 +219,7 @@ describe User do
       user.addresses.exists?.should be
 
       users = User.full_search( { address: {
-        city:        'CIRCULAR',
-        postal_code: '49601'
+        city:        'CIRcu',
       } } )
       users.length.should == 1
       users.should     include(user)
