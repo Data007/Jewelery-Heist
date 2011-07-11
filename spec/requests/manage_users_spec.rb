@@ -45,9 +45,9 @@ describe 'Manage Users' do
       login_admin(@admin, 'password')
     end
 
-    context 'finds a customer' do
+    context 'finds' do
 
-      it 'finds a customer by name' do
+      it 'by name' do
         visit admin_root_path
 
         fill_in 'Name', with: @customer.name
@@ -57,7 +57,7 @@ describe 'Manage Users' do
         page.should have_content(@customer.name)
       end
 
-      it 'finds a customer by address' do
+      it 'by address' do
         visit admin_root_path
 
         fill_in 'Address 1', with: 'circ'
@@ -68,7 +68,7 @@ describe 'Manage Users' do
         page.should have_content(@customer.name)
       end
 
-      it 'finds a customer by phone' do
+      it 'by phone' do
         visit admin_root_path
 
         fill_in 'Phone Number', with: '884-3024'
@@ -78,7 +78,7 @@ describe 'Manage Users' do
         page.should have_content(@customer.name)
       end
         
-      it 'finds a customer by email' do
+      it 'by email' do
         visit admin_root_path
 
         fill_in 'Email', with: 'customer_1'
@@ -91,10 +91,10 @@ describe 'Manage Users' do
 
     end
     
-    context 'create a customer' do
+    context 'creates' do
     
-      it 'creates a customer after a failed search'
-      it 'creates a customer directly'
+      it 'after a failed search'
+      it 'directly'
 
     end
 

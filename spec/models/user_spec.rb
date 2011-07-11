@@ -230,6 +230,27 @@ describe User do
       users.should     include(user)
       users.should_not include(@admin)
     end
+
+  end
+
+  context 'Financials' do
+
+    before do
+      @customer = Factory.create :customer
+    end
+
+    context 'Spent Money' do
+
+      it 'spent $50 USD'
+
+      it 'spent $0 USD'
+
+    end
+
+    context 'Recieved Credit'
+
+    context 'Paid Off a Debt'
+
   end
 
 end

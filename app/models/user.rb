@@ -85,5 +85,5 @@ class User
   def total_owing
     0
   end
-  #
+  ##
 end
