@@ -66,7 +66,7 @@ describe User do
     end
 
     it 'does not hash on save with a bad password confirmation match' do
-      user = Factory.build :user, :password_confirmation => 'passwor'
+      user = Factory.build :user, password_confirmation: 'passwor'
       user.errors.should_not include(:password_confirmation)
       user.save
       user.errors.should     include(:password_confirmation)
@@ -94,6 +94,11 @@ describe User do
       @user.is_admin?.should_not be
       @user.role = 'admin'
       @user.is_admin?.should be
+    end
+
+    it 'does not find a user' do
+      user = User.authorize('joe', 'crabshack')
+      user.should_not be
     end
 
   end
