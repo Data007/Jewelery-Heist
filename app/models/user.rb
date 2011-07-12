@@ -24,7 +24,8 @@ class User
   class << self
 
     def full_search(user_query)
-      find_address = user_query.delete(:address)
+      return all unless user_query
+      find_address = user_query.delete(:address) if (user_query[:address] && !user_query[:address].blank?)
       find_phone   = Regexp.new(user_query.delete(:phone)) if (user_query[:phone] && !user_query[:phone].blank?)
       find_email   = Regexp.new(user_query.delete(:email)) if (user_query[:email] && !user_query[:email].blank?)
 
@@ -38,7 +39,7 @@ class User
       end
 
       result = any_of(*user_query) unless user_query.empty?
-      result = (result ? results.and(find_address) : where(find_address)) if find_address && !find_address.empty?
+      result = (result ? result.and(find_address) : where(find_address)) if find_address && !find_address.empty?
       result = (result ? result.any_in(phones: [find_phone]) : any_in(phones: [find_phone])) if find_phone
       result = (result ? result.any_in(emails: [find_email]) : any_in(emails: [find_email])) if find_email
       result
