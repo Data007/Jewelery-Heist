@@ -17,4 +17,12 @@ end
 Factory.define :customer, parent: :user do |f|
   f.name  'customer user'
   f.login 'customer'
+  f.after_create do |customer|
+    customer.addresses.create!({
+      address_1: '801 N. MITCHELL ST.',
+      city:      'CADILLAC',
+      province:  'MI',
+      postal_code: '49601'
+    })
+  end
 end

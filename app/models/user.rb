@@ -31,11 +31,14 @@ class User
       user_query.each { |(key, value)| user_query.delete(key.to_sym) if value.blank? }
       user_query = user_query.inject([]) { |hashes, (key, value)| hashes << {key.to_sym => Regexp.new(value)} }
 
-      find_address.each { |(key, value)| find_address.delete(key.to_sym) if value.blank? } if find_address
-      find_address = find_address.inject([]) { |hashes, (key, value)| hashes << {"addresses.#{key}".to_sym => Regexp.new(value.upcase)} } if find_address
+      if find_address
+        new_find_address = {}
+        find_address.each { |(key, value)| new_find_address["addresses.#{key}"] = Regexp.new(value.upcase) unless value.blank?}
+        find_address = new_find_address
+      end
 
       result = any_of(*user_query) unless user_query.empty?
-      result = (result ? result.any_of(*find_address)        : any_of(*find_address))        if find_address && !find_address.empty?
+      result = (result ? results.and(find_address) : where(find_address)) if find_address && !find_address.empty?
       result = (result ? result.any_in(phones: [find_phone]) : any_in(phones: [find_phone])) if find_phone
       result = (result ? result.any_in(emails: [find_email]) : any_in(emails: [find_email])) if find_email
       result
