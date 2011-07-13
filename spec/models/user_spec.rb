@@ -141,6 +141,7 @@ describe User do
       user_two.phones << '231-884-3020'
       user_two.save
 
+#      sleep(1) # forced sleep because there's a race condition somewhere
       users = User.full_search({phone: '231-884-3020'})
       users.length.should == 2
       users.should include(user_one)
