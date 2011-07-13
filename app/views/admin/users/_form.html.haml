@@ -1,0 +1,9 @@
+= form_for [:admin, @user] do |f|
+  %fieldset
+    .form
+      = f.hidden_field :id
+      .field.required
+        = f.label :name
+        = f.text_field :name
+      .form_actions
+        = f.submit 'save'

@@ -42,7 +42,20 @@ class User
       result = (result ? result.and(find_address) : where(find_address)) if find_address && !find_address.empty?
       result = (result ? result.any_in(phones: [find_phone]) : any_in(phones: [find_phone])) if find_phone
       result = (result ? result.any_in(emails: [find_email]) : any_in(emails: [find_email])) if find_email
-      result
+      return result
+    end
+
+    def create_from_search_params(user_query)
+      address = user_query.delete(:address) if (user_query[:address] && !user_query[:address].blank?)
+      phone   = user_query.delete(:phone)   if (user_query[:phone]   && !user_query[:phone].blank?)
+      email   = user_query.delete(:email)   if (user_query[:email]   && !user_query[:email].blank?)
+
+      user = User.create(user_query)
+      user.addresses.find_or_create address if address
+      user.emails << email if (email && user.emails.include?(email))
+      user.phones << phone if (phone && user.phones.include?(phone))
+
+      return user
     end
 
   end

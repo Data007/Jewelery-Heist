@@ -93,7 +93,18 @@ describe 'Manage Users' do
     
     context 'creates' do
     
-      it 'after a failed search'
+      it 'after a failed search' do
+        visit admin_root_path
+
+        fill_in 'Name', with: 'Buster Bluth'
+        click_button 'search'
+
+        click_link 'Create a new user'
+        click_button 'save'
+
+        page.should have_content('Buster Bluth has been saved.')
+      end
+
       it 'directly'
 
     end
