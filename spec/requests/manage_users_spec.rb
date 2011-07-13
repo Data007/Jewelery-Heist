@@ -103,9 +103,19 @@ describe 'Manage Users' do
         click_button 'save'
 
         page.should have_content('Buster Bluth has been saved.')
+        page.should have_content('Viewing Buster Bluth')
       end
 
-      it 'directly'
+      it 'directly' do
+        visit admin_root_path
+
+        click_link 'Create a new user'
+        fill_in 'Name', with: 'Buster Bluth'
+        click_button 'save'
+
+        page.should have_content('Buster Bluth has been saved.')
+        page.should have_content('Viewing Buster Bluth')
+      end
 
     end
 

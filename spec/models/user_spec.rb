@@ -233,6 +233,24 @@ describe User do
 
   end
 
+  context '#create_from_search_params' do
+
+    it 'creates a new user' do
+      user = User.create_from_search_params(name: 'new user')
+      user.errors.blank?.should be
+      user.new_record?.should_not be
+      User.count.should == 1
+    end
+
+    it 'does not create a user if one exists' do
+      user_1 = Factory.create :customer, name: 'customer user'
+      user_2 = User.create_from_search_params(name: 'customer user')
+      user_2.should == user_1
+      User.count.should == 1
+    end
+
+  end
+
   context 'Financials' do
 
     before do

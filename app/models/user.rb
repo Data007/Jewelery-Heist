@@ -46,14 +46,19 @@ class User
     end
 
     def create_from_search_params(user_query)
-      address = user_query.delete(:address) if (user_query[:address] && !user_query[:address].blank?)
-      phone   = user_query.delete(:phone)   if (user_query[:phone]   && !user_query[:phone].blank?)
-      email   = user_query.delete(:email)   if (user_query[:email]   && !user_query[:email].blank?)
+      if user_query
+        address = user_query.delete(:address) if (user_query[:address] && !user_query[:address].blank?)
+        phone   = user_query.delete(:phone)   if (user_query[:phone]   && !user_query[:phone].blank?)
+        email   = user_query.delete(:email)   if (user_query[:email]   && !user_query[:email].blank?)
 
-      user = User.create(user_query)
-      user.addresses.find_or_create address if address
-      user.emails << email if (email && user.emails.include?(email))
-      user.phones << phone if (phone && user.phones.include?(phone))
+        user = User.find_or_create_by(user_query)
+        user.addresses.find_or_create_by address if address
+        user.emails << email if (email && user.emails.include?(email))
+        user.phones << phone if (phone && user.phones.include?(phone))
+      else
+        user = User.new
+        user.save(validate: false)
+      end
 
       return user
     end
