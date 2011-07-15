@@ -136,12 +136,11 @@ describe User do
         user.phones << "231-884-302#{index}"
         user.save
       end
-      user_one = User.first
-      user_two = User.all[1]
+      user_one = User.where(:phones.in => ['231-884-3020']).first
+      user_two = User.where(:phones.in => ['231-884-3021']).first
       user_two.phones << '231-884-3020'
       user_two.save
 
-#      sleep(1) # forced sleep because there's a race condition somewhere
       users = User.full_search({phone: '231-884-3020'})
       users.length.should == 2
       users.should include(user_one)
@@ -168,8 +167,8 @@ describe User do
         user.emails << "email#{index}@example.net"
         user.save
       end
-      user_one = User.first
-      user_two = User.all[1]
+      user_one = User.where(:emails.in => ['email0@example.net']).first
+      user_two = User.where(:emails.in => ['email1@example.net']).first
       user_two.emails << 'email0@example.net'
       user_two.save
 
