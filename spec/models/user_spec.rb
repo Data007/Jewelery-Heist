@@ -262,14 +262,17 @@ describe User do
       @item_2 = Factory.create :item
       @item_2.variations << Factory.create(:variation, price: 60.00)
 
-      @order  = Factory.create(:order, user: @customer)
-      @order.line_items << Factory.create(:line_item, variation: @item_1.variations.first, quantity: 1)
+      @order_1  = Factory.create(:order, user: @customer)
+      @order_1.line_items << Factory.create(:line_item, variation: @item_1.variations.first, quantity: 1)
+
+      @order_2  = Factory.create(:order, user: @customer)
+      @order_2.line_items << Factory.create(:line_item, variation: @item_2.variations.first, quantity: 1)
     end
 
     context 'Spent Money' do
 
       it 'spent $50 USD' do
-        @order.purchase
+        @order_1.purchase
         @customer.total_spent.should == 50.0
       end
 
@@ -282,31 +285,31 @@ describe User do
     context 'Recieved Credit' do
 
       before do
-        @order.purchase
-        @order.add_payment(50)
+        @order_1.purchase
+        @order_1.add_payment(50)
       end
 
       it 'recieved no credit' do
-        @customer.total_credit.should == 0.0
+        @customer.total_credits.should  == 0.0
       end
 
       it 'recieved a partial credit' do
-        @order.add_payment(-20, 'credit')
-        @customer.total_credit.should   == 20.0
+        @order_1.add_payment(-20, 'credit')
+        @customer.total_credits.should  == 20.0
         @customer.total_payments.should == 50.0
         @customer.total_balance.should  == -20.0
       end
 
       it 'recieved a full credit' do
-        @order.add_payment(-50, 'credit')
-        @customer.total_credit.should   == 50.0
+        @order_1.add_payment(-50, 'credit')
+        @customer.total_credits.should  == 50.0
         @customer.total_payments.should == 50.0
         @customer.total_balance.should  == -50.0
       end
         
       it 'recieved a full credit plus' do
-        @order.add_payment(-150, 'credit')
-        @customer.total_credit.should   == 150.0
+        @order_1.add_payment(-150, 'credit')
+        @customer.total_credits.should  == 150.0
         @customer.total_payments.should == 50.0
         @customer.total_balance.should  == -150.0
       end
@@ -314,10 +317,54 @@ describe User do
     end
 
     context 'Paid Off a Debt' do
-      
-      it 'paid nothing on an order'
-      it 'paid the first half of an order'
-      it 'paid the second half of an order'
+
+      it 'paid nothing on an order' do
+        @order_1.purchase
+        @customer.total_payments.should == 0.0
+        @customer.total_balance.should  == 50.0
+      end
+
+      it 'paid the first half of an order' do
+        @order_1.purchase
+        @order_1.add_payment(25)
+        @customer.total_payments.should == 25.0
+        @customer.total_balance.should  == 25.0
+      end
+
+      it 'paid the second half of an order' do
+        @order_1.purchase
+        @order_1.add_payment(25)
+        @customer.total_payments.should == 25.0
+        @customer.total_balance.should  == 25.0
+
+        @order_1.add_payment(25)
+        @customer.total_payments.should == 50.0
+        @customer.total_balance.should  == 0.0
+      end
+
+      it 'applied a credit to a partially paid order' do
+        @order_2.purchase
+        @order_2.add_payment(60)
+        @order_2.add_payment(-25, 'credit')
+
+        @customer.total_payments.should == 60.0
+        @customer.total_credits.should  == 25.0
+        @customer.total_balance.should  == -25.0
+
+        @order_1.purchase
+        @order_1.add_payment(25)
+        @customer.total_payments.should == 85.0
+        @customer.total_credits.should  == 25.0
+        @customer.total_balance.should  == 0.0
+
+        @order_1.add_payment(25, 'credit')
+        @customer.total_payments.should == 110.0
+        @customer.total_credits.should  == 25.0
+        @customer.total_balance.should  == -25.0
+      end
+
+      # TODO: add a pool of credit to each user and test withdrawing from that
+      # NOTE: total balance is off because the credits aren't pooled
     
     end
 

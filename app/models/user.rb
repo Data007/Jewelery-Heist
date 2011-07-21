@@ -105,7 +105,7 @@ class User
     purchased_orders.map(&:total).sum
   end
 
-  def total_credit
+  def total_credits
     purchased_orders.map(&:credits_total).sum
   end
 

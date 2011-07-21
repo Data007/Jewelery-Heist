@@ -19,11 +19,11 @@ class Order
   end
 
   def payments_total
-    payments.not_in(payment_type: ['credit']).map(&:amount).sum
+    payments.where(:amount.gt => 0).map(&:amount).sum
   end
 
   def credits_total
-    -payments.where(payment_type: /credit/).map(&:amount).sum
+    -payments.where(payment_type: /credit/, :amount.lt => 0).map(&:amount).sum
   end
 
   def balance
