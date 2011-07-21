@@ -255,11 +255,23 @@ describe User do
 
     before do
       @customer = Factory.create :customer
+
+      @item_1 = Factory.create :item
+      @item_1.variations << Factory.create(:variation, price: 50.00)
+
+      @item_2 = Factory.create :item
+      @item_2.variations << Factory.create(:variation, price: 60.00)
+
+      @order  = Factory.create(:order, user: @customer)
+      @order.line_items << Factory.create(:line_item, variation: @item_1.variations.first, quantity: 1)
+      @order.purchase
     end
 
     context 'Spent Money' do
 
-      it 'spent $50 USD'
+      it 'spent $50 USD' do
+        @customer.total_spent.should == 50.0
+      end
 
       it 'spent $0 USD'
 

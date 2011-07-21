@@ -13,6 +13,7 @@ class User
   field :name
 
   embeds_many :addresses
+  embeds_many :orders
 
   attr_accessor :password, :password_confirmation
 
@@ -96,8 +97,12 @@ class User
   ##
 
   # Financial
+  def purchased_orders
+    orders.where(purchased: true)
+  end
+
   def total_spent
-    0
+    purchased_orders.map(&:total).sum
   end
 
   def total_credit
