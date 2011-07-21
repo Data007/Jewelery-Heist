@@ -281,10 +281,35 @@ describe User do
 
     context 'Recieved Credit' do
 
-      it 'recieved no credit'
-      it 'recieved a partial credit'
-      it 'recieved a full credit'
-      it 'recieved a full credit plus'
+      before do
+        @order.purchase
+        @order.add_payment(50)
+      end
+
+      it 'recieved no credit' do
+        @customer.total_credit.should == 0.0
+      end
+
+      it 'recieved a partial credit' do
+        @order.add_payment(-20, 'credit')
+        @customer.total_credit.should   == 20.0
+        @customer.total_payments.should == 50.0
+        @customer.total_balance.should  == -20.0
+      end
+
+      it 'recieved a full credit' do
+        @order.add_payment(-50, 'credit')
+        @customer.total_credit.should   == 50.0
+        @customer.total_payments.should == 50.0
+        @customer.total_balance.should  == -50.0
+      end
+        
+      it 'recieved a full credit plus' do
+        @order.add_payment(-150, 'credit')
+        @customer.total_credit.should   == 150.0
+        @customer.total_payments.should == 50.0
+        @customer.total_balance.should  == -150.0
+      end
 
     end
 

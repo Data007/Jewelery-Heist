@@ -106,11 +106,15 @@ class User
   end
 
   def total_credit
-    0
+    purchased_orders.map(&:credits_total).sum
   end
 
-  def total_owing
-    0
+  def total_payments
+    purchased_orders.map(&:payments_total).sum
+  end
+
+  def total_balance
+    purchased_orders.map(&:balance).sum
   end
   ##
 end

@@ -4,6 +4,11 @@ class Order
 
   embedded_in :user
   embeds_many :line_items
+  embeds_many :payments
+
+  def add_payment(amount, payment_type='cash')
+    payments.create amount: amount, payment_type: payment_type
+  end
 
   def purchase
     update_attribute :purchased, true
@@ -11,5 +16,17 @@ class Order
 
   def total
     line_items.map(&:total).sum
+  end
+
+  def payments_total
+    payments.not_in(payment_type: ['credit']).map(&:amount).sum
+  end
+
+  def credits_total
+    -payments.where(payment_type: /credit/).map(&:amount).sum
+  end
+
+  def balance
+    total - (payments_total + credits_total)
   end
 end
