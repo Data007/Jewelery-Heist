@@ -264,16 +264,18 @@ describe User do
 
       @order  = Factory.create(:order, user: @customer)
       @order.line_items << Factory.create(:line_item, variation: @item_1.variations.first, quantity: 1)
-      @order.purchase
     end
 
     context 'Spent Money' do
 
       it 'spent $50 USD' do
+        @order.purchase
         @customer.total_spent.should == 50.0
       end
 
-      it 'spent $0 USD'
+      it 'spent $0 USD' do
+        @customer.total_spent.should == 0.0
+      end
 
     end
 
