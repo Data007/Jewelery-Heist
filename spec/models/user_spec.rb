@@ -279,9 +279,22 @@ describe User do
 
     end
 
-    context 'Recieved Credit'
+    context 'Recieved Credit' do
 
-    context 'Paid Off a Debt'
+      it 'recieved no credit'
+      it 'recieved a partial credit'
+      it 'recieved a full credit'
+      it 'recieved a full credit plus'
+
+    end
+
+    context 'Paid Off a Debt' do
+      
+      it 'paid nothing on an order'
+      it 'paid the first half of an order'
+      it 'paid the second half of an order'
+    
+    end
 
   end
 
