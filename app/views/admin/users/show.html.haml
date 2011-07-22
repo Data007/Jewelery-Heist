@@ -44,56 +44,54 @@
   
   %hr
   
-  / %h2 History
-  / 
-  / %p
-  /   %strong Orders
-  /   - paginated_section @orders do
-  /     %table.index.stylized
-  /       %thead
-  /         %tr
-  /           %th Order
-  /           %th Item(s)
-  /           %th Total
-  /           %th Paid
-  /           %th Balance
-  /           %th Location
-  /           %th Kind
-  /           %th Status
-  /       %tbody
-  /         - @orders.each do |order|
-  /           %tr{:class => cycle("normal", "alternate")}
-  /             %td= link_to(order.id, admin_order_path(order))
-  /             %td
-  /               - order.line_items.the_living.each do |line_item|
-  /                 - if line_item.variation
-  /                   = link_to("ID#{line_item.variation.item_id}-#{line_item.variation_id}", admin_item_path("ID#{line_item.variation.item_id}-#{line_item.variation_id}"))
-  /                 - else
-  /                   QID#{line_item.id}
-  /                 %br
-  /             %td= number_to_currency(order.total)
-  /             %td= number_to_currency(order.paid)
-  /             %td= number_to_currency(order.balance)
-  /             %td{:class => order.location == "website" ? "website" : "instore"}= order.location.capitalize
-  /             %td= order.staging_type
-  /             %td= order.ticket.current_stage
-  / %p
-  /   %strong Payments
-  /   - paginated_section @payments do
-  /     %table.index.stylized
-  /       %thead
-  /         %tr
-  /           %th Order
-  /           %th Paid On
-  /           %th Payment Type
-  /           %th Check #
-  /           %th Payment Amount
-  /       %tbody
-  /         - @payments.each do |payment|
-  /           %tr
-  /             %td= link_to(payment.order.id, admin_order_path(payment.order.id))
-  /             %td #{time_ago_in_words(payment.created_at)} ago (#{payment.created_at.strftime("%b %d, %Y")})
-  /             %td= payment.payment_type.name
-  /             %td= payment.check_number
-  /             %td= number_to_currency(payment.amount)
+  %h2 History
+  
+  %p
+    %strong Orders
+    %table.index.stylized
+      %thead
+        %tr
+          %th Order
+          %th Item(s)
+          %th Total
+          %th Paid
+          %th Balance
+          %th Location
+          %th Kind
+          %th Status
+      %tbody
+        - @user.orders.each do |order|
+          %tr{:class => cycle("normal", "alternate")}
+            %td= link_to(order.id, admin_order_path(order))
+            %td
+              - order.line_items.the_living.each do |line_item|
+                - if line_item.variation
+                  = link_to("ID#{line_item.variation.item_id}-#{line_item.variation_id}", admin_item_path("ID#{line_item.variation.item_id}-#{line_item.variation_id}"))
+                - else
+                  QID#{line_item.id}
+                %br
+            %td= number_to_currency(order.total)
+            %td= number_to_currency(order.paid)
+            %td= number_to_currency(order.balance)
+            %td{:class => order.location == "website" ? "website" : "instore"}= order.location.capitalize
+            %td= order.staging_type
+            %td= order.ticket.current_stage
+  %p
+    %strong Payments
+    %table.index.stylized
+      %thead
+        %tr
+          %th Order
+          %th Paid On
+          %th Payment Type
+          %th Check #
+          %th Payment Amount
+      %tbody
+        - @user.orders.map(&:payments).each do |payment|
+          %tr
+            %td= link_to(payment.order.id, admin_order_path(payment.order.id))
+            %td #{time_ago_in_words(payment.created_at)} ago (#{payment.created_at.strftime("%b %d, %Y")})
+            %td= payment.payment_type.name
+            %td= payment.check_number
+            %td= number_to_currency(payment.amount)
 
