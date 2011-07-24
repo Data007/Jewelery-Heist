@@ -21,6 +21,8 @@ class User
 
   before_save :generate_password_hash
 
+  scope :workers, where(:role.ne => 'public')
+
   # Scopes
   class << self
 

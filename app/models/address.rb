@@ -10,4 +10,5 @@ class Address
   field :country, :default => 'US'
 
   embedded_in :user
+  embedded_in :order
 end

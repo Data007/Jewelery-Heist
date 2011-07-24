@@ -46,7 +46,13 @@ class Admin::UsersController < AdminController
   end
 
   def show
-    @user = User.find(params[:id])
+    find_user
+  end
+
+private
+  
+  def find_user
+    @user = User.find(params[:user_id] ? params[:user_id] : params[:id])
   end
 
 end

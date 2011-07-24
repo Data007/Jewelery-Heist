@@ -7,7 +7,7 @@
     = stylesheet_link_tag "print", :media => "print"
     = yield :extra_css
     
-    = javascript_include_tag "jquery"#, "jquery-ui", "ejs", "jquery.input-helper", "jquery.form", "jquery.livequery", "jquery.orangevolt-focused", "jquery.autocomplete", "jquery.tokenizeforms", "jquery-value-checkbox", "init", "header_menus"
+    = javascript_include_tag "jquery", "jquery-ui", "ejs", "jquery.input-helper", "jquery.form", "jquery.livequery", "jquery.orangevolt-focused", "jquery.autocomplete", "jquery.tokenizeforms", "jquery-value-checkbox", "init", "header_menus"
     = yield :file_uploads
     = yield :extra_js
     = javascript_include_tag "application"

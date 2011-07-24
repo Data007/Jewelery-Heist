@@ -1,0 +1,34 @@
+- content_for :page_title do
+  %h1 #{@order.location.capitalize} #{@order.staging_type.capitalize} ##{@order.id}
+
+- content_for :page_actions do
+  - if @order.refunded
+    %h2 REFUNDED
+  - else
+    = raw button_for_url "refund order", refund_admin_order_path(@order), :class => "button", :id => "refund-order-button", :confirm => "Are you sure you want to REFUND this order?"
+    = raw button_for_url "cancel order", cancel_admin_order_path(@order), :class => "button", :id => "cancel-order-button", :confirm => "Are you sure you want to CANCEL this order?"
+
+- content_for :extra_js do
+  = render :partial => "admin/users/orders/extra_javascript"
+
+/ = render :partial => "admin/users/orders/menu", :locals => {:active_url => admin_order_path(@order)}
+
+- form_for @order, :url => admin_order_path(@order), :html => {:method => :put} do |order_form|
+  .field
+    = order_form.label :clerk_id, "Handled by: "
+    = order_form.select :clerk_id, options_from_collection_for_select(User.workers, "id", "name", @order.clerk_id ? @order.clerk_id : @current_user.id)
+  .field
+    = order_form.submit "change clerk", :class => "button submit"
+  
+%hr
+
+= render :partial => "admin/users/orders/items"
+
+%hr
+
+= render :partial => "admin/users/orders/payments"
+
+%hr
+
+= render :partial => "admin/users/orders/notes"
+

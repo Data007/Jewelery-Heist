@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe 'Orders' do
 
   before do
@@ -14,10 +13,27 @@ describe 'Orders' do
       postal_code: '49601'
     })
 
+    login_admin(@admin, 'password')
     visit admin_user_path(@customer)
+
+    current_path.should == admin_user_path(@customer.id)
   end
 
-  it 'creates an order'
+  it 'creates an order' do
+    click_link 'In Store Purchase'
+
+    @customer.reload
+    @order = @customer.orders.last
+    
+    current_path.should == admin_user_order_path(@customer.id, @order.id)
+    page.should have_content('Line Items')
+    page.should have_content('Payments')
+    page.should have_content("Instore Purchase ##{@order.id}")
+
+    click_button 'save line items'
+    current_path.should == admin_user_path(@customer.id)
+  end
+
   it 'shows an order'
   
   context 'items' do

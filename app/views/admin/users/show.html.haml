@@ -2,7 +2,7 @@
   %h1 Viewing #{@user.name}
   
 - content_for :page_actions do
-  = button_for_url "edit", edit_admin_user_path(@user), :class => "button"
+  = raw button_for_url "edit", edit_admin_user_path(@user), :class => "button"
   
 - content_for :page_content do
   .2-column.container
@@ -43,8 +43,18 @@
           %th= number_to_currency(@user.total_balance)
   
   %hr
+
+  %h2 New Orders
+
+  = link_to "In Store Purchase", new_admin_user_order_path(@user), class: "button"
+  = link_to "In Store Repair", new_admin_user_order_path(@user, staging_type: "repair"), class: "button"
+  = link_to "In Store Custom", new_admin_user_order_path(@user, staging_type: "custom"), class: "button"
+  = link_to "Website, Etsy, or Phone Purchase", new_admin_user_order_path(@user, location: "website", staging_type: "purchase"), class: "button"
+  = link_to "Website, Etsy, or Phone Custom", new_admin_user_order_path(@user, location: "website", staging_type: "custom"), class: "button"
   
-  %h2 History
+  %hr
+  
+  %h2 Customer History
   
   %p
     %strong Orders

@@ -12,7 +12,11 @@ DragonHoard::Application.routes.draw do
         get  :search
       end
       
-      resources :tickets, :controller => "tickets"
+      resources :orders,  controller: 'users/orders' do
+        resources :line_items, controller: 'users/orders/line_items'
+      end
+
+      resources :tickets, controller: 'tickets'
       
     end
     
@@ -42,13 +46,13 @@ DragonHoard::Application.routes.draw do
         get  :print
       end
       
-      resources :line_items, :controller => "orders/line_items", :action => "index", :conditions => {:method => :put}
-      resources :line_items, :controller => "orders/line_items", :action => "index", :conditions => {:method => :get}
-      resources :line_items, :except     => [:index], :controller => "orders/line_items"
+      resources :line_items, controller: 'orders/line_items', action: 'index', conditions: {method: :put}
+      resources :line_items, controller: 'orders/line_items', action: 'index', conditions: {method: :get}
+      resources :line_items, except: [:index], controller: 'orders/line_items'
       
-      match "payments" => "orders/payments#index", :conditions => {:method => [:put, :get]}, :as => :payments
-      resources :payments, :except => [:index], :controller => "orders/payments"
-      resources :tickets, :controller => "tickets"
+      match 'payments' => 'orders/payments#index', conditions: {method: [:put, :get]}, as: :payments
+      resources :payments, except: [:index], controller: 'orders/payments'
+      resources :tickets, controller: 'tickets'
     end
     
     resources :tickets do
@@ -63,18 +67,18 @@ DragonHoard::Application.routes.draw do
       
     end
     
-    match "search" => "searches#general", :as => :search
-    match "search/users" => "searches#users", :as => :search_users
+    match 'search' => 'searches#general', as: :search
+    match 'search/users' => 'searches#users', as: :search_users
   
     resources :customers
-    resources :faqs, :except => [:new, :create, :destroy]
+    resources :faqs, except: [:new, :create, :destroy]
     
     resources :molds do
       member do
         get :cancel
       end
-      resources :attachments, :controller => 'molds/attachments'
-      match "/molds/:mold_id/attachments/update_positions/:id" => "molds/attachments#update_positions", :as => :mold_asset_update_position
+      resources :attachments, controller: 'molds/attachments'
+      match '/molds/:mold_id/attachments/update_positions/:id' => 'molds/attachments#update_positions', as: :mold_asset_update_position
     end
     
     resources :collections
@@ -94,23 +98,23 @@ DragonHoard::Application.routes.draw do
         get :restore
       end
       
-      resources :variations, :controller => 'items/variations' do
+      resources :variations, controller: 'items/variations' do
         member do
           get :cancel
         end
-        resources :attachments, :controller => 'items/variations/attachments'
+        resources :attachments, controller: 'items/variations/attachments'
       end
       
-      match "items/:item_id/variations/:variation_id/attachments/update_positions/:id" => "items/variations/attachments#update_positions", :as => :item_variation_asset_update_position
+      match 'items/:item_id/variations/:variation_id/attachments/update_positions/:id' => 'items/variations/attachments#update_positions', as: :item_variation_asset_update_position
       
-      match "live_searches/metals/:id" => "live_searches#metals", :as => :metals
-      match "live_searches/jewels/:id" => "live_searches#jewels", :as => :jewels
-      match "live_searches/finishes/:id" => "live_searches#finishes", :as => :finishes
-      match "live_searches/:id" => "live_searches#items", :as => :full_search
+      match 'live_searches/metals/:id' => 'live_searches#metals', as: :metals
+      match 'live_searches/jewels/:id' => 'live_searches#jewels', as: :jewels
+      match 'live_searches/finishes/:id' => 'live_searches#finishes', as: :finishes
+      match 'live_searches/:id' => 'live_searches#items', as: :full_search
       
       namespace :reports do
         namespace :items do
-          resources :items, :collection => {:current => :get}
+          resources :items, collection: {current: :get}
         end
       end
       
@@ -118,10 +122,10 @@ DragonHoard::Application.routes.draw do
     
   end
   
-  match "admin" => "admin/users#dashboard", :as => :admin_root
+  match 'admin' => 'admin/users#dashboard', as: :admin_root
   
   resources :items
-  resources :collections, :only => [:index, :show]
+  resources :collections, only: [:index, :show]
   
   resources :users do
     collection do
@@ -139,42 +143,42 @@ DragonHoard::Application.routes.draw do
     end
   end
     
-  match "/users/fb_authenticate/:uid" => "users#fb_authenticate", :as => :fb_authenticate
-  match "dashboard" => "users#dashboard", :as => :dashboard
+  match '/users/fb_authenticate/:uid' => 'users#fb_authenticate', as: :fb_authenticate
+  match 'dashboard' => 'users#dashboard', as: :dashboard
   
-  match "/orders/:id/checkout" => "orders#checkout", :method => :post, :as => :checkout
-  match "/orders/:id/shipping" => "orders#shipping", :method => :post, :as => :shipping
-  match "/orders/:id/addressed" => "orders#addressed", :method => :post, :as => :addressed
-  match "/orders/:id/pay" => "orders#pay", :method => :post, :as => :pay
-  match "/orders/:id/complete" => "orders#complete", :method => :post, :as => :complete
+  match '/orders/:id/checkout' => 'orders#checkout', method: :post, as: :checkout
+  match '/orders/:id/shipping' => 'orders#shipping', method: :post, as: :shipping
+  match '/orders/:id/addressed' => 'orders#addressed', method: :post, as: :addressed
+  match '/orders/:id/pay' => 'orders#pay', method: :post, as: :pay
+  match '/orders/:id/complete' => 'orders#complete', method: :post, as: :complete
   
   resources :orders do
     member do
       get :clear
     end
     
-    resources :items, :controller => "orders/items" do
+    resources :items, controller: 'orders/items' do
       member do
-        get :destroy, :as => :delete
+        get :destroy, as: :delete
       end
     end
   end
   
   namespace :policy do
-    match "delivery" => "policies#delivery", :as => :delivery
-    match "privacy" => "policies#privacy", :as => :privacy
-    match "return" => "policies#return", :as => :return
-    match "faq" => "policies#faq", :as => :faq
+    match 'delivery' => 'policies#delivery', as: :delivery
+    match 'privacy' => 'policies#privacy', as: :privacy
+    match 'return' => 'policies#return', as: :return
+    match 'faq' => 'policies#faq', as: :faq
   end
   
-  match "about-us" => "pages#about", :as => :about_us
-  match "pages/bad_route" => "pages#bad_route", :as => :bad_route
+  match 'about-us' => 'pages#about', as: :about_us
+  match 'pages/bad_route' => 'pages#bad_route', as: :bad_route
   
-  resource :search, :only => [:show]
-  resources :colors, :only => [:show]
+  resource :search, only: [:show]
+  resources :colors, only: [:show]
   
-  match '/login' => 'users#login', :as => :login
-  match '/logout' => 'users#logout', :as => :logout
+  match '/login' => 'users#login', as: :login
+  match '/logout' => 'users#logout', as: :logout
   
   root :to => 'pages#home'
   
