@@ -31,7 +31,7 @@ describe 'Orders' do
     page.should have_content("Instore Purchase ##{@order.id}")
 
     click_button 'save line items'
-    current_path.should == admin_user_path(@customer.id)
+    current_path.should == admin_user_order_path(@customer.id, @order.id)
   end
 
   it 'shows an order'

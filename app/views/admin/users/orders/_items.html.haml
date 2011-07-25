@@ -1,4 +1,4 @@
-- form_for [:admin, @user, @order] do |order_form|
+- form_for @order, url: admin_user_order_path(user_id: @user.id, id: @order.id), method: :put do |order_form|
   #order_details    
     %h2 Line Items
     %table.stylized

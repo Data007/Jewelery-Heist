@@ -16,6 +16,10 @@ class Admin::Users::OrdersController < Admin::UsersController
     render template: "admin/users/orders/show_#{@order.location}_#{@order.staging_type}"
   end
 
+  def update
+    redirect_to [:admin, @user, @order]
+  end
+
 private
   
   def find_order
