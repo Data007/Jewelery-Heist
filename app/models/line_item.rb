@@ -6,12 +6,15 @@ class LineItem
   field :price,      type: Float
   field :taxable?,   type: Boolean, default: false
   field :is_service, type: Boolean, default: false
+  field :refunded,   type: Boolean, default: false
   field :name
+  field :description
   field :quick_id
   field :size
 
 
-  embeds_one :variation
+  embeds_one  :variation
+  embedded_in :order
 
   before_save :validate_price
 

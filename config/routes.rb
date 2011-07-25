@@ -14,6 +14,7 @@ DragonHoard::Application.routes.draw do
       
       resources :orders,  controller: 'users/orders' do
         resources :line_items, controller: 'users/orders/line_items'
+        resources :payments,   controller: 'users/orders/payments'
       end
 
       resources :tickets, controller: 'tickets'

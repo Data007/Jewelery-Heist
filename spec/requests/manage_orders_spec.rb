@@ -36,14 +36,34 @@ describe 'Orders' do
 
   it 'shows an order'
   
-  context 'items' do
+  context 'items', js: true do
 
     before do
-      # create an item
-      # create an order
+      @item  = Factory.create(:item, variations: [Factory.create(:variation)])
+      @order = @customer.orders.create
     end
 
-    it 'adds a quick item'
+    it 'adds a quick item' do
+      visit admin_user_order_path(@customer.id, @order.id)
+
+      click_on 'add a quick line item'
+      fill_in  'Name', with: 'test quick item'
+      fill_in  'Price', with: '30.00'
+      uncheck  'Taxable?'
+      click_on 'add new line item'
+
+      current_path.should == admin_user_order_path(@customer.id, @order.id)
+      page.should have_content('test quick item')
+
+      @customer.reload
+      @order     = @customer.orders.find(@order.id)
+      @line_item = @order.line_items.first
+      
+      @line_item.should              be
+      @line_item.price.should        == 30.00
+      @line_item.taxable?.should_not be
+    end
+
     it 'adds a stock item'
 
   end

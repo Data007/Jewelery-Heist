@@ -7,6 +7,8 @@ class Order
   field :clerk_id,       type: Integer
   field :shipping_option
   field :notes
+  field :location,                      default: 'instore'
+  field :staging_type,                  default: 'purchase'
 
   embedded_in :user
   embeds_many :line_items
@@ -51,6 +53,10 @@ class Order
   	  ["#{shipping_option[0]} #{subtotal >= shipping_option[2] ? "Free Upgrade" : '$' + shipping_option[1].to_s + '.00'}", shipping_option[0]]
 	  end
 	  return options
+  end
+
+  def add_line_item(new_line_item)
+    line_items << ((new_line_item.class == LineItem) ? new_line_item : LineItem.new(new_line_item))
   end
 
   def add_payment(amount, payment_type='cash')

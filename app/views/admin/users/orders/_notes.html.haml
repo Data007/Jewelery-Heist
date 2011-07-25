@@ -1,4 +1,4 @@
-- form_for @order, :url => admin_order_path(@order), :html => {:method => :put} do |order_form|
+= form_for @order, :url => admin_order_path(@order), :html => {:method => :put} do |order_form|
   .field
     = order_form.label :notes
     = order_form.text_area :notes

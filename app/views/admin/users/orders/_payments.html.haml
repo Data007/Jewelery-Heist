@@ -34,7 +34,7 @@
 #add_payment_module.module
   #payments_form.window
     %h1 Add a New Payment
-    - form_for :payment, Payment.new, :url => admin_order_payments_path(@order), :method => :post do |payment_form|
+    = form_for [:admin, @user, @order, Payment.new] do |payment_form|
       = payment_form.hidden_field :order_id, :value => @order.id
       .field.required
         = payment_form.label :payment_type, "Payment Type"

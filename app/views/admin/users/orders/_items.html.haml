@@ -1,4 +1,4 @@
-- form_for @order, url: admin_user_order_path(user_id: @user.id, id: @order.id), method: :put do |order_form|
+= form_for @order, url: admin_user_order_path(user_id: @user.id, id: @order.id), method: :put do |order_form|
   #order_details    
     %h2 Line Items
     %table.stylized
@@ -20,9 +20,9 @@
         - @order.line_items.each do |line_item|
 
           - if line_item.is_quick_item
-            = render :partial => "admin/orders/quick_line_item", :locals => {:line_item => line_item}
+            = render :partial => "admin/users/orders/quick_line_item", :locals => {:line_item => line_item}
           - else
-            = render :partial => "admin/orders/line_item", :locals => {:line_item => line_item}
+            = render :partial => "admin/users/orders/line_item", :locals => {:line_item => line_item}
             
         %tr
           %td{:colspan => 7} &nbsp;
@@ -46,8 +46,7 @@
   #quick_line_item_form.window
     %h1 Add a Quick Line Item
     %hr
-    - form_for [:admin, @user, @order, LineItem.new(:quick_id => "n/a", :quantity => 1, :size => "0", :taxable => true)] do |line_item_form|
-      = line_item_form.hidden_field :order_id, :value => @order.id
+    = form_for [:admin, @user, @order, LineItem.new(:quick_id => "n/a", :quantity => 1, :size => "0", :taxable => true)] do |line_item_form|
       = line_item_form.hidden_field :is_quick_item, :value => true
       .field.required
         = line_item_form.label :quick_id, "Id"

@@ -23,7 +23,7 @@ class Admin::Users::OrdersController < Admin::UsersController
 private
   
   def find_order
-    @order = @user.orders.find(params[:id])
+    @order = @user.orders.find(params[:order_id] || params[:id])
   end
 
 end
