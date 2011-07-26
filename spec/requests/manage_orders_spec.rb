@@ -36,14 +36,15 @@ describe 'Orders' do
 
   it 'shows an order'
   
-  context 'items', js: true do
+  context 'items' do
 
     before do
-      @item  = Factory.create(:item, variations: [Factory.create(:variation)])
-      @order = @customer.orders.create
+      @item  = Factory.create(:item, name: 'Test Item', variations: [Factory.create(:variation, price: 30)])
     end
 
-    it 'adds a quick item' do
+    it 'adds a quick item', js: true do
+      @order = @customer.orders.create
+
       visit admin_user_order_path(@customer.id, @order.id)
 
       click_on 'add a quick line item'
@@ -64,7 +65,32 @@ describe 'Orders' do
       @line_item.taxable?.should_not be
     end
 
-    it 'adds a stock item'
+    it 'adds a stock item' do
+      pending "Waiting on Item View Spec"
+      visit admin_user_path(@customer.id)
+
+      click_on 'In Store Purchase'
+
+      @customer.reload
+      @order = @customer.orders.last
+      @order.line_items.empty?.should be
+
+      fill_in  'search_query', with: 'Test'
+      click_on 'search'
+      click_on 'Test Item'
+      click_on 'Add to Cart'
+
+      current_path.should == admin_user_order_path(@customer.id, @order.id)
+      page.should have_content('Test Item')
+
+      @customer.reload
+      @order     = @customer.orders.find(@order.id)
+      @line_item = @order.line_items.first
+      
+      @line_item.should              be
+      @line_item.price.should        == 30.00
+      @line_item.taxable?.should_not be
+    end
 
   end
 

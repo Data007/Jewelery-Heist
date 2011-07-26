@@ -25,12 +25,12 @@
           %h1 Manage
           %h2 A Wexford Jewelers Tool
         #find
-          /- if @current_user
-          /  - form_tag admin_search_path, :method => :get do
-          /    = text_field :search, :query
-          /    = submit_tag "search"
-          /- else
-          /  &nbsp;
+          - if @current_user
+            = form_tag admin_search_path, :method => :get do
+              = text_field :search, :query
+              = submit_tag "search"
+          - else
+            &nbsp;
         #menu
           - if @current_user
             = link_to "(Log Out)", logout_admin_users_path, :class => "user_action"

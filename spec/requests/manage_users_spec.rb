@@ -51,7 +51,9 @@ describe 'Manage Users' do
         visit admin_root_path
 
         fill_in 'Name', with: @customer.name
-        click_button 'search'
+        within('#search-customers') do
+          click_button 'search'
+        end
 
         click_link @customer.name
         page.should have_content(@customer.name)
@@ -62,7 +64,9 @@ describe 'Manage Users' do
 
         fill_in 'Address 1', with: 'circ'
         fill_in 'State / Province', with: 'Mi'
-        click_button 'search'
+        within('#search-customers') do
+          click_button 'search'
+        end
 
         click_link @customer.name
         page.should have_content(@customer.name)
@@ -72,7 +76,9 @@ describe 'Manage Users' do
         visit admin_root_path
 
         fill_in 'Phone Number', with: '884-3024'
-        click_button 'search'
+        within('#search-customers') do
+          click_button 'search'
+        end
 
         click_link @customer.name
         page.should have_content(@customer.name)
@@ -82,7 +88,9 @@ describe 'Manage Users' do
         visit admin_root_path
 
         fill_in 'Email', with: 'customer_1'
-        click_button 'search'
+        within('#search-customers') do
+          click_button 'search'
+        end
 
         click_link @customer.name
         page.should have_content(@customer.name)
@@ -97,7 +105,9 @@ describe 'Manage Users' do
         visit admin_root_path
 
         fill_in 'Name', with: 'Buster Bluth'
-        click_button 'search'
+        within('#search-customers') do
+          click_button 'search'
+        end
 
         click_link 'Create a new user'
         click_button 'save'
