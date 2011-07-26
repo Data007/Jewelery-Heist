@@ -1,0 +1,31 @@
+- item = summary
+
+.item.container
+  .item_actions
+    #{link_to "Edit", [:edit, :admin, item]} | #{link_to "ID#{item.id}", [:admin, item]}
+    %span (#{pluralize(item.variations.length, "variation")})
+  .item_header
+    .name= link_to (item.name ? item.name : "this item needs a name"), [:admin, item]
+  / .item_body.content
+  /   - if item.variations.length > 0
+  /     - asset = item.variations.first.assets.by_position.first
+  /     - if asset
+  /       = link_to(image_tag(asset.image.url(:manage)), admin_item_path(item))
+  /     - else
+  /       = link_to(image_tag("/images/ui/no_image.jpg"), admin_item_path(item))
+  /   - else
+  /     = link_to(image_tag("/images/ui/no_image.jpg"), admin_item_path(item))
+  /   .statuses
+  /     - if item.published
+  /       .published= link_to "On the Web", published_admin_items_path
+  /     -elsif !item.published && !item.ghost
+  /       .instore= link_to "Not on the Web", instore_admin_items_path
+  /     - if item.one_of_a_kind
+  /       .one_of_a_kind= link_to "One of a Kind", ooak_admin_items_path
+  /     - if item.ghost
+  /       .zombie= link_to "No Longer Available", old_admin_items_path
+  /     - unless item.available
+  /       .not_available= link_to "Sold", old_admin_items_path
+  /   .collections
+  /     - item.collections.each do |collection|
+  /       = link_to collection.name, admin_collection_path(collection)

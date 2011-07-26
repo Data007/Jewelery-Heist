@@ -1,0 +1,97 @@
+- new_record = variation.respond_to?(:new_record?) && variation.new_record? ? true : false
+
+- content_for :extra_js do
+  = javascript_include_tag "array.monkeypatch.js"
+  = javascript_include_tag "images"
+  = javascript_include_tag "variations"
+  = javascript_include_tag "colors"
+
+.variation
+  .form
+    %strong Item Description
+    #description= @item.description
+    = form.hidden_field :id, :class => "variation_id"
+    = form.hidden_field :item_id
+    %hr
+    .field
+      = form.label :description, "Variation Description"
+      = form.text_area :description
+    .field.required
+      = form.label :quantity
+      = form.text_field :quantity, :class => "quantity"
+    .field.required
+      = form.label :backorder_notes, "Backorder Notes"
+      = form.text_field :backorder_notes, :value => "Please allow 3 - 6 weeks for this order to be created."
+    .field.required
+      = form.label :price
+      = form.text_field :price, :class => "price"
+      
+    / Metals
+    - if new_record
+      = render :partial => "admin/items/variations/metals/form", :locals => {:metal => VariationMetal.new, :form => form}
+    - elsif variation.metals.length > 0
+      = render :partial => "admin/items/variations/metals/form", :locals => {:metal => variation.metal, :form => form}
+    - else
+      = render :partial => "admin/items/variations/metals/form", :locals => {:metal => VariationMetal.new, :form => form}
+      
+    / Finishes
+    - if new_record
+      = render :partial => "admin/items/variations/finishes/form", :locals => {:finish => VariationFinish.new, :form => form}
+    - elsif variation.finishes.length > 0
+      = render :partial => "admin/items/variations/finishes/form", :locals => {:finish => variation.finish, :form => form}
+    - else
+      = render :partial => "admin/items/variations/finishes/form", :locals => {:finish => VariationFinish.new, :form => form}
+        
+    / Gems
+    - if new_record
+      = render :partial => "admin/items/variations/gems/form", :locals => {:jewel => VariationGem.new, :form => form}
+    - elsif variation.jewels.length > 0
+      = render :partial => "admin/items/variations/gems/form", :locals => {:jewel => variation.jewel, :form => form}
+    - else
+      = render :partial => "admin/items/variations/gems/form", :locals => {:jewel => VariationGem.new, :form => form}
+    
+    / Molds
+    / .field
+    /   = form.label :molds_csv, "Molds"
+    /   = form.text_field :molds_csv, :class => "mold_field"
+      
+    / Colors
+    .field.required
+      = form.label :colors
+      .colors
+        = form.hidden_field :colors_csv
+        - Color.sorted_by_position.each do |color|
+          .color{:class => "position_#{color.position}", :color_id => color.position}
+    
+    %hr
+    %div
+      %strong Variation Images
+    %hr
+    - form.fields_for :assets, Asset.new do |current_asset|
+      .field.image_uploader
+        = current_asset.label :image, "Upload a New Image"
+        = current_asset.file_field :image, :class => "original_file_field"
+    .field.images{:id => "images_for_variation_#{variation.id}"}
+      - if variation.assets.length > 0
+        - variation.assets.by_position.each do |uploaded_asset|
+          .image{:id => "image_#{uploaded_asset.id}"}
+            .actions
+              = link_to "view", uploaded_asset.image.url(:original), :target => "_blank"
+              .delete{:href => admin_item_variation_attachment_path(:item_id => item, :variation_id => variation.id, :id => uploaded_asset.id), :parent_image_id => "image_#{uploaded_asset.id}"}
+                delete
+            = image_tag uploaded_asset.image.url(:manage)
+            .id{:style => "visibility: hidden", :id => uploaded_asset.id}
+    
+    %hr        
+    .form_actions
+      = submit_tag "save", :class => "submit"
+      
+- content_for :sidebar do
+  - if variation.assets.length > 0
+    .menus
+      .menu
+        .title Variation Images
+        .links
+          - variation.assets.by_position.each do |sidebar_asset|
+            .image{:id => "side_bar_image_#{sidebar_asset.id}"}
+              = image_tag sidebar_asset.image.url(:medium)

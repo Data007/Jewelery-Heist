@@ -1,0 +1,11 @@
+:ruby
+  item = @variation.item
+  images = @variation.assets.by_position
+  @item = item
+  
+- content_for :page_actions do
+  = button_for_url "<< #{item.name}", edit_admin_item_path(item), :class => "button"
+  
+- content_for :page_content do
+  - form_for :variation, @variation, :url => admin_item_variation_path(:id => @variation.id, :item_id => item), :html => {:method => :put} do |form|
+    = render :partial => "admin/items/variations/form", :locals => {:variation => @variation, :form => form, :item => item}

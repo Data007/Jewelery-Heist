@@ -1,0 +1,4 @@
+.field.required
+  - form.fields_for :jewel, jewel do |jewel_form|
+    = jewel_form.label :name, "Jewels"
+    = jewel_form.text_field :name, :class => "gem_field"
