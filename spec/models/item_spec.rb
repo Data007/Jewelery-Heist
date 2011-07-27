@@ -55,9 +55,20 @@ describe Item do
       @item.sizes.should == %w(1 1.5 2 2.5 3 3.5 4 5 10)
     end
 
-    it 'saves a size range with a -'
-    it 'saves a size range with a ,'
-    it 'saves a size range with both a - and a ,'
+    it 'saves a size range with a -' do
+      @item.sizes = '1-4'
+      @item.sizes.should == %w(1 1.5 2 2.5 3 3.5 4)
+    end
+
+    it 'saves a size range with a ,' do
+      @item.sizes = '1,4'
+      @item.sizes.should == %w(1 4)
+    end
+
+    it 'saves a size range with both a - and a ,' do
+      @item.sizes = '1-4,5,10'
+      @item.sizes.should == %w(1 1.5 2 2.5 3 3.5 4 5 10)
+    end
 
   end
 

@@ -36,6 +36,10 @@ class Item
     return available_sizes.flatten
   end
 
+  def sizes=(new_size_range)
+    self.size_range = new_size_range
+  end
+
 private
 
   def split_size_range(range)
