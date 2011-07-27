@@ -119,4 +119,10 @@ class User
     purchased_orders.map(&:balance).sum
   end
   ##
+
+  # Permissions
+  def may_destroy_item?
+    return (role == 'admin')
+  end
+  ##
 end

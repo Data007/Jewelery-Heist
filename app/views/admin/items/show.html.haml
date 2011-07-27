@@ -5,11 +5,11 @@
     %span#tag_id.tag_id ID#{@item.id}-#{current_variation ? current_variation.id : 'n/a'}
 
 = content_for :page_actions do
-  - if @current_user.may_destroy_item? Item.new
+  - if @current_user.may_destroy_item?
     - if !@item.ghost
-      .button.dangerous= link_to 'remove', [:admin, @item.id], confirm: "Are you sure you want to remove this item?", method: :delete, remote: true
+      .button.dangerous= link_to 'remove', [:admin, @item], confirm: "Are you sure you want to remove this item?", method: :delete, remote: true
     - else
-      .button.dangerous= link_to 'restore', [:restore, :admin, @item.id]
+      .button.dangerous= link_to 'restore', [:restore, :admin, @item]
   = raw button_for_url 'edit', [:edit, :admin, @item], class: "button"
 
 - content_for :extra_js do
@@ -18,7 +18,7 @@
     
 - content_for :page_content do
   #item_view
-    - if !current_variation.item.available
+    - unless current_variation.item.available
       .sold
         %h1 Sold
     .images#main_view

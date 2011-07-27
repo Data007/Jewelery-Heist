@@ -39,7 +39,8 @@ describe 'Orders' do
   context 'items' do
 
     before do
-      @item  = Factory.create(:item, name: 'Test Item', variations: [Factory.create(:variation, price: 30)])
+      @item  = Factory.create(:item, name: 'Test Item')
+      @item.variations.create(price: 30)
     end
 
     it 'adds a quick item', js: true do
@@ -66,7 +67,6 @@ describe 'Orders' do
     end
 
     it 'adds a stock item' do
-      pending "Waiting on Item View Spec"
       visit admin_user_path(@customer.id)
 
       click_on 'In Store Purchase'
@@ -87,9 +87,9 @@ describe 'Orders' do
       @order     = @customer.orders.find(@order.id)
       @line_item = @order.line_items.first
       
-      @line_item.should              be
-      @line_item.price.should        == 30.00
-      @line_item.taxable?.should_not be
+      @line_item.should          be
+      @line_item.price.should    == 30.00
+      @line_item.taxable?.should be
     end
 
   end
