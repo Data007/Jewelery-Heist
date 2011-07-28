@@ -3,9 +3,12 @@ class Item
   include Mongoid::Timestamps
 
   field :name
-  field :ghost,       type: Boolean, default: false
-  field :available,   type: Boolean, default: true
-  field :designer_id, type: Integer
+  field :description
+  field :ghost,         type: Boolean, default: false
+  field :one_of_a_kind, type: Boolean, default: false
+  field :customizable,  type: Boolean, default: false
+  field :available,     type: Boolean, default: true
+  field :designer_id,   type: Integer
   field :size_range
 
   embeds_many :variations

@@ -1,6 +1,7 @@
 class AdminController < ApplicationController
   layout 'admin'
   before_filter :force_admin, except: [:login, :logout, :authenticate]
+  before_filter :check_for_sessioned_order
 
 private
   def force_admin
@@ -10,5 +11,12 @@ private
 
   def pagination_hash
     { per_page: 20, page: params[:page] || 1 }
+  end
+
+  def check_for_sessioned_order
+    if session[:admin_order_id]
+      @user  = User.where('orders._id' => session[:admin_order_id]).first
+      @order = @user.orders.find(session[:admin_order_id])
+    end
   end
 end

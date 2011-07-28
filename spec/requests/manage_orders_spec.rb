@@ -63,7 +63,7 @@ describe 'Orders' do
       
       @line_item.should              be
       @line_item.price.should        == 30.00
-      @line_item.taxable?.should_not be
+      @line_item.taxable.should_not be
     end
 
     it 'adds a stock item' do
@@ -89,7 +89,7 @@ describe 'Orders' do
       
       @line_item.should          be
       @line_item.price.should    == 30.00
-      @line_item.taxable?.should be
+      @line_item.taxable.should be
     end
 
   end

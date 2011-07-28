@@ -55,8 +55,9 @@
             .sizes.row
               %span.label Select Your Size
               = select 'item','sizes', @item.sizes.collect {|size| [size,size]}, selected: @item.sizes[@item.sizes.length / 2]
-            .row
-              %span= link_to 'Add to Cart', admin_order_line_items_path(order_id: @order.id, id: current_variation.id), class: 'add_to_cart input', method: :post
+            - if @order
+              .row
+                %span= link_to 'Add to Cart', new_admin_user_order_line_item_path(user_id: @user, order_id: @order, variation_id: current_variation), class: 'add_to_cart input'
         / .metals.row
         /   %span.label Metals
         /   - current_variation.metals.collect {|metal| "<span class='metal tag'>#{metal.downcase}</span>"}.each do |metal|

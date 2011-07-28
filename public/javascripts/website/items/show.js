@@ -20,9 +20,9 @@ load_functions.push("setup_scrolling");
 
 function setup_add_to_cart(){
   $(".add_to_cart").each(function(){
-    var form = $(this).parent().parent();
-    var url = form.attr('action') + "&item_size=" + $(this).parents().find("#item_sizes:first").val();
-    form.attr('action', url);
+    var link = $(this);
+    var url = link.attr('href') + "&item_size=" + $(this).parents().find("#item_sizes:first").val();
+    link.attr('href', url);
   });
 }
 

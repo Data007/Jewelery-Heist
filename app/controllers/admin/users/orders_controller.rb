@@ -24,6 +24,7 @@ private
   
   def find_order
     @order = @user.orders.find(params[:order_id] || params[:id])
+    session[:admin_order_id] = @order.id
   end
 
 end

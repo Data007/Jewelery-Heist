@@ -59,6 +59,13 @@ class Order
     line_items << ((new_line_item.class == LineItem) ? new_line_item : LineItem.new(new_line_item))
   end
 
+  def add_item(variation, options={})
+    add_line_item(options.merge({
+      variation: variation,
+        taxable: true
+    }))
+  end
+
   def add_payment(amount, payment_type='cash')
     payments.create amount: amount, payment_type: payment_type
   end  

@@ -4,28 +4,47 @@ describe Order do
   
   before do
     @user      = Factory.create(:customer)
-    @item      = Factory.create(:item, variations: [Factory.create(:variation)])
-    @variation = @item.variations.first
+    @item      = Factory.create(:item)
+    @variation = @item.variations.create
   end
 
-  context 'Line Item' do
+  it 'adds from line item hash' do
+    line_item = Factory.build(:line_item, variation: @variation)
+    order     = @user.orders.create
 
-    it 'adds from line item hash' do
-      line_item = Factory.build(:line_item, variation: @variation)
-      order     = @user.orders.create
+    order.add_line_item line_item
+    order.line_items.should include(line_item)
 
-      order.add_line_item line_item
-      order.line_items.should include(line_item)
+    @user.reload
+    order = @user.orders.find(order.id)
 
-      @user.reload
-      order = @user.orders.last
+    order.line_items.should include(line_item)
+  end
 
-      order.line_items.should include(line_item)
+  context 'Item' do
+
+    before do
+      @order = @user.orders.create
     end
 
-    it 'adds from a line item class'
+    it 'adds from a variation' do
+      variation = @item.variations.create name: 'Adds from Variation Hash'
+      
+      @order.add_item variation, size: 8.5
+
+      @user.reload
+      @order    = @user.orders.find(@order.id)
+      line_item = @order.line_items.map {|li| li if li.variation.id == variation.id}.first
+      variation = line_item.variation
+      item      = variation.parent_item
+
+      line_item.should be
+      variation.should be
+      item.should      be
+  
+      line_item.size.should == 8.5
+    end
 
   end
 
-  it 'adds an item'
 end

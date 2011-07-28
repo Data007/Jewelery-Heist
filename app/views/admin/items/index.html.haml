@@ -8,9 +8,9 @@
   = raw button_for_url "create a new item", new_admin_item_path, class: "button"
   
 - content_for :page_content do
-  - if @items.empty?
-    %p No items were found.
-  -else
+  - if @items
     = will_paginate(@items, :params => {:search => {:query => @query}})
     = render partial: "admin/items/summary", collection: @items
     = will_paginate(@items, :params => {:search => {:query => @query}})
+  - else
+    %p No items were found.
