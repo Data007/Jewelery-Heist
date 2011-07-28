@@ -97,7 +97,7 @@ describe 'Orders' do
   context 'payments', js: true do
 
     before do
-      @order = @customer.orders.create
+      @order = @customer.orders.create purchased: true
       @item  = Factory.create(:item, name: 'Test Item')
       @item.variations.create(price: 30)
       @order.add_item @item.variations.last
@@ -133,7 +133,29 @@ describe 'Orders' do
       @order.balance.should == 0
     end
 
-    it 'applies in store credit'
+    it 'applies in store credit' do
+      order = @customer.orders.create purchased: true
+      order.payments.create payment_type: 'instore credit', amount: -15
+
+      @customer.reload
+      @order   = @customer.orders.find(@order.id)
+      @customer.total_credits.should == 15
+      @customer.total_balance.should == 16.8
+
+      click_on 'add a payment'
+      select   'Instore Credit', from: 'Payment Type'
+      fill_in  'Amount', with: 15
+      click_on 'add new payment'
+
+      current_path.should == admin_user_order_path(@customer.id, @order.id)
+
+      @customer.reload
+      @order = @customer.orders.find(@order.id)
+
+      @order.paid.should             == 15
+      @order.balance.should          == 16.8
+    end
+
     it 'pays off an order'
   
   end

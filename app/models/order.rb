@@ -4,6 +4,7 @@ class Order
 
   field :refunded,       type: Boolean, default: false
   field :ship,           type: Boolean, default: false
+  field :purchased,      type: Boolean, default: false
   field :clerk_id,       type: Integer
   field :shipping_option
   field :notes
