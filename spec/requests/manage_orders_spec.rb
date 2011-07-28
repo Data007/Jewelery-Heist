@@ -119,7 +119,20 @@ describe 'Orders' do
       @order.balance.should == 16.8
     end
 
-    it 'adds a full payment'
+    it 'adds a full payment' do
+      click_on 'add a payment'
+      fill_in  'Amount', with: @order.total
+      click_on 'add new payment'
+
+      current_path.should == admin_user_order_path(@customer.id, @order.id)
+
+      @customer.reload
+      @order = @customer.orders.find(@order.id)
+
+      @order.paid.should    == @order.total
+      @order.balance.should == 0
+    end
+
     it 'applies in store credit'
     it 'pays off an order'
   
