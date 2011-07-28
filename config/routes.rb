@@ -1,5 +1,7 @@
 DragonHoard::Application.routes.draw do
   
+  get "payments/new"
+
   namespace :admin do
     
     resources :users do

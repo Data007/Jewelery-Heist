@@ -35,7 +35,6 @@
   #payments_form.window
     %h1 Add a New Payment
     = form_for [:admin, @user, @order, Payment.new] do |payment_form|
-      = payment_form.hidden_field :order_id, :value => @order.id
       .field.required
         = payment_form.label :payment_type, "Payment Type"
         = payment_form.select :payment_type, options_for_select(Payment.payment_type_options)

@@ -94,14 +94,31 @@ describe 'Orders' do
 
   end
 
-  context 'payments' do
+  context 'payments', js: true do
 
     before do
-      # create an item
-      # create an order
+      @order = @customer.orders.create
+      @item  = Factory.create(:item, name: 'Test Item')
+      @item.variations.create(price: 30)
+      @order.add_item @item.variations.last
+
+      visit admin_user_order_path(@customer.id, @order.id)
     end
 
-    it 'adds a partial payment'
+    it 'adds a partial payment' do
+      click_on 'add a payment'
+      fill_in  'Amount', with: 15
+      click_on 'add new payment'
+
+      current_path.should == admin_user_order_path(@customer.id, @order.id)
+
+      @customer.reload
+      @order = @customer.orders.find(@order.id)
+
+      @order.paid.should    == 15
+      @order.balance.should == 16.8
+    end
+
     it 'adds a full payment'
     it 'applies in store credit'
     it 'pays off an order'

@@ -79,7 +79,7 @@ class Order
   end
 
   def tax
-    subtotal * 0.6
+    line_items.where(taxable: true).map(&:total).sum * 0.06
   end
 
   def total
