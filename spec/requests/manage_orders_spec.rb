@@ -156,8 +156,48 @@ describe 'Orders' do
       @order.balance.should          == 16.8
     end
 
-    it 'pays off an order'
+    it 'pays off an order' do
+      # add an initial payment
+      click_on 'add a payment'
+      fill_in  'Amount', with: 15
+      click_on 'add new payment'
+
+      current_path.should == admin_user_order_path(@customer.id, @order.id)
+
+      @customer.reload
+      @order = @customer.orders.find(@order.id)
+
+      @order.paid.should    == 15
+      @order.balance.should == 16.8
+
+      # pay it off
+      click_on 'add a payment'
+      fill_in  'Amount', with: @order.balance
+      click_on 'add new payment'
+
+      current_path.should == admin_user_order_path(@customer.id, @order.id)
+
+      @customer.reload
+      @order = @customer.orders.find(@order.id)
+
+      @order.paid.should    == @order.total
+      @order.balance.should == 0
+    end
   
+  end
+
+  it 'adds a note' do
+    order = @customer.orders.create purchased: true
+    visit admin_user_order_path(@customer.id, order.id)
+
+    fill_in  'Note', with: 'I should add some items eventually'
+    click_on 'update order notes'
+
+    @customer.reload
+    order = @customer.orders.find(order.id)
+    order.notes.should == 'I should add some items eventually'
+    current_path.should == admin_user_order_path(@customer.id, order.id)
+    page.should have_content('I should add some items eventually')
   end
 
   context 'print'

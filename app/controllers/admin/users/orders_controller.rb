@@ -17,6 +17,12 @@ class Admin::Users::OrdersController < Admin::UsersController
   end
 
   def update
+    if @order.update_attributes params[:order]
+      flash[:notice] = 'Your order has been updated'
+    else
+      flash[:error]  = 'There was a problem updating your order'
+    end
+
     redirect_to [:admin, @user, @order]
   end
 
