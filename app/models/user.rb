@@ -9,8 +9,9 @@ class User
   field :login
   field :password_hash
   field :is_active,    type: Boolean, default: false
-  field :role,         default: 'public'
+  field :role,                        default: 'public'
   field :name
+  field :designer,     type: Boolean, default: false
 
   embeds_many :addresses
   embeds_many :orders
@@ -21,9 +22,10 @@ class User
 
   before_save :generate_password_hash
 
-  scope :workers, where(:role.ne => 'public')
-
   # Scopes
+  scope :workers,   where(:role.ne => 'public')
+  scope :designers, where(designer: true)
+
   class << self
 
     def full_search(user_query)

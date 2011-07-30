@@ -1,5 +1,7 @@
 DragonHoard::Application.routes.draw do
   
+  get "orders/index"
+
   get "payments/new"
 
   namespace :admin do

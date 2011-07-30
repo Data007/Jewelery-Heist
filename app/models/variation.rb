@@ -8,6 +8,7 @@ class Variation
   field :parent_item_id
 
   embedded_in :item
+  embeds_many :assets
 
   before_save :set_parent_item_id
 

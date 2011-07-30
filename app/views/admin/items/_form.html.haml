@@ -18,18 +18,18 @@
       = item.text_field :size_range
     .field.required
       = item.label :category
-      = item.select :category_id, Category.find(:all, :order => "name ASC").collect {|cat| [ cat.name, cat.id ]}
+      = item.select :category, Item.categories
     .field.required
       = item.label :gender
-      = item.select :gender_id, Gender.find(:all, :order => "name DESC").collect {|gen| [ gen.name, gen.id ]}
+      = item.select :gender, Item.genders
     .field
       = item.label :designer
-      = item.select :designer_id, Designer.find(:all).collect {|des| [ des.name, des.id ]}
+      = item.select :designer_id, User.designers.map {|designer| [ designer.name, designer.id ]}
     .field
       = item.hidden_field :collections_csv
       .collections
         = item.label :collections
-        - Collection.the_living.each_with_index do |collection, index|
+        - Collection.all.each_with_index do |collection, index|
           .collection{:class => "collection_#{collection.id} position_#{index}", :collection_id => collection.id}
             = collection.name
     .field
@@ -57,26 +57,15 @@
       = item.label :discontinued_notes
       = item.text_area :discontinued_notes
   %hr
-  - unless @item.empty_record?
+  - unless @item.new_record?
     #variations
       .section_header
         .section_title
           %h1 Variations
         .section_actions
-          = button_for_url("create a new variation", new_admin_item_variation_path(:item_id => @item), :class => "button create_variation_button")
-      = render :partial => "admin/items/variations/index", :locals => {:item => @item}
+          = raw button_for_url("create a new variation", new_admin_item_variation_path(:item_id => @item), :class => "button create_variation_button")
+      / = render :partial => "admin/items/variations/index", :locals => {:item => @item}
     
   .form_actions
     = submit_tag "save", :class => "submit"
     
-- content_for :sidebar do
-  - if @item.variations.the_living.length > 0
-    .menus
-      .menu
-        .title Variation Images
-        .links
-          - @item.variations.the_living.each do |variation|
-            - if variation.assets.length > 0
-              - variation.assets.by_position.each do |sidebar_asset|
-                .image{:id => "side_bar_image_#{sidebar_asset.id}"}
-                  = link_to(image_tag(sidebar_asset.image.url(:medium)), edit_admin_item_variation_path(:item_id => @item, :id => variation))

@@ -52,12 +52,12 @@
           .sidebar_content
             - if @current_user
               .menus#main_menu
-                /= render :partial => "layouts/admin/menu"
+                = render :partial => "layouts/admin/menu"
             #other_menus
               = yield :sidebar
           .clearfix
       .clearfix &nbsp;
-    / #ajax-status
-    /   #ajax-status-container
-    /     %p We're processing your request
-    /     = image_tag "ui/progress_bar.gif"
+    #ajax-status
+      #ajax-status-container
+        %p We're processing your request
+        = image_tag "ui/progress_bar.gif"

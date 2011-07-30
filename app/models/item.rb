@@ -8,15 +8,48 @@ class Item
   field :one_of_a_kind, type: Boolean, default: false
   field :customizable,  type: Boolean, default: false
   field :available,     type: Boolean, default: true
-  field :designer_id,   type: Integer
+  field :published,     type: Boolean, default: true
+  field :discontinued,  type: Boolean, default: true
+  field :cost,          type: Float
+  field :designer_id
   field :size_range
+  field :category
+  field :gender
+  field :custom_id
+  field :customizable_notes
+  field :discontinued_notes
 
   embeds_many :variations
+  has_and_belongs_to_many :collections
+
+  validates :name, presence: true
+
+  CATEGORIES = [
+    ['Ring', 'ring'],
+    ['Necklace', 'necklace'],
+    ['Earrings', 'earrings'],
+    ['Bracelet', 'bracelet'],
+    ['Everything Else', 'everthing else']
+  ]
+
+  GENDERS = [
+    ['Mens', 'mens'],
+    ['Womens', 'womans'],
+    ['Unisex', 'unisex']
+  ]
 
   class << self
 
     def search(query)
       where(name: Regexp.new(query))
+    end
+
+    def categories
+      CATEGORIES
+    end
+
+    def genders
+      GENDERS
     end
 
   end
@@ -42,6 +75,20 @@ class Item
   def sizes=(new_size_range)
     self.size_range = new_size_range
   end
+
+  def collections_csv=(csv)
+    new_collections = []
+    csv.split(',').each do |collection_id|
+      new_collections << Collection.find(collection_id) unless new_collections.include?(Collection.find(collection_id))
+    end
+    self.collections = new_collections
+  end
+
+  def collections_csv
+    self.collections.collect {|collection| collection.id }.join(",")
+  end
+  
+    
 
 private
 
