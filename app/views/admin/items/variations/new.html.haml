@@ -1,15 +1,11 @@
-:ruby
-  item = @variation.item
-  images = @variation.assets.by_position
-  @item = item
-
+- images = @variation.assets
+  
 - content_for :page_title do
   %h1 New Variation
 
-- unless @variation.empty_record?
+- if @variation.new_record?
   - content_for :page_actions do
-    = button_for_url "cancel", cancel_admin_item_variation_path(:id => @variation.id, :item_id => item), :class => "button"
+    = raw button_for_url("cancel", [:cancel, :admin, @item, @variation], :class => "button")
   
 - content_for :page_content do
-  - form_for :variation, @variation, :url => admin_item_variations_path(:item_id => item), :html => {:method => :post} do |form|
-    = render :partial => "admin/items/variations/form", :locals => {:variation => @variation, :form => form, :item => item}
+  = render :partial => "admin/items/variations/form"

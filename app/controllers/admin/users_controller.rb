@@ -10,7 +10,7 @@ class Admin::UsersController < AdminController
 
   def authenticate
     @current_user = User.authorize(params[:user][:login], params[:user][:password])
-    session[:user_id] = @current_user.id
+    session[:user_id] = @current_user.id if @current_user
     
     if current_user
       flash[:notice] = "Welcome #{current_user.name}!"

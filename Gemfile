@@ -12,6 +12,7 @@ gem 'rails3-generators'
  
 gem 'escape_utils'
 gem 'nokogiri'
+gem 'multi_json'
 gem 'httparty'
 gem 'formatize'
 gem 'haml'

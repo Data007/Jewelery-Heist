@@ -93,7 +93,7 @@ class User
     end
 
     def authorize(login, password)
-      user = first(conditions: {login: login, password_hash: hash_password(password)})
+      user = where(login: login, password_hash: hash_password(password)).first
       (user && user.is_active) ? user : nil
     end
 

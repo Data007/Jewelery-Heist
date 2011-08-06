@@ -121,7 +121,7 @@ function setup_finish_fields(variation) {
 }
 
 function setup_gem_fields(variation) {
-  var gem_field = variation.find(".gem_field");
+  var gem_field = variation.find(".jewel_field");
   gem_field.tokenizeInput({
     url: "/admin/live_searches/jewels/",
     disableQueryToken: true

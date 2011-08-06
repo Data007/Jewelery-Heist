@@ -16,6 +16,9 @@ describe User do
       @user.errors.should     include(:name)
     end
 
+    it 'validates presence of email for web users'
+    it 'validates presence of phone for store users'
+
   end
 
   context 'Contact Information' do

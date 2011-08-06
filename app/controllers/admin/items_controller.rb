@@ -1,16 +1,14 @@
 class Admin::ItemsController < AdminController
+
+  before_filter :find_item, :except => [:index]
   
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
-
     if @item.update_attributes(params[:item])
       flash[:notice] = 'The item has been saved'
       redirect_to [:admin, @item]
@@ -22,5 +20,11 @@ class Admin::ItemsController < AdminController
 
   def index
     @items = Item.all.paginate(pagination_hash)
+  end
+
+private
+
+  def find_item
+    @item = params[:item_id] ? Item.find(params[:item_id]) : Item.find(params[:id])
   end
 end

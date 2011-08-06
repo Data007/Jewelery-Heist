@@ -6,14 +6,59 @@ class Variation
   field :price,         type: Float,   default: 0.0
   field :quantity,      type: Integer, default: 1
   field :parent_item_id
+  field :metals,        type: Array
+  field :finishes
+  field :jewels
 
   embedded_in :item
   embeds_many :assets
 
+  has_and_belongs_to_many :colors
+
   before_save :set_parent_item_id
+
+  class << self
+    
+    def jewels_like(query)
+      Item.any_in(:'variations.jewels' => [/query/])
+    end
+
+  end
 
   def parent_item
     Item.find(parent_item_id)
+  end
+
+  def colors_csv
+    colors.map(&:position).join(',')
+  end
+
+  def colors_csv=(csv)
+    self.colors = csv.split(',').sort.map {|position| Color.where(position: position).first}
+  end
+
+  def metal_csv
+    metals.join(',')
+  end
+
+  def metal_csv=(csv)
+    self.metals = csv.split(',')
+  end
+
+  def finish_csv
+    finishes.join(',')
+  end
+
+  def finish_csv=(csv)
+    self.finishes = csv.split(',')
+  end
+
+  def jewel_csv
+    jewels.join(',')
+  end
+
+  def jewel_csv=(csv)
+    self.jewels = csv.split(',')
   end
 
 private

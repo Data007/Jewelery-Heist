@@ -63,7 +63,7 @@ namespace :migrate do
   desc 'Migrate Items'
   task :items => :environment do
 
-    migrating_items = HTTParty.get('http://localhost:3003/migrate_data/for_items')
+    migrating_items = MultiJson.decode(open('http://localhost:3003/migrate_data/for_items'))
 
     puts '   - Creating items ...'
     migrating_items.each do |item|
@@ -109,6 +109,54 @@ namespace :migrate do
 
       end
       puts " --- Creating collections for #{item['name']} ... done"
+
+      puts " --- Creating variations for #{item['name']} ..."
+      item['variations'].each do |variation|
+
+        unless variation['ghost']
+          print "---- Creating variation #{variation['id']} ... "
+            new_variation = new_item.variations.where(custom_id: variation['id']).first || new_item.variations.create
+            new_variation.update_attributes({
+                    custom_id: variation['id'],
+                        price: variation['price'],
+              backorder_notes: variation['backorder_notes']
+            })
+          puts "done"
+
+          puts "---- Found #{variation['colors'].length} colors in variation #{variation['id']} ... "
+          variation['colors'].each do |color|
+            print "---- Creating colors #{color['names']} ... "
+            new_color = Color.where(names: color['names']).first || Color.create
+            new_color.update_attributes({
+                 names: color['names'],
+              position: color['position']
+            })
+
+            new_variation.colors = (new_variation.colors + [new_color]).compact.uniq
+            new_variation.save
+            puts 'done'
+          end
+          puts "---- Found #{variation['colors'].length} colors in variation #{variation['id']} ... done"
+
+          print "---- Adding metals to variation #{new_variation.id} ... "
+          new_variation.metal_csv = variation['metal']['name'] if variation['metal']
+          new_variation.save
+          puts 'done'
+
+          print "---- Adding finishes to variation #{new_variation.id} ... "
+          new_variation.finish_csv = variation['finish']['name'] if variation['finish']
+          new_variation.save
+          puts 'done'
+
+          print "---- Adding jewels to variation #{new_variation.id} ... "
+          new_variation.jewel_csv = variation['jewel']['name'] if variation['jewel']
+          new_variation.save
+          puts 'done'
+
+        end
+
+      end
+      puts " --- Creating variations for #{item['name']} ... done"
       
     end
     puts '   - Creating items ... done'
