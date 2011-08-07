@@ -109,20 +109,19 @@ DragonHoard::Application.routes.draw do
         end
         resources :attachments, controller: 'items/variations/attachments'
       end
+    end
       
-      match 'items/:item_id/variations/:variation_id/attachments/update_positions/:id' => 'items/variations/attachments#update_positions', as: :item_variation_asset_update_position
-      
-      match 'live_searches/metals/:id' => 'live_searches#metals', as: :metals
-      match 'live_searches/jewels/:id' => 'live_searches#jewels', as: :jewels
-      match 'live_searches/finishes/:id' => 'live_searches#finishes', as: :finishes
-      match 'live_searches/:id' => 'live_searches#items', as: :full_search
-      
-      namespace :reports do
-        namespace :items do
-          resources :items, collection: {current: :get}
-        end
+    match 'items/:item_id/variations/:variation_id/attachments/update_positions/:id' => 'items/variations/attachments#update_positions', as: :item_variation_asset_update_position
+    
+    match 'live_searches/metals/:id' => 'live_searches#metals', as: :metals
+    match 'live_searches/jewels/:id' => 'live_searches#jewels', as: :jewels
+    match 'live_searches/finishes/:id' => 'live_searches#finishes', as: :finishes
+    match 'live_searches/:id' => 'live_searches#items', as: :full_search
+    
+    namespace :reports do
+      namespace :items do
+        resources :items, collection: {current: :get}
       end
-      
     end
     
   end

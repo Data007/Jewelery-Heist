@@ -7,8 +7,8 @@ class Variation
   field :quantity,      type: Integer, default: 1
   field :parent_item_id
   field :metals,        type: Array
-  field :finishes
-  field :jewels
+  field :finishes,      type: Array
+  field :jewels,        type: Array
 
   embedded_in :item
   embeds_many :assets
@@ -20,7 +20,21 @@ class Variation
   class << self
     
     def jewels_like(query)
-      Item.any_in(:'variations.jewels' => [/query/])
+      Item.any_in(:'variations.jewels' => [Regexp.new(query)]).map {|item|
+        item.variations.map(&:jewels)
+      }.flatten.compact.uniq.select {|jewel| jewel.match(Regexp.new(query))}
+    end
+
+    def metals_like(query)
+      Item.any_in(:'variations.metals' => [Regexp.new(query)]).map {|item|
+        item.variations.map(&:metals)
+      }.flatten.compact.uniq.select {|metal| metal.match(Regexp.new(query))}
+    end
+
+    def finishes_like(query)
+      Item.any_in(:'variations.finishes' => [Regexp.new(query)]).map {|item|
+        item.variations.map(&:finishes)
+      }.flatten.compact.uniq.select {|finish| finish.match(Regexp.new(query))}
     end
 
   end

@@ -353,7 +353,7 @@ $.TokenList = function(input_field, options) {
   function populate_dropdown(json) {
     clear_results();
     $(json).each(function(){
-      name = this.name;
+      name = this;
       if(!results.includes(name)) {
         results.push(name);
         var result = $("<span>" + name + "</span>")
@@ -366,14 +366,16 @@ $.TokenList = function(input_field, options) {
   
   function populate_cache_from_json(json) {
     $(json).each(function(){
-      input_cache.push(this.name);
+      console.log(this);
+      input_cache.push(this);
     });
   }
   
   function find_in_cache(query) {
+    console.log(input_cache);
     var cache_matches = [];
     $(input_cache).each(function(index) {
-      if(input_cache[index].match(query)) { cache_matches.push({name:input_cache[index]}); }
+      if(input_cache[index].match(query)) { cache_matches.push(input_cache[index]); }
     });
     return cache_matches;
   }
@@ -389,6 +391,7 @@ $.TokenList = function(input_field, options) {
       url:      merged_url,
       dataType: "json",
       success:  function(json, status) {
+        console.log("Json from server: " + json);
         populate_cache_from_json(json);
         if(focused) { populate_dropdown(json); }
         else { focused = false; }
