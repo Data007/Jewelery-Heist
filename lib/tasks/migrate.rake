@@ -123,7 +123,7 @@ namespace :migrate do
             })
           puts "done"
 
-          puts "---- Found #{variation['colors'].length} colors in variation #{variation['id']} ... "
+          puts "---- Found #{variation['colors'].length} colors in variation #{new_variation.id} ... "
           variation['colors'].each do |color|
             print "---- Creating colors #{color['names']} ... "
             new_color = Color.where(names: color['names']).first || Color.create
@@ -136,7 +136,17 @@ namespace :migrate do
             new_variation.save
             puts 'done'
           end
-          puts "---- Found #{variation['colors'].length} colors in variation #{variation['id']} ... done"
+          puts "---- Found #{variation['colors'].length} colors in variation #{new_variation.id} ... done"
+
+          puts "---- Found #{variation['assets'].length} assets in variation #{new_variation.id} ... "
+          variation['assets'].each do |asset|
+            print '---- Creating assets ... '
+            debugger
+            new_variation.assets.create(asset) if new_variation.assets.where(image_file_name: asset['image_file_name']).empty?
+            new_variation.save
+            puts 'done'
+          end
+          puts "---- Found #{variation['assets'].length} assets in variation #{new_variation.id} ... done"
 
           print "---- Adding metals to variation #{new_variation.id} ... "
           new_variation.metal_csv = variation['metal']['name'] if variation['metal']
