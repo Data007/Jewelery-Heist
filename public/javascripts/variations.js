@@ -22,9 +22,10 @@ function setup_image_positioning() {
     update: function(event, ui) {
       var images = ui.item.parent().children(".image");
       var position = images.index(ui.item);
+      console.log("/admin/items/" + $(".variation").attr('data-item-id') + "/variations/" + $("#variation_id").val() + "/attachments/update_positions/" + ui.item.find(".id").attr("id") + "?position=" + position);
       $.ajax({
         method: "GET",
-        url: ("/admin/items/" + $("#variation_item_id").val() + "/variations/" + $("#variation_id").val() + "/attachments/update_positions/" + ui.item.find(".id").attr("id") + "?position=" + position)
+        url: ("/admin/items/" + $(".variation").attr('data-item-id') + "/variations/" + $("#variation_id").val() + "/attachments/update_positions/" + ui.item.find(".id").attr("id") + "?position=" + position)
       });
     }
   });

@@ -4,8 +4,8 @@
   = javascript_include_tag "variations"
   = javascript_include_tag "colors"
 
-- form_for [:admin, @item, @variation] do |form|
-  .variation
+= form_for [:admin, @item, @variation] do |form|
+  .variation{:'data-item-id' => @item.id}
     .form
       %strong Item Description
       #description= @item.description
