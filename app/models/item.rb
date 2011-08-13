@@ -76,6 +76,8 @@ class Item
       available_sizes += split_sizes(size_range)
     elsif size_range =~ /-/
       available_sizes += split_size_range(size_range) # returns an array of size strings
+    else
+      available_sizes = [size_range]
     end
     return available_sizes.flatten
   end
