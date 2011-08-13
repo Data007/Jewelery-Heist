@@ -38,6 +38,14 @@ class Item
     ['Unisex', 'unisex']
   ]
 
+  scope :published,     where(published: true)
+  scope :unpublished,   where(published: false)
+  scope :available,     where(available: true)
+  scope :not_available, where(available: false)
+  scope :listable,      where(availabel: true, ghost: false)
+  scope :ooak,          where(one_of_a_kind: true)
+  scope :nooak,         where(one_of_a_kind: false)
+
   class << self
 
     def search(query)

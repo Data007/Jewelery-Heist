@@ -1,6 +1,6 @@
 class Admin::ItemsController < AdminController
 
-  before_filter :find_item, :except => [:index]
+  before_filter :find_item, :except => [:index, :published]
   
   def show
   end
@@ -20,6 +20,34 @@ class Admin::ItemsController < AdminController
 
   def index
     @items = Item.all.paginate(pagination_hash)
+  end
+
+  def published
+    @items = Item.published.paginate(pagination_hash)
+    render template: 'admin/items/index'
+  end
+
+  def current
+    @items = Item.listable.paginate(pagination_hash)
+    render template: 'admin/items/index'
+  end
+
+  def old
+    @items = Item.not_available.paginate(pagination_hash)
+    render template: 'admin/items/index'
+  end
+
+  def instore
+    @items = Item.listable.unpublished.paginate(pagination_hash)
+    render template: 'admin/items/index'
+  end
+
+  def ooak
+    @items = Item.oak.paginate(pagination_hash)
+    render template: 'admin/items/index'
+  end
+
+  def find
   end
 
 private
