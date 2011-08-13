@@ -5,11 +5,10 @@
     %span#tag_id.tag_id ID#{@item.custom_id}-#{current_variation ? current_variation.custom_id : 'n/a'}
 
 = content_for :page_actions do
-  - if @current_user.may_destroy_item?
-    - if !@item.ghost
-      .button.dangerous= link_to 'remove', [:admin, @item], confirm: "Are you sure you want to remove this item?", method: :delete, remote: true
-    - else
-      .button.dangerous= link_to 'restore', [:restore, :admin, @item]
+  - if !@item.ghost
+    .button.dangerous= link_to 'remove', [:remove, :admin, @item]
+  - else
+    .button.dangerous= link_to 'restore', [:restore, :admin, @item]
   = raw button_for_url('edit', edit_admin_item_path(@item), class: "button")
 
 - content_for :extra_js do

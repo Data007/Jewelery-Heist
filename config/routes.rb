@@ -100,6 +100,7 @@ DragonHoard::Application.routes.draw do
       
       member do
         get :cancel
+        get :remove
         get :restore
       end
       

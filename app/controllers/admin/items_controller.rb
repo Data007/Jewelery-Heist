@@ -18,6 +18,21 @@ class Admin::ItemsController < AdminController
     end
   end
 
+  def destroy
+    @item.update_attribute :ghost, true
+    redirect_to [:admin, @item]
+  end
+
+  def remove
+    @item.update_attribute :ghost, true
+    redirect_to [:admin, @item]
+  end
+
+  def restore
+    @item.update_attribute :ghost, false
+    redirect_to [:admin, @item]
+  end
+
   def index
     @items = Item.all.paginate(pagination_hash)
   end
@@ -53,6 +68,7 @@ class Admin::ItemsController < AdminController
 private
 
   def find_item
-    @item = params[:item_id] ? Item.find(params[:item_id]) : Item.find(params[:id])
+    @item      = params[:item_id] ? Item.find(params[:item_id]) : Item.find(params[:id])
+    @variation = @item.variations.find(params[:variation_id]) if params[:variation_id]
   end
 end
