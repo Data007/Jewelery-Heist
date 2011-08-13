@@ -20,7 +20,9 @@ namespace :migrate do
         name:          user['name'],
         login:         user['login'],
         password_hash: user['password'],
-        is_active:     user['is_active']
+        is_active:     true,
+        role:          user['role_name'] == 'owner' ? 'admin' : user['role_name']
+
       })
       puts 'done'
     
@@ -111,6 +113,7 @@ namespace :migrate do
       puts " --- Creating collections for #{item['name']} ... done"
 
       puts " --- Creating variations for #{item['name']} ..."
+      debugger
       item['variations'].each do |variation|
 
         unless variation['ghost']
@@ -141,7 +144,7 @@ namespace :migrate do
           puts "---- Found #{variation['assets'].length} assets in variation #{new_variation.id} ... "
           variation['assets'].each do |asset|
             print '---- Creating assets ... '
-            debugger
+            # debugger
             new_variation.assets.create(asset) if new_variation.assets.where(image_file_name: asset['image_file_name']).empty?
             new_variation.save
             puts 'done'
@@ -171,6 +174,12 @@ namespace :migrate do
     end
     puts '   - Creating items ... done'
 
+  end
+
+  desc 'Find or create orders'
+  task :orders => [:users, :items] do
+    migrating_orders = MultiJson.decode(open('http://localhost:3003/migrate_data/for_orders'))
+    debugger
   end
 
 end

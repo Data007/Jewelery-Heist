@@ -2,7 +2,7 @@
 = content_for :page_title do
   %h1
     = @item.name ? @item.name : 'this item needs a name'
-    %span#tag_id.tag_id ID#{@item.id}-#{current_variation ? current_variation.id : 'n/a'}
+    %span#tag_id.tag_id ID#{@item.custom_id}-#{current_variation ? current_variation.custom_id : 'n/a'}
 
 = content_for :page_actions do
   - if @current_user.may_destroy_item?
@@ -22,29 +22,26 @@
       .sold
         %h1 Sold
     .images#main_view
-      / #major_image.major_image= image_tag current_variation.assets.by_position.first.image.url(:large)
-      / .minor_images.wrapper-pane
-      /   .image_wrapper.contents-pane
-      /     - current_variation.assets.by_position.each do |asset|
-      /       = image_tag asset.image.url(:large, false), :class => 'minor_image'
+      #major_image.major_image= image_tag current_variation.assets.first.image.url(:large)
+      .minor_images.wrapper-pane
+        .image_wrapper.contents-pane
+          - current_variation.assets.each do |asset|
+            = image_tag asset.image.url(:large, false), :class => 'minor_image'
       .meta
         %h2.name= @item.name
         - if @item.designer
           %h3.designed_by Designed By #{@item.designer.name}
-        / .colors
-        /   %h3.color_tags Color Tags
-        /   - colors = []
-        /   - current_variation.colors.sorted_by_position.each do |color|
-        /     - colors << color unless colors.include? color
-        /   - colors.each do |color|
-        /     = link_to color, color_path(color), :class => "color active position_#{color.position}", :color_id => color.id
-    / - if @item.variations.length > 1
-    /   .variations.wrapper-pane
-    /     .image_wrapper.contents-pane
-    /       - @item.variations.each do |variation|
-    /         - if variation.assets.length > 0
-    /           .variation{:id => "variation_#{variation.id}"}
-    /             = link_to image_tag(variation.assets.by_position.first.image.url(:medium)), admin_item_path(:id: @item, variation_id: variation.id)
+        .colors
+          %h3.color_tags Color Tags
+          - current_variation.colors.each do |color|
+            = link_to color, color_path(color), :class => "color active position_#{color.position}", :color_id => color.id
+    - if @item.variations.length > 1
+      .variations.wrapper-pane
+        .image_wrapper.contents-pane
+          - @item.variations.each do |variation|
+            - if variation.assets.length > 0
+              .variation{:id => "variation_#{variation.id}"}
+                = link_to image_tag(variation.assets.first.image.url(:medium)), admin_item_path(id: @item, variation_id: variation.id)
     .details
       .meta
         %h2 Item Details

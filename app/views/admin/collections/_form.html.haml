@@ -1,0 +1,16 @@
+%fieldset
+  #collection_form.form
+    .field.required
+      = collection.label :name
+      = collection.text_field :name
+    .field
+      = collection.label :description
+      = collection.text_area :description
+    .field
+      = label_tag "Items in this Collection"
+      = render :partial => "admin/items/summary", :collection => @collection.items
+    
+    %hr
+    .form_actions
+      = submit_tag "save", :class => "submit"
+    %hr  

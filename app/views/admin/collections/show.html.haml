@@ -1,0 +1,11 @@
+- content_for :page_title do
+  %h1 Viewing the #{@collection.name} collection
+
+- content_for :page_actions do
+  = raw button_for_url("edit", edit_admin_collection_path(@collection), :class => "button")
+
+- content_for :page_content do
+  .description= markdown @collection.description
+  - if @collection.items.length > 0
+    .containers
+      = render :partial => "admin/items/summary", :collection => @collection.items

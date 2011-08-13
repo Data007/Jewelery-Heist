@@ -6,28 +6,30 @@
   float: left;
   overflow: hidden;
   width: 340px;
+  height: 307px;
   /* :height 315px */
   margin: 10px;
 }
 
 /* line 9, ../../../app/stylesheets/containers.sass */
-/* line 12, ../../app/stylesheets/containers.scss */
+/* line 13, ../../app/stylesheets/containers.scss */
 .container .title {
   padding: 5px;
 }
 
 /* line 11, ../../../app/stylesheets/containers.sass */
-/* line 16, ../../app/stylesheets/containers.scss */
+/* line 17, ../../app/stylesheets/containers.scss */
 .container .content {
   position: relative;
   overflow: hidden;
   clear: both;
+  height: 288px;
   /*:max-height 272px */
   max-width: 340px;
 }
 
 /* line 18, ../../../app/stylesheets/containers.sass */
-/* line 24, ../../app/stylesheets/containers.scss */
+/* line 26, ../../app/stylesheets/containers.scss */
 .container .content .collage_4 img {
   position: relative;
   max-width: 170px;
