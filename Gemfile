@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-gem 'rake', '0.8.7'
 gem 'rails', '3.0.9'
 
 # http://collectiveidea.com/blog/archives/2010/11/29/ssl-with-rails/

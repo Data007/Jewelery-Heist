@@ -108,7 +108,11 @@ DragonHoard::Application.routes.draw do
         member do
           get :cancel
         end
-        resources :attachments, controller: 'items/variations/attachments'
+        resources :attachments, controller: 'items/variations/attachments' do
+          member do
+            get :update_position
+          end
+        end
       end
     end
       

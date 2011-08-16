@@ -25,7 +25,7 @@ function setup_image_positioning() {
       console.log("/admin/items/" + $(".variation").attr('data-item-id') + "/variations/" + $("#variation_id").val() + "/attachments/update_positions/" + ui.item.find(".id").attr("id") + "?position=" + position);
       $.ajax({
         method: "GET",
-        url: ("/admin/items/" + $(".variation").attr('data-item-id') + "/variations/" + $("#variation_id").val() + "/attachments/update_positions/" + ui.item.find(".id").attr("id") + "?position=" + position)
+        url: ("/admin/items/" + $(".variation").attr('data-item-id') + "/variations/" + $("#variation_id").val() + "/attachments/" + ui.item.find(".id").attr("id") + "/update_position/?position=" + position)
       });
     }
   });

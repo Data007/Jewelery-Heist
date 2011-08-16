@@ -1,3 +1,18 @@
+def store_image(url, image_name)
+  host       = url.split('/')[2]
+  path       = "/#{url.split('/')[3..-1].join('/').gsub(/\?.*$/, '')}"
+  image_path = "#{Rails.root}/tmp/downloads/#{image_name}"
+  
+  Net::HTTP.start(host) do |http|
+    response = http.get(path)
+    open(image_path, 'wb') do |file|
+      file.write(response.body)
+    end
+  end
+  image_path
+end
+
+
 namespace :migrate do
 
   desc "Migrate Users"
@@ -75,7 +90,8 @@ namespace :migrate do
         designer = User.where(name: item['designer']['name']).first
         designer.update_attribute :designer, true
       end
-      new_item = Item.where(custom_id: item['id']).first || Item.create
+      new_item = Item.where(custom_id: item['id'])
+      new_item = new_item.present? ? new_item.first : Item.create(name: item['name'])
       new_item.update_attributes({
                        name: item['name'],
                 description: item['description'],
@@ -88,7 +104,7 @@ namespace :migrate do
                   available: item['available'],
                   published: item['published'],
               one_of_a_kind: item['one_of_a_kind'],
-        discountinued_notes: item['discontinued_votes'],
+        discountinued_notes: item['discontinued_notes'],
                customizable: item['customizable'],
          customizable_notes: item['customizable_notes']
       })
@@ -99,7 +115,9 @@ namespace :migrate do
 
         unless collection['ghost']
           print "---- Creating collection #{collection['name']} ... "
-          new_collection = Collection.where(custom_id: collection['id']).first || Collection.create
+          new_collection = Collection.where(custom_id: collection['id'])
+          new_collection = new_collection.present? ? new_collection.first : Collection.create
+          debugger
           new_collection.update_attributes({
                    name: collection['name'],
             description: collection['description'],
@@ -113,12 +131,12 @@ namespace :migrate do
       puts " --- Creating collections for #{item['name']} ... done"
 
       puts " --- Creating variations for #{item['name']} ..."
-      debugger
       item['variations'].each do |variation|
 
         unless variation['ghost']
           print "---- Creating variation #{variation['id']} ... "
-            new_variation = new_item.variations.where(custom_id: variation['id']).first || new_item.variations.create
+            new_variation = new_item.variations.where(custom_id: variation['id'])
+            new_variation = new_variation.present? ? new_variation.first : new_item.variations.create
             new_variation.update_attributes({
                     custom_id: variation['id'],
                         price: variation['price'],
@@ -129,7 +147,8 @@ namespace :migrate do
           puts "---- Found #{variation['colors'].length} colors in variation #{new_variation.id} ... "
           variation['colors'].each do |color|
             print "---- Creating colors #{color['names']} ... "
-            new_color = Color.where(names: color['names']).first || Color.create
+            new_color = Color.where(names: color['names'])
+            new_color = new_color.present? ? new_color.first : Color.create
             new_color.update_attributes({
                  names: color['names'],
               position: color['position']
@@ -141,15 +160,35 @@ namespace :migrate do
           end
           puts "---- Found #{variation['colors'].length} colors in variation #{new_variation.id} ... done"
 
-          puts "---- Found #{variation['assets'].length} assets in variation #{new_variation.id} ... "
-          variation['assets'].each do |asset|
-            print '---- Creating assets ... '
-            # debugger
-            new_variation.assets.create(asset) if new_variation.assets.where(image_file_name: asset['image_file_name']).empty?
+
+          assets = MultiJson.decode(open("http://localhost:3003/migrate_data/assets_for_variation/#{variation['id']}"))['assets']
+          puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... "
+          assets.each do |asset|
+            print "---- Creating asset #{asset['image_file_name']} ... "
+
+            image_path = store_image(asset['image_url'], asset['image_file_name'])
+            image = File.open(image_path)
+
+            if new_variation.assets.where(image_file_name: asset['image_file_name']).empty?
+              new_asset = new_variation.assets.create(image: image)
+            else
+              new_asset = new_variation.assets.where(image_file_name: asset['image_file_name']).first
+              new_asset.image = image
+            end
+
+            new_asset.position = asset['position']
+            new_asset.save
             new_variation.save
+
             puts 'done'
           end
-          puts "---- Found #{variation['assets'].length} assets in variation #{new_variation.id} ... done"
+          puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... done"
+
+          print '---- Sorting assets by position ... '
+          new_variation.assets.each do |asset|
+            new_variation.update_asset_position(asset, asset.position)
+          end
+          puts 'done'
 
           print "---- Adding metals to variation #{new_variation.id} ... "
           new_variation.metal_csv = variation['metal']['name'] if variation['metal']

@@ -3,6 +3,8 @@ class Asset
   include Mongoid::Timestamps
   include Mongoid::Paperclip
 
+  field :position, type: Integer
+
   has_mongoid_attached_file :image,
     :styles => {
       :tiny       => "100x80",

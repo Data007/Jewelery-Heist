@@ -26,7 +26,8 @@ class Admin::Items::VariationsController < Admin::ItemsController
 private
 
   def find_variation
-    @variation = @item.variations.find(params[:id])
+    variation_id = params[:variation_id] || params[:id]
+    @variation   = @item.variations.find(variation_id)
   end
 
 end
