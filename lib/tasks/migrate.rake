@@ -12,6 +12,9 @@ def store_image(url, image_name)
   image_path
 end
 
+def migration_token
+  "f1a649db463bc07dcb9f4627ccdf1957760978c23b90be9ee05947c77141d1b5"
+end
 
 namespace :migrate do
 
@@ -19,7 +22,7 @@ namespace :migrate do
   task :users => :environment do
 
     print '   - Gathering users ... '
-    migrating_users = HTTParty.get('http://localhost:3003/migrate_data/for_users')
+    migrating_users = HTTParty.get("http://wexfordjewelers.com/migrate_data/for_users?migration_token=#{migration_token}")
     puts 'done'
 
     print '   - Creating Wexford User ... '
@@ -80,7 +83,7 @@ namespace :migrate do
   desc 'Migrate Items'
   task :items => :environment do
 
-    migrating_items = MultiJson.decode(open('http://localhost:3003/migrate_data/for_items'))
+    migrating_items = MultiJson.decode(open("http://wexfordjewelers.com/migrate_data/for_items?migration_token=#{migration_token}"))
 
     puts '   - Creating items ...'
     migrating_items.each do |item|
@@ -161,7 +164,7 @@ namespace :migrate do
           puts "---- Found #{variation['colors'].length} colors in variation #{new_variation.id} ... done"
 
 
-          assets = MultiJson.decode(open("http://localhost:3003/migrate_data/assets_for_variation/#{variation['id']}"))['assets']
+          assets = MultiJson.decode(open("http://wexfordjewelers.com/migrate_data/assets_for_variation/#{variation['id']}?migration_token=#{migration_token}"))['assets']
           puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... "
           assets.each do |asset|
             print "---- Creating asset #{asset['image_file_name']} ... "
@@ -217,7 +220,7 @@ namespace :migrate do
 
   desc 'Find or create orders'
   task :orders => [:users, :items] do
-    migrating_orders = MultiJson.decode(open('http://localhost:3003/migrate_data/for_orders'))
+    migrating_orders = MultiJson.decode(open("http://wexfordjewelers.com/migrate_data/for_orders?migration_token=#{migration_token}"))
     debugger
   end
 
