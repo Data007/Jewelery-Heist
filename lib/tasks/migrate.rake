@@ -120,7 +120,7 @@ namespace :migrate do
           print "---- Creating collection #{collection['name']} ... "
           new_collection = Collection.where(custom_id: collection['id'])
           new_collection = new_collection.present? ? new_collection.first : Collection.create
-          debugger
+          
           new_collection.update_attributes({
                    name: collection['name'],
             description: collection['description'],
@@ -250,7 +250,7 @@ namespace :migrate do
   desc 'Find or create orders'
   task :orders => [:users, :items] do
     migrating_orders = MultiJson.decode(open("http://wexfordjewelers.com/migrate_data/for_orders?migration_token=#{migration_token}"))
-    debugger
+    
   end
 
 end
