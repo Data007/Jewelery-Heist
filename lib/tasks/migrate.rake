@@ -147,8 +147,9 @@ namespace :migrate do
             })
           puts "done"
 
-          puts "---- Found #{variation['colors'].length} colors in variation #{new_variation.id} ... "
-          variation['colors'].each do |color|
+          variation_details = MultiJson.decode(open("http://wexfordjewelers.com/migrate_data/details_for_variation/#{variation['id']}?migration_token=#{migration_token}"))
+          puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... "
+          variation_details['colors'].each do |color|
             print "---- Creating colors #{color['names']} ... "
             new_color = Color.where(names: color['names'])
             new_color = new_color.present? ? new_color.first : Color.create
@@ -161,60 +162,81 @@ namespace :migrate do
             new_variation.save
             puts 'done'
           end
-          puts "---- Found #{variation['colors'].length} colors in variation #{new_variation.id} ... done"
-
-
-          assets = MultiJson.decode(open("http://wexfordjewelers.com/migrate_data/assets_for_variation/#{variation['id']}?migration_token=#{migration_token}"))['assets']
-          puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... "
-          assets.each do |asset|
-            print "---- Creating asset #{asset['image_file_name']} ... "
-
-            image_path = store_image(asset['image_url'], asset['image_file_name'])
-            image = File.open(image_path)
-
-            if new_variation.assets.where(image_file_name: asset['image_file_name']).empty?
-              new_asset = new_variation.assets.create(image: image)
-            else
-              new_asset = new_variation.assets.where(image_file_name: asset['image_file_name']).first
-              new_asset.image = image
-            end
-
-            new_asset.position = asset['position']
-            new_asset.save
-            new_variation.save
-
-            puts 'done'
-          end
-          puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... done"
-
-          print '---- Sorting assets by position ... '
-          new_variation.assets.each do |asset|
-            new_variation.update_asset_position(asset, asset.position)
-          end
-          puts 'done'
+          puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... done"
 
           print "---- Adding metals to variation #{new_variation.id} ... "
-          new_variation.metal_csv = variation['metal']['name'] if variation['metal']
+          new_variation.metal_csv = variation_details['metal']['name'] if variation['metal']
           new_variation.save
           puts 'done'
 
           print "---- Adding finishes to variation #{new_variation.id} ... "
-          new_variation.finish_csv = variation['finish']['name'] if variation['finish']
+          new_variation.finish_csv = variation_details['finish']['name'] if variation['finish']
           new_variation.save
           puts 'done'
 
           print "---- Adding jewels to variation #{new_variation.id} ... "
-          new_variation.jewel_csv = variation['jewel']['name'] if variation['jewel']
+          new_variation.jewel_csv = variation_details['jewel']['name'] if variation['jewel']
           new_variation.save
           puts 'done'
 
         end
+        
+        assets = MultiJson.decode(open("http://wexfordjewelers.com/migrate_data/assets_for_variation/#{variation['id']}?migration_token=#{migration_token}"))['assets']
+        puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... "
+        assets.each do |asset|
+          print "---- Creating asset #{asset['image_file_name']} ... "
+        
+          image_path = store_image(asset['image_url'], asset['image_file_name'])
+        
+          if new_variation.assets.where(image_file_name: asset['image_file_name']).empty?
+            new_asset = new_variation.assets.create(migratory_url: asset['image_url'])
+          else
+            new_asset = new_variation.assets.where(image_file_name: asset['image_file_name']).first
+            new_asset.migratory_url = asset['image_url']
+          end
+        
+          new_asset.position = asset['position']
+          new_asset.save
+          new_variation.save
+        
+          puts 'done'
+        end
+        puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... done"
 
       end
       puts " --- Creating variations for #{item['name']} ... done"
       
     end
     puts '   - Creating items ... done'
+
+  end
+
+  desc 'Update images'
+  task :images => :environment do
+
+    Item.all.map(&:variations).each do |variation|
+      puts "---- Found #{variation.assets.length} assets in variation #{variation.id} ... "
+      variation.assets.each do |asset|
+        print "---- Creating asset #{asset['image_file_name']} ... "
+
+        image_path = store_image(asset.migratory_url, asset.image_file_name)
+        image = File.open(image_path)
+
+        asset.image = image
+
+        asset.save
+        variation.save
+
+        puts 'done'
+      end
+      puts "---- Found #{variation.assets.length} assets in variation #{variation.id} ... done"
+
+      print '---- Sorting assets by position ... '
+      variation.assets.each do |asset|
+        variation.update_asset_position(asset, asset.position)
+      end
+      puts 'done'
+    end
 
   end
 
