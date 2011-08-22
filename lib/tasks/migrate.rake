@@ -1,7 +1,7 @@
 def store_image(url, image_name)
   host       = url.split('/')[2]
   path       = "/#{url.split('/')[3..-1].join('/').gsub(/\?.*$/, '')}"
-  image_path = "#{Rails.root}/tmp/downloads/#{image_name}"
+  image_path = "#{Rails.root}/tmp/#{image_name}_#{Process.pid}"
   
   Net::HTTP.start(host) do |http|
     response = http.get(path)
