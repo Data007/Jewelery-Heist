@@ -186,7 +186,6 @@ namespace :migrate do
         assets.each do |asset|
           if (asset['image_url'] && asset['image_file_name'])
             print "---- Creating asset #{asset['image_file_name']} ... "
-            
             begin
               image_path = store_image(asset['image_url'], asset['image_file_name'])
               
@@ -201,8 +200,9 @@ namespace :migrate do
               new_asset.save
               new_variation.save
               
-            rescue
-              print ' no valid asset found ... '
+            rescue => e
+              debugger
+              print " no valid asset found ... #{e} ... "
             end
             
             puts 'done'
