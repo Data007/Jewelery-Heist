@@ -187,7 +187,7 @@ namespace :migrate do
           if (asset['image_url'] && asset['image_file_name'])
             print "---- Creating asset #{asset['image_file_name']} ... "
             begin
-              image_path = store_image(asset['image_url'], asset['image_file_name'])
+              # image_path = store_image(asset['image_url'], asset['image_file_name'])
               
               if new_variation.assets.where(image_file_name: asset['image_file_name']).empty?
                 new_asset = new_variation.assets.create(migratory_url: asset['image_url'])
