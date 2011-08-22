@@ -1,6 +1,6 @@
 DragonHoard::Application.routes.draw do
   
-  scope :constraints: {protocol: Rails.env.production? ? 'https' : 'http'} do
+  scope constraints: {protocol: Rails.env.production? ? 'https' : 'http'} do
     namespace :admin do
       
       resources :users do
