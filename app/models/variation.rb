@@ -80,7 +80,6 @@ class Variation
     asset_list = (assets - [asset]).flatten.compact
     asset_list.insert(position, asset)
     asset_list.compact!
-    debugger
     asset_list.each_with_index {|asset, index| asset.update_attribute :position, index}
     assets = asset_list
     save

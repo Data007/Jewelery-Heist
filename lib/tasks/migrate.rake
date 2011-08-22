@@ -201,7 +201,6 @@ namespace :migrate do
               new_variation.save
               
             rescue => e
-              debugger
               print " no valid asset found ... #{e} ... "
             end
             
@@ -220,7 +219,6 @@ namespace :migrate do
 
   desc 'Update images'
   task :images => :environment do
-      debugger
     Item.all.map(&:variations).flatten.each do |variation|
       puts "---- Found #{variation.assets.length} assets in variation #{variation.id} ... "
       variation.assets.each do |asset|
