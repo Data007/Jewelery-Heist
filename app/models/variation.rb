@@ -53,6 +53,7 @@ class Variation
   end
 
   def metal_csv
+    return '' unless metals
     metals.join(',')
   end
 
@@ -61,6 +62,7 @@ class Variation
   end
 
   def finish_csv
+    return '' unless finishes
     finishes.join(',')
   end
 
@@ -69,6 +71,7 @@ class Variation
   end
 
   def jewel_csv
+    return '' unless jewels
     jewels.join(',')
   end
 

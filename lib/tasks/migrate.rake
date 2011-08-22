@@ -190,7 +190,7 @@ namespace :migrate do
               # image_path = store_image(asset['image_url'], asset['image_file_name'])
               
               if new_variation.assets.where(image_file_name: asset['image_file_name']).empty?
-                new_asset = new_variation.assets.create(migratory_url: asset['image_url'])
+                new_asset = new_variation.assets.create(migratory_url: asset['image_url'], image_file_name: asset['image_file_name'])
               else
                 new_asset = new_variation.assets.where(image_file_name: asset['image_file_name']).first
                 new_asset.migratory_url = asset['image_url']
