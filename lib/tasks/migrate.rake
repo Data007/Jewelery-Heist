@@ -2,7 +2,11 @@ def store_image(url, image_name)
   host       = url.split('/')[2]
   path       = "/#{url.split('/')[3..-1].join('/').gsub(/\?.*$/, '')}"
   pid        = Process.pid
-  system       "mkdir #{Rails.root}/tmp/#{pid}"
+  
+  unless Dir.exists? "#{Rails.root}/tmp/#{pid}"
+    system "mkdir #{Rails.root}/tmp/#{pid}"
+  end
+
   image_path = "#{Rails.root}/tmp/#{pid}/#{image_name}"
   
   Net::HTTP.start(host) do |http|
