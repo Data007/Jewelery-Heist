@@ -1,4 +1,4 @@
 access_key_id: 03APKDY293M4S79D0TR2
 secret_access_key: 0YsVVyfBRNHMMiN8+i2tlvNTkRZdrPz8cwQb0jAR
-bucket: wexford-assets
+bucket: wexford-assets-development
 s3_permissions: public-read
