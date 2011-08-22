@@ -21,6 +21,7 @@ class Asset
       :content_type => 'application/octet-stream',
       :content_disposition => 'attachment'
     },
+    :s3_protocol => 'https',
     :path => "variation/:attachment/:id/:basename-:style.:extension",
     :url => ":s3_domain_url"
   
