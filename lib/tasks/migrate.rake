@@ -248,6 +248,8 @@ namespace :migrate do
       end
       puts 'done'
     end
+    
+    system "rm -Rf #{Rails.root}/tmp/#{Process.pid}"
 
   end
 
