@@ -16,7 +16,7 @@ DragonHoard::Application.configure do
   config.middleware.insert_before ActionDispatch::Static,  Rack::SSL
 end
 
-ActionController::Base.asset_host     = 'wj-dragon-hoard.heroku.com'
+# ActionController::Base.asset_host     = 'wj-dragon-hoard.heroku.com'
 
 Braintree::Configuration.environment  = :production
 Braintree::Configuration.merchant_id  = "zpgq9twf6gjs6f2v"
