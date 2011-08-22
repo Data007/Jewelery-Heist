@@ -13,7 +13,7 @@ DragonHoard::Application.configure do
   config.active_support.deprecation = :notify
   
   config.middleware.insert_before ActionDispatch::Cookies, Rack::SSL
-  config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
+  config.middleware.insert_before ActionDispatch::Static,  Rack::SSL
 end
 
 # ActionController::Base.asset_host     = 'wj-dragon-hoard.heroku.com'
