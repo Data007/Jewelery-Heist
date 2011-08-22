@@ -227,7 +227,7 @@ namespace :migrate do
   task :images => :environment do
     Item.all.map(&:variations).flatten.each do |variation|
       puts "---- Found #{variation.assets.length} assets in variation #{variation.id} ... "
-      variation.assets.each do |asset|
+      variation.assets.where(migrated: false).each do |asset|
         print "---- Creating asset #{asset['image_file_name']} ... "
 
         image_path = store_image(asset.migratory_url, asset.image_file_name)
@@ -237,6 +237,8 @@ namespace :migrate do
 
         asset.save
         variation.save
+
+        asset.update_attribute :migrated, true
 
         puts 'done'
       end

@@ -3,8 +3,9 @@ class Asset
   include Mongoid::Timestamps
   include Mongoid::Paperclip
 
-  field :position, type: Integer
+  field :position,     type: Integer
   field :migratory_url
+  field :migrated,     type: Boolean, default: false
 
   has_mongoid_attached_file :image,
     styles: {

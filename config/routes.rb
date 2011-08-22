@@ -130,64 +130,64 @@ DragonHoard::Application.routes.draw do
     
     match 'admin' => 'admin/users#dashboard', as: :admin_root
 
-  end
-  
-  resources :items
-  resources :collections, only: [:index, :show]
-  
-  resources :users do
-    collection do
-      get  :login
-      get  :logout
-      post :authenticate
-      get  :register
-      post :registered
-      get  :forgot_password
-      post :generate_new_password
-    end
+    resources :items
+    resources :collections, only: [:index, :show]
     
-    member do
-      get :dashboard
-    end
-  end
-    
-  match '/users/fb_authenticate/:uid' => 'users#fb_authenticate', as: :fb_authenticate
-  match 'dashboard' => 'users#dashboard', as: :dashboard
-  
-  match '/orders/:id/checkout' => 'orders#checkout', method: :post, as: :checkout
-  match '/orders/:id/shipping' => 'orders#shipping', method: :post, as: :shipping
-  match '/orders/:id/addressed' => 'orders#addressed', method: :post, as: :addressed
-  match '/orders/:id/pay' => 'orders#pay', method: :post, as: :pay
-  match '/orders/:id/complete' => 'orders#complete', method: :post, as: :complete
-  
-  resources :orders do
-    member do
-      get :clear
-    end
-    
-    resources :items, controller: 'orders/items' do
+    resources :users do
+      collection do
+        get  :login
+        get  :logout
+        post :authenticate
+        get  :register
+        post :registered
+        get  :forgot_password
+        post :generate_new_password
+      end
+      
       member do
-        get :destroy, as: :delete
+        get :dashboard
       end
     end
+      
+    match '/users/fb_authenticate/:uid' => 'users#fb_authenticate', as: :fb_authenticate
+    match 'dashboard' => 'users#dashboard', as: :dashboard
+    
+    match '/orders/:id/checkout' => 'orders#checkout', method: :post, as: :checkout
+    match '/orders/:id/shipping' => 'orders#shipping', method: :post, as: :shipping
+    match '/orders/:id/addressed' => 'orders#addressed', method: :post, as: :addressed
+    match '/orders/:id/pay' => 'orders#pay', method: :post, as: :pay
+    match '/orders/:id/complete' => 'orders#complete', method: :post, as: :complete
+    
+    resources :orders do
+      member do
+        get :clear
+      end
+      
+      resources :items, controller: 'orders/items' do
+        member do
+          get :destroy, as: :delete
+        end
+      end
+    end
+    
+    namespace :policy do
+      match 'delivery' => 'policies#delivery', as: :delivery
+      match 'privacy' => 'policies#privacy', as: :privacy
+      match 'return' => 'policies#return', as: :return
+      match 'faq' => 'policies#faq', as: :faq
+    end
+    
+    match 'about-us' => 'pages#about', as: :about_us
+    match 'pages/bad_route' => 'pages#bad_route', as: :bad_route
+    
+    resource :search, only: [:show]
+    resources :colors, only: [:show]
+    
+    match '/login' => 'users#login', as: :login
+    match '/logout' => 'users#logout', as: :logout
+    
+    root :to => 'pages#home'
+  
   end
-  
-  namespace :policy do
-    match 'delivery' => 'policies#delivery', as: :delivery
-    match 'privacy' => 'policies#privacy', as: :privacy
-    match 'return' => 'policies#return', as: :return
-    match 'faq' => 'policies#faq', as: :faq
-  end
-  
-  match 'about-us' => 'pages#about', as: :about_us
-  match 'pages/bad_route' => 'pages#bad_route', as: :bad_route
-  
-  resource :search, only: [:show]
-  resources :colors, only: [:show]
-  
-  match '/login' => 'users#login', as: :login
-  match '/logout' => 'users#logout', as: :logout
-  
-  root :to => 'pages#home'
-  
+
 end
