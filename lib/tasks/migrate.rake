@@ -1,3 +1,7 @@
+def safe_image_name(name)
+  image_name.gsub(' ', '-')
+end
+
 def store_image(url, image_name)
   host       = url.split('/')[2]
   path       = "/#{url.split('/')[3..-1].join('/').gsub(/\?.*$/, '')}"
@@ -7,7 +11,7 @@ def store_image(url, image_name)
     system "mkdir #{Rails.root}/tmp/#{pid}"
   end
 
-  image_path = "#{Rails.root}/tmp/#{pid}/#{image_name}"
+  image_path = "#{Rails.root}/tmp/#{pid}/#{safe_image_name(image_name)}"
   
   Net::HTTP.start(host) do |http|
     response = http.get(path)
