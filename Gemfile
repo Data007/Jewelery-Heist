@@ -36,10 +36,8 @@ group :development do
   gem 'taps'
 end
 
-group :test, :development do
-  gem 'ruby-debug',   :platform => :ruby_18
-  gem 'ruby-debug19', :platform => :mri_19
-end
+gem 'ruby-debug',   :platform => :ruby_18
+gem 'ruby-debug19', :platform => :mri_19
 
 group :test do
   gem 'rspec'
