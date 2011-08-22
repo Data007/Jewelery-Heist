@@ -220,8 +220,8 @@ namespace :migrate do
 
   desc 'Update images'
   task :images => :environment do
-
-    Item.all.map(&:variations).each do |variation|
+      debugger
+    Item.all.map(&:variations).flatten.each do |variation|
       puts "---- Found #{variation.assets.length} assets in variation #{variation.id} ... "
       variation.assets.each do |asset|
         print "---- Creating asset #{asset['image_file_name']} ... "
