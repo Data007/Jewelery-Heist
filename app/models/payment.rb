@@ -5,6 +5,7 @@ class Payment
   field :amount,       type: Float
   field :payment_type, type: String, default: 'cash'
   field :check_number, type: Integer
+  field :custom_id
 
   embedded_in :order
 
@@ -15,10 +16,10 @@ class Payment
         ["Cash",             'cash'],
         ["Check",            'check'],
         ["Paypal",           'paypal'],
-        ["Instore Credit",   'instore credit'],
-        ["Master Card",      'master card'],
+        ["Instore Credit",   'instorecredit'],
+        ["Master Card",      'mastercard'],
         ["Visa",             'visa'],
-        ["American Express", 'american express'],
+        ["American Express", 'americanexpress'],
         ["Discover",         'discover']
       ]
     end

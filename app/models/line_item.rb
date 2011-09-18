@@ -12,7 +12,7 @@ class LineItem
   field :description
   field :quick_id
   field :size
-
+  field :custom_id
 
   embeds_one  :variation
   embedded_in :order

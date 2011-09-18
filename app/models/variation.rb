@@ -38,6 +38,12 @@ class Variation
       }.flatten.compact.uniq.select {|finish| finish.match(Regexp.new(query))}
     end
 
+    def find_by_custom_id(query_id)
+      query = Item.where(:'variations.custom_id' => query_id)
+      return nil if query.empty?
+      query.first.variations.where(custom_id: query_id).first
+    end
+
   end
 
   def parent_item

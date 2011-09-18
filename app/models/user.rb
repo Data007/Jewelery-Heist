@@ -12,6 +12,7 @@ class User
   field :role,                        default: 'public'
   field :name
   field :designer,     type: Boolean, default: false
+  field :custom_id
 
   embeds_many :addresses
   embeds_many :orders

@@ -1,5 +1,5 @@
 def safe_image_name(name)
-  image_name.gsub(' ', '-')
+  name.gsub(' ', '-')
 end
 
 def store_image(url, image_name)
@@ -26,13 +26,15 @@ def migration_token
   "f1a649db463bc07dcb9f4627ccdf1957760978c23b90be9ee05947c77141d1b5"
 end
 
+DOMAIN = 'localhost:3003'
+
 namespace :migrate do
 
   desc "Migrate Users"
   task :users => :environment do
 
     print '   - Gathering users ... '
-    migrating_users = HTTParty.get("http://wexfordjewelers.com/migrate_data/for_users?migration_token=#{migration_token}")
+    migrating_users = HTTParty.get("http://#{DOMAIN}/migrate_data/for_users?migration_token=#{migration_token}")
     puts 'done'
 
     print '   - Creating Wexford User ... '
@@ -93,7 +95,7 @@ namespace :migrate do
   desc 'Migrate Items'
   task :items => :environment do
 
-    migrating_items = MultiJson.decode(open("http://wexfordjewelers.com/migrate_data/for_items?migration_token=#{migration_token}"))
+    migrating_items = MultiJson.decode(open("http://#{DOMAIN}/migrate_data/for_items?migration_token=#{migration_token}"))
 
     puts '   - Creating items ...'
     migrating_items.each do |item|
@@ -157,7 +159,7 @@ namespace :migrate do
             })
           puts "done"
 
-          variation_details = MultiJson.decode(open("http://wexfordjewelers.com/migrate_data/details_for_variation/#{variation['id']}?migration_token=#{migration_token}"))
+          variation_details = MultiJson.decode(open("http://#{DOMAIN}/migrate_data/details_for_variation/#{variation['id']}?migration_token=#{migration_token}"))
           puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... "
           variation_details['colors'].each do |color|
             print "---- Creating colors #{color['names']} ... "
@@ -191,7 +193,7 @@ namespace :migrate do
 
         end
         
-        assets = MultiJson.decode(open("http://wexfordjewelers.com/migrate_data/assets_for_variation/#{variation['id']}?migration_token=#{migration_token}"))['assets']
+        assets = MultiJson.decode(open("http://#{DOMAIN}/migrate_data/assets_for_variation/#{variation['id']}?migration_token=#{migration_token}"))['assets']
         puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... "
         assets.each do |asset|
           if (asset['image_url'] && asset['image_file_name'])
@@ -260,9 +262,109 @@ namespace :migrate do
   end
 
   desc 'Find or create orders'
-  task :orders => [:users, :items] do
-    migrating_orders = MultiJson.decode(open("http://wexfordjewelers.com/migrate_data/for_orders?migration_token=#{migration_token}"))
-    
+  task :orders => :environment do
+    uri      = "http://#{DOMAIN}/migrate_data/for_orders?migration_token=#{migration_token}"
+    response = HTTParty.get(uri)
+
+    pages        = response['pages']
+    total_pages  = pages['total_pages']
+    current_page = 1
+
+    while current_page <= total_pages do
+      current_uri = uri + "&page=#{current_page}"
+      print "   - Connecting to url #{current_uri} ... "
+      response = HTTParty.get(current_uri)
+      puts 'done'
+            
+      response['orders'].each do |order|
+        print "  -- Updating user #{order['user']['name']} ... "
+        user = User.where(name: order['user']['name'])
+        user = user.present? ? user.first : User.create(name: order['user']['name'])
+        user.update_attributes({
+          created_at: order['user']['created_at'],
+          custom_id:  order['user']['id'],
+          login:      order['user']['login'],
+          password:   order['user']['password'],
+          role:       order['user']['role_name'] == 'owner' ? 'admin' : order['user']['role_name'],
+          is_active:  true
+        })
+
+        user.emails << order['user']['email'] unless user.emails.include?(order['user']['email'])
+        user.phones << order['user']['phone'] unless user.phones.include?(order['user']['phone'])
+        puts 'done'
+# Sample Order: {"current_url"=>nil, "completed_at"=>nil, "city"=>"Cadillac", "staging_type"=>"repair", "refunded"=>false, "location"=>"instore", "item_notes"=>"10K yg Tigers Eye Ring", "created_at"=>2010-11-29 09:51:21 -0700, "country"=>"US", "based_on_item_ids"=>nil, "updated_at"=>2010-12-17 10:40:48 -0700, "stones"=>nil, "postal_code"=>"49601", "notes"=>nil, "show_wax"=>true, "molds"=>nil, "id"=>219299, "clerk_id"=>36, "user_id"=>975, "ship"=>false, "purchased_at"=>2010-12-17 10:40:48 -0700, "ghost"=>false, "address_1"=>"2850 S. 35 1/2 Mile Rd.", "phones"=>nil, "metals"=>nil, "emails"=>nil, "address_2"=>"", "shipping_option"=>nil, "repair_notes"=>"Polish stone Sending to Korner Stone Gems\r\n\r\n\r\nCustomer needs by Christmas.", "current_head_method"=>nil, "province"=>"MI", "handed_off"=>false, "due_at"=>"3 weeks"}
+
+# find order or create it
+        new_order = user.orders.where(custom_id: order['id'])
+        new_order = new_order.present? ? new_order.first : user.orders.create(custom_id: order['id'])
+        new_order.update_attributes({
+          based_on_item_ids:   order['based_on_item_ids'],
+          current_head_method: order['current_head_method'],
+          current_url:         order['current_url'],
+          clerk_id:            order['clerk_id'],
+          completed_at:        order['completed_at'],
+          purchased_at:        order['purchased_at'],
+          due_at:              order['due_at'],
+          created_at:          order['created_at'],
+          refunded:            order['refunded'],
+          handed_off:          order['handed_off'],
+          staging_type:        order['staging_type'],
+          location:            order['location'],
+          item_notes:          order['item_notes'],
+          repair_notes:        order['repair_notes'],
+          notes:               order['notes'],
+          metals:              order['metals'],
+          stones:              order['stones'],
+          molds:               order['molds'],
+          show_wax:            order['show_wax'],
+          address_1:           order['address_1'],
+          address_2:           order['address_2'],
+          city:                order['city'],
+          province:            order['province'],
+          country:             order['country'],
+          postal_code:         order['postal_code'],
+          shipping_option:     order['shipping_option'],
+          ship:                order['ship']
+        })
+
+# find line_item or create it
+        order['line_items'].each do |line_item|
+          if line_item['variation']
+            print " --- Finding variation #{line_item['variation']['id']} ... "
+            new_variation = Variation.find_by_custom_id(line_item['variation_id'])
+            puts 'done'
+            # Variation: "variation":{"price":825.0,"backorder_notes":"Please allow 3 - 6 weeks for this order to be created.","created_at":"2010-10-06T16:39:21-04:00","quantity":0,"updated_at":"2011-08-06T13:01:17-04:00","id":1102,"ghost":false,"description":"","item_id":1000}
+          end
+
+          print " --- Updating line_item #{line_item['id']} for order #{order['id']} ... "
+          new_line_item = new_order.line_items.where(custom_id: line_item['id'])
+          new_line_item = new_line_item.present? ? new_line_item.first : new_order.line_items.new(custom_id: line_item['id'], price: line_item['price'])
+          new_line_item.variation = new_variation if new_variation
+          new_line_item.price = 0 if (line_item['price'].nil? && !new_variation)
+          new_line_item.save
+          new_line_item.update_attributes({
+            name:          line_item['name'],
+            size:          line_item['size'],
+            refunded:      line_item['refunded'],
+            created_at:    line_item['created_at'],
+            quantity:      line_item['quantity'],
+            is_service:    line_item['is_service'],
+            is_quick_item: line_item['is_quick_item'],
+            taxable:       line_item['taxable'],
+            quick_id:      line_item['quick_id'],
+            description:   line_item['description']
+          })
+          puts 'done'
+        end
+        # Line Items: "line_items"=>[{"price"=>35.0, "name"=>"Polish Stone", "size"=>"0", "refunded"=>false, "created_at"=>2010-11-29 09:53:41 -0700, "quantity"=>1, "updated_at"=>2010-11-29 09:53:41 -0700, "order_id"=>219299, "is_service"=>true, "is_quick_item"=>true, "taxable"=>false, "id"=>1560, "quick_id"=>"n/a", "ghost"=>false, "variation_id"=>nil, "description"=>"10K yg Tigers Eye Ring"}]
+          # find variation/item or create it
+
+# find payment or create it
+        # Payment: "payments"=>[{"created_at"=>2010-12-17 10:40:48 -0700, "check_number"=>"", "payment_type"=>{"name"=>"MasterCard", "created_at"=>2010-05-26 09:07:56 -0700, "updated_at"=>2010-05-26 09:07:56 -0700, "id"=>1}, "updated_at"=>2010-12-17 10:40:48 -0700, "order_id"=>219299, "amount"=>35.0, "id"=>1096, "payment_type_id"=>1}]
+      end
+
+      current_page += 1
+    end
   end
 
 end
