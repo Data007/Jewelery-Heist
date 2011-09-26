@@ -77,7 +77,7 @@ namespace :migrate do
         puts ' --- Adding phone numbers ... done'
 
         puts ' --- Adding addresses ... '
-        if user['addresses'.present?
+        if user['addresses'].present?
           user['addresses'].each do |address|
             print "---- Adding #{address['address_1']}, #{address['address_2']}, #{address['city']}, #{address['province']} #{address['postal_code']} #{address['country']} ... "
             new_user.addresses.find_or_create_by({
