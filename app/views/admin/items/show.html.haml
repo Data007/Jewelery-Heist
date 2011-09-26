@@ -54,17 +54,16 @@
             - if @order
               .row
                 %span= link_to 'Add to Cart', new_admin_user_order_line_item_path(user_id: @user, order_id: @order, variation_id: current_variation), class: 'add_to_cart input'
-        / .metals.row
-        /   %span.label Metals
-        /   - current_variation.metals.collect {|metal| "<span class='metal tag'>#{metal.downcase}</span>"}.each do |metal|
-        /     = metal
-        / - if current_variation.jewels.length > 0
-        /   .jewels.row
-        /     %span.label Jewels
-        /     = current_variation.jewels.collect {|jewel| "<span class='jewel tag'>#{jewel.downcase}</span>"}
-        / .finishes.row
-        /   %span.label Finish
-        /   = current_variation.finishes.collect {|finish| "<span class='finish tag'>#{finish.downcase}</span>"}
+        .metals.row
+          %span.label Metals
+          = raw current_variation.metals.inject('') {|metals, metal| metals += "<span class='metal tag'>#{metal.downcase}</span>"}
+        - if current_variation.jewels.length > 0
+          .jewels.row
+            %span.label Jewels
+            = raw current_variation.jewels.inject('') {|jewels, jewel| jewels += "<span class='jewel tag'>#{jewel.downcase}</span>"}
+        .finishes.row
+          %span.label Finish
+          = raw current_variation.finishes.inject('') {|finishes, finish| finishes += "<span class='finish tag'>#{finish.downcase}</span>"}
         .availability.row
           - if current_variation.item.one_of_a_kind
             :textile

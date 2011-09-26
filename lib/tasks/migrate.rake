@@ -177,17 +177,17 @@ namespace :migrate do
           puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... done"
 
           print "---- Adding metals to variation #{new_variation.id} ... "
-          new_variation.metal_csv = variation_details['metal']['name'] if variation['metal']
+          new_variation.metal_csv = variation_details['metal']['name'] if variation_details['metal']
           new_variation.save
           puts 'done'
 
           print "---- Adding finishes to variation #{new_variation.id} ... "
-          new_variation.finish_csv = variation_details['finish']['name'] if variation['finish']
+          new_variation.finish_csv = variation_details['finish']['name'] if variation_details['finish']
           new_variation.save
           puts 'done'
 
           print "---- Adding jewels to variation #{new_variation.id} ... "
-          new_variation.jewel_csv = variation_details['jewel']['name'] if variation['jewel']
+          new_variation.jewel_csv = variation_details['jewel']['name'] if variation_details['jewel']
           new_variation.save
           puts 'done'
 
@@ -234,7 +234,7 @@ namespace :migrate do
     Item.all.map(&:variations).flatten.each do |variation|
       puts "---- Found #{variation.assets.length} assets in variation #{variation.id} ... "
       variation.assets.where(migrated: false).each do |asset|
-        print "---- Creating asset #{asset['image_file_name']} ... "
+        print "---- Creating asset #{asset.image_file_name} ... "
 
         image_path = store_image(asset.migratory_url, asset.image_file_name)
         image = File.open(image_path)
@@ -327,13 +327,11 @@ namespace :migrate do
           ship:                order['ship']
         })
 
-# find line_item or create it
         order['line_items'].each do |line_item|
           if line_item['variation']
             print " --- Finding variation #{line_item['variation']['id']} ... "
             new_variation = Variation.find_by_custom_id(line_item['variation_id'])
             puts 'done'
-            # Variation: "variation":{"price":825.0,"backorder_notes":"Please allow 3 - 6 weeks for this order to be created.","created_at":"2010-10-06T16:39:21-04:00","quantity":0,"updated_at":"2011-08-06T13:01:17-04:00","id":1102,"ghost":false,"description":"","item_id":1000}
           end
 
           print " --- Updating line_item #{line_item['id']} for order #{order['id']} ... "
@@ -360,6 +358,18 @@ namespace :migrate do
           # find variation/item or create it
 
 # find payment or create it
+        order['payments'].each do |payment|
+          print " --- Updating payment #{payment['id']} for order #{order['id']} ... "
+          new_payment = new_order.payments.where(custom_id: payment['id'])
+          new_payment = new_payment.present? ? new_payment.first : new_order.payments.create(custom_id: payment['id'])
+          new_payment.update_attributes({
+            amount:       payment['amount'],
+            payment_type: payment['payment_type']['name'].downcase,
+            check_number: payment['check_number'],
+            created_at:   payment['created_at']
+          })
+          puts 'done'
+        end
         # Payment: "payments"=>[{"created_at"=>2010-12-17 10:40:48 -0700, "check_number"=>"", "payment_type"=>{"name"=>"MasterCard", "created_at"=>2010-05-26 09:07:56 -0700, "updated_at"=>2010-05-26 09:07:56 -0700, "id"=>1}, "updated_at"=>2010-12-17 10:40:48 -0700, "order_id"=>219299, "amount"=>35.0, "id"=>1096, "payment_type_id"=>1}]
       end
 

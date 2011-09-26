@@ -17,7 +17,7 @@ class User
   embeds_many :addresses
   embeds_many :orders
 
-  attr_accessor :password, :password_confirmation
+  attr_accessor :password, :password_confirmation, :new_password, :old_password
 
   validates :name, presence: true, on: :create
 

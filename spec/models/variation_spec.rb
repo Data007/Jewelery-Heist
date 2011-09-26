@@ -25,4 +25,20 @@ describe Variation do
     query.should_not include('diamond')
   end
 
+  it 'stores and return metal_csv' do
+    metals    = 'sterling silver,14ky gold'
+    variation = @item.variations.create
+
+    variation.metal_csv = metals
+
+    variation.metal_csv.should == metals
+    variation.metals.should       include('sterling silver')
+
+    variation.save
+    variation = @item.variations.find(variation.id)
+
+    variation.metal_csv.should == metals
+    variation.metals.should       include('sterling silver')
+  end
+
 end

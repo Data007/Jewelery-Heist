@@ -1,0 +1,6 @@
+#items
+  = will_paginate @items, :params => {:controller => "items", :action => "index"}
+  #item_pages
+    .page
+      = render :partial => "items/thumbnail", :collection => @items
+  = will_paginate @items, :params => {:controller => "items", :action => "index"}

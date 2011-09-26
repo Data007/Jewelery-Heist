@@ -107,10 +107,12 @@
                   = submit_tag "login"
                   = link_to "Forgot your password?", forgot_password_users_path
               = link_to "Register an account", register_users_path
-        .menu
-          = link_to "Shopping Cart", order_path(@current_order.id)
+        - if @current_order
+          .menu
+            = link_to "Shopping Cart", order_path(@current_order.id)
         #related_content
-          - if @current_order.line_items.the_living.length > 0
+          
+          - if @current_order && @current_order.line_items.the_living.length > 0
             .line_item_count You have #{pluralize @current_order.line_items.the_living.length, "item"}.
             .line_item_total You order totals #{number_to_currency @current_order.subtotal}
             .actions
