@@ -13,8 +13,7 @@ class Variation
 
   embedded_in :item
   embeds_many :assets
-
-  has_and_belongs_to_many :colors
+  embeds_many :colors
 
   before_save :set_parent_item_id
 

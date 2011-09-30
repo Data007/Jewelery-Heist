@@ -5,4 +5,6 @@ class Color
   field :names
 
   default_scope asc(:position)
+
+  embedded_in :variation
 end

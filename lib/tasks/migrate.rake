@@ -33,69 +33,82 @@ namespace :migrate do
   desc "Migrate Users"
   task :users => :environment do
 
-    print '   - Gathering users ... '
-    migrating_users = HTTParty.get("http://#{DOMAIN}/migrate_data/for_users?migration_token=#{migration_token}")
-    puts 'done'
-
     print '   - Creating Wexford User ... '
     wexford_user = User.where(name: 'Wexford Jewelers').first || User.create(name: 'Wexford Jewelers')
     puts 'done'
 
-    puts '   - Creating new users ... '
-    migrating_users.each do |user|
-      if user['name']
-        print "  -- Creating #{user['name']} ... "
-        new_user = User.where(login: user['login']).first || User.create(name: user['name'])
-        new_user.update_attributes({
-          name:          user['name'],
-          login:         user['login'],
-          password_hash: user['password'],
-          is_active:     true,
-          role:          user['role_name'] == 'owner' ? 'admin' : user['role_name']
+    uri      = "http://#{DOMAIN}/migrate_data/for_users?migration_token=#{migration_token}"
+    response = HTTParty.get(uri)
 
-        })
-        puts 'done'
-    
-        puts ' --- Adding email addresses ... '
-        if user['emails'].present?
-          user['emails'].each do |email|
-            print "---- Adding #{email['address']} ... "
-            new_user.emails << email['address'] unless new_user.emails.include? email['address']
-            puts 'done'
-          end
-        end
-        puts ' --- Adding email addresses ... done'
+    pages        = response['pages']
+    total_pages  = pages['total_pages']
+    current_page = 1
 
-        puts ' --- Adding phone numbers ... '
-        if user['phones'].present?
-          user['phones'].each do |phone|
-            print "---- Adding #{phone['number']} ... "
-            new_user.phones << phone['number'] unless new_user.phones.include? phone['number']
-            puts 'done'
-          end
-        end
-        puts ' --- Adding phone numbers ... done'
+    while current_page <= total_pages do
+      current_uri = uri + "&page=#{current_page}"
+      print "   - Connecting to url #{current_uri} ... "
+      response = HTTParty.get(current_uri)
+      puts 'done'
 
-        puts ' --- Adding addresses ... '
-        if user['addresses'].present?
-          user['addresses'].each do |address|
-            print "---- Adding #{address['address_1']}, #{address['address_2']}, #{address['city']}, #{address['province']} #{address['postal_code']} #{address['country']} ... "
-            new_user.addresses.find_or_create_by({
-              address_1:   address['address_1'],
-              address_2:   address['address_2'],
-              city:        address['city'],
-              province:    address['province'],
-              postal_code: address['postal_code'],
-              country:     address['country']
-            })
-            puts 'done'
+      migrating_users = response['users']
+
+      puts '   - Creating new users ... '
+      migrating_users.each do |user|
+        if user['name']
+          print "  -- Creating #{user['name']} ... "
+          new_user = User.where(login: user['login']).first || User.create(name: user['name'])
+          new_user.update_attributes({
+            name:          user['name'],
+            login:         user['login'],
+            password_hash: user['password'],
+            is_active:     true,
+            role:          user['role_name'] == 'owner' ? 'admin' : user['role_name']
+
+          })
+          puts 'done'
+      
+          puts ' --- Adding email addresses ... '
+          if user['emails'].present?
+            user['emails'].each do |email|
+              print "---- Adding #{email['address']} ... "
+              new_user.emails << email['address'] unless new_user.emails.include? email['address']
+              puts 'done'
+            end
           end
+          puts ' --- Adding email addresses ... done'
+
+          puts ' --- Adding phone numbers ... '
+          if user['phones'].present?
+            user['phones'].each do |phone|
+              print "---- Adding #{phone['number']} ... "
+              new_user.phones << phone['number'] unless new_user.phones.include? phone['number']
+              puts 'done'
+            end
+          end
+          puts ' --- Adding phone numbers ... done'
+
+          puts ' --- Adding addresses ... '
+          if user['addresses'].present?
+            user['addresses'].each do |address|
+              print "---- Adding #{address['address_1']}, #{address['address_2']}, #{address['city']}, #{address['province']} #{address['postal_code']} #{address['country']} ... "
+              new_user.addresses.find_or_create_by({
+                address_1:   address['address_1'],
+                address_2:   address['address_2'],
+                city:        address['city'],
+                province:    address['province'],
+                postal_code: address['postal_code'],
+                country:     address['country']
+              })
+              puts 'done'
+            end
+          end
+          puts ' --- Adding addresses ... done'
         end
-        puts ' --- Adding addresses ... done'
       end
-    end
-    puts '   - Creating new users ... done'
+      puts '   - Creating new users ... done'
 
+      current_page += 1
+    end
   end
 
   desc 'Migrate Items'
@@ -169,14 +182,13 @@ namespace :migrate do
           puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... "
           variation_details['colors'].each do |color|
             print "---- Creating colors #{color['names']} ... "
-            new_color = Color.where(names: color['names'])
-            new_color = new_color.present? ? new_color.first : Color.create
+            new_color = Item.with_color(color['names'])
+            new_color = new_color.present? ? new_color.first : new_variation.colors.create
             new_color.update_attributes({
                  names: color['names'],
               position: color['position']
             })
 
-            new_variation.colors = (new_variation.colors + [new_color]).compact.uniq
             new_variation.save
             puts 'done'
           end

@@ -46,6 +46,10 @@ class Item
   scope :ooak,          where(one_of_a_kind: true)
   scope :nooak,         where(one_of_a_kind: false)
 
+  scope :with_color_id, ->(color_id) {
+    where('variations.colors._id' => color_id)
+  }
+
   class << self
 
     def search(query)
