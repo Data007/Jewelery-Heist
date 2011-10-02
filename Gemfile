@@ -22,7 +22,12 @@ gem 'aws-s3'
 gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
 gem 'stringex'
 gem 'hoptoad_notifier'
-gem 'newrelic_rpm', :group => :production
+
+group :production do
+  gem 'newrelic_rpm'
+  gem 'thin'
+end
+
 gem 'jquery-rails'
 gem 'dynamic_form'
 
