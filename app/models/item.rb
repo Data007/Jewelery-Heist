@@ -68,13 +68,24 @@ class Item
       GENDERS
     end
 
-    def colors_with(color_name)
-      with_color(color_name).
+    def colors
+      where(:'variations.colors.names'.exists => true).
       map(&:variations).flatten.
-      map(&:colors).flatten.
+      map(&:colors).flatten.uniq
+    end
+
+    def colors_with(color_name)
+      colors.
       select do |color|
         color.names =~ Regexp.new(color_name)
       end.flatten.uniq {|color| color.names }
+    end
+
+    def colors_from_position(position)
+      colors.
+      select do |color|
+        color.position == position
+      end.flatten.uniq
     end
 
   end

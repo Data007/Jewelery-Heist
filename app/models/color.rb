@@ -1,5 +1,6 @@
 class Color
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :position, type: Integer
   field :names

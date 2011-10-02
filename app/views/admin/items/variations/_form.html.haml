@@ -39,7 +39,7 @@
         = form.label :colors
         .colors
           = form.hidden_field :colors_csv
-          - Color.all.each do |color|
+          - Item.colors.each do |color|
             .color{:class => "position_#{color.position}", :color_id => color.position}
       
       %hr

@@ -10,10 +10,10 @@ class Variation
   field :metals,        type: Array
   field :finishes,      type: Array
   field :jewels,        type: Array
+  field :colors,        type: Array # TODO: Make it work!
 
   embedded_in :item
   embeds_many :assets
-  embeds_many :colors
 
   before_save :set_parent_item_id
 
@@ -54,7 +54,8 @@ class Variation
   end
 
   def colors_csv=(csv)
-    self.colors = csv.split(',').sort.map {|position| Color.where(position: position).first}
+    debugger
+    self.colors = csv.split(',').sort.map {|position| Item.colors_from_position(position).first}.compact
   end
 
   def metal_csv
