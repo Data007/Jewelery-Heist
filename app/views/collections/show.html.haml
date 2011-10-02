@@ -1,0 +1,11 @@
+.collection
+  %h2.name= link_to "The #{@collection.name} Collection", collection_path(@collection)
+  .description
+    :markdown
+      #{@collection.description}
+  - @collection.items.published.each do |item|
+        
+    .item{:id => "item_#{item}"}
+      .thumbnail= link_to(image_tag(item.variations.first.assets.first.image.url(:medium)), item_path(item))
+      .meta_data
+        .name= link_to truncate(item.name, length: 45, omission: "..."), item_path(item)

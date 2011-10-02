@@ -1,9 +1,8 @@
-/* line 2, ../../../app/stylesheets/colors.sass */
 .colors .color {
   position: relative;
   display: block;
   overflow: hidden;
-  text-indent: -100px;
+  text-indent: -1000px;
   float: left;
   height: 20px;
   width: 10px;
@@ -12,113 +11,89 @@
   background-image: url(/images/ui/color-bar.png);
   cursor: pointer;
 }
-/* line 14, ../../../app/stylesheets/colors.sass */
 .colors .color.position_1 {
   background-position: 0px -20px;
 }
-/* line 16, ../../../app/stylesheets/colors.sass */
 .colors .color.position_1:hover {
   background-position: 0px 0px;
 }
-/* line 18, ../../../app/stylesheets/colors.sass */
 .colors .color.position_1.selected {
   background-position: 0px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
-/* line 24, ../../../app/stylesheets/colors.sass */
 .colors .color.position_2 {
   background-position: -20px -20px;
 }
-/* line 26, ../../../app/stylesheets/colors.sass */
 .colors .color.position_2:hover {
   background-position: -20px 0px;
 }
-/* line 28, ../../../app/stylesheets/colors.sass */
 .colors .color.position_2.selected {
   background-position: -20px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
-/* line 24, ../../../app/stylesheets/colors.sass */
 .colors .color.position_3 {
   background-position: -30px -20px;
 }
-/* line 26, ../../../app/stylesheets/colors.sass */
 .colors .color.position_3:hover {
   background-position: -30px 0px;
 }
-/* line 28, ../../../app/stylesheets/colors.sass */
 .colors .color.position_3.selected {
   background-position: -30px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
-/* line 24, ../../../app/stylesheets/colors.sass */
 .colors .color.position_4 {
   background-position: -40px -20px;
 }
-/* line 26, ../../../app/stylesheets/colors.sass */
 .colors .color.position_4:hover {
   background-position: -40px 0px;
 }
-/* line 28, ../../../app/stylesheets/colors.sass */
 .colors .color.position_4.selected {
   background-position: -40px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
-/* line 24, ../../../app/stylesheets/colors.sass */
 .colors .color.position_5 {
   background-position: -50px -20px;
 }
-/* line 26, ../../../app/stylesheets/colors.sass */
 .colors .color.position_5:hover {
   background-position: -50px 0px;
 }
-/* line 28, ../../../app/stylesheets/colors.sass */
 .colors .color.position_5.selected {
   background-position: -50px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
-/* line 24, ../../../app/stylesheets/colors.sass */
 .colors .color.position_6 {
   background-position: -60px -20px;
 }
-/* line 26, ../../../app/stylesheets/colors.sass */
 .colors .color.position_6:hover {
   background-position: -60px 0px;
 }
-/* line 28, ../../../app/stylesheets/colors.sass */
 .colors .color.position_6.selected {
   background-position: -60px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
-/* line 24, ../../../app/stylesheets/colors.sass */
 .colors .color.position_7 {
   background-position: -70px -20px;
 }
-/* line 26, ../../../app/stylesheets/colors.sass */
 .colors .color.position_7:hover {
   background-position: -70px 0px;
 }
-/* line 28, ../../../app/stylesheets/colors.sass */
 .colors .color.position_7.selected {
   background-position: -70px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
-/* line 24, ../../../app/stylesheets/colors.sass */
 .colors .color.position_8 {
   background-position: -80px -20px;
 }
-/* line 26, ../../../app/stylesheets/colors.sass */
 .colors .color.position_8:hover {
   background-position: -80px 0px;
 }
-/* line 28, ../../../app/stylesheets/colors.sass */
 .colors .color.position_8.selected {
   background-position: -80px 0px;
   border-bottom: 3px solid #5aff5a;

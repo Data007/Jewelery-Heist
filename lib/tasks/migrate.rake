@@ -182,7 +182,7 @@ namespace :migrate do
           puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... "
           variation_details['colors'].each do |color|
             print "---- Creating colors #{color['names']} ... "
-            new_color = Item.with_color(color['names'])
+            new_color = Item.colors_with(color['names'])
             new_color = new_color.present? ? new_color.first : new_variation.colors.create
             new_color.update_attributes({
                  names: color['names'],

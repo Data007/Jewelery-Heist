@@ -50,6 +50,10 @@ class Item
     where('variations.colors._id' => color_id)
   }
 
+  scope :with_color,    ->(color_name) {
+    where('variations.colors.names' => Regexp.new(color_name))
+  }
+
   class << self
 
     def search(query)
@@ -62,6 +66,15 @@ class Item
 
     def genders
       GENDERS
+    end
+
+    def colors_with(color_name)
+      with_color(color_name).
+      map(&:variations).flatten.
+      map(&:colors).flatten.
+      select do |color|
+        color.names =~ Regexp.new(color_name)
+      end.flatten.uniq {|color| color.names }
     end
 
   end

@@ -31,7 +31,7 @@
   %h1 Item Unavailable
   %p This item is not currently available.
 - else
-  #item_view{:class => "#{@item.available ? 'available' : 'unavailable'}"}
+  #item_view{class: "#{@item.available ? 'available' : 'unavailable'}"}
     .images#main_view
       #major_image.major_image
         - major_image =  current_variation.assets.first ? current_variation.assets.first.image.url(:large) : 'ui/no_image.jpg'
@@ -54,18 +54,15 @@
           %h3.designed_by Designed By #{@item.designer.name}
         .colors
           %h3.color_tags Color Tags
-          - colors = []
           - current_variation.colors.each do |color|
-            - colors << color unless colors.include? color
-          - colors.each do |color|
-            = link_to color, color_path(color), :class => "color active position_#{color.position}", :color_id => color.id
+            = link_to color.names, color_path(color.names), class: "color active position_#{color.position}", color_id: color.id
     - if @item.variations.length > 1
       .variations.wrapper-pane
         .image_wrapper.contents-pane
-          - @item.variations.the_living.each do |variation|
+          - @item.variations.each do |variation|
             - if variation.assets.length > 0
-              .variation{:id => "variation_#{variation.id}"}
-                = link_to image_tag(variation.assets.first.image.url(:medium)), item_path(:id => @item, :variation_id => variation.id)
+              .variation{id: "variation_#{variation.id}"}
+                = link_to image_tag(variation.assets.first.image.url(:medium)), item_path(id: @item, variation_id: variation.id)
     .details
       .meta
         %h2 Item Details
@@ -75,7 +72,7 @@
         - if @item.available
           .sizes.row
             %span.label Select Your Size
-            = select "item","sizes", @item.sizes.collect {|size| [size,size]}, :selected => @item.sizes[@item.sizes.length / 2]
+            = select "item","sizes", @item.sizes.collect {|size| [size,size]}, selected: @item.sizes[@item.sizes.length / 2]
           .row
             /%span= link_to "Add to Cart", order_items_path(:order_id => @order.id, :id => current_variation.id), :class => "add_to_cart input", :method => :post
         - else

@@ -1,10 +1,9 @@
-/* line 2, ../../../app/stylesheets/colors.sass */
-/* line 2, ../../app/stylesheets/colors.scss */
+/* line 1, ../../app/stylesheets/colors.scss */
 .colors .color {
   position: relative;
   display: block;
   overflow: hidden;
-  text-indent: -100px;
+  text-indent: -1000px;
   float: left;
   height: 20px;
   width: 10px;
@@ -14,160 +13,136 @@
   cursor: pointer;
 }
 
-/* line 14, ../../../app/stylesheets/colors.sass */
-/* line 16, ../../app/stylesheets/colors.scss */
+/* line 14, ../../app/stylesheets/colors.scss */
 .colors .color.position_1 {
   background-position: 0px -20px;
 }
 
-/* line 16, ../../../app/stylesheets/colors.sass */
-/* line 20, ../../app/stylesheets/colors.scss */
+/* line 17, ../../app/stylesheets/colors.scss */
 .colors .color.position_1:hover {
   background-position: 0px 0px;
 }
 
-/* line 18, ../../../app/stylesheets/colors.sass */
-/* line 24, ../../app/stylesheets/colors.scss */
+/* line 20, ../../app/stylesheets/colors.scss */
 .colors .color.position_1.selected {
   background-position: 0px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
 
-/* line 24, ../../../app/stylesheets/colors.sass */
-/* line 30, ../../app/stylesheets/colors.scss */
+/* line 25, ../../app/stylesheets/colors.scss */
 .colors .color.position_2 {
   background-position: -20px -20px;
 }
 
-/* line 26, ../../../app/stylesheets/colors.sass */
-/* line 34, ../../app/stylesheets/colors.scss */
+/* line 28, ../../app/stylesheets/colors.scss */
 .colors .color.position_2:hover {
   background-position: -20px 0px;
 }
 
-/* line 28, ../../../app/stylesheets/colors.sass */
-/* line 38, ../../app/stylesheets/colors.scss */
+/* line 31, ../../app/stylesheets/colors.scss */
 .colors .color.position_2.selected {
   background-position: -20px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
 
-/* line 24, ../../../app/stylesheets/colors.sass */
-/* line 44, ../../app/stylesheets/colors.scss */
+/* line 36, ../../app/stylesheets/colors.scss */
 .colors .color.position_3 {
   background-position: -30px -20px;
 }
 
-/* line 26, ../../../app/stylesheets/colors.sass */
-/* line 48, ../../app/stylesheets/colors.scss */
+/* line 39, ../../app/stylesheets/colors.scss */
 .colors .color.position_3:hover {
   background-position: -30px 0px;
 }
 
-/* line 28, ../../../app/stylesheets/colors.sass */
-/* line 52, ../../app/stylesheets/colors.scss */
+/* line 42, ../../app/stylesheets/colors.scss */
 .colors .color.position_3.selected {
   background-position: -30px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
 
-/* line 24, ../../../app/stylesheets/colors.sass */
-/* line 58, ../../app/stylesheets/colors.scss */
+/* line 47, ../../app/stylesheets/colors.scss */
 .colors .color.position_4 {
   background-position: -40px -20px;
 }
 
-/* line 26, ../../../app/stylesheets/colors.sass */
-/* line 62, ../../app/stylesheets/colors.scss */
+/* line 50, ../../app/stylesheets/colors.scss */
 .colors .color.position_4:hover {
   background-position: -40px 0px;
 }
 
-/* line 28, ../../../app/stylesheets/colors.sass */
-/* line 66, ../../app/stylesheets/colors.scss */
+/* line 53, ../../app/stylesheets/colors.scss */
 .colors .color.position_4.selected {
   background-position: -40px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
 
-/* line 24, ../../../app/stylesheets/colors.sass */
-/* line 72, ../../app/stylesheets/colors.scss */
+/* line 58, ../../app/stylesheets/colors.scss */
 .colors .color.position_5 {
   background-position: -50px -20px;
 }
 
-/* line 26, ../../../app/stylesheets/colors.sass */
-/* line 76, ../../app/stylesheets/colors.scss */
+/* line 61, ../../app/stylesheets/colors.scss */
 .colors .color.position_5:hover {
   background-position: -50px 0px;
 }
 
-/* line 28, ../../../app/stylesheets/colors.sass */
-/* line 80, ../../app/stylesheets/colors.scss */
+/* line 64, ../../app/stylesheets/colors.scss */
 .colors .color.position_5.selected {
   background-position: -50px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
 
-/* line 24, ../../../app/stylesheets/colors.sass */
-/* line 86, ../../app/stylesheets/colors.scss */
+/* line 69, ../../app/stylesheets/colors.scss */
 .colors .color.position_6 {
   background-position: -60px -20px;
 }
 
-/* line 26, ../../../app/stylesheets/colors.sass */
-/* line 90, ../../app/stylesheets/colors.scss */
+/* line 72, ../../app/stylesheets/colors.scss */
 .colors .color.position_6:hover {
   background-position: -60px 0px;
 }
 
-/* line 28, ../../../app/stylesheets/colors.sass */
-/* line 94, ../../app/stylesheets/colors.scss */
+/* line 75, ../../app/stylesheets/colors.scss */
 .colors .color.position_6.selected {
   background-position: -60px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
 
-/* line 24, ../../../app/stylesheets/colors.sass */
-/* line 100, ../../app/stylesheets/colors.scss */
+/* line 80, ../../app/stylesheets/colors.scss */
 .colors .color.position_7 {
   background-position: -70px -20px;
 }
 
-/* line 26, ../../../app/stylesheets/colors.sass */
-/* line 104, ../../app/stylesheets/colors.scss */
+/* line 83, ../../app/stylesheets/colors.scss */
 .colors .color.position_7:hover {
   background-position: -70px 0px;
 }
 
-/* line 28, ../../../app/stylesheets/colors.sass */
-/* line 108, ../../app/stylesheets/colors.scss */
+/* line 86, ../../app/stylesheets/colors.scss */
 .colors .color.position_7.selected {
   background-position: -70px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
 
-/* line 24, ../../../app/stylesheets/colors.sass */
-/* line 114, ../../app/stylesheets/colors.scss */
+/* line 91, ../../app/stylesheets/colors.scss */
 .colors .color.position_8 {
   background-position: -80px -20px;
 }
 
-/* line 26, ../../../app/stylesheets/colors.sass */
-/* line 118, ../../app/stylesheets/colors.scss */
+/* line 94, ../../app/stylesheets/colors.scss */
 .colors .color.position_8:hover {
   background-position: -80px 0px;
 }
 
-/* line 28, ../../../app/stylesheets/colors.sass */
-/* line 122, ../../app/stylesheets/colors.scss */
+/* line 97, ../../app/stylesheets/colors.scss */
 .colors .color.position_8.selected {
   background-position: -80px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -175,19 +150,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 128, ../../app/stylesheets/colors.scss */
+/* line 103, ../../app/stylesheets/colors.scss */
 .colors .color.position_9 {
   background-position: -90px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 132, ../../app/stylesheets/colors.scss */
+/* line 107, ../../app/stylesheets/colors.scss */
 .colors .color.position_9:hover {
   background-position: -90px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 136, ../../app/stylesheets/colors.scss */
+/* line 111, ../../app/stylesheets/colors.scss */
 .colors .color.position_9.selected {
   background-position: -90px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -195,19 +170,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 142, ../../app/stylesheets/colors.scss */
+/* line 117, ../../app/stylesheets/colors.scss */
 .colors .color.position_10 {
   background-position: -100px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 146, ../../app/stylesheets/colors.scss */
+/* line 121, ../../app/stylesheets/colors.scss */
 .colors .color.position_10:hover {
   background-position: -100px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 150, ../../app/stylesheets/colors.scss */
+/* line 125, ../../app/stylesheets/colors.scss */
 .colors .color.position_10.selected {
   background-position: -100px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -215,19 +190,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 156, ../../app/stylesheets/colors.scss */
+/* line 131, ../../app/stylesheets/colors.scss */
 .colors .color.position_11 {
   background-position: -110px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 160, ../../app/stylesheets/colors.scss */
+/* line 135, ../../app/stylesheets/colors.scss */
 .colors .color.position_11:hover {
   background-position: -110px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 164, ../../app/stylesheets/colors.scss */
+/* line 139, ../../app/stylesheets/colors.scss */
 .colors .color.position_11.selected {
   background-position: -110px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -235,19 +210,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 170, ../../app/stylesheets/colors.scss */
+/* line 145, ../../app/stylesheets/colors.scss */
 .colors .color.position_12 {
   background-position: -120px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 174, ../../app/stylesheets/colors.scss */
+/* line 149, ../../app/stylesheets/colors.scss */
 .colors .color.position_12:hover {
   background-position: -120px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 178, ../../app/stylesheets/colors.scss */
+/* line 153, ../../app/stylesheets/colors.scss */
 .colors .color.position_12.selected {
   background-position: -120px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -255,19 +230,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 184, ../../app/stylesheets/colors.scss */
+/* line 159, ../../app/stylesheets/colors.scss */
 .colors .color.position_13 {
   background-position: -130px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 188, ../../app/stylesheets/colors.scss */
+/* line 163, ../../app/stylesheets/colors.scss */
 .colors .color.position_13:hover {
   background-position: -130px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 192, ../../app/stylesheets/colors.scss */
+/* line 167, ../../app/stylesheets/colors.scss */
 .colors .color.position_13.selected {
   background-position: -130px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -275,19 +250,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 198, ../../app/stylesheets/colors.scss */
+/* line 173, ../../app/stylesheets/colors.scss */
 .colors .color.position_14 {
   background-position: -140px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 202, ../../app/stylesheets/colors.scss */
+/* line 177, ../../app/stylesheets/colors.scss */
 .colors .color.position_14:hover {
   background-position: -140px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 206, ../../app/stylesheets/colors.scss */
+/* line 181, ../../app/stylesheets/colors.scss */
 .colors .color.position_14.selected {
   background-position: -140px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -295,19 +270,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 212, ../../app/stylesheets/colors.scss */
+/* line 187, ../../app/stylesheets/colors.scss */
 .colors .color.position_15 {
   background-position: -150px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 216, ../../app/stylesheets/colors.scss */
+/* line 191, ../../app/stylesheets/colors.scss */
 .colors .color.position_15:hover {
   background-position: -150px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 220, ../../app/stylesheets/colors.scss */
+/* line 195, ../../app/stylesheets/colors.scss */
 .colors .color.position_15.selected {
   background-position: -150px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -315,19 +290,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 226, ../../app/stylesheets/colors.scss */
+/* line 201, ../../app/stylesheets/colors.scss */
 .colors .color.position_16 {
   background-position: -160px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 230, ../../app/stylesheets/colors.scss */
+/* line 205, ../../app/stylesheets/colors.scss */
 .colors .color.position_16:hover {
   background-position: -160px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 234, ../../app/stylesheets/colors.scss */
+/* line 209, ../../app/stylesheets/colors.scss */
 .colors .color.position_16.selected {
   background-position: -160px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -335,19 +310,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 240, ../../app/stylesheets/colors.scss */
+/* line 215, ../../app/stylesheets/colors.scss */
 .colors .color.position_17 {
   background-position: -170px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 244, ../../app/stylesheets/colors.scss */
+/* line 219, ../../app/stylesheets/colors.scss */
 .colors .color.position_17:hover {
   background-position: -170px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 248, ../../app/stylesheets/colors.scss */
+/* line 223, ../../app/stylesheets/colors.scss */
 .colors .color.position_17.selected {
   background-position: -170px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -355,19 +330,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 254, ../../app/stylesheets/colors.scss */
+/* line 229, ../../app/stylesheets/colors.scss */
 .colors .color.position_18 {
   background-position: -180px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 258, ../../app/stylesheets/colors.scss */
+/* line 233, ../../app/stylesheets/colors.scss */
 .colors .color.position_18:hover {
   background-position: -180px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 262, ../../app/stylesheets/colors.scss */
+/* line 237, ../../app/stylesheets/colors.scss */
 .colors .color.position_18.selected {
   background-position: -180px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -375,19 +350,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 268, ../../app/stylesheets/colors.scss */
+/* line 243, ../../app/stylesheets/colors.scss */
 .colors .color.position_19 {
   background-position: -190px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 272, ../../app/stylesheets/colors.scss */
+/* line 247, ../../app/stylesheets/colors.scss */
 .colors .color.position_19:hover {
   background-position: -190px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 276, ../../app/stylesheets/colors.scss */
+/* line 251, ../../app/stylesheets/colors.scss */
 .colors .color.position_19.selected {
   background-position: -190px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -395,19 +370,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 282, ../../app/stylesheets/colors.scss */
+/* line 257, ../../app/stylesheets/colors.scss */
 .colors .color.position_20 {
   background-position: -200px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 286, ../../app/stylesheets/colors.scss */
+/* line 261, ../../app/stylesheets/colors.scss */
 .colors .color.position_20:hover {
   background-position: -200px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 290, ../../app/stylesheets/colors.scss */
+/* line 265, ../../app/stylesheets/colors.scss */
 .colors .color.position_20.selected {
   background-position: -200px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -415,19 +390,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 296, ../../app/stylesheets/colors.scss */
+/* line 271, ../../app/stylesheets/colors.scss */
 .colors .color.position_21 {
   background-position: -210px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 300, ../../app/stylesheets/colors.scss */
+/* line 275, ../../app/stylesheets/colors.scss */
 .colors .color.position_21:hover {
   background-position: -210px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 304, ../../app/stylesheets/colors.scss */
+/* line 279, ../../app/stylesheets/colors.scss */
 .colors .color.position_21.selected {
   background-position: -210px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -435,19 +410,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 310, ../../app/stylesheets/colors.scss */
+/* line 285, ../../app/stylesheets/colors.scss */
 .colors .color.position_22 {
   background-position: -220px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 314, ../../app/stylesheets/colors.scss */
+/* line 289, ../../app/stylesheets/colors.scss */
 .colors .color.position_22:hover {
   background-position: -220px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 318, ../../app/stylesheets/colors.scss */
+/* line 293, ../../app/stylesheets/colors.scss */
 .colors .color.position_22.selected {
   background-position: -220px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -455,19 +430,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 324, ../../app/stylesheets/colors.scss */
+/* line 299, ../../app/stylesheets/colors.scss */
 .colors .color.position_23 {
   background-position: -230px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 328, ../../app/stylesheets/colors.scss */
+/* line 303, ../../app/stylesheets/colors.scss */
 .colors .color.position_23:hover {
   background-position: -230px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 332, ../../app/stylesheets/colors.scss */
+/* line 307, ../../app/stylesheets/colors.scss */
 .colors .color.position_23.selected {
   background-position: -230px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -475,19 +450,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 338, ../../app/stylesheets/colors.scss */
+/* line 313, ../../app/stylesheets/colors.scss */
 .colors .color.position_24 {
   background-position: -240px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 342, ../../app/stylesheets/colors.scss */
+/* line 317, ../../app/stylesheets/colors.scss */
 .colors .color.position_24:hover {
   background-position: -240px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 346, ../../app/stylesheets/colors.scss */
+/* line 321, ../../app/stylesheets/colors.scss */
 .colors .color.position_24.selected {
   background-position: -240px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -495,19 +470,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 352, ../../app/stylesheets/colors.scss */
+/* line 327, ../../app/stylesheets/colors.scss */
 .colors .color.position_25 {
   background-position: -250px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 356, ../../app/stylesheets/colors.scss */
+/* line 331, ../../app/stylesheets/colors.scss */
 .colors .color.position_25:hover {
   background-position: -250px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 360, ../../app/stylesheets/colors.scss */
+/* line 335, ../../app/stylesheets/colors.scss */
 .colors .color.position_25.selected {
   background-position: -250px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -515,19 +490,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 366, ../../app/stylesheets/colors.scss */
+/* line 341, ../../app/stylesheets/colors.scss */
 .colors .color.position_26 {
   background-position: -260px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 370, ../../app/stylesheets/colors.scss */
+/* line 345, ../../app/stylesheets/colors.scss */
 .colors .color.position_26:hover {
   background-position: -260px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 374, ../../app/stylesheets/colors.scss */
+/* line 349, ../../app/stylesheets/colors.scss */
 .colors .color.position_26.selected {
   background-position: -260px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -535,19 +510,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 380, ../../app/stylesheets/colors.scss */
+/* line 355, ../../app/stylesheets/colors.scss */
 .colors .color.position_27 {
   background-position: -270px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 384, ../../app/stylesheets/colors.scss */
+/* line 359, ../../app/stylesheets/colors.scss */
 .colors .color.position_27:hover {
   background-position: -270px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 388, ../../app/stylesheets/colors.scss */
+/* line 363, ../../app/stylesheets/colors.scss */
 .colors .color.position_27.selected {
   background-position: -270px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -555,19 +530,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 394, ../../app/stylesheets/colors.scss */
+/* line 369, ../../app/stylesheets/colors.scss */
 .colors .color.position_28 {
   background-position: -280px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 398, ../../app/stylesheets/colors.scss */
+/* line 373, ../../app/stylesheets/colors.scss */
 .colors .color.position_28:hover {
   background-position: -280px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 402, ../../app/stylesheets/colors.scss */
+/* line 377, ../../app/stylesheets/colors.scss */
 .colors .color.position_28.selected {
   background-position: -280px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -575,19 +550,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 408, ../../app/stylesheets/colors.scss */
+/* line 383, ../../app/stylesheets/colors.scss */
 .colors .color.position_29 {
   background-position: -290px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 412, ../../app/stylesheets/colors.scss */
+/* line 387, ../../app/stylesheets/colors.scss */
 .colors .color.position_29:hover {
   background-position: -290px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 416, ../../app/stylesheets/colors.scss */
+/* line 391, ../../app/stylesheets/colors.scss */
 .colors .color.position_29.selected {
   background-position: -290px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -595,19 +570,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 422, ../../app/stylesheets/colors.scss */
+/* line 397, ../../app/stylesheets/colors.scss */
 .colors .color.position_30 {
   background-position: -300px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 426, ../../app/stylesheets/colors.scss */
+/* line 401, ../../app/stylesheets/colors.scss */
 .colors .color.position_30:hover {
   background-position: -300px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 430, ../../app/stylesheets/colors.scss */
+/* line 405, ../../app/stylesheets/colors.scss */
 .colors .color.position_30.selected {
   background-position: -300px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -615,19 +590,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 436, ../../app/stylesheets/colors.scss */
+/* line 411, ../../app/stylesheets/colors.scss */
 .colors .color.position_31 {
   background-position: -310px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 440, ../../app/stylesheets/colors.scss */
+/* line 415, ../../app/stylesheets/colors.scss */
 .colors .color.position_31:hover {
   background-position: -310px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 444, ../../app/stylesheets/colors.scss */
+/* line 419, ../../app/stylesheets/colors.scss */
 .colors .color.position_31.selected {
   background-position: -310px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -635,19 +610,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 450, ../../app/stylesheets/colors.scss */
+/* line 425, ../../app/stylesheets/colors.scss */
 .colors .color.position_32 {
   background-position: -320px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 454, ../../app/stylesheets/colors.scss */
+/* line 429, ../../app/stylesheets/colors.scss */
 .colors .color.position_32:hover {
   background-position: -320px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 458, ../../app/stylesheets/colors.scss */
+/* line 433, ../../app/stylesheets/colors.scss */
 .colors .color.position_32.selected {
   background-position: -320px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -655,19 +630,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 464, ../../app/stylesheets/colors.scss */
+/* line 439, ../../app/stylesheets/colors.scss */
 .colors .color.position_33 {
   background-position: -330px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 468, ../../app/stylesheets/colors.scss */
+/* line 443, ../../app/stylesheets/colors.scss */
 .colors .color.position_33:hover {
   background-position: -330px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 472, ../../app/stylesheets/colors.scss */
+/* line 447, ../../app/stylesheets/colors.scss */
 .colors .color.position_33.selected {
   background-position: -330px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -675,19 +650,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 478, ../../app/stylesheets/colors.scss */
+/* line 453, ../../app/stylesheets/colors.scss */
 .colors .color.position_34 {
   background-position: -340px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 482, ../../app/stylesheets/colors.scss */
+/* line 457, ../../app/stylesheets/colors.scss */
 .colors .color.position_34:hover {
   background-position: -340px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 486, ../../app/stylesheets/colors.scss */
+/* line 461, ../../app/stylesheets/colors.scss */
 .colors .color.position_34.selected {
   background-position: -340px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -695,19 +670,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 492, ../../app/stylesheets/colors.scss */
+/* line 467, ../../app/stylesheets/colors.scss */
 .colors .color.position_35 {
   background-position: -350px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 496, ../../app/stylesheets/colors.scss */
+/* line 471, ../../app/stylesheets/colors.scss */
 .colors .color.position_35:hover {
   background-position: -350px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 500, ../../app/stylesheets/colors.scss */
+/* line 475, ../../app/stylesheets/colors.scss */
 .colors .color.position_35.selected {
   background-position: -350px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -715,19 +690,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 506, ../../app/stylesheets/colors.scss */
+/* line 481, ../../app/stylesheets/colors.scss */
 .colors .color.position_36 {
   background-position: -360px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 510, ../../app/stylesheets/colors.scss */
+/* line 485, ../../app/stylesheets/colors.scss */
 .colors .color.position_36:hover {
   background-position: -360px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 514, ../../app/stylesheets/colors.scss */
+/* line 489, ../../app/stylesheets/colors.scss */
 .colors .color.position_36.selected {
   background-position: -360px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -735,19 +710,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 520, ../../app/stylesheets/colors.scss */
+/* line 495, ../../app/stylesheets/colors.scss */
 .colors .color.position_37 {
   background-position: -370px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 524, ../../app/stylesheets/colors.scss */
+/* line 499, ../../app/stylesheets/colors.scss */
 .colors .color.position_37:hover {
   background-position: -370px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 528, ../../app/stylesheets/colors.scss */
+/* line 503, ../../app/stylesheets/colors.scss */
 .colors .color.position_37.selected {
   background-position: -370px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -755,19 +730,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 534, ../../app/stylesheets/colors.scss */
+/* line 509, ../../app/stylesheets/colors.scss */
 .colors .color.position_38 {
   background-position: -380px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 538, ../../app/stylesheets/colors.scss */
+/* line 513, ../../app/stylesheets/colors.scss */
 .colors .color.position_38:hover {
   background-position: -380px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 542, ../../app/stylesheets/colors.scss */
+/* line 517, ../../app/stylesheets/colors.scss */
 .colors .color.position_38.selected {
   background-position: -380px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -775,19 +750,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 548, ../../app/stylesheets/colors.scss */
+/* line 523, ../../app/stylesheets/colors.scss */
 .colors .color.position_39 {
   background-position: -390px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 552, ../../app/stylesheets/colors.scss */
+/* line 527, ../../app/stylesheets/colors.scss */
 .colors .color.position_39:hover {
   background-position: -390px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 556, ../../app/stylesheets/colors.scss */
+/* line 531, ../../app/stylesheets/colors.scss */
 .colors .color.position_39.selected {
   background-position: -390px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -795,19 +770,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 562, ../../app/stylesheets/colors.scss */
+/* line 537, ../../app/stylesheets/colors.scss */
 .colors .color.position_40 {
   background-position: -400px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 566, ../../app/stylesheets/colors.scss */
+/* line 541, ../../app/stylesheets/colors.scss */
 .colors .color.position_40:hover {
   background-position: -400px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 570, ../../app/stylesheets/colors.scss */
+/* line 545, ../../app/stylesheets/colors.scss */
 .colors .color.position_40.selected {
   background-position: -400px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -815,19 +790,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 576, ../../app/stylesheets/colors.scss */
+/* line 551, ../../app/stylesheets/colors.scss */
 .colors .color.position_41 {
   background-position: -410px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 580, ../../app/stylesheets/colors.scss */
+/* line 555, ../../app/stylesheets/colors.scss */
 .colors .color.position_41:hover {
   background-position: -410px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 584, ../../app/stylesheets/colors.scss */
+/* line 559, ../../app/stylesheets/colors.scss */
 .colors .color.position_41.selected {
   background-position: -410px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -835,19 +810,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 590, ../../app/stylesheets/colors.scss */
+/* line 565, ../../app/stylesheets/colors.scss */
 .colors .color.position_42 {
   background-position: -420px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 594, ../../app/stylesheets/colors.scss */
+/* line 569, ../../app/stylesheets/colors.scss */
 .colors .color.position_42:hover {
   background-position: -420px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 598, ../../app/stylesheets/colors.scss */
+/* line 573, ../../app/stylesheets/colors.scss */
 .colors .color.position_42.selected {
   background-position: -420px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -855,19 +830,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 604, ../../app/stylesheets/colors.scss */
+/* line 579, ../../app/stylesheets/colors.scss */
 .colors .color.position_43 {
   background-position: -430px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 608, ../../app/stylesheets/colors.scss */
+/* line 583, ../../app/stylesheets/colors.scss */
 .colors .color.position_43:hover {
   background-position: -430px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 612, ../../app/stylesheets/colors.scss */
+/* line 587, ../../app/stylesheets/colors.scss */
 .colors .color.position_43.selected {
   background-position: -430px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -875,19 +850,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 618, ../../app/stylesheets/colors.scss */
+/* line 593, ../../app/stylesheets/colors.scss */
 .colors .color.position_44 {
   background-position: -440px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 622, ../../app/stylesheets/colors.scss */
+/* line 597, ../../app/stylesheets/colors.scss */
 .colors .color.position_44:hover {
   background-position: -440px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 626, ../../app/stylesheets/colors.scss */
+/* line 601, ../../app/stylesheets/colors.scss */
 .colors .color.position_44.selected {
   background-position: -440px 0px;
   border-bottom: 3px solid #5aff5a;
@@ -895,19 +870,19 @@
 }
 
 /* line 24, ../../../app/stylesheets/colors.sass */
-/* line 632, ../../app/stylesheets/colors.scss */
+/* line 607, ../../app/stylesheets/colors.scss */
 .colors .color.position_45 {
   background-position: -450px -20px;
 }
 
 /* line 26, ../../../app/stylesheets/colors.sass */
-/* line 636, ../../app/stylesheets/colors.scss */
+/* line 611, ../../app/stylesheets/colors.scss */
 .colors .color.position_45:hover {
   background-position: -450px 0px;
 }
 
 /* line 28, ../../../app/stylesheets/colors.sass */
-/* line 640, ../../app/stylesheets/colors.scss */
+/* line 615, ../../app/stylesheets/colors.scss */
 .colors .color.position_45.selected {
   background-position: -450px 0px;
   border-bottom: 3px solid #5aff5a;
