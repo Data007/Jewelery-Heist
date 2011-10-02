@@ -17,6 +17,8 @@ class User
   embeds_many :addresses
   embeds_many :orders
 
+  accepts_nested_attributes_for :addresses
+
   attr_accessor :password, :password_confirmation, :new_password, :old_password
 
   validates :name, presence: true, on: :create

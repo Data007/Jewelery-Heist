@@ -61,10 +61,17 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = current_user
+    @user  = current_user
+
+    emails = params[:user].delete(:emails)
+    emails = emails.collect {|(key,value)| value['address']}.flatten.reject(&:empty?).uniq
+
+    phones = params[:user].delete(:phones)
+    phones = phones.collect {|(key,value)| value['number']}.flatten.reject(&:empty?).uniq
+
     if @user.update_attributes params[:user]
-      @user.emails = @user.emails.reject {|email| email.address.empty?}
-      @user.phones = @user.phones.reject {|phone| phone.number.empty?}
+      @user.emails = emails
+      @user.phones = phones
       @user.save
       
       flash[:notice] = "Your profile has been updated."
