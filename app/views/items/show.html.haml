@@ -52,10 +52,10 @@
         %h2.name= @item.name
         - if @item.designer
           %h3.designed_by Designed By #{@item.designer.name}
-        .colors
-          %h3.color_tags Color Tags
-          - current_variation.colors.each do |color|
-            = link_to color.names, color_path(color.names), class: "color active position_#{color.position}", color_id: color.id
+        /.colors
+        /  %h3.color_tags Color Tags
+        /  - current_variation.colors.each do |color|
+        /    = link_to color.names, color_path(color.names), class: "color active position_#{color.position}", color_id: color.id
     - if @item.variations.length > 1
       .variations.wrapper-pane
         .image_wrapper.contents-pane

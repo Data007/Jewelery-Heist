@@ -35,12 +35,12 @@
         = form.text_field :jewel_csv, class: 'jewel_field'
                 
       / Colors
-      .field.required
-        = form.label :colors
-        .colors
-          = form.hidden_field :colors_csv
-          - Item.colors.each do |color|
-            .color{:class => "position_#{color.position}", :color_id => color.position}
+      /.field.required
+      /  = form.label :colors
+      /  .colors
+      /    = form.hidden_field :colors_csv
+      /    - Item.colors.each do |color|
+      /      .color{:class => "position_#{color.position}", :color_id => color.position}
       
       %hr
       %div

@@ -179,20 +179,20 @@ namespace :migrate do
           puts "done"
 
           variation_details = MultiJson.decode(open("http://#{DOMAIN}/migrate_data/details_for_variation/#{variation['id']}?migration_token=#{migration_token}"))
-          puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... "
-          variation_details['colors'].each do |color|
-            print "---- Creating colors #{color['names']} ... "
-            new_color = Item.colors_with(color['names'])
-            new_color = new_color.present? ? new_color.first : new_variation.colors.create
-            new_color.update_attributes({
-                 names: color['names'],
-              position: color['position']
-            })
+          # puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... "
+          # variation_details['colors'].each do |color|
+          #   print "---- Creating colors #{color['names']} ... "
+          #   new_color = Item.colors_with(color['names'])
+          #   new_color = new_color.present? ? new_color.first : new_variation.colors.create
+          #   new_color.update_attributes({
+          #        names: color['names'],
+          #     position: color['position']
+          #   })
 
-            new_variation.save
-            puts 'done'
-          end
-          puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... done"
+          #   new_variation.save
+          #   puts 'done'
+          # end
+          # puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... done"
 
           print "---- Adding metals to variation #{new_variation.id} ... "
           new_variation.metal_csv = variation_details['metal']['name'] if variation_details['metal']
