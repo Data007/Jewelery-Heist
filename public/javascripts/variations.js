@@ -139,6 +139,7 @@ function setup_mold_fields(variation) {
 
 function extract_from_csv(data) {
   // alert(data);
+  console.log(data);
   return data.split(",");
 }
 

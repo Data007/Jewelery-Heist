@@ -113,4 +113,17 @@ class Order
     clerk_id = user.id
   end
   ##
+
+  class << self
+    
+    def find_line_item(line_item_id)
+      User.where('orders.line_items._id' => line_item_id).
+      map    { |user     | user.orders                       }.flatten.
+      map    { |order    | order.line_items                  }.flatten.
+      select { |line_item| line_item.id.to_s == line_item_id }.flatten.
+      first
+    end
+
+  end
+
 end

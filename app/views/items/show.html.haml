@@ -17,7 +17,7 @@
     @item.variations.each do |v|
       v.metals.each {|m| keywords << m } if v.metals.present?
       v.jewels.each {|j| keywords << j } if v.jewels.present?
-      v.colors.each {|c| c.names.split(",").each {|n| keywords << n unless keywords.include?(n)} } if v.colors.present?
+      # v.colors.each {|c| c.names.split(",").each {|n| keywords << n unless keywords.include?(n)} } if v.colors.present?
     end
   = keywords.join(", ")
 - content_for :meta_description do
@@ -73,8 +73,9 @@
           .sizes.row
             %span.label Select Your Size
             = select "item","sizes", @item.sizes.collect {|size| [size,size]}, selected: @item.sizes[@item.sizes.length / 2]
-          .row
-            /%span= link_to "Add to Cart", order_items_path(:order_id => @order.id, :id => current_variation.id), :class => "add_to_cart input", :method => :post
+          - if @current_order
+            .row
+              %span= link_to "Add to Cart", order_items_path(order_id: @current_order.id, id: current_variation.id), class: "add_to_cart input", method: :post
         - else
           %h3 Sold
         .metals.row

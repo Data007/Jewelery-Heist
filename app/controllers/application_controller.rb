@@ -2,13 +2,21 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   before_filter :current_user
+  before_filter :current_order
 
 private
+
+  def current_order
+    return nil unless current_user
+    @current_order = @current_user.orders.present? ? @current_user.orders.last   : @current_user.orders.create
+    @current_order = @current_order.purchased?     ? @current_user.orders.create : @current_order
+  end
 
   def current_user
     return nil unless session[:user_id]
     begin
-      @current_user = User.find(session[:user_id])
+      @current_user ||= User.find(session[:user_id])
+      return @current_user
     rescue; end
   end
 

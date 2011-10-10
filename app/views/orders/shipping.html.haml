@@ -1,0 +1,80 @@
+.form_wrapper
+  - form_tag addressed_path, :method => :post do
+    - last_address = @current_user.last_shipping_address
+    - unless last_address
+      - last_address = @current_user.addresses.last if @current_user.addresses.present?
+    %h2 Shipping Address
+    
+    .help
+      :textile
+        Please provide your shipping address.
+        
+        
+        If you have provided one on previous orders, the form on the right will have the fields filled in with your last shipping location. Feel free to put in a new address as it pleases you.
+        
+    - if last_address
+      .shipping_address.form_content
+        .row
+          = label "address", "address_1"
+          = text_field "address", "address_1", :value => last_address[:address_1]
+        .row
+          = label "address", "address_2"
+          = text_field "address", "address_2", :value => last_address[:address_2]
+        .row
+          = label "address", "city"
+          = text_field "address", "city", :value => last_address[:city]
+        .row
+          = label "address", "province", "State or Province"
+          = text_field "address", "province", :value => last_address[:province]
+        .row
+          = label "address", "postal_code", "Zip or Postal Code"
+          = text_field "address", "postal_code", :value => last_address[:postal_code]
+        .row
+          = label "address", "country"
+          = select_tag "address[country]", options_for_select(country_options_for_select, :selected => last_address[:country])
+        .row
+          = submit_tag "checkout"
+    - elsif @updated_order
+      .shipping_address.form_content
+        .row
+          = label "address", "address_1"
+          = text_field "address", "address_1", :value => @updated_order.address_1
+        .row
+          = label "address", "address_2"
+          = text_field "address", "address_2", :value => @updated_order.address_2
+        .row
+          = label "address", "city"
+          = text_field "address", "city", :value => @updated_order.city
+        .row
+          = label "address", "province", "State or Province"
+          = text_field "address", "province", :value => @updated_order.province
+        .row
+          = label "address", "postal_code", "Zip or Postal Code"
+          = text_field "address", "postal_code", :value => @updated_order.postal_code
+        .row
+          = label "address", "country"
+          = select_tag "address[country]", options_for_select(country_options_for_select, :selected => @updated_order.country)
+        .row
+          = submit_tag "checkout"
+    - else
+      .shipping_address.form_content
+        .row
+          = label "address", "address_1"
+          = text_field "address", "address_1"
+        .row
+          = label "address", "address_2"
+          = text_field "address", "address_2"
+        .row
+          = label "address", "city"
+          = text_field "address", "city"
+        .row
+          = label "address", "province", "State or Province"
+          = text_field "address", "province"
+        .row
+          = label "address", "postal_code", "Zip or Postal Code"
+          = text_field "address", "postal_code"
+        .row
+          = label "address", "country"
+          = select_tag "address[country]", options_for_select(country_options_for_select, :selected => "US")
+        .row
+          = submit_tag "checkout"

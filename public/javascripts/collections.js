@@ -7,10 +7,15 @@ function set_collections() {
 }
 
 function get_collections() {
-  var collections = [];
-  $($("#item_collections_csv").val().split(",")).each(function(){
-    if(!collections.includes(this)) { collections.push(this); }
-  });
+  var collections      = [];
+  var item_collections = $("#item_collections_csv").val();
+
+  if(item_collections != undefined) {
+    $(item_collections.split(",")).each(function(){
+      if(!collections.includes(this)) { collections.push(this); }
+    });
+  }
+
   return collections;
 }
 

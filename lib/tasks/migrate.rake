@@ -395,4 +395,8 @@ namespace :migrate do
     end
   end
 
+  task faq: :environment do
+    
+  end
+
 end

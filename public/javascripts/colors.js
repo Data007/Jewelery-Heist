@@ -7,10 +7,15 @@ function set_colors() {
 }
 
 function get_colors() {
-  var colors = [];
-  $($("#variation_colors_csv").val().split(",")).each(function(){
-    if(!colors.includes(this)) { colors.push(this); }
-  });
+  var colors           = [];
+  var variation_colors = $("#variation_colors_csv").val();
+
+  if(variation_colors != undefined) {
+    $(variation_colors.split(",")).each(function(){
+      if(!colors.includes(this)) { colors.push(this); }
+    });
+  }
+
   return colors;
 }
 

@@ -55,6 +55,13 @@ class Item
   }
 
   class << self
+  
+    def find_variation(variation_id)
+      where('variations._id' => variation_id).
+      map do|item| 
+        item.variations.find(variation_id)
+      end.flatten.first
+    end
 
     def search(query)
       where(name: Regexp.new(query))
