@@ -5,6 +5,7 @@ class Order
   field :refunded,       type: Boolean, default: false
   field :ship,           type: Boolean, default: false
   field :purchased,      type: Boolean, default: false
+  field :handed_off,     type: Boolean, default: false
   field :custom_id,      type: Integer
   field :clerk_id,       type: Integer
   field :shipping_option
@@ -16,12 +17,40 @@ class Order
   embeds_many :line_items
   embeds_many :payments
   embeds_one  :address
+  embeds_one  :ticket
 
   before_save :set_address
 
   def set_address
     self.address = user.addresses.first unless address
   end
+
+  def has_valid_shipping_address?
+    true
+  end
+
+  def full_shipping
+    # US Ground $0
+  	# US Second $10 < $300 > $0
+  	# US Express $20 < $500 > $0
+  	# Int Priority $30 < $500 > $0
+  	# Int Second $70 < $1000 > $0
+  	# Int Overnight $100 < $1500 > $0
+  	# Duties are the responsibility of the customer
+    options = [
+      ["US Ground", 0, 0],
+  	  ["US Second Day", 10, 300],
+  	  ["US Express", 20, 500],
+  	  ["Australia Regular", 30, 500],
+      ["Australia Priority (2 to 5 days)", 100, 1000],
+  	  ["New Zealand Regular", 30, 500],
+      ["New Zealand Priority (2 to 5 days)", 100, 1000],
+  	  ["International Priority", 30, 500],
+	    ["International Second Day", 70, 1000],
+	    ["International Overnight", 100, 1500]
+    ]
+    return options
+  end  
 
   def shipping_by_country(country="US")
     if country == "US"
@@ -55,6 +84,16 @@ class Order
   	  ["#{shipping_option[0]} #{subtotal >= shipping_option[2] ? "Free Upgrade" : '$' + shipping_option[1].to_s + '.00'}", shipping_option[0]]
 	  end
 	  return options
+  end
+
+  def shipping_cost
+    cost = 0
+    full_shipping.each do |option|
+      if self.shipping_option == option[0]
+        cost = self.subtotal >= option[2] ? 0 : option[1]
+      end
+    end
+    return cost
   end
 
   def add_line_item(new_line_item)
@@ -104,6 +143,22 @@ class Order
     total - (payments_total + credits_total)
   end
 
+  def hand_off
+    self.line_items.each do |line_item|
+      item = line_item.variation.parent_item
+      line_item.variation.update_attributes quantity: line_item.variation.quantity - 1 if line_item.variation.quantity > 0
+      if item.one_of_a_kind
+        item.update_attributes available: false
+      end
+    end
+    
+    self.ticket.current_stage = "handed off"
+    self.ticket.next_stage
+    self.ticket.save
+    
+    self.update_attribute :handed_off, true
+  end
+  
   ## Clerk stuff
   def clerk
     User.find(clerk_id)

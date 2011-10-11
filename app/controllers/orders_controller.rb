@@ -37,12 +37,12 @@ class OrdersController < ApplicationController
   
   def checkout
     @order = current_order
-    redirect_to order_path(current_order.id) unless @order.line_items.the_living.length > 0
+    redirect_to order_path(current_order.id) unless @order.line_items.length > 0
   end
   
   def shipping
     @order = current_order
-    redirect_to order_path(current_order.id) unless @order.line_items.the_living.length > 0
+    redirect_to order_path(current_order.id) unless @order.line_items.length > 0
   end
   
   def addressed
@@ -60,7 +60,18 @@ class OrdersController < ApplicationController
   end
   
   def pay
-    @order = current_order
+    @order = current_order    
+
+    if params[:order][:line_items].present?
+      line_items = params[:order].delete(:line_items) 
+
+      line_items.each do |line_item|
+        @order.line_items[line_item[0].to_i].update_attributes line_item[1]
+      end
+
+      @order.save
+    end
+
     @order.update_attributes params[:address]
     @order.update_attributes params[:order]
   end
@@ -100,7 +111,7 @@ class OrdersController < ApplicationController
       logger.debug "\n\n== @result => #{@result.inspect}\n\n"
       if @result.success?
         transaction = @result.transaction
-        current_order.payments << Payment.create!(:payment_type_id => PaymentType.find(:first, :conditions => {:name => transaction.credit_card_details.card_type}).id, :amount => current_order.total.to_i)
+        current_order.payments.create(payment_type: transaction.credit_card_details.card_type.downcase, amount: current_order.total.to_i)
         current_order.save
         @finished_order = current_order
         hand_off_order
@@ -150,11 +161,11 @@ class OrdersController < ApplicationController
     end
     
     def has_shipping_address?
-      if current_order.has_valid_shipping_address?
-        logger.debug "\n\n- sweet! - #{@order.has_valid_shipping_address?}\n\n"
+      if @current_order.has_valid_shipping_address?
+        logger.debug "\n\n- sweet! - #{@current_order.has_valid_shipping_address?}\n\n"
         return true
       else
-        logger.debug "\n\n- crap - #{@order.has_valid_shipping_address?}\n\n"
+        logger.debug "\n\n- crap - #{@current_order.has_valid_shipping_address?}\n\n"
         redirect_to shipping_path, :method => :post
       end
     end
