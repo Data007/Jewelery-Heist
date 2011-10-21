@@ -68,7 +68,7 @@ class Admin::ItemsController < AdminController
 private
 
   def find_item
-    @item      = params[:item_id] ? Item.find(params[:item_id]) : Item.find(params[:id])
-    @variation = @item.variations.find(params[:variation_id]) if params[:variation_id]
+    @item      = params[:item_id] ? Item.where(pretty_id: params[:item_id]).first : Item.where(pretty_id: params[:id]).first
+    @variation = @item.variations.where(pretty_id: params[:variation_id]) if (@item && params[:variation_id])
   end
 end

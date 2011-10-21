@@ -1,6 +1,7 @@
 class Order
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Sequence
 
   field :refunded,       type: Boolean, default: false
   field :ship,           type: Boolean, default: false
@@ -13,16 +14,47 @@ class Order
   field :location,                      default: 'instore'
   field :staging_type,                  default: 'purchase'
 
+  field :pretty_id,    type: Integer
+  sequence :pretty_id  
+
   embedded_in :user
   embeds_many :line_items
   embeds_many :payments
   embeds_one  :address
   embeds_one  :ticket
 
-  before_save :set_address
+  before_save  :set_address
+  after_create :setup_ticket
 
+  DUEDATES = [
+    "same day",
+    "1 week",
+    "2 weeks",
+    "3 weeks",
+    "4 weeks",
+    "5 weeks",
+    "6 weeks",
+    "7 weeks",
+    "8 weeks",
+    "9 weeks",
+    "10 weeks",
+    "11 weeks",
+    "12 weeks"
+  ]
+  
+
+  def setup_ticket
+    self.ticket  = generate_ticket_from_order
+    self.ship    = true if self.location == "website"
+    self.save
+  end
+  
   def set_address
     self.address = user.addresses.first unless address
+  end
+
+  def due_dates
+    return DUEDATES.collect {|date| [date, date]}
   end
 
   def has_valid_shipping_address?
@@ -124,7 +156,7 @@ class Order
   end
 
   def total
-    subtotal + tax
+    subtotal + tax + shipping_cost
   end
 
   def payments_total
@@ -156,7 +188,7 @@ class Order
     self.ticket.next_stage
     self.ticket.save
     
-    self.update_attribute :handed_off, true
+    self.update_attributes handed_off: true, purchased: true
   end
   
   ## Clerk stuff
@@ -179,6 +211,32 @@ class Order
       first
     end
 
+    def purchase
+      User.where('orders.staging_type' => 'purchase').
+      map { |user| user.orders }.flatten
+    end
+
+    def repair
+      User.where('orders.staging_type' => 'repair').
+      map { |user| user.orders }.flatten
+    end
+
+    def custom
+      User.where('orders.staging_type' => 'custom').
+      map { |user| user.orders }.flatten
+    end
+
+    def payments_made
+      User.all.
+      map { |user| user.orders }.flatten
+    end
+
+  end
+
+private
+
+  def generate_ticket_from_order
+    return Ticket.new(:kind => "#{self.location} #{self.staging_type}")
   end
 
 end

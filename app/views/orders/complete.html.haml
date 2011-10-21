@@ -15,13 +15,13 @@
       %th Total
       %td &nbsp;
     %tbody
-      - @finished_order.line_items.the_living.each do |line_item|
+      - @finished_order.line_items.each do |line_item|
         - variation = line_item.variation
-        - item = variation.item
+        - item = variation.parent_item
         %tr
           %td.left #{item.id}-#{variation.id}
           %td.left
-            = link_to image_tag(variation.assets.by_position.first.image.url(:tiny), :class => "thumbnail_32"), item_path(:id => item, :variation_id => variation.id)
+            = link_to image_tag(variation.assets.first.image.url(:tiny), :class => "thumbnail_32"), item_path(:id => item, :variation_id => variation.id)
             = link_to item.name, item_path(:id => item, :variation_id => variation.id)
           %td= line_item.size
           %td= number_to_currency line_item.price

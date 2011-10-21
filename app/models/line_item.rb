@@ -1,6 +1,7 @@
 class LineItem
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Sequence
 
   field :quantity,      type: Integer, default: 1
   field :price,         type: Float
@@ -13,6 +14,9 @@ class LineItem
   field :quick_id
   field :size
   field :custom_id
+
+  field :pretty_id,    type: Integer
+  sequence :pretty_id  
 
   embeds_one  :variation
   embedded_in :order

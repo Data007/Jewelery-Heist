@@ -1,6 +1,7 @@
 class Variation
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Sequence
 
   field :description
   field :price,         type: Float,   default: 0.0
@@ -11,6 +12,9 @@ class Variation
   field :finishes,      type: Array
   field :jewels,        type: Array
   field :colors,        type: Array # TODO: Make it work!
+
+  field :pretty_id,    type: Integer
+  sequence :pretty_id  
 
   embedded_in :item
   embeds_many :assets

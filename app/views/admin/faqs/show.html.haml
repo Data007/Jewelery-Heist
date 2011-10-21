@@ -2,10 +2,10 @@
   %h1 Frequently Asked Questions
   
 = content_for :page_actions do
-  = button_for_url "edit", [:edit, :admin, @faq], :class => "button"
+  = raw(button_for_url("edit", edit_admin_faq_path(@faq), :class => "button"))
 
 - content_for :page_content do
   :markdown
     #{@faq.header}
     
-    #{@faq.body}
+    #{ @faq.body}

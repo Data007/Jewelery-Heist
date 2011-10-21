@@ -64,7 +64,7 @@
           = link_to "Jewelry", items_path
           = link_to "About Us", about_us_path
           = link_to "Contact", about_us_path + "#contact_us"
-          = link_to "FAQ", policy_faq_path
+          = link_to "FAQ", faq_path
         :plain
           <!--[if IE]>
             <div class="nosupport">
@@ -80,7 +80,7 @@
           <![endif]-->
         #page
           - flash.each do |key, msg|
-            = content_tag :div, msg, :class => "#{key} message row", :id => "notice_#{key}"
+            = content_tag :div, raw(msg), :class => "#{key} message row", :id => "notice_#{key}"
           - if @user && @user.errors.length > 0
             - @user.errors.each do |error|
               .error= error
@@ -130,7 +130,7 @@
           
     #footer
       = link_to "About Us", about_us_path
-      = link_to "Privacy Policy", policy_privacy_path
-      = link_to "Return Policy", policy_return_path
-      = link_to "Delivery Policy", policy_delivery_path
-      = link_to "Frequently Asked Questions", policy_faq_path
+      = link_to "Privacy Policy", privacy_path
+      = link_to "Return Policy", return_path
+      = link_to "Delivery Policy", delivery_path
+      = link_to "Frequently Asked Questions", faq_path

@@ -19,4 +19,8 @@ private
       @order = @user.orders.find(session[:admin_order_id])
     end
   end
+
+  def get_workers
+    @workers = User.workers
+  end
 end

@@ -170,12 +170,10 @@ DragonHoard::Application.routes.draw do
       end
     end
     
-    namespace :policy do
-      match 'delivery' => 'policies#delivery', as: :delivery
-      match 'privacy' => 'policies#privacy', as: :privacy
-      match 'return' => 'policies#return', as: :return
-      match 'faq' => 'policies#faq', as: :faq
-    end
+    match '/policy/delivery' => 'policies#delivery', as: :delivery
+    match '/policy/privacy'  => 'policies#privacy',  as: :privacy
+    match '/policy/return'   => 'policies#return',   as: :return
+    match '/policy/faq'      => 'policies#faq',      as: :faq
     
     match 'about-us' => 'pages#about', as: :about_us
     match 'pages/bad_route' => 'pages#bad_route', as: :bad_route

@@ -11,11 +11,11 @@
           Please fill out your credit card information to complete this order. We do not store this information. Your information will be stored with a trusted third party, #{link_to "Braintree Payment Solutions", "http://www.braintreepaymentsolutions.com/"} for your personal future use. Your information will not be used by us for any other use than this order.
           
           
-          If you have any questions about our #{link_to "privacy", policy_privacy_path}, #{link_to "shipping", policy_delivery_path}, or #{link_to "return", policy_return_path} policies please feel free to view our policies below:
+          If you have any questions about our #{link_to "privacy", privacy_path}, #{link_to "shipping", delivery_path}, or #{link_to "return", return_path} policies please feel free to view our policies below:
           
-          * #{link_to "Privacy Policy", policy_privacy_path}
-          * #{link_to "Shipping Policy", policy_delivery_path}
-          * #{link_to "Return Policy", policy_return_path}
+          * #{link_to "Privacy Policy", privacy_path}
+          * #{link_to "Shipping Policy", delivery_path}
+          * #{link_to "Return Policy", return_path}
       
       .form_content
         - if @result

@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module DragonHoard
   class Application < Rails::Application
-    config.autoload_paths << File.join(config.root, "lib")
+    # config.autoload_paths << File.join(config.root, "lib")
     
     # Generators
     config.generators do |g|
@@ -26,3 +26,5 @@ module DragonHoard
     config.filter_parameters += [:password, :password_confirmation, :fb_sig_friends]
   end
 end
+
+require "#{Rails.root}/lib/sequence.rb"

@@ -71,7 +71,8 @@ namespace :migrate do
           if user['emails'].present?
             user['emails'].each do |email|
               print "---- Adding #{email['address']} ... "
-              new_user.emails << email['address'] unless new_user.emails.include? email['address']
+              new_user.emails = (new_user.emails + [email['address']]).flatten.uniq
+              new_user.save
               puts 'done'
             end
           end
@@ -81,7 +82,8 @@ namespace :migrate do
           if user['phones'].present?
             user['phones'].each do |phone|
               print "---- Adding #{phone['number']} ... "
-              new_user.phones << phone['number'] unless new_user.phones.include? phone['number']
+              new_user.phones = (new_user.phones + [phone['number']]).flatten.uniq
+              new_user.save
               puts 'done'
             end
           end
@@ -396,7 +398,17 @@ namespace :migrate do
   end
 
   task faq: :environment do
-    
+    migrating_faqs = MultiJson.decode(open("http://#{DOMAIN}/migrate_data/for_faqs?migration_token=#{migration_token}"))
+
+    puts '- Creating FAQs ... '
+    migrating_faqs.each do |faq|
+
+      new_faq = Faq.where(custom_id: faq['id'])
+      new_faq = new_faq.present? ? new_faq.first : Faq.create(custom_id: faq['id'])
+      new_faq.update_attributes(header: faq['header'], body: faq['body'], created_at: faq['created_at'])
+
+    end
+    puts '- Creating FAQs ... done'
   end
 
 end

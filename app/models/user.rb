@@ -3,6 +3,7 @@ require 'digest/sha2'
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Sequence
 
   field :emails,       type: Array,   default: []
   field :phones,       type: Array,   default: []
@@ -13,6 +14,9 @@ class User
   field :name
   field :designer,     type: Boolean, default: false
   field :custom_id
+
+  field :pretty_id,    type: Integer
+  sequence :pretty_id
 
   embeds_many :addresses
   embeds_many :orders
@@ -96,6 +100,10 @@ class User
   end
 
   class << self
+
+    def generate_password_hash
+      hash_password(Time.now.to_s)
+    end
 
     def hash_password(password)
       Digest::SHA256.hexdigest password

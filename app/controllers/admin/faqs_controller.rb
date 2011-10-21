@@ -23,6 +23,6 @@ class Admin::FaqsController < AdminController
 
   private
     def find_faq
-      @faq = Faq.find(:first)
+      @faq = Faq.first
     end
 end

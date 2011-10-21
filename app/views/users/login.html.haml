@@ -10,8 +10,8 @@
         = label "user", "login"
         = text_field "user", "login"
       .row
-        = label "user", "email"
-        = text_field "user", "email"
+        = label_tag "user[emails][]", 'Email'
+        = text_field_tag "user[emails][]"
       .row
         = label "user", "password"
         = password_field "user", "password", :value => nil

@@ -3,4 +3,5 @@ class Faq
 
   field :header
   field :body
+  field :custom_id
 end

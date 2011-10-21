@@ -1,0 +1,6 @@
+- form_for @order, :url => admin_order_path(@order), :html => {:method => :put} do |order_form|
+  .field
+    = order_form.label :notes
+    = order_form.text_area :notes
+  .field
+    = order_form.submit "update order notes", :class => "submit button"

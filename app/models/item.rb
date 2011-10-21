@@ -1,6 +1,7 @@
 class Item
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Sequence
 
   field :name
   field :description
@@ -18,6 +19,9 @@ class Item
   field :custom_id
   field :customizable_notes
   field :discontinued_notes
+
+  field :pretty_id,    type: Integer
+  sequence :pretty_id  
 
   embeds_many :variations
   has_and_belongs_to_many :collections

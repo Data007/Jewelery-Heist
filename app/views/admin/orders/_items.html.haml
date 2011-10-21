@@ -1,0 +1,76 @@
+- form_for @order, :url => admin_order_payments_path(@order), :html => {:method => :put} do |order_form|
+  #order_details    
+    %h2 Line Items
+    %table.stylized
+      %thead
+        %tr
+          %td{:colspan => 8} &nbsp;
+          %td= raw button_for_url "add a quick line item", admin_order_line_items_path(@order), :method => :post, :class => "primary action button", :id => "add_a_quick_line_item"
+        %tr
+          %th &nbsp;
+          %th Id
+          %th Item
+          %th Size
+          %th Tax
+          %th Quantity
+          %th Price
+          %th &nbsp;
+          %th Total
+      %tbody
+        - @order.line_items.the_living.each_with_index do |line_item, i|
+
+          - if line_item.is_quick_item
+            = render :partial => "admin/orders/quick_line_item", :locals => {:line_item => line_item}
+          - else
+            = render :partial => "admin/orders/line_item", :locals => {:line_item => line_item}
+            
+        %tr
+          %td{:colspan => 7} &nbsp;
+          %th Tax
+          %th#tax= number_to_currency(@order.tax)
+        %tr
+          %td{:colspan => 7} &nbsp;
+          %th#ship{:nowrap => "nowrap"}
+            Ship?
+            = order_form.check_box :ship
+          %th#shipping_cost= order_form.select :shipping_option, options_for_select(@order.shipping_options, @order.shipping_option ? @order.shipping_option : @order.shipping_options.first)
+        %tr
+          %td{:colspan => 7} &nbsp;
+          %th Total
+          %th#total= number_to_currency(@order.total + @order.tax)
+        %tr
+          %td{:colspan => 8} &nbsp;
+          %td= order_form.submit "save line items", :class => "button submit"
+
+#add_quick_line_item_module.module
+  #quick_line_item_form.window
+    %h1 Add a Quick Line Item
+    %hr
+    - form_for :line_item, LineItem.new(:quick_id => "n/a", :quantity => 1, :size => "0", :taxable => true), :url => admin_order_line_items_path(@order), :method => :post do |line_item_form|
+      = line_item_form.hidden_field :order_id, :value => @order.id
+      = line_item_form.hidden_field :is_quick_item, :value => true
+      .field.required
+        = line_item_form.label :quick_id, "Id"
+        = line_item_form.text_field :quick_id
+      .field.required
+        = line_item_form.label :name
+        = line_item_form.text_field :name
+      .field.required
+        = line_item_form.label :quantity
+        = line_item_form.text_field :quantity
+      .field.required
+        = line_item_form.label :price
+        = line_item_form.text_field :price
+      .field.required
+        = line_item_form.label :size
+        = line_item_form.text_field :size
+      .field
+        = line_item_form.label :taxable, "Taxable?"
+        = line_item_form.check_box :taxable
+      .field
+        = line_item_form.label :is_service, "Service?"
+        = line_item_form.check_box :is_service
+      %hr
+      .field
+        #cancel_quick_line_item.acts_as_button cancel quick line item
+        = line_item_form.submit "add new line item", :class => "submit button"

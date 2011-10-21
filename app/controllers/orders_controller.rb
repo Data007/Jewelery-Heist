@@ -179,6 +179,7 @@ class OrdersController < ApplicationController
     end
     
     def hand_off_order
+      debugger
       current_order.update_attributes :purchased_at => Time.now
       current_order.hand_off
       session[:order_id] = nil
