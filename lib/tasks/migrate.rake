@@ -26,7 +26,7 @@ def migration_token
   "f1a649db463bc07dcb9f4627ccdf1957760978c23b90be9ee05947c77141d1b5"
 end
 
-DOMAIN = Rails.env.development? ? 'localhost:3003' : 'wexfordjewelers.com'
+DOMAIN = Rails.env.development? ? 'wexfordjewelers.dev' : 'wexfordjewelers.com'
 
 namespace :migrate do
 
