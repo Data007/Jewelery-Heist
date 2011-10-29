@@ -43,7 +43,12 @@ class User
       find_email   = Regexp.new(user_query.delete(:email)) if (user_query[:email] && !user_query[:email].blank?)
 
       user_query.each { |(key, value)| user_query.delete(key.to_sym) if value.blank? }
-      user_query = user_query.inject([]) { |hashes, (key, value)| hashes << {key.to_sym => Regexp.new(value)} }
+      user_query = user_query.inject([]) do |hashes, (key, value)|
+        hashes << {key.to_sym => Regexp.new(value)}
+        hashes << {key.to_sym => Regexp.new(value.capitalize)}
+        hashes << {key.to_sym => Regexp.new(value.upcase)}
+        hashes << {key.to_sym => Regexp.new(value.downcase)}
+      end
 
       if find_address
         new_find_address = {}
