@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
-  before_filter :force_login, :only => [:shipping, :checkout, :pay, :hand_off]
-  before_filter :force_add_email, :except => [:show, :clear, :update_attributes]
-  before_filter :"has_shipping_address?", :only => [:checkout, :pay, :complete]
-  before_filter :carry_over_order_notes, :only => [:checkout, :pay, :complete]
-  before_filter :verify_line_items_are_available, :except => [:clear]
+  before_filter :force_login,                     only:   [:shipping, :checkout, :pay, :hand_off]
+  before_filter :force_add_email,                 except: [:show, :clear, :update_attributes]
+  before_filter :"has_shipping_address?",         only:   [:checkout, :pay, :complete]
+  before_filter :carry_over_order_notes,          only:   [:checkout, :pay, :complete]
+  before_filter :verify_line_items_are_available, except: [:clear]
   
   def show
     @order = current_order
@@ -96,15 +96,15 @@ class OrdersController < ApplicationController
       first_name, last_name = params[:card][:cardholder_name].split(" ")
       expiration_date       = "#{params[:card][:expiration_month]}/#{params[:card][:expiration_year]}"
       card = {
-        :credit_card  => {
-          :number           => params[:card][:number],
-          :expiration_date  => "#{params[:card][:expiration_month]}/#{params[:card][:expiration_year]}"
+        credit_card: {
+          number:          params[:card][:number],
+          expiration_date: "#{params[:card][:expiration_month]}/#{params[:card][:expiration_year]}"
         },
-        :customer     => {
-          :first_name       => first_name,
-          :last_name        => last_name
+        customer: {
+          first_name: first_name,
+          last_name:  last_name
         },
-        :amount       => current_order.total.to_i
+        amount: current_order.total.to_i
       }
       
       @result = Braintree::Transaction.sale(card)
@@ -121,14 +121,14 @@ class OrdersController < ApplicationController
       elsif @result.transaction
         @order = current_order
         flash[:error] = "<p class='error'>#{@result.transaction.processor_response_text} (##{@result.transaction.processor_response_code})</p>"
-        render :template => "orders/pay"
+        render template: "orders/pay"
       else
         @order = current_order
         flash[:error] = ""
         @result.errors.each do |e|
           flash[:error] += "<p class='error'>#{e.message}</p>"
         end
-        render :template => "orders/pay"
+        render template: "orders/pay"
       end
     else
       
@@ -139,7 +139,7 @@ class OrdersController < ApplicationController
         flash[:message] += "<p class='error'>#{message}</p>"
       end
       
-      render :template => "orders/pay"
+      render template: "orders/pay"
     end
   end
   
@@ -179,10 +179,9 @@ class OrdersController < ApplicationController
     end
     
     def hand_off_order
-      debugger
-      current_order.update_attributes :purchased_at => Time.now
-      current_order.hand_off
-      session[:order_id] = nil
+      order = current_order
+      order.update_attributes :purchased_at => Time.now
+      order.hand_off
     end
     
     def verify_line_items_are_available

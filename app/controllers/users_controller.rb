@@ -87,7 +87,6 @@ class UsersController < ApplicationController
   end
   
   def generate_new_password
-    debugger
     @user = User.where(:emails.in => [params[:user][:email]])
     new_password = User.generate_password_hash
     if @user.present?

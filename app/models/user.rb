@@ -30,8 +30,9 @@ class User
   before_save :generate_password_hash
 
   # Scopes
-  scope :workers,   where(:role.ne => 'public')
-  scope :designers, where(designer: true)
+  scope :workers,     where(:role.ne => 'public')
+  scope :designers,   where(designer: true)
+  scope :open_orders, -> { where('orders.purchased' => false) }
 
   class << self
 
@@ -83,6 +84,10 @@ class User
 
   end
   ##
+
+  def open_order
+    orders.where(purchased: false).first
+  end
   
   # Authentication
   def generate_password_hash

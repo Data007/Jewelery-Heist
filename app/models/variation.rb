@@ -58,7 +58,6 @@ class Variation
   end
 
   def colors_csv=(csv)
-    debugger
     self.colors = csv.split(',').sort.map {|position| Item.colors_from_position(position).first}.compact
   end
 
