@@ -16,7 +16,7 @@
         %tr.payment
           %td
             %ul.actions
-              %li= link_to "refund", admin_order_payment_path(:id => payment, :order_id => @order), :method => :delete, :confirm => "Are you sure you want to refund this payment of #{payment.amount}?"
+              %li= link_to "refund", admin_user_order_payment_path(@user.pretty_id, @order.pretty_id, payment), :method => :delete, :confirm => "Are you sure you want to refund this payment of #{payment.amount}?"
           %td #{time_ago_in_words(payment.created_at)} ago (#{payment.created_at.strftime("%b %d, %Y")})
           %td= payment.payment_type
           %td= payment.check_number

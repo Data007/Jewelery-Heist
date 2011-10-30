@@ -29,8 +29,9 @@ class Admin::Users::OrdersController < Admin::UsersController
 private
   
   def find_order
-    @order = @user.orders.find(params[:order_id] || params[:id])
-    session[:admin_order_id] = @order.id
+    id = params[:order_id].present? ? params[:order_id] : params[:id]
+    @order = @user.orders.where(pretty_id: id).first
+    session[:admin_order_id] = @order.pretty_id
   end
 
 end

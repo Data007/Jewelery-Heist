@@ -22,9 +22,9 @@
   %tr.line_item
     %td{:valign => "top"}
       - if @order.payments.length > 0 && @order.balance > 0
-        = link_to "refund", admin_order_line_item_path(:id => line_item.id, :order_id => @order.id, :refund => true), :method => :delete, :confirm => "Are you sure you want to REFUND #{line_item.name} from the order?"
+        = link_to "refund", refund_admin_user_order_line_item_path(@user.pretty_id, @order.pretty_id, line_item.pretty_id), :method => :delete, :confirm => "Are you sure you want to REFUND #{line_item.name} from the order?"
       - else
-        = link_to "remove", admin_order_line_item_path(:id => line_item.id, :order_id => @order.id), :method => :delete, :confirm => "Are you sure you want to REMOVE #{line_item.name} from the order?"
+        = link_to "remove", admin_user_order_line_item_path(@user.pretty_id, @order.pretty_id, line_item.pretty_id), :method => :delete, :confirm => "Are you sure you want to REMOVE #{line_item.name} from the order?"
     %td{:valign => "top", :nowrap => "nowrap"}
       = text_field_tag "order[line_items][][quick_id]", line_item.quick_id, :size => "5px"
     %td{:valign => "top"}

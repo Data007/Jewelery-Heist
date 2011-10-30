@@ -1,5 +1,5 @@
 - content_for :page_title do
-  %h1 #{@order.location.capitalize} #{@order.staging_type.capitalize} ##{@order.id}
+  %h1 #{@order.location.capitalize} #{@order.staging_type.capitalize} ##{@order.pretty_id}
 
 - content_for :page_actions do
   - if @order.refunded
@@ -13,7 +13,7 @@
 
 / = render :partial => "admin/users/orders/menu", :locals => {:active_url => admin_order_path(@order)}
 
-= form_for @order, :url => admin_order_path(@order), :html => {:method => :put} do |order_form|
+= form_for @order, :url => admin_user_order_path(@user.pretty_id, @order.pretty_id), :html => {:method => :put} do |order_form|
   .field
     = order_form.label :clerk_id, "Handled by: "
     = order_form.select :clerk_id, options_from_collection_for_select(User.workers, "id", "name", @order.clerk_id ? @order.clerk_id : @current_user.id)

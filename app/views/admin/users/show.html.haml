@@ -46,11 +46,12 @@
 
   %h2 New Orders
 
-  = link_to "In Store Purchase", new_admin_user_order_path(@user), class: "button"
-  = link_to "In Store Repair", new_admin_user_order_path(@user, staging_type: "repair"), class: "button"
-  = link_to "In Store Custom", new_admin_user_order_path(@user, staging_type: "custom"), class: "button"
-  = link_to "Website, Etsy, or Phone Purchase", new_admin_user_order_path(@user, location: "website", staging_type: "purchase"), class: "button"
-  = link_to "Website, Etsy, or Phone Custom", new_admin_user_order_path(@user, location: "website", staging_type: "custom"), class: "button"
+  .quick_links
+    = link_to "In Store Purchase", new_admin_user_order_path(@user), class: "button"
+    = link_to "In Store Repair", new_admin_user_order_path(@user, staging_type: "repair"), class: "button"
+    = link_to "In Store Custom", new_admin_user_order_path(@user, staging_type: "custom"), class: "button"
+    = link_to "Website, Etsy, or Phone Purchase", new_admin_user_order_path(@user, location: "website", staging_type: "purchase"), class: "button"
+    = link_to "Website, Etsy, or Phone Custom", new_admin_user_order_path(@user, location: "website", staging_type: "custom"), class: "button"
   
   %hr
   
@@ -72,11 +73,11 @@
       %tbody
         - @user.orders.each do |order|
           %tr{:class => cycle("normal", "alternate")}
-            %td= link_to order.id, [:admin, @user, order]
+            %td= link_to order.pretty_id, admin_user_order_path(@user.pretty_id, order.pretty_id)
             %td
               - order.line_items.each do |line_item|
                 - if line_item.variation
-                  = link_to("ID#{line_item.variation.item_id}-#{line_item.variation_id}", admin_item_path("ID#{line_item.variation.item_id}-#{line_item.variation_id}"))
+                  = link_to("ID#{line_item.variation.parent_item.pretty_id}-#{line_item.variation.pretty_id}", admin_item_path("ID#{line_item.variation.parent_item.pretty_id}-#{line_item.variation.pretty_id}"))
                 - else
                   QID#{line_item.id}
                 %br
@@ -86,7 +87,7 @@
             %td{:class => order.location == "website" ? "website" : "instore"}= order.location.capitalize
             %td= order.staging_type
             %td
-              /= order.ticket.current_stage
+              = order.ticket.current_stage
   %p
     %strong Payments
     %table.index.stylized
@@ -100,9 +101,9 @@
       %tbody
         - @user.orders.map(&:payments).flatten.each do |payment|
           %tr
-            %td= link_to(payment.order.id, admin_order_path(payment.order.id))
+            %td= link_to(payment.order.pretty_id, admin_order_path(payment.order.pretty_id))
             %td #{time_ago_in_words(payment.created_at)} ago (#{payment.created_at.strftime("%b %d, %Y")})
-            %td= payment.payment_type.name
+            %td= payment.payment_type.capitalize
             %td= payment.check_number
             %td= number_to_currency(payment.amount)
 

@@ -35,7 +35,7 @@ class Admin::UsersController < AdminController
   end
 
   def update
-    @user = User.find(params[:id])
+    find_user
     if @user.update_attributes(params[:user])
       flash[:notice] = "#{@user.name} has been saved."
       respond_with [:admin, @user]
@@ -49,10 +49,21 @@ class Admin::UsersController < AdminController
     find_user
   end
 
+  def destroy
+    find_user
+    name = @user.name
+    id   = @user.id
+    @user.destroy
+
+    flash[:notice] = "#{name} (#{id}) has been removed"
+    redirect_to :back
+  end
+
 private
   
   def find_user
-    @user = User.find(params[:user_id] ? params[:user_id] : params[:id])
+    id = params[:user_id] ? params[:user_id] : params[:id]
+    @user = User.where(pretty_id: id).first
   end
 
 end

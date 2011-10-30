@@ -6,4 +6,7 @@ class Admin::Users::Orders::PaymentsController < Admin::Users::OrdersController
     redirect_to [:admin, @user, @order]
   end
 
+  def refund
+  end
+
 end
