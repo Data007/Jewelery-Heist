@@ -116,137 +116,154 @@ namespace :migrate do
   desc 'Migrate Items'
   task :items => :environment do
 
-    migrating_items = MultiJson.decode(open("http://#{DOMAIN}/migrate_data/for_items?migration_token=#{migration_token}"))
+    uri      = "http://#{DOMAIN}/migrate_data/for_items?migration_token=#{migration_token}"
+    response = HTTParty.get(uri)
 
-    puts '   - Creating items ...'
-    migrating_items.each do |item|
-      
-      print "  -- Creating item #{item['name']} ... "
-      if item['designer']
-        designer = User.where(name: item['designer']['name']).first
-        designer.update_attribute :designer, true
-      end
-      new_item = Item.where(custom_id: item['id'])
-      new_item = new_item.present? ? new_item.first : Item.create(name: item['name'])
-      new_item.update_attributes({
-                       name: item['name'],
-                description: item['description'],
-                 size_range: item['size_range'],
-                  custom_id: item['id'],
-                designer_id: (designer.id if item['designer']),
-                     gender: (item['gender']['name'] if item['gender']),
-                   category: (item['category']['name'].downcase if item['category']),
-                       cost: item['cost'],
-                  available: item['available'],
-                  published: item['published'],
-              one_of_a_kind: item['one_of_a_kind'],
-        discountinued_notes: item['discontinued_notes'],
-               customizable: item['customizable'],
-         customizable_notes: item['customizable_notes']
-      })
+    pages        = response['pages']
+    total_pages  = pages['total_pages']
+    current_page = 1
+
+    while current_page <= total_pages do
+      current_uri = uri + "&page=#{current_page}"
+      print "   - Connecting to url #{current_uri} ... "
+      response = HTTParty.get(current_uri)
       puts 'done'
 
-      puts " --- Creating collections for #{item['name']} ..."
-      item['collections'].each do |collection|
+      migrating_items = response['items']
 
-        unless collection['ghost']
-          print "---- Creating collection #{collection['name']} ... "
-          new_collection = Collection.where(custom_id: collection['id'])
-          new_collection = new_collection.present? ? new_collection.first : Collection.create
-          
-          new_collection.update_attributes({
-                   name: collection['name'],
-            description: collection['description'],
-              custom_id: collection['id']
-          })
-          new_item.collections << new_collection unless new_item.collections.include?(new_collection)
-          puts 'done'
-        end
-
-      end
-      puts " --- Creating collections for #{item['name']} ... done"
-
-      puts " --- Creating variations for #{item['name']} ..."
-      item['variations'].each do |variation|
-
-        unless variation['ghost']
-          print "---- Creating variation #{variation['id']} ... "
-            new_variation = new_item.variations.where(custom_id: variation['id'])
-            new_variation = new_variation.present? ? new_variation.first : new_item.variations.create
-            new_variation.update_attributes({
-                    custom_id: variation['id'],
-                        price: variation['price'],
-              backorder_notes: variation['backorder_notes']
-            })
-          puts "done"
-
-          variation_details = MultiJson.decode(open("http://#{DOMAIN}/migrate_data/details_for_variation/#{variation['id']}?migration_token=#{migration_token}"))
-          # puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... "
-          # variation_details['colors'].each do |color|
-          #   print "---- Creating colors #{color['names']} ... "
-          #   new_color = Item.colors_with(color['names'])
-          #   new_color = new_color.present? ? new_color.first : new_variation.colors.create
-          #   new_color.update_attributes({
-          #        names: color['names'],
-          #     position: color['position']
-          #   })
-
-          #   new_variation.save
-          #   puts 'done'
-          # end
-          # puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... done"
-
-          print "---- Adding metals to variation #{new_variation.id} ... "
-          new_variation.metal_csv = variation_details['metal']['name'] if variation_details['metal']
-          new_variation.save
-          puts 'done'
-
-          print "---- Adding finishes to variation #{new_variation.id} ... "
-          new_variation.finish_csv = variation_details['finish']['name'] if variation_details['finish']
-          new_variation.save
-          puts 'done'
-
-          print "---- Adding jewels to variation #{new_variation.id} ... "
-          new_variation.jewel_csv = variation_details['jewel']['name'] if variation_details['jewel']
-          new_variation.save
-          puts 'done'
-
-        end
+      puts '   - Creating items ...'
+      migrating_items.each do |item|
         
-        assets = MultiJson.decode(open("http://#{DOMAIN}/migrate_data/assets_for_variation/#{variation['id']}?migration_token=#{migration_token}"))['assets']
-        puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... "
-        assets.each do |asset|
-          if (asset['image_url'] && asset['image_file_name'])
-            print "---- Creating asset #{asset['image_file_name']} ... "
-            begin
-              # image_path = store_image(asset['image_url'], asset['image_file_name'])
-              
-              if new_variation.assets.where(image_file_name: asset['image_file_name']).empty?
-                new_asset = new_variation.assets.create(migratory_url: asset['image_url'], image_file_name: asset['image_file_name'])
-              else
-                new_asset = new_variation.assets.where(image_file_name: asset['image_file_name']).first
-                new_asset.migratory_url = asset['image_url']
-              end
-              
-              new_asset.position = asset['position']
-              new_asset.save
-              new_variation.save
-              
-            rescue => e
-              print " no valid asset found ... #{e} ... "
-            end
+        print "  -- Creating item #{item['name']} ... "
+        if item['designer']
+          designer = User.where(name: item['designer']['name']).first
+          designer.update_attribute :designer, true
+        end
+        new_item = Item.where(custom_id: item['id'])
+        new_item = new_item.present? ? new_item.first : Item.create(name: item['name'])
+        new_item.update_attributes({
+                         name: item['name'],
+                  description: item['description'],
+                   size_range: item['size_range'],
+                    custom_id: item['id'],
+                  designer_id: (designer.id if item['designer']),
+                       gender: (item['gender']['name'] if item['gender']),
+                     category: (item['category']['name'].downcase if item['category']),
+                         cost: item['cost'],
+                    available: item['available'],
+                    published: item['published'],
+                one_of_a_kind: item['one_of_a_kind'],
+          discountinued_notes: item['discontinued_notes'],
+                 customizable: item['customizable'],
+           customizable_notes: item['customizable_notes']
+        })
+        puts 'done'
+      
+        puts " --- Creating collections for #{item['name']} ..."
+        item['collections'].each do |collection|
+      
+          unless collection['ghost']
+            print "---- Creating collection #{collection['name']} ... "
+            new_collection = Collection.where(custom_id: collection['id'])
+            new_collection = new_collection.present? ? new_collection.first : Collection.create
             
+            new_collection.update_attributes({
+                     name: collection['name'],
+              description: collection['description'],
+                custom_id: collection['id']
+            })
+            new_item.collections << new_collection unless new_item.collections.include?(new_collection)
             puts 'done'
           end
+      
         end
-        puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... done"
-
+        puts " --- Creating collections for #{item['name']} ... done"
+      
+        puts " --- Creating variations for #{item['name']} ..."
+        item['variations'].each do |variation|
+      
+          unless variation['ghost']
+            print "---- Creating variation #{variation['id']} ... "
+              new_variation = new_item.variations.where(custom_id: variation['id'])
+              new_variation = new_variation.present? ? new_variation.first : new_item.variations.create
+              new_variation.update_attributes({
+                      custom_id: variation['id'],
+                          price: variation['price'],
+                backorder_notes: variation['backorder_notes']
+              })
+            puts "done"
+      
+            variation_details = MultiJson.decode(open("http://#{DOMAIN}/migrate_data/details_for_variation/#{variation['id']}?migration_token=#{migration_token}"))
+            # puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... "
+            # variation_details['colors'].each do |color|
+            #   print "---- Creating colors #{color['names']} ... "
+            #   new_color = Item.colors_with(color['names'])
+            #   new_color = new_color.present? ? new_color.first : new_variation.colors.create
+            #   new_color.update_attributes({
+            #        names: color['names'],
+            #     position: color['position']
+            #   })
+      
+            #   new_variation.save
+            #   puts 'done'
+            # end
+            # puts "---- Found #{variation_details['colors'].length} colors in variation #{new_variation.id} ... done"
+      
+            print "---- Adding metals to variation #{new_variation.id} ... "
+            new_variation.metal_csv = variation_details['metal']['name'] if variation_details['metal']
+            new_variation.save
+            puts 'done'
+      
+            print "---- Adding finishes to variation #{new_variation.id} ... "
+            new_variation.finish_csv = variation_details['finish']['name'] if variation_details['finish']
+            new_variation.save
+            puts 'done'
+      
+            print "---- Adding jewels to variation #{new_variation.id} ... "
+            new_variation.jewel_csv = variation_details['jewel']['name'] if variation_details['jewel']
+            new_variation.save
+            puts 'done'
+      
+          end
+          
+          assets = MultiJson.decode(open("http://#{DOMAIN}/migrate_data/assets_for_variation/#{variation['id']}?migration_token=#{migration_token}"))['assets']
+          puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... "
+          assets.each do |asset|
+            if (asset['image_url'] && asset['image_file_name'])
+              print "---- Creating asset #{asset['image_file_name']} ... "
+              begin
+                # image_path = store_image(asset['image_url'], asset['image_file_name'])
+                
+                if new_variation.assets.where(image_file_name: asset['image_file_name']).empty?
+                  new_asset = new_variation.assets.create(migratory_url: asset['image_url'], image_file_name: asset['image_file_name'])
+                else
+                  new_asset = new_variation.assets.where(image_file_name: asset['image_file_name']).first
+                  new_asset.migratory_url = asset['image_url']
+                end
+                
+                new_asset.position = asset['position']
+                new_asset.save
+                new_variation.save
+                
+              rescue => e
+                print " no valid asset found ... #{e} ... "
+              end
+              
+              puts 'done'
+            end
+          end
+          puts "---- Found #{assets.length} assets in variation #{new_variation.id} ... done"
+      
+        end
+        puts " --- Creating variations for #{item['name']} ... done"
+        
       end
-      puts " --- Creating variations for #{item['name']} ... done"
+      puts '   - Creating items ... done'
+
+      current_page += 1
       
     end
-    puts '   - Creating items ... done'
-
+    
   end
 
   desc 'Update images'
