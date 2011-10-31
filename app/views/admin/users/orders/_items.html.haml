@@ -46,7 +46,7 @@
   #quick_line_item_form.window
     %h1 Add a Quick Line Item
     %hr
-    = form_for LineItem.new(quick_id: "n/a", quantity: 1, size: "0", taxable: true), admin_user_order_line_items_path(@user, @order), method: :post do |line_item_form|
+    = form_for LineItem.new(quick_id: "n/a", quantity: 1, size: "0", taxable: true), url: admin_user_order_line_items_path(@user, @order), method: :post do |line_item_form|
       = line_item_form.hidden_field :is_quick_item, value: true
       .field.required
         = line_item_form.label :quick_id, "Id"

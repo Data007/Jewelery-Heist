@@ -20,7 +20,7 @@ class Payment
         ["Master Card",      'mastercard'],
         ["Visa",             'visa'],
         ["American Express", 'americanexpress'],
-        ["Discover",         'discover']
+        ["Discover",         'discover'],
       ]
     end
 

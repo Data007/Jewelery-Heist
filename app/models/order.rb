@@ -164,7 +164,7 @@ class Order
   end
 
   def paid
-    payments_total
+    payments_total - credits_total
   end
 
   def credits_total
@@ -172,7 +172,7 @@ class Order
   end
 
   def balance
-    total - (payments_total + credits_total)
+    total - paid
   end
 
   def hand_off

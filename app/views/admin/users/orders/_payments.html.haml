@@ -3,8 +3,8 @@
   %table.stylized#payments_table
     %thead
       %tr
-        %td{:colspan => 4} &nbsp;
-        %td= raw button_for_url "add a payment", admin_order_payments_path(@order), :method => :post, :class => "primary action button", :id => "add_a_payment"
+        %td{colspan: 4} &nbsp;
+        %td= raw button_for_url "add a payment", admin_order_payments_path(@order), method: :post, class: "primary action button", id: "add_a_payment"
       %tr
         %th &nbsp;
         %th Paid On
@@ -16,25 +16,25 @@
         %tr.payment
           %td
             %ul.actions
-              %li= link_to "refund", admin_user_order_payment_path(@user.pretty_id, @order.pretty_id, payment), :method => :delete, :confirm => "Are you sure you want to refund this payment of #{payment.amount}?"
+              %li= link_to "refund", admin_user_order_payment_path(@user.pretty_id, @order.pretty_id, payment), method: :delete, confirm: "Are you sure you want to refund this payment of #{payment.amount}?"
           %td #{time_ago_in_words(payment.created_at)} ago (#{payment.created_at.strftime("%b %d, %Y")})
           %td= payment.payment_type
           %td= payment.check_number
           %td= number_to_currency(payment.amount)
     %tfooter
       %tr
-        %td{:colspan => 3} &nbsp;
+        %td{colspan: 3} &nbsp;
         %th Paid
         %th#paid= number_to_currency(@order.paid)
       %tr
-        %td{:colspan => 3} &nbsp;
+        %td{colspan: 3} &nbsp;
         %th Balance Owing
         %th#balance= number_to_currency(@order.balance)
 
 #add_payment_module.module
   #payments_form.window
     %h1 Add a New Payment
-    = form_for [:admin, @user, @order, Payment.new] do |payment_form|
+    = form_for @order.payments.new, url: admin_user_order_payments_path(@user.pretty_id, @order.pretty_id) do |payment_form|
       .field.required
         = payment_form.label :payment_type, "Payment Type"
         = payment_form.select :payment_type, options_for_select(Payment.payment_type_options)
@@ -46,4 +46,4 @@
         = payment_form.text_field :amount
       .field
         #cancel_payment.acts_as_button cancel payment
-        = payment_form.submit "add new payment", :class => "submit button"
+        = payment_form.submit "add new payment", class: "submit button"

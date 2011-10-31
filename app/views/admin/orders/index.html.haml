@@ -19,7 +19,7 @@
       %tbody
         - @orders.each do |order|
           %tr{:class => cycle("normal", "alternate")}
-            %td= link_to(order.pretty_id, admin_order_path(order))
+            %td= link_to(order.pretty_id, admin_user_order_path(order.user.pretty_id, order.pretty_id))
             %td
               - order.line_items.each do |line_item|
                 - if line_item.variation.present?
@@ -27,7 +27,7 @@
                 - else
                   QID#{line_item.pretty_id}
                 %br
-            %td= order.user ? link_to(order.user.name, admin_customer_path(order.user.id)) : "n/a"
+            %td= order.user ? link_to(order.user.name, admin_user_path(order.user.pretty_id)) : "n/a"
             %td= order.address ? order.address.city : 'n/a'
             %td= order.address ? order.address.province : 'n/a'
             %td= order.address ? order.address.country : 'n/a'

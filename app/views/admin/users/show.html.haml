@@ -79,7 +79,7 @@
                 - if line_item.variation
                   = link_to("ID#{line_item.variation.parent_item.pretty_id}-#{line_item.variation.pretty_id}", admin_item_path("ID#{line_item.variation.parent_item.pretty_id}-#{line_item.variation.pretty_id}"))
                 - else
-                  QID#{line_item.id}
+                  QID#{line_item.quick_id}
                 %br
             %td= number_to_currency(order.total)
             %td= number_to_currency(order.paid)
