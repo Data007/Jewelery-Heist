@@ -1,10 +1,10 @@
 !!!
 %html{html_attrs.merge!(:xmlns => "http://www.w3.org/1999/xhtml", :"xmlns:fb" => "http://www.facebook.com/2008/fbml")}
   %head
-    %meta{:name => "title", :content => "Wexford Jewelers | our passion is design #{yield :page_title}"}
-    %meta{:name => "decription", :content => "#{yield :meta_description} | Wexford Jewelers, designers of custom jewelry."}
-    %link{:rel => "image_src", :href => "#{yield :image_src}"}
-    %meta{:name => "keywords", :content => "ring, pendant, necklace, bracelet, custom, engagement, wedding, #{yield :meta_keywords}"}
+    %meta{name: "title", content: "Wexford Jewelers | our passion is design #{yield :page_title}"}
+    %meta{name: "decription", content: "#{yield :meta_description} | Wexford Jewelers, designers of custom jewelry."}
+    %link{rel: "image_src", href: "#{yield :image_src}"}
+    %meta{name: "keywords", content: "ring, pendant, necklace, bracelet, custom, engagement, wedding, #{yield :meta_keywords}"}
     %title Wexford Jewelers | our passion is design #{yield :page_title}
     = stylesheet_link_tag "website/screen"
     :plain
@@ -37,19 +37,19 @@
           })();
       
         </script>
-    %meta{:name => "google-site-verification", :content => "BW7w5f_8Uei0FEXeWXIQVWvTztGHnGkpjeluMg-Wvvw"}
+    %meta{name: "google-site-verification", content: "BW7w5f_8Uei0FEXeWXIQVWvTztGHnGkpjeluMg-Wvvw"}
   %body
     #wrapper
       #left.column
         #logo.header
-          = link_to(image_tag("logo.jpg", :width => "160px", :height => "160px"), root_path)
+          = link_to(image_tag("logo.jpg", width: "160px", height: "160px"), root_path)
         .menu
           &nbsp;
         #search
-          = form_tag search_path, :method => :get do
+          = form_tag search_path, method: :get do
             .row
               = text_field_tag "q"
-              = submit_tag "search", :class => "input"
+              = submit_tag "search", class: "input"
         #life_stream
           &nbsp;
       #center.column
@@ -80,7 +80,7 @@
           <![endif]-->
         #page
           - flash.each do |key, msg|
-            = content_tag :div, raw(msg), :class => "#{key} message row", :id => "notice_#{key}"
+            = content_tag :div, raw(msg), class: "#{key} message row", id: "notice_#{key}"
           - if @user && @user.errors.length > 0
             - @user.errors.each do |error|
               .error= error
@@ -96,7 +96,7 @@
                 = link_to "Logout", logout_users_path
           - else
             .login
-              = form_tag authenticate_users_path, :method => :post do
+              = form_tag authenticate_users_path, method: :post do
                 .row
                   = label "user", "login"
                   = text_field "user", "login"
@@ -117,14 +117,15 @@
             .line_item_total You order totals #{number_to_currency @current_order.subtotal}
             .actions
               = link_to "View Order", order_path(@current_order.id)
-              = link_to "Checkout", checkout_path(@current_order.id), :method => :post
+              = link_to "Checkout", checkout_path(@current_order.id), method: :post
             .line_items
               - @current_order.line_items.each do |line_item|
-                .line_item
-                  = link_to image_tag(line_item.variation.assets.first.image.url(:tiny)), item_path(:id => line_item.variation.parent_item, :variation_id => line_item.variation.id)
+                - if line_item.variation
+                  .line_item
+                    = link_to image_tag(line_item.variation.assets.first.image.url(:tiny)), item_path(id: line_item.variation.parent_item.pretty_id, variation_id: line_item.variation.pretty_id)
             .actions
               = link_to "View Order", order_path(@current_order.id)
-              = link_to "Checkout", checkout_path(@current_order.id), :method => :post
+              = link_to "Checkout", checkout_path(@current_order.id), method: :post
           - else
             %p Your shopping cart is empty.
           
