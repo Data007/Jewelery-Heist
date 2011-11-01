@@ -8,7 +8,7 @@ private
 
   def current_order
     return nil unless current_user
-    @current_order ||= @current_user.open_order.present? ? @current_user.open_order : @current_user.orders.create
+    @current_order ||= @current_user.open_web_order.present? ? @current_user.open_web_order : @current_user.orders.create
   end
 
   def current_user

@@ -94,6 +94,10 @@ class User
     orders.where(purchased: false).first
   end
   
+  def open_web_order
+    orders.where(purchased: false, location: 'website', staging_type: 'purchase').first
+  end
+  
   # Authentication
   def generate_password_hash
     if (password.present? && password_confirmation.present?)

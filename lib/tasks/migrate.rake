@@ -118,7 +118,8 @@ namespace :migrate do
 
     uri      = "http://#{DOMAIN}/migrate_data/for_items?migration_token=#{migration_token}"
     response = HTTParty.get(uri)
-
+    
+    puts uri
     pages        = response['pages']
     total_pages  = pages['total_pages']
     current_page = 1
