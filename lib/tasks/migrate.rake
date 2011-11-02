@@ -7,12 +7,12 @@ def store_image(url, image_name)
   path       = "/#{url.split('/')[3..-1].join('/').gsub(/\?.*$/, '')}"
   pid        = Process.pid
   
-  unless Rails.env.production? && Dir.exists?("#{Rails.root}/tmp/#{pid}")
-    system "mkdir #{Rails.root}/tmp/#{pid}"
+  unless Rails.env.production? && Dir.exists?("./tmp/#{pid}")
+    system "mkdir ./tmp/#{pid}"
   end
 
-  image_path = "#{Rails.root}/tmp/#{pid}/#{safe_image_name(image_name)}" unless Rails.env.production?
-  image_path = "#{Rails.root}/tmp/#{pid}-#{safe_image_name(image_name)}" if Rails.env.production?
+  image_path = "./tmp/#{pid}/#{safe_image_name(image_name)}"# unless Rails.env.production?
+  # image_path = "#{Rails.root}/tmp/#{pid}-#{safe_image_name(image_name)}" if Rails.env.production?
   
   Net::HTTP.start(host) do |http|
     response = http.get(path)
