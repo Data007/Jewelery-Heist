@@ -7,7 +7,7 @@ def store_image(url, image_name)
   path       = "/#{url.split('/')[3..-1].join('/').gsub(/\?.*$/, '')}"
   pid        = Process.pid
   
-  unless Rails.env.production? && Dir.exists?()"#{Rails.root}/tmp/#{pid}")
+  unless Rails.env.production? && Dir.exists?("#{Rails.root}/tmp/#{pid}")
     system "mkdir #{Rails.root}/tmp/#{pid}"
   end
 
