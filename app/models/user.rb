@@ -12,6 +12,7 @@ class User
   field :is_active,    type: Boolean, default: false
   field :role,                        default: 'public'
   field :name
+  field :company
   field :designer,     type: Boolean, default: false
   field :custom_id
 
