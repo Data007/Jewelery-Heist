@@ -14,6 +14,11 @@ DragonHoard::Application.routes.draw do
         end
         
         resources :orders,  controller: 'users/orders' do
+          member do
+            get :refund
+            get :cancel
+          end
+
           resources :line_items, controller: 'users/orders/line_items' do
             member do
               delete :refund

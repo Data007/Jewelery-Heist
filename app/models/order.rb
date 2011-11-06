@@ -128,6 +128,10 @@ class Order
     return cost
   end
 
+  def refund_line_item(line_item_id)
+    line_items.find(line_item_id).update_attribute :refunded, true
+  end
+
   def add_line_item(new_line_item)
     line_items << ((new_line_item.class == LineItem) ? new_line_item : LineItem.new(new_line_item))
   end
@@ -189,6 +193,16 @@ class Order
     self.ticket.save
     
     self.update_attributes handed_off: true, purchased: true
+  end
+
+  def refund
+    self.line_items.each do |line_item|
+      line_item.refund
+    end
+    
+    self.ticket.current_stage = "restocked"
+    self.ticket.save
+    self.update_attributes refunded: true
   end
   
   ## Clerk stuff

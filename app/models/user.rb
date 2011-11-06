@@ -83,8 +83,8 @@ class User
     end
 
     def find_order(order_id)
-      where('orders.pretty_id' => order_id).
-      map {|user| user.orders.find(order_id)}.
+      where('orders.pretty_id' => order_id.to_i).
+      map {|user| user.orders.where(pretty_id: order_id)}.
       flatten.first
     end
 

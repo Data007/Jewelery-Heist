@@ -30,4 +30,20 @@ class LineItem
   def validate_price
     self.price = variation.price if price.blank?
   end
+
+  def refund
+    unless self.is_quick_item
+      variation = self.variation
+      variation.update_attribute :quantity, (variation.quantity + self.quantity)
+      
+      item = variation.parent_item
+      item.update_attribute :available, true
+      
+      line_id = self.id
+    else
+      line_id = self.quick_id
+    end
+    
+    self.update_attribute :refunded, true
+  end
 end

@@ -5,7 +5,7 @@
   - if @order.refunded
     %h2 REFUNDED
   - else
-    = raw button_for_url "refund order", refund_admin_order_path(@order), :class => "button", :id => "refund-order-button", :confirm => "Are you sure you want to REFUND this order?"
+    = raw button_for_url "refund order", refund_admin_order_path(@order), class: "button", id: "refund-order-button", confirm: "Are you sure you want to REFUND this order?"
     = raw button_for_url "cancel order", cancel_admin_order_path(@order), :class => "button", :id => "cancel-order-button", :confirm => "Are you sure you want to CANCEL this order?"
 
 - content_for :extra_js do

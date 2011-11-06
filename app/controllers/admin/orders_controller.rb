@@ -68,16 +68,16 @@ class Admin::OrdersController < AdminController
   end
   
   def refund
-    @order = Order.find(params[:id])
+    @order = User.find_order(params[:id])
     customer = @order.user
     payments = @order.paid
     if @order.refund
-      flash[:notice] = "Order #{params[:id]} has been refunded."
+      flash[:notice] = "Order #{@order.pretty_id} has been refunded."
       flash[:important] = "There is a balance of $#{payments} owed to #{customer.name}."
     else
       flash[:error] = "There was an error refunding this order. Please try again."
     end
-    redirect_to admin_order_path(params[:id])
+    redirect_to admin_user_order_path(@order.user.pretty_id, @order.pretty_id)
   end
   
   def show
