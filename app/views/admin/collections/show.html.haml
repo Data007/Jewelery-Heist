@@ -2,7 +2,8 @@
   %h1 Viewing the #{@collection.name} collection
 
 - content_for :page_actions do
-  = raw button_for_url("edit", edit_admin_collection_path(@collection), :class => "button")
+  .button.dangerous= link_to 'remove', [:admin, @collection], confirm: "Are you sure you want to remove #{@collection.name}?", method: :delete
+  .button= link_to 'edit',   [:edit, :admin, @collection]
 
 - content_for :page_content do
   .description= markdown @collection.description

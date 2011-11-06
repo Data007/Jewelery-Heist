@@ -1,7 +1,7 @@
 - content_for :page_title do
   %h1
     Editing
-    = "#{@item.name} (##{@item.custom_id})"
+    = "#{@item.name} (##{@item.pretty_id})"
   
 - content_for :page_content do
   - form_for :item, @item, :url => admin_item_path(@item), :html => { :method => :put, :multipart => true } do |item|

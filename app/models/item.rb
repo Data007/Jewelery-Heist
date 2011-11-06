@@ -9,8 +9,8 @@ class Item
   field :one_of_a_kind, type: Boolean, default: false
   field :customizable,  type: Boolean, default: false
   field :available,     type: Boolean, default: true
-  field :published,     type: Boolean, default: true
-  field :discontinued,  type: Boolean, default: true
+  field :published,     type: Boolean, default: false
+  field :discontinued,  type: Boolean, default: false
   field :cost,          type: Float
   field :designer_id
   field :size_range
@@ -27,6 +27,14 @@ class Item
   has_and_belongs_to_many :collections
 
   validates :name, presence: true
+
+  after_save :create_variation
+
+  def create_variation
+    return true if variations.present?
+    variations.create
+    save
+  end
 
   CATEGORIES = [
     ['Ring', 'ring'],

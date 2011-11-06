@@ -98,7 +98,7 @@ DragonHoard::Application.routes.draw do
       end
       
       resources :collections
-      
+
       resources :items do
         collection do
           get :current

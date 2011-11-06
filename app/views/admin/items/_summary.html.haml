@@ -2,19 +2,20 @@
 
 .item.container
   .item_actions
-    #{link_to "Edit", [:edit, :admin, item]} | #{link_to "ID#{item.custom_id}", [:admin, item]}
+    #{link_to "Edit", edit_admin_item_path(item.pretty_id)} | #{link_to "ID#{item.custom_id}", admin_item_path(item.pretty_id)}
     %span (#{pluralize(item.variations.length, "variation")})
   .item_header
-    .name= link_to (item.name ? item.name : "this item needs a name"), [:admin, item]
+    .name= link_to (item.name ? item.name : "this item needs a name"), admin_item_path(item.pretty_id)
+
   .item_body.content
     - if item.variations.length > 0
       - asset = item.variations.first.assets.first
       - if asset
-        = link_to(image_tag(asset.image.url(:manage)), admin_item_path(item))
+        = link_to(image_tag(asset.image.url(:manage)), admin_item_path(item.pretty_id))
       - else
-        = link_to(image_tag("/images/ui/no_image.jpg"), admin_item_path(item))
+        = link_to(image_tag("/images/ui/no_image.jpg"), admin_item_path(item.pretty_id))
     - else
-      = link_to(image_tag("/images/ui/no_image.jpg"), admin_item_path(item))
+      = link_to(image_tag("/images/ui/no_image.jpg"), admin_item_path(item.pretty_id))
     .statuses
       - if item.published
         .published= link_to "On the Web", published_admin_items_path

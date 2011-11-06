@@ -6,10 +6,10 @@
 
 = content_for :page_actions do
   - if !@item.ghost
-    .button.dangerous= link_to 'remove', [:remove, :admin, @item]
+    .button.dangerous= link_to 'remove', remove_admin_item_path(@item.pretty_id)
   - else
-    .button.dangerous= link_to 'restore', [:restore, :admin, @item]
-  = raw button_for_url('edit', edit_admin_item_path(@item), class: "button")
+    .button.dangerous= link_to 'restore', restore_admin_item_path(@item.pretty_id)
+  .button= link_to 'edit', edit_admin_item_path(@item.pretty_id)
 
 - content_for :extra_js do
   = javascript_include_tag 'website/items/show'
@@ -17,7 +17,7 @@
     
 - content_for :page_content do
   #item_view
-    - unless current_variation.item.available
+    - unless current_variation.parent_item.available
       .sold
         %h1 Sold
     .images#main_view
@@ -40,7 +40,7 @@
           - @item.variations.each do |variation|
             - if variation.assets.length > 0
               .variation{:id => "variation_#{variation.id}"}
-                = link_to image_tag(variation.assets.first.image.url(:medium)), admin_item_path(id: @item, variation_id: variation.id)
+                = link_to image_tag(variation.assets.first.image.url(:medium)), admin_item_path(@item.pretty_id, variation.pretty_id)
     .details
       .meta
         %h2 Item Details
@@ -53,7 +53,7 @@
               = select 'item','sizes', @item.sizes.collect {|size| [size,size]}, selected: @item.sizes[@item.sizes.length / 2]
             - if @order
               .row
-                %span= link_to 'Add to Cart', new_admin_user_order_line_item_path(user_id: @user, order_id: @order, variation_id: current_variation), class: 'add_to_cart input'
+                %span= link_to 'Add to Cart', new_admin_user_order_line_item_path(@user.pretty_id, @order.pretty_id, current_variation.pretty_id), class: 'add_to_cart input'
         .metals.row
           %span.label Metals
           = raw current_variation.metals.inject('') {|metals, metal| metals += "<span class='metal tag'>#{metal.downcase}</span>"}

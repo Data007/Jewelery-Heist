@@ -1,6 +1,10 @@
 class Admin::ItemsController < AdminController
 
-  before_filter :find_item, :except => [:index, :published]
+  before_filter :find_item, :except => [:index, :published, :new]
+
+  def new
+    @item = Item.create name: 'A new name'
+  end
   
   def show
   end
@@ -11,7 +15,7 @@ class Admin::ItemsController < AdminController
   def update
     if @item.update_attributes(params[:item])
       flash[:notice] = 'The item has been saved'
-      redirect_to [:admin, @item]
+      redirect_to [:edit, :admin, @item]
     else
       flash[:error] = "We couldn't save the item"
       render 'admin/items/edit'
@@ -26,6 +30,11 @@ class Admin::ItemsController < AdminController
   def remove
     @item.update_attribute :ghost, true
     redirect_to [:admin, @item]
+  end
+
+  def cancel
+    @item.destroy
+    redirect_to [:admin, :items]
   end
 
   def restore
@@ -58,7 +67,7 @@ class Admin::ItemsController < AdminController
   end
 
   def ooak
-    @items = Item.oak.paginate(pagination_hash)
+    @items = Item.ooak.paginate(pagination_hash)
     render template: 'admin/items/index'
   end
 
