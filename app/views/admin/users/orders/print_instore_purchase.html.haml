@@ -11,20 +11,20 @@
           Purchase Date:
           %span #{(@order.purchased_at.present? ? @order.purchased_at : @order.created_at).in_time_zone('Eastern Time (US & Canada)').strftime("%a, %b %d, %Y")}
     
-    = render :partial => "admin/orders/receipts/customer"
+    = render :partial => "admin/users/orders/receipts/customer"
     
     - if @order.ship
       %p
         %strong Shipping Via #{@order.shipping_option} <br />
     
-    = render :partial => "admin/orders/receipts/taxable_line_items"
-    = render :partial => "admin/orders/receipts/nontaxable_line_items"
-    = render :partial => "admin/orders/receipts/totals"
+    = render :partial => "admin/users/orders/receipts/taxable_line_items"
+    = render :partial => "admin/users/orders/receipts/nontaxable_line_items"
+    = render :partial => "admin/users/orders/receipts/totals"
     
-    = render :partial => "admin/orders/receipts/payments"
+    = render :partial => "admin/users/orders/receipts/payments"
       
   .right-column
-    = render :partial => "admin/orders/receipts/address"
+    = render :partial => "admin/users/orders/receipts/address"
     %p.disclaimer
       %strong DISCLAIMER:
       This receipt must be presented for any of the following:
