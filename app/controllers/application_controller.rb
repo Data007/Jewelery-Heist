@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   before_filter :current_user
-  before_filter :current_order, :clean_up_order
+  before_filter :current_order
+  before_filter :clean_up_order
 
 private
 
@@ -20,7 +21,7 @@ private
   end
 
   def clean_up_order
-    current_order.validate_line_items
+    @current_order.validate_line_items if @current_order.present?
   end
 
   def force_login
