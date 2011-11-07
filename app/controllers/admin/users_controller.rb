@@ -36,7 +36,6 @@ class Admin::UsersController < AdminController
 
   def update
     find_user
-    debugger
     if @user.update_attributes(params[:user])
       flash[:notice] = "#{@user.name} has been saved."
       redirect_to admin_user_path(@user.pretty_id)

@@ -2,7 +2,7 @@
   %h1 Viewing #{@user.name}
   
 - content_for :page_actions do
-  = raw button_for_url "edit", edit_admin_user_path(@user), :class => "button"
+  .button= link_to "edit", edit_admin_user_path(@user.pretty_id)
   
 - content_for :page_content do
   .2-column.container
