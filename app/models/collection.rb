@@ -1,6 +1,7 @@
 class Collection
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Sequence
 
   field :name
   field :description
