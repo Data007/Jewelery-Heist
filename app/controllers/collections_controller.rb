@@ -4,7 +4,7 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    @collection = Collection.find(params[:id])
+    @collection = Collection.where(pretty_id: params[:id].split('-').first).first
   end
 
 end
