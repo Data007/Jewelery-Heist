@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   before_filter :current_user
-  before_filter :current_order
+  before_filter :current_order, :clean_up_order
 
 private
 
@@ -17,6 +17,10 @@ private
       @current_user ||= User.find(session[:user_id])
       return @current_user
     rescue; end
+  end
+
+  def clean_up_order
+    current_order.validate_line_items
   end
 
   def force_login

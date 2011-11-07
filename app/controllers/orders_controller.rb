@@ -185,9 +185,7 @@ class OrdersController < ApplicationController
     end
     
     def verify_line_items_are_available
-      current_order.line_items.each do |line_item|
-        line_item.destroy if !line_item.variation.parent_item.available
-      end
+      current_order.validate_line_items
       return true
     end
 end
