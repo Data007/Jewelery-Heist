@@ -36,9 +36,10 @@ class Admin::UsersController < AdminController
 
   def update
     find_user
+    debugger
     if @user.update_attributes(params[:user])
       flash[:notice] = "#{@user.name} has been saved."
-      respond_with [:admin, @user]
+      redirect_to admin_user_path(@user.pretty_id)
     else
       flash[:error] = 'There were an error saving your user. Please try again.'
       render template: 'admin/users/new'
