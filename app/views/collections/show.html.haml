@@ -1,5 +1,5 @@
 .collection
-  %h2.name= link_to "The #{@collection.name} Collection", collection_path(@collection)
+  %h2.name= link_to "The #{@collection.name} Collection", collection_path(@collection.pretty_id)
   .description
     :markdown
       #{@collection.description}

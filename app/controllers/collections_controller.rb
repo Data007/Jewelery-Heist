@@ -4,9 +4,11 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    id = params[:id].split('-').first
-    @collection = Collection.where(pretty_id: id)
-    @colelction = @collection.present? ? @collection.first : Collection.where(pretty_id: id).first
+    if params[:id].match('-').present?
+      @collection = Collection.where(custom_id: params[:id].split('-').first.to_i).first
+    else
+      @collection = Collection.where(pretty_id: params[:id]).first
+    end
   end
 
 end
