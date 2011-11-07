@@ -61,9 +61,9 @@ class Admin::Users::OrdersController < Admin::UsersController
   
   def update
     params[:order].delete("shipping_option") unless params[:order][:ship]
-    @order = Order.find(params[:id])
+    @order = User.find_order(params[:id])
     @order.update_attributes params[:order]
-    redirect_to admin_order_path(@order)
+    redirect_to admin_user_order_path(@user.pretty_id, @order.pretty_id)
   end
   
   def refund
@@ -154,7 +154,8 @@ class Admin::Users::OrdersController < Admin::UsersController
     end
 
     def find_order
-      @order = User.find_order(params[:id])
+      id = params[:order_id].present? ? params[:order_id] : params[:id]
+      @order = User.find_order(id)
     end
 end
 

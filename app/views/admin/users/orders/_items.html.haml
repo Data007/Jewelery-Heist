@@ -5,7 +5,7 @@
       %thead
         %tr
           %td{:colspan => 8} &nbsp;
-          %td= raw button_for_url "add a quick line item", admin_order_line_items_path(@order), :method => :post, :class => "primary action button", :id => "add_a_quick_line_item"
+          %td.primary.action.button#add_a_quick_line_item= link_to "add a quick line item", admin_user_order_line_items_path(@user.pretty_id, @order.pretty_id), method: :post
         %tr
           %th &nbsp;
           %th Id
@@ -46,7 +46,7 @@
   #quick_line_item_form.window
     %h1 Add a Quick Line Item
     %hr
-    = form_for LineItem.new(quick_id: "n/a", quantity: 1, size: "0", taxable: true), url: admin_user_order_line_items_path(@user, @order), method: :post do |line_item_form|
+    = form_for LineItem.new(quick_id: "n/a", quantity: 1, size: "0", taxable: true), url: admin_user_order_line_items_path(@user.pretty_id, @order.pretty_id), method: :post do |line_item_form|
       = line_item_form.hidden_field :is_quick_item, value: true
       .field.required
         = line_item_form.label :quick_id, "Id"
