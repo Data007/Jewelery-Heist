@@ -86,11 +86,11 @@ class Admin::Users::OrdersController < Admin::UsersController
     
 #    current_customer_order.update_attributes :clerk => @current_user unless current_customer_order.clerk_id != nil
     
-    render :template => "admin/orders/show_#{@order.location}_#{@order.staging_type}"
+    render :template => "admin/users/orders/show_#{@order.location}_#{@order.staging_type}"
   end
   
   def print
-    template = "admin/orders/print_#{@order.location}_#{@order.staging_type}"
+    template = "admin/users/orders/print_#{@order.location}_#{@order.staging_type}"
     render :template => template, :layout => "print"
   end
   

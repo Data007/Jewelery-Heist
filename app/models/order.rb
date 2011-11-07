@@ -112,7 +112,8 @@ class Order
   end
 
   def shipping_options
-    options = shipping_by_country(address.country).collect do |shipping_option|
+    shipping_country = address ? address.country : 'US'
+    options = shipping_by_country(shipping_country).collect do |shipping_option|
   	  ["#{shipping_option[0]} #{subtotal >= shipping_option[2] ? "Free Upgrade" : '$' + shipping_option[1].to_s + '.00'}", shipping_option[0]]
 	  end
 	  return options

@@ -17,6 +17,7 @@ DragonHoard::Application.routes.draw do
           member do
             get :refund
             get :cancel
+            get :print
           end
 
           resources :line_items, controller: 'users/orders/line_items' do
@@ -30,6 +31,8 @@ DragonHoard::Application.routes.draw do
               delete :refund
             end
           end
+          
+          resources :tickets, controller: 'users/orders/tickets'
         end
 
         resources :tickets, controller: 'tickets'

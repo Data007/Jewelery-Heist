@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   before_filter :force_add_email,                 except: [:show, :clear, :update_attributes]
   before_filter :"has_shipping_address?",         only:   [:checkout, :pay, :complete]
   before_filter :carry_over_order_notes,          only:   [:checkout, :pay, :complete]
-  before_filter :verify_line_items_are_available, except: [:clear]
   
   def show
     @order = current_order
@@ -184,8 +183,4 @@ class OrdersController < ApplicationController
       order.hand_off
     end
     
-    def verify_line_items_are_available
-      current_order.validate_line_items
-      return true
-    end
 end
