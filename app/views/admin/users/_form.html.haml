@@ -1,4 +1,4 @@
-= form_for [:admin, @user] do |f|
+= form_for @user, url: admin_user_path(@user.pretty_id) do |f|
   %fieldset
     .form
       = f.hidden_field :id
