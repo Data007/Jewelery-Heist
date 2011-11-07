@@ -11,7 +11,7 @@
   #{@order.city}, #{@order.province} #{@order.postal_code} #{@order.country}
   - @order.user.phones.each do |phone|
     %br
-    = phone.number
+    = phone
   - @order.user.emails.each do |email|
     %br
     = email

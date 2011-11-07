@@ -1,7 +1,7 @@
 .page
   .left-column
     %h1 #{@order.location.capitalize} #{@order.staging_type.capitalize}
-    %h2 ORDER # #{@order.pretty_id} / TICKET # #{@order.ticket.id}
+    %h2 ORDER # #{@order.pretty_id} / TICKET # #{@order.ticket.pretty_id}
     
     %p ____________________________________________________
     
@@ -62,9 +62,9 @@
     - if @order.based_on_item_ids.present?
       %strong Based on Item ID(s):
       #{@order.based_on_item_ids} <br />
-    / - if @order.molds.present?
-    /   %strong Mold Numbers:
-    /   #{@order.molds} <br />
+    - if @order.molds.present?
+      %strong Mold Numbers:
+      #{@order.molds} <br />
     - if @order.metals.present?
       %strong Metals:
       #{@order.metals} <br />

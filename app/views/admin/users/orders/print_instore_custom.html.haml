@@ -1,7 +1,7 @@
 .page
   .left-column
     %h1 #{@order.location.capitalize} #{@order.staging_type.capitalize}
-    %h2 ORDER # #{@order.pretty_id} / TICKET # #{@order.ticket.id}
+    %h2 ORDER # #{@order.pretty_id} / TICKET # #{@order.ticket.pretty_id}
     
     %p ____________________________________________________
     
@@ -75,6 +75,6 @@
       %strong Stones:
       #{@order.stones}
     
-    - if @order.images.present?
-      - @order.images.each do |image|
-        = image_tag image.url(:thumbnail)
+    / - if @order.images.present?
+    /   - @order.images.each do |image|
+    /     = image_tag image.url(:thumbnail)

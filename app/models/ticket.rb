@@ -6,6 +6,7 @@ end
 class Ticket
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Sequence
   include TicketErrors
 
   field :notes
@@ -16,6 +17,9 @@ class Ticket
   field :closed_note
   field :current_stage_notes
   field :due_at,             type: DateTime
+
+  field :pretty_id,    type: Integer
+  sequence :pretty_id  
 
   embedded_in :order
   

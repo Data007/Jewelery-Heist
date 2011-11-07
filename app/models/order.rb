@@ -10,11 +10,14 @@ class Order
   field :show_wax,          type: Boolean, default: false
   field :custom_id,         type: Integer
   field :clerk_id,          type: Integer
-  field :based_on_item_ids, type: Array
+  field :purchased_at,      type: DateTime
+  field :due_at
   field :shipping_option
   field :notes
   field :repair_notes
   field :item_notes
+  field :based_on_item_ids
+  field :molds
   field :metals
   field :stones
   field :location,                      default: 'instore'
@@ -61,6 +64,10 @@ class Order
 
   def due_dates
     return DUEDATES.collect {|date| [date, date]}
+  end
+
+  def due_date
+    return self.due_at == "same day" ? self.created_at : self.created_at.advance(:weeks => self.due_at.split(" ")[0].to_i)
   end
 
   def has_valid_shipping_address?

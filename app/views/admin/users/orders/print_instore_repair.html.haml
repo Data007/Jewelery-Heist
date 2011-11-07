@@ -1,7 +1,7 @@
 .page
   .left-column
     %h1 #{@order.location.capitalize} #{@order.staging_type.capitalize}
-    %h2 ORDER # #{@order.id} / TICKET # #{@order.ticket.id}
+    %h2 ORDER # #{@order.pretty_id} / TICKET # #{@order.ticket.pretty_id}
     
     %p ____________________________________________________
     
@@ -13,20 +13,20 @@
           \/ Due Date:
           %span #{@order.due_date.in_time_zone('Eastern Time (US & Canada)').strftime("%a, %b %d, %Y")}
     
-    = render :partial => "admin/orders/receipts/customer"
+    = render :partial => "admin/users/orders/receipts/customer"
     
     - if @order.ship
       %p
         %strong Shipping Via #{@order.shipping_option} <br />
     
-    = render :partial => "admin/orders/receipts/taxable_line_items"
-    = render :partial => "admin/orders/receipts/nontaxable_line_items"
-    = render :partial => "admin/orders/receipts/totals"
+    = render :partial => "admin/users/orders/receipts/taxable_line_items"
+    = render :partial => "admin/users/orders/receipts/nontaxable_line_items"
+    = render :partial => "admin/users/orders/receipts/totals"
     
-    = render :partial => "admin/orders/receipts/payments"
+    = render :partial => "admin/users/orders/receipts/payments"
       
   .right-column
-    = render :partial => "admin/orders/receipts/address"
+    = render :partial => "admin/users/orders/receipts/address"
     %p.disclaimer
       %strong DISCLAIMER:
       Wexford Jewelers is not responsible for defects & poor manufacturing of items not purchased from us: Therefore, any incidents during the repair & cleaning process (such as stone loosening, structural weakening, etc,...) as a result of the above, will need further repair recommendations and will be billed with your permission. Wexford Jewelers is not responsible for normal wear & tear on items and will recommend appropriate maintenance. After 10 documented attempts for contact and one documented certified letter, goods left over 60 days will be liquidated.
@@ -75,6 +75,6 @@
       %strong Stones:
       #{@order.stones}
     
-    - if @order.images.present?
-      - @order.images.each do |image|
-        = image_tag image.url(:thumbnail)
+    / - if @order.images.present?
+    /   - @order.images.each do |image|
+    /     = image_tag image.url(:thumbnail)
