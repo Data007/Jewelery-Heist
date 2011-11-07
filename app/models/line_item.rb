@@ -21,6 +21,9 @@ class LineItem
   embeds_one  :variation
   embedded_in :order
 
+  scope :taxable,    where(taxable: true)
+  scope :nontaxable, where(taxable: false)
+
   before_save :validate_price
 
   def total

@@ -3,14 +3,20 @@ class Order
   include Mongoid::Timestamps
   include Mongoid::Sequence
 
-  field :refunded,       type: Boolean, default: false
-  field :ship,           type: Boolean, default: false
-  field :purchased,      type: Boolean, default: false
-  field :handed_off,     type: Boolean, default: false
-  field :custom_id,      type: Integer
-  field :clerk_id,       type: Integer
+  field :refunded,          type: Boolean, default: false
+  field :ship,              type: Boolean, default: false
+  field :purchased,         type: Boolean, default: false
+  field :handed_off,        type: Boolean, default: false
+  field :show_wax,          type: Boolean, default: false
+  field :custom_id,         type: Integer
+  field :clerk_id,          type: Integer
+  field :based_on_item_ids, type: Array
   field :shipping_option
   field :notes
+  field :repair_notes
+  field :item_notes
+  field :metals
+  field :stones
   field :location,                      default: 'instore'
   field :staging_type,                  default: 'purchase'
 
@@ -214,11 +220,11 @@ class Order
   
   ## Clerk stuff
   def clerk
-    User.find(clerk_id)
+    User.where(pretty_id: clerk_id)
   end
 
   def clerk=(user)
-    clerk_id = user.id
+    clerk_id = user.pretty_id
   end
   ##
 

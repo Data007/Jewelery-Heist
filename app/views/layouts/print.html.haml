@@ -3,7 +3,7 @@
   %head
     %title Wexford Jewelers | Receipt | #{Time.now.strftime("%A at %l:%M %p %Z on %B %d, %Y")}
     
-    = stylesheet_link_tag "compiled/receipt", :media => "screen, print"
+    = stylesheet_link_tag "receipt", :media => "screen, print"
     = yield :extra_css
     
     = javascript_include_tag "jquery"
