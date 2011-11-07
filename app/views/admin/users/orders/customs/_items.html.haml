@@ -16,7 +16,7 @@
         %th &nbsp;
         %th Total
     %tbody
-      - @order.line_items.the_living.each_with_index do |line_item, i|
+      - @order.line_items.each_with_index do |line_item, i|
   
         - if line_item.is_quick_item
           = render :partial => "admin/users/orders/quick_line_item", :locals => {:line_item => line_item}
