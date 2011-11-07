@@ -1,0 +1,17 @@
+%p
+  %strong
+    %span{:style => "font-size: 1.3em"}
+      = @order.user.name
+  %br
+  = @order.address_1
+  %br
+  - if @order.address_2.present?
+    = @order.address_2
+    %br
+  #{@order.city}, #{@order.province} #{@order.postal_code} #{@order.country}
+  - @order.user.phones.each do |phone|
+    %br
+    = phone.number
+  - @order.user.emails.each do |email|
+    %br
+    = email.address
