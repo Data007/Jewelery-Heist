@@ -18,10 +18,12 @@ class Admin::Users::OrdersController < Admin::UsersController
       due_at = "6 weeks"
     end
     
-    session_order = Order.create(:location => location, :staging_type => staging_type, :handed_off => false, :clerk_id => @current_user.id, :due_at => due_at)
-    session[:customer_order_id] = session_order.id
+    @order = @user.orders.create(:location => location, :staging_type => staging_type, :handed_off => false, :clerk_id => @current_user.id, :due_at => due_at)
+    session[:admin_order_id] = @order.id
+
+    redirect_to admin_user_order_path(@user.pretty_id, @order.pretty_id)
     
-    current_customer_order.ticket.current_stage = "customer lookup"
+    #current_customer_order.ticket.current_stage = "customer lookup"
   end
   
   def force_lookup
@@ -54,9 +56,6 @@ class Admin::Users::OrdersController < Admin::UsersController
     current_customer_order.delete
     session[:customer_order_id] = nil
     redirect_to admin_root_path
-  end
-  
-  def create
   end
   
   def update

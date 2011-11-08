@@ -32,11 +32,11 @@
   %h2 New Orders
 
   .quick_links
-    = link_to "In Store Purchase", new_admin_user_order_path(@user), class: "button"
-    = link_to "In Store Repair", new_admin_user_order_path(@user, staging_type: "repair"), class: "button"
-    = link_to "In Store Custom", new_admin_user_order_path(@user, staging_type: "custom"), class: "button"
-    = link_to "Website, Etsy, or Phone Purchase", new_admin_user_order_path(@user, location: "website", staging_type: "purchase"), class: "button"
-    = link_to "Website, Etsy, or Phone Custom", new_admin_user_order_path(@user, location: "website", staging_type: "custom"), class: "button"
+    = link_to "In Store Purchase", new_admin_user_order_path(@user.pretty_id), class: "button"
+    = link_to "In Store Repair", new_admin_user_order_path(@user.pretty_id, staging_type: "repair"), class: "button"
+    = link_to "In Store Custom", new_admin_user_order_path(@user.pretty_id, staging_type: "custom"), class: "button"
+    = link_to "Website, Etsy, or Phone Purchase", new_admin_user_order_path(@user.pretty_id, location: "website", staging_type: "purchase"), class: "button"
+    = link_to "Website, Etsy, or Phone Custom", new_admin_user_order_path(@user.pretty_id, location: "website", staging_type: "custom"), class: "button"
   
   %hr
   
