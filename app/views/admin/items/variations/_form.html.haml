@@ -4,12 +4,12 @@
   = javascript_include_tag "variations"
   = javascript_include_tag "colors"
 
-= form_for [:admin, @item, @variation] do |form|
-  .variation{:'data-item-id' => @item.id}
+= form_for @variation, url: admin_item_variation_path(@item.pretty_id, @variation.pretty_id), method: :put do |form|
+  .variation{:'data-item-id' => @item.pretty_id}
     .form
       %strong Item Description
       #description= @item.description
-      = form.hidden_field :id, :class => "variation_id"
+      /= form.hidden_field :id, :class => "variation_id"
       %hr
       .field
         = form.label :description, "Variation Description"

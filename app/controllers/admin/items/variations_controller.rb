@@ -16,7 +16,7 @@ class Admin::Items::VariationsController < Admin::ItemsController
 
     if @variation.save
       flash[:notice] = 'The variation has been updated'
-      redirect_to [:edit, :admin, @item]
+      redirect_to edit_admin_item_path(@item.pretty_id)
     else
       flash[:error] = 'We could not update the variation'
       render action: :edit
@@ -27,7 +27,7 @@ private
 
   def find_variation
     variation_id = params[:variation_id] || params[:id]
-    @variation   = @item.variations.find(variation_id)
+    @variation   = @item.variations.where(pretty_id: variation_id).first
   end
 
 end
