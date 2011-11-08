@@ -1,5 +1,4 @@
-/* line 1, ../../../app/stylesheets/containers.sass */
-/* line 2, ../../app/stylesheets/containers.scss */
+/* line 1, ../../app/stylesheets/containers.scss */
 .container {
   position: relative;
   display: block;
@@ -11,14 +10,12 @@
   margin: 10px;
 }
 
-/* line 9, ../../../app/stylesheets/containers.sass */
-/* line 13, ../../app/stylesheets/containers.scss */
+/* line 12, ../../app/stylesheets/containers.scss */
 .container .title {
   padding: 5px;
 }
 
-/* line 11, ../../../app/stylesheets/containers.sass */
-/* line 17, ../../app/stylesheets/containers.scss */
+/* line 16, ../../app/stylesheets/containers.scss */
 .container .content {
   position: relative;
   overflow: hidden;
@@ -28,8 +25,7 @@
   max-width: 340px;
 }
 
-/* line 18, ../../../app/stylesheets/containers.sass */
-/* line 26, ../../app/stylesheets/containers.scss */
+/* line 25, ../../app/stylesheets/containers.scss */
 .container .content .collage_4 img {
   position: relative;
   max-width: 170px;

@@ -8,14 +8,8 @@
   .2-column.container
     %h2 Contact Information
     
-    %p
-      %strong Addresses
-      - @user.addresses.each do |address|
-        %br
-        #{address.address_1}, 
-        - if address.address_2.present?
-          #{address.address_2},
-        #{address.city}, #{address.province} #{address.postal_code}
+    = render partial: 'admin/users/addresses'
+
     %p  
       %strong Phone Numbers
       - @user.phones.each do |phone|

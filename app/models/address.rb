@@ -11,4 +11,11 @@ class Address
 
   embedded_in :user
   embedded_in :order
+
+  def to_single_line
+    address  = "#{address_1}, "
+    address += "#{address_2}, " if address_2.present?
+    address += "#{city}, #{province} #{postal_code}"
+    return address
+  end
 end

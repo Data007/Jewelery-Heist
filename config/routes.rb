@@ -12,6 +12,8 @@ DragonHoard::Application.routes.draw do
           get  :forgot
           get  :search
         end
+
+        resources :addresses, controller: 'users/addresses'
         
         resources :orders,  controller: 'users/orders' do
           member do
