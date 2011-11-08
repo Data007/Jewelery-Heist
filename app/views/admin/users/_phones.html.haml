@@ -1,0 +1,42 @@
+%p.phones
+  %strong Phones
+  - @user.phones.each_with_index do |phone, index|
+    .phone{id: phone}
+      = phone
+      %span.remove= link_to 'delete', admin_user_phone_path(@user.pretty_id, index), method: :delete, confirm: 'Are you sure you want to delete this phone number?'
+  %hr
+  #add_phone= link_to 'new phone number', new_admin_user_phone_path(@user.pretty_id)
+
+#add_phone_module.module
+  #phone_form.window
+    %h1 Add a New Phone Number
+    = form_tag admin_user_phones_path(@user.pretty_id) do
+      .field.required
+        = label_tag      :phone, 'Phone Number'
+        = text_field_tag :phone
+      .field
+        #cancel_phone.acts_as_button cancel
+        = submit_tag "add new number", class: "submit button"
+
+:javascript
+  function setup_add_phone() {
+    $("#add_phone_module").hide();
+    $("#add_phone a:first")
+      .click(function(){
+        $("#add_phone_module").show();
+        return false;
+      });
+    $("#cancel_phone")
+      .click(function(){
+        $("#add_phone_module").hide();
+        return false;
+      });
+    $("#phone_form form:first")
+      .submit(function(){
+        
+      });
+  }
+  
+  $(document).ready(function(){
+    setup_add_phone();
+  });

@@ -14,6 +14,8 @@ DragonHoard::Application.routes.draw do
         end
 
         resources :addresses, controller: 'users/addresses'
+        resources :phones,    controller: 'users/phones'
+        resources :emails,    controller: 'users/emails'
         
         resources :orders,  controller: 'users/orders' do
           member do

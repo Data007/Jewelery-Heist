@@ -5,23 +5,14 @@
   .button= link_to "edit", edit_admin_user_path(@user.pretty_id)
   
 - content_for :page_content do
-  .2-column.container
+  .2-column.container{style: 'height: 375px'}
     %h2 Contact Information
     
     = render partial: 'admin/users/addresses'
-
-    %p  
-      %strong Phone Numbers
-      - @user.phones.each do |phone|
-        %br
-        = phone
-    %p 
-      %strong Email Addresses
-      - @user.emails.each do |email|
-        %br
-        = email
+    = render partial: 'admin/users/phones'
+    = render partial: 'admin/users/emails'
         
-  .2-column.container
+  .2-column.container{style: 'height: 375px'}
     %h2 Balances
     
     %table
