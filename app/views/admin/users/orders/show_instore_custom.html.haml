@@ -6,7 +6,7 @@
     %h2 REFUNDED
   - else
     .button= link_to "refund order", refund_admin_user_order_path(@user.pretty_id, @order.pretty_id), :id => "refund-order-button", :confirm => "Are you sure you want to REFUND this order?"
-    .button= link_to "cancel order", cancel_admin_order_path(@order), :id => "cancel-order-button", :confirm => "Are you sure you want to CANCEL this order?"
+    .button= link_to "cancel order", cancel_admin_user_order_path(@user.pretty_id, @order.pretty_id), :id => "cancel-order-button", :confirm => "Are you sure you want to CANCEL this order?"
 
 - content_for :extra_js do
   = render :partial => "admin/users/orders/extra_javascript"

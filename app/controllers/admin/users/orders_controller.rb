@@ -1,6 +1,7 @@
 class Admin::Users::OrdersController < Admin::UsersController
   before_filter :find_user
-  before_filter :find_order, :only => [:show, :force_lookup, :refund, :address, :update, :print]
+  before_filter :find_order, except: [:new, :index]
+  # before_filter :find_order, :only => [:show, :force_lookup, :refund, :address, :update, :print]
   # before_filter :lookup_phone, :only => [:lookup]
   # after_filter :clear_lookup_phone, :only => [:address, :cancel]
   def index
@@ -29,8 +30,6 @@ class Admin::Users::OrdersController < Admin::UsersController
     session[:admin_order_id] = @order.id
 
     redirect_to admin_user_order_path(@user.pretty_id, @order.pretty_id)
-    
-    #current_customer_order.ticket.current_stage = "customer lookup"
   end
   
   def force_lookup
@@ -59,10 +58,9 @@ class Admin::Users::OrdersController < Admin::UsersController
   end
   
   def cancel
-    current_customer_order.clear
-    current_customer_order.delete
-    session[:customer_order_id] = nil
-    redirect_to admin_root_path
+    @order.delete
+    session[:admin_order_id] = nil
+    redirect_to admin_user_path(@user.pretty_id)
   end
   
   def update
