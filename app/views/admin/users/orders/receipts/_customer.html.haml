@@ -3,12 +3,13 @@
     %span{:style => "font-size: 1.3em"}
       = @order.user.name
   %br
-  = @order.address_1
-  %br
-  - if @order.address_2.present?
-    = @order.address_2
+  - if @order.address.present?
+    = @order.address.address_1
     %br
-  #{@order.city}, #{@order.province} #{@order.postal_code} #{@order.country}
+    - if @order.address.address_2.present?
+      = @order.address.address_2
+      %br
+    #{@order.address.city}, #{@order.address.province} #{@order.address.postal_code} #{@order.address.country}
   - @order.user.phones.each do |phone|
     %br
     = phone

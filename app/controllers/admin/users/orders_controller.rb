@@ -18,7 +18,14 @@ class Admin::Users::OrdersController < Admin::UsersController
       due_at = "6 weeks"
     end
     
-    @order = @user.orders.create(:location => location, :staging_type => staging_type, :handed_off => false, :clerk_id => @current_user.id, :due_at => due_at)
+    @order = @user.orders.create(
+      location:     location,
+      staging_type: staging_type,
+      handed_off:   false,
+      clerk_id:     @current_user.id,
+      due_at:       due_at
+    )
+
     session[:admin_order_id] = @order.id
 
     redirect_to admin_user_order_path(@user.pretty_id, @order.pretty_id)
