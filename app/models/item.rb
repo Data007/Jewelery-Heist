@@ -69,9 +69,9 @@ class Item
   class << self
   
     def find_variation(variation_id)
-      where('variations._id' => variation_id).
+      where('variations.pretty_id' => variation_id.to_i).
       map do|item| 
-        item.variations.find(variation_id)
+        item.variations.where(pretty_id: variation_id.to_i).first
       end.flatten.first
     end
 

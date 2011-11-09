@@ -14,13 +14,13 @@ class ItemsController < ApplicationController
   
   def show
     begin
-      @item = Item.find(params[:id])
-      @current_variation = params[:variation_id] ? @item.variations.find(params[:variation_id]) : nil
+      @item = Item.where(pretty_id: params[:id]).first
+      @current_variation = params[:variation_id] ? @item.variations.where(pretty_id: params[:variation_id]).first : nil
     rescue
       begin
-        @item = Item.find(:first, :conditions => {:custom_id => params[:id]})
+        @item = Item.where(custom_id: params[:id]).first
         if @item && @item.variations
-          @current_variation = params[:variation_id] ? @item.variations.find(params[:variation_id]) : nil
+          @current_variation = params[:variation_id] ? @item.variations.where(pretty_id: params[:variation_id]).first : nil
         else
           render :template => "responses/404"
         end

@@ -1,7 +1,7 @@
 .form_wrapper
   %h1 Congratulations!
   
-  %p Your order number (#{@finished_order.id}) has processed. We thank you for your business, and trust that you will be delighted when your jewelry arrives. Should you encounter any issues, please <a href="mailto:info@wexfordjewelers.com?subject=Question on Order #{@finished_order.id}">contact us</a> for assistance.
+  %p Your order number (#{@finished_order.pretty_id}) has processed. We thank you for your business, and trust that you will be delighted when your jewelry arrives. Should you encounter any issues, please <a href="mailto:info@wexfordjewelers.com?subject=Question on Order #{@finished_order.pretty_id}">contact us</a> for assistance.
   
   %p Your order will ship as soon as humanly possible.
   
@@ -19,34 +19,34 @@
         - variation = line_item.variation
         - item = variation.parent_item
         %tr
-          %td.left #{item.id}-#{variation.id}
+          %td.left #{item.pretty_id}-#{variation.pretty_id}
           %td.left
-            = link_to image_tag(variation.assets.first.image.url(:tiny), :class => "thumbnail_32"), item_path(:id => item, :variation_id => variation.id)
-            = link_to item.name, item_path(:id => item, :variation_id => variation.id)
+            = link_to image_tag(variation.assets.first.image.url(:tiny), class: "thumbnail_32"), item_path(item.pretty_id, :variation_id => variation.pretty_id)
+            = link_to item.name, item_path(item.pretty_id, variation_id: variation.pretty_id)
           %td= line_item.size
           %td= number_to_currency line_item.price
           %td= line_item.quantity
           %td= number_to_currency line_item.total
           %td &nbsp;
       %tr
-        %td{:colspan => 4} &nbsp;
+        %td{colspan: 4} &nbsp;
         %th Subtotal
         %td= number_to_currency @finished_order.subtotal
         %td &nbsp;
       %tr
-        %td{:colspan => 4} &nbsp;
+        %td{colspan: 4} &nbsp;
         %th Shipping
         %td= number_to_currency @finished_order.shipping_cost
         %td.left= @finished_order.shipping_option
       %tr
-        %td{:colspan => 4} &nbsp;
+        %td{colspan: 4} &nbsp;
         %th Total
         %td
           %strong= number_to_currency @finished_order.total
         %td &nbsp;
       %tr
-        %td{:colspan => 5} &nbsp;
+        %td{colspan: 5} &nbsp;
         %td Order Notes
       %tr
-        %td{:colspan => 6}= @finished_order.notes
+        %td{colspan: 6}= @finished_order.notes
         %td &nbsp;

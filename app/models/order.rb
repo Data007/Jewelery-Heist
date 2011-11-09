@@ -238,10 +238,10 @@ class Order
   class << self
     
     def find_line_item(line_item_id)
-      User.where('orders.line_items._id' => line_item_id).
-      map    { |user     | user.orders                       }.flatten.
-      map    { |order    | order.line_items                  }.flatten.
-      select { |line_item| line_item.id.to_s == line_item_id }.flatten.
+      User.where('orders.line_items.pretty_id' => line_item_id.to_i).
+      map    { |user     | user.orders                              }.flatten.
+      map    { |order    | order.line_items                         }.flatten.
+      select { |line_item| line_item.pretty_id == line_item_id.to_i }.flatten.
       first
     end
 

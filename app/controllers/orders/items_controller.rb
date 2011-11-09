@@ -8,8 +8,9 @@ class Orders::ItemsController < ApplicationController
   end
   
   def create
-    variation = Item.find_variation(params[:id])
-    if variation.parent_item.available
+    variation = Item.find_variation(params[:variation_id])
+    item      = Item.where(pretty_id: params[:item_id]).first
+    if item.available
       line_item = current_order.line_items.create(
         variation: variation,
         price:     variation.price,
@@ -17,10 +18,10 @@ class Orders::ItemsController < ApplicationController
       )
 
       flash[:notice] = "Your item has been added"
-      redirect_to order_path(current_order.id)
+      redirect_to order_path(current_order.pretty_id)
     else
       flash[:notice] = "This item is no longer available"
-      redirect_to order_path(current_order.id)
+      redirect_to order_path(current_order.pretty_id)
     end
   end
   
@@ -30,7 +31,7 @@ class Orders::ItemsController < ApplicationController
   
   def destroy
     line_item.destroy
-    redirect_to order_path(current_order.id)
+    redirect_to order_path(current_order.pretty_id)
   end
   
   private

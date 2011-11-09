@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
         redirect_to checkout_path and return
       else
         flash[:notice] = "Your order has been updated"
-        redirect_to order_path(@order) and return
+        redirect_to order_path(@order.pretty_id) and return
       end
     else
       flash[:error] = "We could not update your order"
@@ -36,12 +36,12 @@ class OrdersController < ApplicationController
   
   def checkout
     @order = current_order
-    redirect_to order_path(current_order.id) unless @order.line_items.length > 0
+    redirect_to order_path(current_order.pretty_id) unless @order.line_items.length > 0
   end
   
   def shipping
     @order = current_order
-    redirect_to order_path(current_order.id) unless @order.line_items.length > 0
+    redirect_to order_path(current_order.pretty_id) unless @order.line_items.length > 0
   end
   
   def addressed
@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
       address = Address.from_hash address_hash
       @current_user.add_address(address)
       flash[:notice] = "Your shipping address has been added. Thank you."
-      redirect_to checkout_path(@updated_order.id)
+      redirect_to checkout_path(@updated_order.pretty_id)
     else
       flash[:error] = "There was an error in your address. Please look it over and try again."
       render :template => "orders/shipping"
@@ -144,7 +144,7 @@ class OrdersController < ApplicationController
   
   def clear
     current_order.line_items.each {|line_item| line_item.destroy}
-    redirect_to order_path(current_order.id)
+    redirect_to order_path(current_order.pretty_id)
   end
   
   private

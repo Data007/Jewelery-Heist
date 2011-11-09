@@ -1,10 +1,10 @@
 .form_wrapper
-  %h1 Order Payment (##{@order.id})
+  %h1 Order Payment (##{@order.pretty_id})
   
   %p The item(s) in your shopping cart is still available on the website until the payment has processed. If it is a One of a Kind item, it goes to the first buyer. If it is a stock item, it can always be backordered for you. Thank you for your understanding in this matter.
   
   - if @order.line_items.length > 0
-    - form_for :order, @order, :url => complete_path(@order.id), :method => :post do |order_form|
+    - form_for :order, @order, :url => complete_path(@order.pretty_id), :method => :post do |order_form|
     
       .help
         :textile
@@ -47,55 +47,55 @@
             %th Price
             %th Quantity
             %th Total
-            %td= link_to "remove all", clear_order_path(@order.id)
+            %td= link_to "remove all", clear_order_path(@order.pretty_id)
         %tbody
           - @order.line_items.each_with_index do |line_item, index|
             - variation = line_item.variation
             - item      = variation.parent_item
             %tr
-              %td.left #{item.id}-#{variation.id}
+              %td.left #{item.pretty_id}-#{variation.pretty_id}
               %td.left
-                = link_to image_tag(variation.assets.first.image.url(:tiny), :class => "thumbnail_32"), item_path(:id => item, :variation_id => variation.id)
-                = link_to item.name, item_path(:id => item, :variation_id => variation.id)
+                = link_to image_tag(variation.assets.first.image.url(:tiny), class: "thumbnail_32"), item_path(item.pretty_id, variation_id: variation.pretty_id)
+                = link_to item.name, item_path(item.pretty_id, :variation_id => variation.pretty_id)
               %td
-                %select{:name => "order[line_items][#{index}][size]", :id => "order[line_items][#{index}][size]".parameterize("_")}
+                %select{name: "order[line_items][#{index}][size]", id: "order[line_items][#{index}][size]".parameterize("_")}
                   - item.sizes.collect {|size| [size,size]}.each do |size|
                     - if size[0].to_f == line_item.size.to_f
-                      %option{:value => "#{size[0]}", :selected => "selected"}= size[1]
+                      %option{value: "#{size[0]}", selected: "selected"}= size[1]
                     - else
-                      %option{:value => "#{size[0]}"}= size[1]
+                      %option{value: "#{size[0]}"}= size[1]
               %td= number_to_currency line_item.price
               %td= line_item.quantity
               %td= number_to_currency line_item.total
-              %td= link_to "remove", order_item_path(:order_id => @order.id, :id => line_item.id), :method => :delete
+              %td= link_to "remove", order_item_path(@order.pretty_id, line_item.pretty_id), method: :delete
           %tr
-            %td{:colspan => 4} &nbsp;
+            %td{colspan: 4} &nbsp;
             %th Subtotal
             %td= number_to_currency @order.subtotal
             %td &nbsp;
           %tr
-            %td{:colspan => 4} &nbsp;
+            %td{colspan: 4} &nbsp;
             %th Shipping
             %td= number_to_currency @order.shipping_cost
             %td.left= @order.shipping_option
           %tr
-            %td{:colspan => 4} &nbsp;
+            %td{colspan: 4} &nbsp;
             %th Total
             %td
               %strong= number_to_currency @order.total
             %td &nbsp;
           %tr.row
-            %td{:colspan => 6}= order_form.submit "process your order"
+            %td{colspan: 6}= order_form.submit "process your order"
             %td &nbsp;
           %tr.row
-            %td{:colspan => 6}
+            %td{colspan: 6}
               :textile
                 Have anything to say to the Wexford Jewelers staff? Gift wrap, special delivery notes, etc?
           
-              <strong>Please tell us here:</strong>
+              %strong Please tell us here:
             %td &nbsp;
           %tr.row
-            %td{:colspan => 6}
+            %td{colspan: 6}
               = order_form.text_area :notes, :rows => 5
             %td &nbsp;
   - else

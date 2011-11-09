@@ -62,7 +62,7 @@
           - @item.variations.each do |variation|
             - if variation.assets.length > 0
               .variation{id: "variation_#{variation.id}"}
-                = link_to image_tag(variation.assets.first.image.url(:medium)), item_path(id: @item, variation_id: variation.id)
+                = link_to image_tag(variation.assets.first.image.url(:medium)), item_path(@item.pretty_id, variation_id: variation.pretty_id)
     .details
       .meta
         %h2 Item Details
@@ -75,7 +75,7 @@
             = select "item","sizes", @item.sizes.collect {|size| [size,size]}, selected: @item.sizes[@item.sizes.length / 2]
           - if @current_order
             .row
-              %span= link_to "Add to Cart", order_items_path(order_id: @current_order.id, id: current_variation.id), class: "add_to_cart input", method: :post
+              %span= link_to "Add to Cart", order_items_path(@current_order.pretty_id, item_id: @item.pretty_id, variation_id: current_variation.pretty_id), class: "add_to_cart input", method: :post
         - else
           %h3 Sold
         .metals.row
@@ -133,4 +133,4 @@
                     - unless item == @item
                       - if item.variations.first.assets.length > 0
                         .variation
-                          = link_to image_tag(item.variations.first.assets.first.image.url(:medium)), item_path(item)
+                          = link_to image_tag(item.variations.first.assets.first.image.url(:medium)), item_path(item.pretty_id)
