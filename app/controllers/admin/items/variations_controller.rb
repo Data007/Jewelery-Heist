@@ -1,7 +1,9 @@
 class Admin::Items::VariationsController < Admin::ItemsController
+  before_filter :find_item
   before_filter :find_variation, except: [:new]
 
   def new
+    debugger
     @variation = @item.variations.create
   end
 

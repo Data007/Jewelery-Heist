@@ -4,14 +4,15 @@ class Variation
   include Mongoid::Sequence
 
   field :description
-  field :price,         type: Float,   default: 0.0
-  field :quantity,      type: Integer, default: 1
+  field :price,          type: Float,   default: 0.0
+  field :quantity,       type: Integer, default: 1
   field :parent_item_id
   field :custom_id
-  field :metals,        type: Array
-  field :finishes,      type: Array
-  field :jewels,        type: Array
-  field :colors,        type: Array # TODO: Make it work!
+  field :metals,         type: Array
+  field :finishes,       type: Array
+  field :jewels,         type: Array
+  field :colors,         type: Array # TODO: Make it work!
+  field :backorder_notes
 
   field :pretty_id,    type: Integer
   sequence :pretty_id  

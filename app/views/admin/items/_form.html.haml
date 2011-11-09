@@ -63,7 +63,7 @@
         .section_title
           %h1 Variations
         .section_actions
-          = raw button_for_url("create a new variation", new_admin_item_variation_path(:item_id => @item), :class => "button create_variation_button")
+          = raw button_for_url("create a new variation", new_admin_item_variation_path(:item_id => @item.pretty_id), :class => "button create_variation_button")
       = render :partial => "admin/items/variations/index", :locals => {:item => @item}
     
   .form_actions
