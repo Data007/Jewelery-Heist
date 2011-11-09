@@ -15,8 +15,8 @@ private
 
   def check_for_sessioned_order
     if session[:admin_order_id]
-      @user  = User.where('orders.pretty_id' => session[:admin_order_id]).first
-      @order = @user.orders.where(pretty_id: session[:admin_order_id]).first if @user
+      @order = User.find_order(session[:admin_order_id])
+      @user  = @order.user
     end
   end
 

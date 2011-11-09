@@ -27,7 +27,7 @@ class Admin::Users::OrdersController < Admin::UsersController
       due_at:       due_at
     )
 
-    session[:admin_order_id] = @order.id
+    session[:admin_order_id] = @order.pretty_id
 
     redirect_to admin_user_order_path(@user.pretty_id, @order.pretty_id)
   end
@@ -94,7 +94,7 @@ class Admin::Users::OrdersController < Admin::UsersController
   def show
     @order = User.find_order(params[:id])
     
-    session[:customer_order_id] = @order.id if @order
+    session[:admin_order_id] = @order.pretty_id if @order
     
 #    current_customer_order.update_attributes :clerk => @current_user unless current_customer_order.clerk_id != nil
     
