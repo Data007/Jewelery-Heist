@@ -65,8 +65,16 @@ class Admin::Users::OrdersController < Admin::UsersController
   
   def update
     params[:order].delete("shipping_option") unless params[:order][:ship]
+    
     @order = User.find_order(params[:id])
     @order.update_attributes params[:order]
+    
+    params[:order][:line_items].each do |line_item|
+      pretty_id = line_item[:pretty_id] = line_item[:pretty_id].to_i
+      found_line_item = @order.line_items.where(pretty_id: pretty_id).first
+      found_line_item.update_attributes(line_item) if found_line_item.present?
+    end
+
     redirect_to admin_user_order_path(@user.pretty_id, @order.pretty_id)
   end
   
