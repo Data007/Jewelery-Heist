@@ -146,7 +146,7 @@ class User
     end
 
     def authorize(login, password)
-      user = here(login: login, password_hash: hash_password(password)).first
+      user = where(login: login, password_hash: hash_password(password)).first
       (user && user.is_active) ? user : nil
     end
 
