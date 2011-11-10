@@ -100,6 +100,13 @@ class User
   end
   
   # Authentication
+  def generate_new_password
+    new_password = User.generate_plain_token
+    password = password_confirmation = new_password
+    save
+    return new_password
+  end
+
   def generate_password_hash
     if (password.present? && password_confirmation.present?)
       if password == password_confirmation
@@ -139,7 +146,7 @@ class User
     end
 
     def authorize(login, password)
-      user = where(login: login, password_hash: hash_password(password)).first
+      user = here(login: login, password_hash: hash_password(password)).first
       (user && user.is_active) ? user : nil
     end
 

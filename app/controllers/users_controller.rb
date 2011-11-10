@@ -88,18 +88,12 @@ class UsersController < ApplicationController
   
   def generate_new_password
     @user = User.where(:emails.in => [params[:user][:email]])
-    new_password = User.generate_plain_token
     if @user.present?
-      @user = @user.first
-      @user.password = @user.password_confirmation = new_password
-      if @user.save
-        UserMailer.deliver_forgot_password(@user, new_password)
-        flash[:notice] = "Your new password has been sent to your registered email address"
-        redirect_back
-      else
-        flash[:error] = "<p>We couldn't generate a new password. Please try again.</p><p>If you continue having issues please <a href='#{about_us_path}#contact_us'>contact us</a> and we will try to fix the problem as soon as possible.</p>"
-        redirect_to forgot_password_users_path
-      end
+      @user          = @user.first
+      new_password   = @user.generate_new_password
+      UserMailer.deliver_forgot_password(@user, new_password)
+      flash[:notice] = "Your new password has been sent to your registered email address"
+      redirect_back
     else
       flash[:error] = "<p>We could not find a user by that email address. Please try another email address.</p><p>If you continue having issues please <a href='#{about_us_path}#contact_us'>contact us</a> and we will try to fix the problem as soon as possible.</p>"
       redirect_to forgot_password_users_path
