@@ -124,6 +124,12 @@ class User
 
   class << self
 
+    def generate_plain_token
+      words = %w{ cat shovel cloud find pass risk taco glass dog bottle can bowl spoon cheese chili fork cup fish chips }
+      new_pass = "%s%s" % [ words[ rand( words.length ) ], words[ rand( words.length ) ] ]
+      return new_pass
+    end
+
     def generate_password_hash
       hash_password(Time.now.to_s)
     end

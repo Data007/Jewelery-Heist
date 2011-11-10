@@ -88,10 +88,11 @@ class UsersController < ApplicationController
   
   def generate_new_password
     @user = User.where(:emails.in => [params[:user][:email]])
-    new_password = User.generate_password_hash
+    new_password = User.generate_plain_token
     if @user.present?
       @user = @user.first
-      if @user.update_attributes :password => new_password
+      @user.password = @user.password_confirmation = new_password
+      if @user.save
         UserMailer.deliver_forgot_password(@user, new_password)
         flash[:notice] = "Your new password has been sent to your registered email address"
         redirect_back
