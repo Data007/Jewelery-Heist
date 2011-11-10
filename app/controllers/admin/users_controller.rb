@@ -12,8 +12,8 @@ class Admin::UsersController < AdminController
     @current_user = User.authorize(params[:user][:login], params[:user][:password])
     session[:user_id] = @current_user.id if @current_user
     
-    if current_user
-      flash[:notice] = "Welcome #{current_user.name}!"
+    if @current_user
+      flash[:notice] = "Welcome #{@current_user.name}!"
       redirect_to admin_root_path
     else
       flash[:error] = 'We could not log you in. Please try again.'
