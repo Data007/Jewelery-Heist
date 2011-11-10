@@ -114,6 +114,14 @@ class User
     role == 'admin' ? true : false
   end
 
+  def is_employee?
+    role == 'employee' ? true : false
+  end
+
+  def is_worker?
+    (role == 'employee' || role == 'admin') ? true : false
+  end
+
   class << self
 
     def generate_password_hash

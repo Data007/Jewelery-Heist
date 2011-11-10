@@ -5,7 +5,7 @@ class AdminController < ApplicationController
 
 private
   def force_admin
-    redirect_to login_admin_users_path unless (current_user && current_user.is_admin?)
+    redirect_to login_admin_users_path unless (current_user && current_user.is_worker?)
     return true
   end
 
