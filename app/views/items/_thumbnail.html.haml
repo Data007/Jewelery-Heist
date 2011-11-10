@@ -2,6 +2,6 @@
 - variation = variation.assets.length > 0 ? variation : thumbnail.variations.first
 
 .item{:id => "item_#{thumbnail.pretty_id}"}
-  .thumbnail= link_to image_tag(variation.assets.compact.first.image.url(:medium)), item_path(thumbnail.pretty_id, variation_id: variation.pretty_id)
+  .thumbnail= link_to image_tag(variation.assets.by_position.compact.first.image.url(:medium)), item_path(thumbnail.pretty_id, variation_id: variation.pretty_id)
   .meta_data
     .name= link_to truncate(thumbnail.name, length: 45, omission: '...'), item_path(thumbnail.pretty_id, variation_id: variation.pretty_id)

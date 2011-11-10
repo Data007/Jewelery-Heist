@@ -52,7 +52,7 @@
           = current_asset.file_field :image, :class => "original_file_field"
       .field.images{:id => "images_for_variation_#{@variation.id}"}
         - if @variation.assets.length > 0
-          - @variation.assets.each do |uploaded_asset|
+          - @variation.assets.by_position.each do |uploaded_asset|
             .image{:id => "image_#{uploaded_asset.id}"}
               .actions
                 = link_to "view", uploaded_asset.image.url(:original), :target => "_blank"

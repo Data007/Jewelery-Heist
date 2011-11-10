@@ -89,12 +89,16 @@ class Variation
     self.jewels = csv.split(',')
   end
 
-  def update_asset_position(asset, position)
-    asset_list = (assets - [asset]).flatten.compact
-    asset_list.insert(position, asset)
+  def update_asset_position(asset, position=nil)
+    new_position = position.nil? ? self.assets.length : position.to_i
+
+    asset_list   = self.assets
+    sort_asset   = asset_list.delete(asset)
+    asset_list.insert new_position, sort_asset
     asset_list.compact!
-    asset_list.each_with_index {|asset, index| asset.update_attribute :position, index}
-    assets = asset_list
+
+    asset_list.each_with_index {|saved_asset, index| saved_asset.update_attribute :position, index}
+    assets       = asset_list
     save
   end
 

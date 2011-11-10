@@ -7,6 +7,8 @@ class Asset
   field :migratory_url
   field :migrated,     type: Boolean, default: false
 
+  scope :by_position, order_by([[:position, :desc]])
+
   has_mongoid_attached_file :image,
     styles: {
       tiny:      "100x80",
