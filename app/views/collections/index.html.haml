@@ -17,5 +17,5 @@
               .variation
                 - asset = item.variations.first.assets.by_position.first
                 - if asset.image_file_name
-                  = link_to image_tag(asset.image.url(:medium)), item_path(item)
+                  = link_to image_tag(asset.image.url(:medium)), item_path(item.pretty_id)
   = will_paginate @collections
