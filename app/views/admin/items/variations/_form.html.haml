@@ -46,7 +46,7 @@
       %div
         %strong Variation Images
       %hr
-      - form.fields_for :assets, Asset.new do |current_asset|
+      = form.fields_for :assets, Asset.new do |current_asset|
         .field.image_uploader
           = current_asset.label :image, "Upload a New Image"
           = current_asset.file_field :image, :class => "original_file_field"

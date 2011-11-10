@@ -1,0 +1,35 @@
+<h1>Order Completed</h1>
+
+<p>Congratulations!</p>
+
+<p>Your order number (<%= @order.pretty_id %>) has processed. We thank you for your business, and trust that you will be delighted when your jewelry arrives. Should you encounter any issues, please <a href="mailto:info@wexfordjewelers.com?subject=Question on Order #{@order.pretty_id}">contact us</a> for assistance.</p>
+
+<p>Your order will ship as soon as humanly possible.</p>
+
+<p>Your order is as follows:</p>
+
+<% @order.line_items.each do |line_item| -%>
+  <%
+    variation = line_item.variation
+    item = variation.parent_item %>
+    
+  <p>
+    Item: <%= link_to item.name, "http://wexfordjewelers.com/items/#{item.pretty_id}&?variation_id=#{variation.pretty_id}" %> (<%= item.pretty_id %>-<%= variation.pretty_id %>)<br />
+    Size: <%= line_item.size %><br />
+    Price: <%= number_to_currency line_item.price %><br />
+    Quantity: <%= line_item.quantity %><br />
+    Total: <%= number_to_currency line_item.total %><br />
+    --
+  </p>
+<% end -%>
+
+<p>
+  Subtotal: <%= number_to_currency @order.subtotal %><br />
+  Shipping: <%= number_to_currency @order.shipping_cost %><br />
+  Shipping Option: <%= @order.shipping_option %><br />
+  Total: <%= number_to_currency @order.total %>
+</p>
+
+<p>
+  Order Notes: <%= @order.notes %>
+</p>

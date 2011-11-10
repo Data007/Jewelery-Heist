@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "from@example.com"
+  default :from => "info@wexfordjewelers.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -22,6 +22,6 @@ class UserMailer < ActionMailer::Base
     @user  = user
     @order = order
 
-    mail :to => user.emails.first, :bcc => 'management@wexfordjewelers.com', :subject => "Wexford Jewelers : Your Order ##{order.id}"
+    mail :to => user.emails.first, :bcc => 'management@wexfordjewelers.com', :subject => "Wexford Jewelers : Your Order ##{order.pretty_id}"
   end
 end
