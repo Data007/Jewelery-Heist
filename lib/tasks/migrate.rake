@@ -27,7 +27,7 @@ def migration_token
   "f1a649db463bc07dcb9f4627ccdf1957760978c23b90be9ee05947c77141d1b5"
 end
 
-DOMAIN = Rails.env.development? ? 'wexfordjewelers.dev' : 'wexfordjewelersproduction.heroku.com'
+DOMAIN = Rails.env.development? ? 'wj.dev' : 'wj.heroku.com'
 
 namespace :migrate do
 
@@ -428,6 +428,53 @@ namespace :migrate do
 
     end
     puts '- Creating FAQs ... done'
+  end
+
+  desc 'Import and Update variations'
+  task variations: :environment do
+    puts " --- Updating variations ..."
+    uri      = "http://#{DOMAIN}/migrate_data/for_variations?migration_token=#{migration_token}"
+    response = HTTParty.get(uri)
+
+    pages        = response['pages']
+    total_pages  = pages['total_pages']
+    current_page = 1
+
+    while current_page <= total_pages do
+      current_uri = uri + "&page=#{current_page}"
+      print "   - Connecting to url #{current_uri} ... "
+      response = HTTParty.get(current_uri)
+      puts 'done'
+
+      response['variations'].each do |variation|
+      
+        unless variation['ghost']
+          debugger
+
+          print "---- Creating variation #{variation['id']} ... "
+          item = Item.where(custom_id: variation['item_id']).first
+          if item.present?
+            new_variation = item.variations.where(custom_id: variation['id'])
+            new_variation = new_variation.present? ? new_variation.first : item.variations.create(custom_id: variation['id'])
+            new_variation.update_attributes({
+                    custom_id: variation['id'],
+                        price: variation['price'],
+              backorder_notes: variation['backorder_notes'],
+                  description: variation['description'],
+                     quantity: variation['quantity']
+            })
+          end
+
+          puts "done"
+      
+        end
+      
+      end
+
+      current_page += 1
+    end
+
+    puts " --- Creating variations ... done"
   end
 
 end

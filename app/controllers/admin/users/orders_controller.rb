@@ -70,9 +70,24 @@ class Admin::Users::OrdersController < Admin::UsersController
     @order.update_attributes params[:order]
     
     params[:order][:line_items].each do |line_item|
-      pretty_id = line_item[:pretty_id] = line_item[:pretty_id].to_i
+      pretty_id       = line_item[:pretty_id].to_i
       found_line_item = @order.line_items.where(pretty_id: pretty_id).first
-      found_line_item.update_attributes(line_item) if found_line_item.present?
+
+      line_item.delete(:id)
+      line_item.delete(:pretty_id)
+      line_item.reject! {|(key, value)| value.nil?}
+
+      debugger
+      if found_line_item.present?
+        line_item.each do |(key, value)|
+          if (value.match(/^\d*\.*\d*$/) || value.class == TrueClass || value.class == FalseClass)
+            eval("found_line_item.#{key} = #{value}")
+          else
+            eval("found_line_item.#{key} = '#{value}'")
+          end
+        end
+        found_line_item.save
+      end
     end
 
     redirect_to admin_user_order_path(@user.pretty_id, @order.pretty_id)

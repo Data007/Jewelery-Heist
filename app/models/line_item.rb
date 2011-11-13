@@ -31,7 +31,9 @@ class LineItem
   end
 
   def validate_price
-    self.price = variation.price if price.blank?
+    unless is_quick_item?
+      self.price = (price.blank? && variation.present?) ? variation.price : 0
+    end
   end
 
   def refund
