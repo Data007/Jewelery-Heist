@@ -449,7 +449,6 @@ namespace :migrate do
       response['variations'].each do |variation|
       
         unless variation['ghost']
-          debugger
 
           print "---- Creating variation #{variation['id']} ... "
           item = Item.where(custom_id: variation['item_id']).first
