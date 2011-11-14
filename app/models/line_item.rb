@@ -27,7 +27,7 @@ class LineItem
   before_save :validate_price
 
   def total
-    quantity * price
+    (quantity.present? ? quantity : 1) * (price.present? ? price : 0)
   end
 
   def validate_price
