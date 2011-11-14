@@ -4,5 +4,5 @@
     = "#{@item.name} (##{@item.pretty_id})"
   
 - content_for :page_content do
-  - form_for :item, @item, :url => admin_item_path(@item), :html => { :method => :put, :multipart => true } do |item|
+  - form_for :item, @item, :url => admin_item_path(@item.pretty_id), :html => { :method => :put, :multipart => true } do |item|
     = render :partial => "admin/items/form", :locals => {:item => item}

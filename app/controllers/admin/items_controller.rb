@@ -15,7 +15,7 @@ class Admin::ItemsController < AdminController
   def update
     if @item.update_attributes(params[:item])
       flash[:notice] = 'The item has been saved'
-      redirect_to [:edit, :admin, @item]
+      redirect_to edit_admin_item_path(@item.pretty_id)
     else
       flash[:error] = "We couldn't save the item"
       render 'admin/items/edit'
@@ -24,12 +24,12 @@ class Admin::ItemsController < AdminController
 
   def destroy
     @item.update_attribute :ghost, true
-    redirect_to [:admin, @item]
+    redirect_to admin_item_path(@item.pretty_id)
   end
 
   def remove
     @item.update_attribute :ghost, true
-    redirect_to [:admin, @item]
+    redirect_to admin_item_path(@item.pretty_id)
   end
 
   def cancel
@@ -39,7 +39,7 @@ class Admin::ItemsController < AdminController
 
   def restore
     @item.update_attribute :ghost, false
-    redirect_to [:admin, @item]
+    redirect_to admin_item_path(@item.pretty_id)
   end
 
   def index
