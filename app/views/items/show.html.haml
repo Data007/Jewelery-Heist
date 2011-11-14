@@ -82,7 +82,7 @@
                 %span= link_to "Add to Cart", order_items_path(@current_order.pretty_id, item_id: @item.pretty_id, variation_id: current_variation.pretty_id), class: "add_to_cart input", method: :post
           - else
             %h3 Sold
-          - if current_variations.metals.present?
+          - if current_variation.metals.present?
             .metals.row
               %span.label Metals
               = raw current_variation.metals.inject('') {|metals, metal| metals += "<span class='metal tag'>#{metal.downcase}</span>"}
