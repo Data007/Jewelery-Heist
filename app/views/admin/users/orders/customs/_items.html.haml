@@ -1,4 +1,4 @@
-- form_for @order, :url => admin_user_order_payments_path(@user.pretty_id, @order.pretty_id), :html => {:method => :put} do |order_form|
+- form_for @order, :url => admin_user_order_path(@user.pretty_id, @order.pretty_id), :html => {:method => :put} do |order_form|
   %h2 Supplies and Charges
   %table.stylized
     %thead
