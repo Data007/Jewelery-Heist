@@ -34,6 +34,10 @@ class Admin::UsersController < AdminController
     @user = User.create_from_search_params(params[:user])
   end
 
+  def edit
+    find_user
+  end
+
   def update
     find_user
     if @user.update_attributes(params[:user])
