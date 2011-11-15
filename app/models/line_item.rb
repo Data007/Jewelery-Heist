@@ -2,6 +2,7 @@ class LineItem
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Sequence
+  include MafiaConnections
 
   field :quantity,      type: Integer, default: 1
   field :price,         type: Float
@@ -35,12 +36,7 @@ class LineItem
       self.price = (price.blank? && variation.present?) ? variation.price : 0
     end
 
-    %w($ ,).each do |gsub_symbol|
-      self.price.gsub!("#{gsub_symbol}", '') if self.price.match(Regexp.new("\\#{gsub_symbol}"))
-    end
-
-    stripped_price = self.price.match(/[+-]?\d*\.?\d*|\d*/)
-    self.price = stripped_price.nil? ? 0 : stripped_price[0]
+    self.price = launder_money(self.price)
   end
 
   def refund

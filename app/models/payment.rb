@@ -1,6 +1,7 @@
 class Payment
   include Mongoid::Document
   include Mongoid::Timestamps
+  include MafiaConnections
 
   field :amount,       type: Float
   field :payment_type, type: String, default: 'cash'
@@ -8,6 +9,12 @@ class Payment
   field :custom_id
 
   embedded_in :order
+
+  before_save :validate_amount
+
+  def validate_amount
+    self.amount = launder_money(self.amount)
+  end
 
   class << self
 

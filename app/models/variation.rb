@@ -2,6 +2,7 @@ class Variation
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Sequence
+  include MafiaConnections
 
   field :description
   field :price,          type: Float,   default: 0.0
@@ -21,6 +22,11 @@ class Variation
   embeds_many :assets
 
   before_save :set_parent_item_id
+  before_save :validate_price
+
+  def validate_price
+    self.price = launder_money(self.price)
+  end
 
   class << self
     

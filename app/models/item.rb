@@ -2,6 +2,7 @@ class Item
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Sequence
+  include MafiaConnections
 
   field :name
   field :description
@@ -28,7 +29,12 @@ class Item
 
   validates :name, presence: true
 
-  after_save :create_variation
+  before_save :validate_cost
+  after_save  :create_variation
+
+  def validate_cost
+    self.cost = launder_money(self.cost)
+  end
 
   def create_variation
     return true if variations.present?
