@@ -1,6 +1,6 @@
 module MafiaConnections
   def launder_money(filthy_lucre)
-    return filthy_lucre if filthy_lucre.match(/[+-]?\d*\.?\d*|\d*/)
+    return filthy_lucre if filthy_lucre.to_s.match(/[+-]?\d*\.?\d*|\d*/)
     return 0.0          if filthy_lucre.nil?
 
     laundered_money = filthy_lucre
