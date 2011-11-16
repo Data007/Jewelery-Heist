@@ -82,7 +82,12 @@ class Item
     end
 
     def search(query)
-      where(name: Regexp.new(query))
+      any_in(name: [
+        Regexp.new(query),
+        Regexp.new(query.capitalize),
+        Regexp.new(query.upcase),
+        Regexp.new(query.downcase)
+      ])
     end
 
     def categories
