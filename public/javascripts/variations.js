@@ -1,13 +1,11 @@
 function setup_image_delete_links(){
   $(".image .actions .delete").click(function(event){
     var parent_image_id = ("#" + $(this).attr("parent_image_id"));
+    $(parent_image_id).remove();
     $.ajax({
       type: "delete",
       dataType: "json",
-      url: $(this).attr("href"),
-      success: function(json){
-        $(parent_image_id).remove();
-      }
+      url: $(this).attr("href")
     });
     return false;
   });
