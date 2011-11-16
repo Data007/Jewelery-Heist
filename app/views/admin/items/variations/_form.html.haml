@@ -53,14 +53,7 @@
       .field.images{:id => "images_for_variation_#{@variation.id}"}
         - if @variation.assets.length > 0
           - @variation.assets.by_position.each do |uploaded_asset|
-            .image{:id => "image_#{uploaded_asset.id}"}
-              .actions
-                = link_to "view", uploaded_asset.image.url(:original), :target => "_blank"
-                .delete{:href => admin_item_variation_attachment_path(@item.pretty_id, @variation.pretty_id, uploaded_asset.id), :parent_image_id => "image_#{uploaded_asset.id}"}
-                  delete
-              = image_tag uploaded_asset.image.url(:manage)
-              .id{:style => "visibility: hidden", :id => uploaded_asset.id}
-      
+            = render partial: 'asset', object: uploaded_asset
       %hr        
       .form_actions
         = submit_tag "save", :class => "submit"

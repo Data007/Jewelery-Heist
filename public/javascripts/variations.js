@@ -22,10 +22,9 @@ function setup_image_positioning() {
     update: function(event, ui) {
       var images = ui.item.parent().children(".image");
       var position = images.index(ui.item);
-      console.log("/admin/items/" + $(".variation").attr('data-item-id') + "/variations/" + $("#variation_id").val() + "/attachments/update_positions/" + ui.item.find(".id").attr("id") + "?position=" + position);
       $.ajax({
         method: "GET",
-        url: ("/admin/items/" + $(".variation").attr('data-item-id') + "/variations/" + $("#variation_id").val() + "/attachments/" + ui.item.find(".id").attr("id") + "/update_position/?position=" + position)
+        url: ("/admin/items/" + $(".variation").attr('data-item-id') + "/variations/" + $(".variation").attr('data-variation-id') + "/attachments/" + ui.item.find(".id").attr("id") + "/update_position/?position=" + position)
       });
     }
   });
@@ -38,8 +37,8 @@ function setup_image_actions() {
 
 function setup_image_uploader() {
   $(".image_uploader").each(function(){
-    var variation_id   = $('.variation').attr('data-item-id');
-    var item_id        = $('.variation').attr('data-variation-id');
+    var variation_id   = $('.variation').attr('data-variation-id');
+    var item_id        = $('.variation').attr('data-item-id');
     var attachment_url = "/admin/items/" + item_id + "/variations/" + variation_id + "/attachments"
     
     $(this).find("input[type='file']").after("<span class='button file_upload_button'>" + "<a href='" + attachment_url + "'>upload image</a></span>");
@@ -70,9 +69,10 @@ function setup_image_uploader() {
           .ajaxStart(function(){$("#ajax-status").show();})
           .ajaxForm({
             dataType: "json",
-            success: function(json){
-              var image = new EJS({url: "/ejs/items/_image.ejs"}).render(json)
-              $("#images_for_variation_" + variation_id).append(image);
+            success: function(responseText, status, xhr){
+              console.log(responseText);
+              var image = new EJS({url: "/javascripts/ejs/items/_image.ejs"}).render(responseText)
+              $(".field.images").append(image);
               $("#file_upload_form_for_variation_" + variation_id).remove();
               setup_image_actions();
               $("#ajax-status").hide();
