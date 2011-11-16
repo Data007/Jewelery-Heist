@@ -38,8 +38,8 @@ function setup_image_actions() {
 
 function setup_image_uploader() {
   $(".image_uploader").each(function(){
-    var variation_id = $(this).parent().find("#variation_id").val();
-    var item_id = $(this).parent().find("#variation_item_id").val();
+    var variation_id   = $('.variation').attr('data-item-id');
+    var item_id        = $('.variation').attr('data-variation-id');
     var attachment_url = "/admin/items/" + item_id + "/variations/" + variation_id + "/attachments"
     
     $(this).find("input[type='file']").after("<span class='button file_upload_button'>" + "<a href='" + attachment_url + "'>upload image</a></span>");

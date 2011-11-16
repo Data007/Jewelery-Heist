@@ -5,7 +5,7 @@
   = javascript_include_tag "colors"
 
 = form_for @variation, url: admin_item_variation_path(@item.pretty_id, @variation.pretty_id), method: :put do |form|
-  .variation{:'data-item-id' => @item.pretty_id}
+  .variation{:'data-item-id' => @item.pretty_id, :'data-variation-id' => @variation.pretty_id}
     .form
       %strong Item Description
       #description= @item.description
@@ -56,7 +56,7 @@
             .image{:id => "image_#{uploaded_asset.id}"}
               .actions
                 = link_to "view", uploaded_asset.image.url(:original), :target => "_blank"
-                .delete{:href => admin_item_variation_attachment_path(:item_id => @item, :variation_id => @variation.id, :id => uploaded_asset.id), :parent_image_id => "image_#{uploaded_asset.id}"}
+                .delete{:href => admin_item_variation_attachment_path(@item.pretty_id, @variation.pretty_id, uploaded_asset.id), :parent_image_id => "image_#{uploaded_asset.id}"}
                   delete
               = image_tag uploaded_asset.image.url(:manage)
               .id{:style => "visibility: hidden", :id => uploaded_asset.id}
