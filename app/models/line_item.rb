@@ -33,7 +33,9 @@ class LineItem
 
   def validate_price
     unless is_quick_item?
-      self.price = (price.blank? && variation.present?) ? variation.price : 0
+      if price.blank?
+        self.price = variation.present? ? variation.price : 0
+      end
     end
 
     self.price = launder_money(self.price)
