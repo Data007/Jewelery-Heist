@@ -61,13 +61,13 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user  = current_user
+    @user     = current_user
 
-    emails = params[:user].delete(:emails)
-    emails = emails.collect {|(key,value)| value['address']}.flatten.reject(&:empty?).uniq
+    emails    = params[:user].delete(:emails)
+    emails    = emails.collect {|(key,value)| value['address']}.flatten.reject(&:empty?).uniq
 
-    phones = params[:user].delete(:phones)
-    phones = phones.collect {|(key,value)| value['number']}.flatten.reject(&:empty?).uniq
+    phones    = params[:user].delete(:phones)
+    phones    = phones.collect {|(key,value)| value['number']}.flatten.reject(&:empty?).uniq
 
     if @user.update_attributes params[:user]
       @user.emails = emails

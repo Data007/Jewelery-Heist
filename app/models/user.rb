@@ -175,6 +175,17 @@ class User
   end
   ##
 
+  def validate_addresses
+    required_fields = %w(address_1 city province postal_code country)
+    new_addresses   = addresses
+    new_addresses   = new_addresses.reject do |address|
+      required_fields.collect do |required_field|
+        eval("address.#{required_field}").present?
+      end.flatten.compact.include?(false)
+    end
+    self.addresses = new_addresses
+  end
+
   # Permissions
   def may_destroy_item?
     return (role == 'admin')

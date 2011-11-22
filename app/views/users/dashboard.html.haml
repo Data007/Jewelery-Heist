@@ -58,6 +58,23 @@
             = address_form.text_field :province
             = address_form.label :postal_code
             = address_form.text_field :postal_code
-            
+            = address_form.label :country
+            = address_form.text_field :country
+        %hr
+        .row
+          %h3 New Address
+          = label_tag      "user[addresses][#{@user.addresses.length + 1}][address_1]", 'Address line 1'
+          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][address_1]"
+          = label_tag      "user[addresses][#{@user.addresses.length + 1}][address_2]", 'Address line 2'
+          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][address_2]"
+          = label_tag      "user[addresses][#{@user.addresses.length + 1}][city]", 'City'
+          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][city]"
+          = label_tag      "user[addresses][#{@user.addresses.length + 1}][province]", 'State or Province'
+          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][province]"
+          = label_tag      "user[addresses][#{@user.addresses.length + 1}][postal_code]", 'Postal Code'
+          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][postal_code]"
+          = label_tag      "user[addresses][#{@user.addresses.length + 1}][country]", 'Country'
+          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][country]"
+           
       .row
         #{submit_tag "save changes"} | #{link_to "Forgot your password?", forgot_password_users_path}
