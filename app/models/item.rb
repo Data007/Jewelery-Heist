@@ -82,12 +82,14 @@ class Item
     end
 
     def search(query)
-      any_in(name: [
-        Regexp.new(query),
-        Regexp.new(query.capitalize),
-        Regexp.new(query.upcase),
-        Regexp.new(query.downcase)
-      ])
+      any_in(name: query.split(' ').collect {|word|
+        [
+          Regexp.new(word),
+          Regexp.new(word.capitalize),
+          Regexp.new(word.upcase),
+          Regexp.new(word.downcase)
+        ]
+      }.flatten)
     end
 
     def categories

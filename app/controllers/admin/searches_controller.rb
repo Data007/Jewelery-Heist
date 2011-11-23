@@ -1,11 +1,12 @@
 class Admin::SearchesController < AdminController
   
   def general
-    @items = Item.search(params[:search][:query]).paginate(pagination_hash)
+    @query = params[:search][:query]
+    @items = Item.search(@query).paginate(pagination_hash)
 
     redirect_to admin_item_path(@items.first.id) if (@item && @items.length == 1) and return
 
-    @title = "Listing results for: #{params[:search][:query]}"
+    @title = "Listing results for: #{@query}"
     render template: "admin/items/index"
 
     # if params[:search][:query] =~ /^\d+$/
