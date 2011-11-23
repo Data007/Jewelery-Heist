@@ -56,7 +56,7 @@
           %th Kind
           %th Status
       %tbody
-        - @user.orders.each do |order|
+        - @user.orders.order_by([:pretty_id, :asc]).each do |order|
           %tr{:class => cycle("normal", "alternate")}
             %td= link_to order.pretty_id, admin_user_order_path(@user.pretty_id, order.pretty_id)
             %td
@@ -84,7 +84,7 @@
           %th Check #
           %th Payment Amount
       %tbody
-        - @user.orders.map(&:payments).flatten.each do |payment|
+        - @user.orders.map(&:payments).flatten.sort {|pay_1, pay_2| pay_1.created_at <=> pay_2.created_at}.reverse.each do |payment|
           %tr
             %td= link_to(payment.order.pretty_id, admin_order_path(payment.order.pretty_id))
             %td #{time_ago_in_words(payment.created_at)} ago (#{payment.created_at.strftime("%b %d, %Y")})
