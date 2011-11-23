@@ -84,14 +84,29 @@ class Item
     end
 
     def search(query)
-      any_in(name: query.split(' ').collect {|word|
-        [
-          Regexp.new(word),
-          Regexp.new(word.capitalize),
-          Regexp.new(word.upcase),
-          Regexp.new(word.downcase)
-        ]
-      }.flatten)
+      keywords = query.split(' ')
+      ids      = []
+      names    = []
+      results  = nil
+      
+      keywords.each do |keyword|
+        if keyword.match(/(ID)?\d+-?\d?/x)
+          ids << keyword
+        else
+          names << Regexp.new(keyword)
+          names << Regexp.new(keyword.capitalize)
+          names << Regexp.new(keyword.upcase)
+          names << Regexp.new(keyword.downcase)
+        end
+      end
+
+      names.flatten if names.present?
+
+      if names.present?
+        results.nil? ? results = any_in(name: names) : results.any_in(name: names)
+      end
+      
+      return results
     end
 
     def categories
