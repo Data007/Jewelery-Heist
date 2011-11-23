@@ -35,6 +35,8 @@ class Order
   before_save  :set_address
   after_create :setup_ticket
 
+  default_scope order_by([:pretty_id, :desc])
+
   DUEDATES = [
     "same day",
     "1 week",
@@ -249,22 +251,26 @@ class Order
 
     def purchase
       User.where('orders.staging_type' => 'purchase').
-      map { |user| user.orders }.flatten
+      map  { |user            | user.orders                             }.flatten.
+      sort { |order_1, order_2| order_1.pretty_id <=> order_2.pretty_id } 
     end
 
     def repair
       User.where('orders.staging_type' => 'repair').
-      map { |user| user.orders }.flatten
+      map  { |user            | user.orders                             }.flatten.
+      sort { |order_1, order_2| order_1.pretty_id <=> order_2.pretty_id } 
     end
 
     def custom
       User.where('orders.staging_type' => 'custom').
-      map { |user| user.orders }.flatten
+      map  { |user            | user.orders                             }.flatten.
+      sort { |order_1, order_2| order_1.pretty_id <=> order_2.pretty_id } 
     end
 
     def payments_made
       User.all.
-      map { |user| user.orders }.flatten
+      map  { |user            | user.orders                             }.flatten.
+      sort { |order_1, order_2| order_1.pretty_id <=> order_2.pretty_id } 
     end
 
   end
