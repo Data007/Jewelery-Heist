@@ -2,7 +2,15 @@
 = content_for :page_title do
   %h1
     = @item.name ? @item.name : 'this item needs a name'
-    %span#tag_id.tag_id ID#{@item.custom_id}-#{current_variation ? current_variation.custom_id : 'n/a'}
+    %span#tag_id.tag_id
+      ID#{@item.pretty_id}-#{current_variation ? current_variation.pretty_id : 'n/a'}
+      - if @item.custom_id.present?
+        |
+        OID#{@item.custom_id}-
+        - if current_variation
+          #{current_variation.custom_id.present? ? current_variation.custom_id : current_variation.pretty_id}
+        - else
+          n/a
 
 = content_for :page_actions do
   - if !@item.ghost
