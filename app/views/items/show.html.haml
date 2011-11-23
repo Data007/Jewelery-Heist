@@ -86,7 +86,7 @@
             .metals.row
               %span.label Metals
               = raw current_variation.metals.uniq.inject('') {|metals, metal| metals += "<span class='metal tag'>#{metal.downcase}</span>"}
-          - if current_variation.jewels.length > 0
+          - if current_variation.jewels.present?
             .jewels.row
               %span.label Jewels
               = raw current_variation.jewels.uniq.inject('') {|jewels, jewel| jewels += "<span class='jewel tag'>#{jewel.downcase}</span>"}
