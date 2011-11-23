@@ -2,7 +2,8 @@
 
 .item.container
   .item_actions
-    #{link_to "Edit", edit_admin_item_path(item.pretty_id)} | #{link_to "ID#{item.custom_id}", admin_item_path(item.pretty_id)}
+    #{link_to "Edit", edit_admin_item_path(item.pretty_id)} |
+    #{link_to (item.custom_id.present? ? "ID#{item.pretty_id} | OID#{item.custom_id}" : "ID#{item.pretty_id}"), admin_item_path(item.pretty_id)}
     %span (#{pluralize(item.variations.length, "variation")})
   .item_header
     .name= link_to (item.name ? item.name : "this item needs a name"), admin_item_path(item.pretty_id)

@@ -72,6 +72,8 @@ class Item
     where('variations.colors.names' => Regexp.new(color_name))
   }
 
+  default_scope order_by([:created_at, :desc])
+
   class << self
   
     def find_variation(variation_id)
