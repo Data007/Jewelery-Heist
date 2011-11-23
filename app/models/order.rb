@@ -221,7 +221,9 @@ class Order
 
   def validate_line_items
     line_items.each do |line_item|
-      line_item.destroy if !line_item.variation.parent_item.available
+      unless line_item.is_quick_item?
+        line_item.destroy if !line_item.variation.parent_item.available
+      end
     end
   end
   

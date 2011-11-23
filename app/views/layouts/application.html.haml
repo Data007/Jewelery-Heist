@@ -120,9 +120,12 @@
               = link_to "Checkout", checkout_path(@current_order.pretty_id), method: :post
             .line_items
               - @current_order.line_items.each do |line_item|
-                - if line_item.variation
+                - if line_item.variation.present?
                   .line_item
                     = link_to image_tag(line_item.variation.assets.by_position.first.image.url(:tiny)), item_path(id: line_item.variation.parent_item.pretty_id, variation_id: line_item.variation.pretty_id)
+                - elsif line_item.is_quick_item?
+                  .line_item
+                    Quick Item QID#{line_item.quick_id}
             .actions
               = link_to "View Order", order_path(@current_order.pretty_id)
               = link_to "Checkout", checkout_path(@current_order.pretty_id), method: :post

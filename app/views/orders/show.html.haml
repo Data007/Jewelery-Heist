@@ -18,24 +18,35 @@
             %td= link_to "remove all", clear_order_path(@order.pretty_id)
         %tbody
           - @order.line_items.each_with_index do |line_item, index|
-            - variation = line_item.variation
-            - item      = variation.parent_item
-            %tr
-              %td.left #{item.pretty_id}-#{variation.pretty_id}
-              %td.left
-                = link_to image_tag(variation.assets.by_position.first.image.url(:tiny), class: "thumbnail_32"), item_path(item, variation_id: variation.id)
-                = link_to item.name, item_path(item.pretty_id, variation_id: variation.pretty_id)
-              %td
-                %select{name: "order[line_items][#{index}][size]", id: "order[line_items][#{index}][size]".parameterize("_")}
-                  - item.sizes.collect {|size| [size,size]}.each do |size|
-                    - if size[0].to_f == line_item.size.to_f
-                      %option{value: "#{size[0]}", selected: "selected"}= size[1]
-                    - else
-                      %option{value: "#{size[0]}"}= size[1]
-              %td= number_to_currency line_item.price
-              %td= line_item.quantity
-              %td= number_to_currency line_item.total
-              %td= link_to "remove", order_item_path(@order.pretty_id, line_item.pretty_id), method: :delete
+            - unless line_item.is_quick_item?
+              - variation = line_item.variation
+              - item      = variation.parent_item
+              %tr
+                %td.left ID#{item.pretty_id}-#{variation.pretty_id}
+                %td.left
+                  = link_to image_tag(variation.assets.by_position.first.image.url(:tiny), class: "thumbnail_32"), item_path(item, variation_id: variation.id)
+                  = link_to item.name, item_path(item.pretty_id, variation_id: variation.pretty_id)
+                %td
+                  %select{name: "order[line_items][#{index}][size]", id: "order[line_items][#{index}][size]".parameterize("_")}
+                    - item.sizes.collect {|size| [size,size]}.each do |size|
+                      - if size[0].to_f == line_item.size.to_f
+                        %option{value: "#{size[0]}", selected: "selected"}= size[1]
+                      - else
+                        %option{value: "#{size[0]}"}= size[1]
+                %td= number_to_currency line_item.price
+                %td= line_item.quantity
+                %td= number_to_currency line_item.total
+                %td= link_to "remove", order_item_path(@order.pretty_id, line_item.pretty_id), method: :delete
+            - else
+              %tr
+                %td.left QID#{line_item.quick_id}
+                %td.left= line_item.name
+                %td= line_item.size
+                %td= number_to_currency line_item.price
+                %td= line_item.quantity
+                %td= number_to_currency line_item.total
+                %td= link_to "remove", order_item_path(@order.pretty_id, line_item.pretty_id), method: :delete
+
           %tr
             %td{colspan: 4} &nbsp;
             %th Subtotal
