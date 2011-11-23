@@ -61,7 +61,7 @@ class OrdersController < ApplicationController
   def pay
     @order = current_order    
 
-    if params[:order][:line_items].present?
+    if (params[:order] && params[:order][:line_items].present?)
       line_items = params[:order].delete(:line_items) 
 
       line_items.each do |line_item|

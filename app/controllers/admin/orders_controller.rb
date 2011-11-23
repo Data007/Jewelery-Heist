@@ -28,7 +28,7 @@ class Admin::OrdersController < AdminController
   def force_lookup
     flash[:error] = "We don't have any customer info for this order. Please lookup a customer"
     current_customer_order.ticket.current_stage = "customer lookup"
-    render :template => "admin/orders/new"
+    render :template => "admin/users/orders/new"
   end
   
   def lookup
@@ -90,12 +90,12 @@ class Admin::OrdersController < AdminController
     unless @order.has_valid_shipping_address?
       redirect_to address_admin_order_path(@order) and return
     else
-      render :template => "admin/orders/show_#{@order.location}_#{@order.staging_type}"
+      render :template => "admin/users/orders/show_#{@order.location}_#{@order.staging_type}"
     end
   end
   
   def print
-    template = "admin/orders/print_#{@order.location}_#{@order.staging_type}"
+    template = "admin/users/orders/print_#{@order.location}_#{@order.staging_type}"
     render :template => template, :layout => "print"
   end
   
