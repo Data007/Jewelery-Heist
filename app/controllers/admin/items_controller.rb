@@ -78,6 +78,6 @@ private
 
   def find_item
     @item      = params[:item_id] ? Item.where(pretty_id: params[:item_id]).first : Item.where(pretty_id: params[:id]).first
-    @variation = @item.variations.where(pretty_id: params[:variation_id]) if (@item && params[:variation_id])
+    @variation = @item.variations.where(pretty_id: params[:variation_id]).first if (@item && params[:variation_id])
   end
 end

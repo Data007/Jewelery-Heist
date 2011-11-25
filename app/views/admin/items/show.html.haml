@@ -48,7 +48,7 @@
           - @item.variations.each do |variation|
             - if variation.assets.length > 0
               .variation{:id => "variation_#{variation.id}"}
-                = link_to image_tag(variation.assets.first.image.url(:medium)), admin_item_path(@item.pretty_id, variation.pretty_id)
+                = link_to image_tag(variation.assets.first.image.url(:medium)), admin_item_path(@item.pretty_id, variation_id: variation.pretty_id)
     .details
       .meta
         %h2 Item Details
