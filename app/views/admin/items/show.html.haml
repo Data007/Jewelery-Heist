@@ -6,11 +6,10 @@
       ID#{@item.pretty_id}-#{current_variation ? current_variation.pretty_id : 'n/a'}
       - if @item.custom_id.present?
         |
-        OID#{@item.custom_id}-
         - if current_variation
-          #{current_variation.custom_id.present? ? current_variation.custom_id : current_variation.pretty_id}
+          OID#{@item.custom_id}-#{current_variation.custom_id.present? ? current_variation.custom_id : current_variation.pretty_id}
         - else
-          n/a
+          OID#{@item.custom_id}-n/a
 
 = content_for :page_actions do
   - if !@item.ghost
