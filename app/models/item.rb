@@ -104,7 +104,13 @@ class Item
       names.flatten if names.present?
 
       if names.present?
-        results.nil? ? results = any_in(name: names) : results.any_in(name: names)
+        query_hash = [
+          {name:                       {'$in' => names}},
+          {description:                {'$in' => names}},
+          {'variations.description' => {'$in' => names}}
+        ]
+
+        results = any_of(query_hash)
       end
 
       if ids.present?
