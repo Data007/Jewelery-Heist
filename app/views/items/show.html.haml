@@ -90,9 +90,10 @@
             .jewels.row
               %span.label Jewels
               = raw current_variation.jewels.uniq.inject('') {|jewels, jewel| jewels += "<span class='jewel tag'>#{jewel.downcase}</span>"}
-          .finishes.row
-            %span.label Finish
-            = raw current_variation.finishes.uniq.inject('') {|finishes, finish| finishes += "<span class='finish tag'>#{finish.downcase}</span>"}
+          - if current_variation.finishes.present?
+            .finishes.row
+              %span.label Finish
+              = raw current_variation.finishes.uniq.inject('') {|finishes, finish| finishes += "<span class='finish tag'>#{finish.downcase}</span>"}
           .availability.row
             - if current_variation.item.one_of_a_kind
               :textile

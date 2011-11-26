@@ -8,6 +8,8 @@ class Asset
   field :migrated,     type: Boolean, default: false
 
   scope :by_position, order_by([[:position, :desc]])
+  
+  default_scope order_by([:position, :desc])
 
   has_mongoid_attached_file :image,
     styles: {
