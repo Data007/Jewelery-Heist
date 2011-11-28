@@ -1,7 +1,7 @@
 class SearchesController < ApplicationController
   def show
     @query = params[:q]
-    @items = Item.search(@query)
+    @items = Item.search(@query).published
     @items = @items.present? ? @items.paginate(pagination_hash) : [].paginate(pagination_hash)
     @title = "Listing #{@query} Results"
 
