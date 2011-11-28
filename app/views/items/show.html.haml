@@ -128,7 +128,7 @@
               %h2 This item is part of the #{@item.collections.first.name.capitalize} Collection
             - @item.collections.each do |collection|
               .collection
-                %h3.name The #{collection.name.capitalize} Collection
+                %h3.name= link_to "The #{collection.name.capitalize} Collection", collection_path(collection.pretty_id)
                 .description
                   :markdown
                     #{collection.description}
