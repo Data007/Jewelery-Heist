@@ -83,7 +83,9 @@ class Item
       end.flatten.first
     end
 
-    def search(query)
+    def search(query=nil)
+      return all if query.empty?
+
       keywords = query.split(' ')
       ids      = []
       names    = []
