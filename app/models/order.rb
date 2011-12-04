@@ -176,7 +176,7 @@ class Order
   end
 
   def total
-    subtotal + tax + shipping_cost
+    subtotal + tax + (ship? ? shipping_cost : 0)
   end
 
   def payments_total
