@@ -9,8 +9,8 @@
     .name= link_to (item.name ? item.name : "this item needs a name"), admin_item_path(item.pretty_id)
 
   .item_body.content
-    - if item.variations.length > 0
-      - asset = item.variations.first.assets.first
+    - if item.variations.active.length > 0
+      - asset = item.variations.active.first.assets.first
       - if asset
         = link_to(image_tag(asset.image.url(:manage)), admin_item_path(item.pretty_id))
       - else
@@ -20,12 +20,12 @@
     .statuses
       - if item.published
         .published= link_to "On the Web", published_admin_items_path
-      -elsif !item.published && !item.ghost
+      -elsif !item.published
         .instore= link_to "Not on the Web", instore_admin_items_path
       - if item.one_of_a_kind
         .one_of_a_kind= link_to "One of a Kind", ooak_admin_items_path
-      - if item.ghost
-        .zombie= link_to "No Longer Available", old_admin_items_path
+      / - if item.archived
+      /   .zombie= link_to "No Longer Available", old_admin_items_path
       - unless item.available
         .not_available= link_to "Sold", old_admin_items_path
     .collections

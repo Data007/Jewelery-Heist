@@ -1,5 +1,5 @@
-- variation = @color ? thumbnail.variations.collect { |v| v if v.color_ids.include?(@color.id)}.compact.first : thumbnail.variations.first
-- variation = variation.assets.length > 0 ? variation : thumbnail.variations.first
+- variation = @color ? thumbnail.variations.active.collect { |v| v if v.color_ids.include?(@color.id)}.compact.first : thumbnail.variations.active.first
+- variation = variation.assets.length > 0 ? variation : thumbnail.variations.active.first
 
 .item{:id => "item_#{thumbnail.pretty_id}"}
   .thumbnail= link_to image_tag(variation.assets.by_position.compact.first.image.url(:medium)), item_path(thumbnail.pretty_id, variation_id: variation.pretty_id)

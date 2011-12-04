@@ -21,11 +21,16 @@ class Admin::Items::VariationsController < Admin::ItemsController
     end
   end
 
+  def destroy
+    @variation.update_attribute(:archived, true) if @variation
+    render json: {status: 'ok'}.to_json
+  end
+
 private
 
   def find_variation
     variation_id = params[:variation_id] || params[:id]
-    @variation   = @item.variations.where(pretty_id: variation_id).first
+    @variation   = @item.variations.where(pretty_id: variation_id, :'archived'.in => [true, false]).first
   end
 
 end

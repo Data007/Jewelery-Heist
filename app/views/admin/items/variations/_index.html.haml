@@ -1,5 +1,5 @@
 .images
-  - item.variations.each do |variation|
+  - item.variations.active.each do |variation|
     .image
       .actions
         = link_to "edit", edit_admin_item_variation_path(item.pretty_id, variation.pretty_id)

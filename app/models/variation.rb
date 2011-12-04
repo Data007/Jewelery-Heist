@@ -14,6 +14,7 @@ class Variation
   field :jewels,         type: Array
   field :colors,         type: Array # TODO: Make it work!
   field :backorder_notes
+  field :archived,       type: Boolean, default: false
 
   field :pretty_id,    type: Integer
   sequence :pretty_id  
@@ -23,6 +24,10 @@ class Variation
 
   before_save :set_parent_item_id
   before_save :validate_price
+
+  scope :active, where(archived: false)
+
+  default_scope where(archived: false)
 
   def validate_price
     self.price = launder_money(self.price)
