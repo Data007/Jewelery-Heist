@@ -16,12 +16,12 @@
         %th &nbsp;
         %th Total
     %tbody
-      - @order.line_items.each_with_index do |line_item, i|
+      - @order.line_items.each_with_index do |line_item, index|
   
         - if line_item.is_quick_item
-          = render :partial => "admin/users/orders/quick_line_item", :locals => {:line_item => line_item}
+          = render partial: "admin/users/orders/quick_line_item", locals: {line_item: line_item, index: index}
         - else
-          = render :partial => "admin/users/orders/line_item", :locals => {:line_item => line_item}
+          = render partial: "admin/users/orders/line_item", locals: {line_item: line_item, index: index}
           
       %tr
         %td{:colspan => 7} &nbsp;
