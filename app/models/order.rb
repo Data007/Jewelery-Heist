@@ -76,7 +76,7 @@ class Order
   end
 
   def has_valid_shipping_address?
-    true
+    self.address.present?
   end
 
   def full_shipping
@@ -203,14 +203,16 @@ class Order
 
   def hand_off
     self.line_items.each do |line_item|
-      item = line_item.variation.parent_item
-      line_item.variation.update_attributes quantity: line_item.variation.quantity - 1 if line_item.variation.quantity > 0
-      if item.one_of_a_kind
-        item.update_attributes available: false
+      unless line_item.is_quick_item?
+        item = line_item.variation.parent_item
+        line_item.variation.update_attributes quantity: line_item.variation.quantity - 1 if line_item.variation.quantity > 0
+        if item.one_of_a_kind
+          item.update_attributes available: false
+        end
       end
     end
 
-    self.address = user.addresses.last.clone
+    self.address = user.addresses.last.clone unless self.address.present?
     
     self.ticket.current_stage = "handed off"
     self.ticket.next_stage
@@ -218,7 +220,7 @@ class Order
 
     self.save
     
-    self.update_attributes handed_off: true, purchased: true
+    self.update_attributes handed_off: true, purchased: true, purchased_at: Time.now
   end
 
   def refund

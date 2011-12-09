@@ -161,10 +161,8 @@ class OrdersController < ApplicationController
     
     def has_shipping_address?
       if @current_order.has_valid_shipping_address?
-        logger.debug "\n\n- sweet! - #{@current_order.has_valid_shipping_address?}\n\n"
         return true
       else
-        logger.debug "\n\n- crap - #{@current_order.has_valid_shipping_address?}\n\n"
         redirect_to shipping_path, :method => :post
       end
     end

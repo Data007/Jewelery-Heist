@@ -3,6 +3,7 @@ class Admin::Users::Orders::PaymentsController < Admin::Users::OrdersController
 
   def create
     @order.payments.create(params[:payment])
+    @order.hand_off
 
     redirect_to admin_user_order_path(@user.pretty_id, @order.pretty_id)
   end
