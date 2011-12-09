@@ -209,10 +209,14 @@ class Order
         item.update_attributes available: false
       end
     end
+
+    self.address = user.addresses.last.clone
     
     self.ticket.current_stage = "handed off"
     self.ticket.next_stage
     self.ticket.save
+
+    self.save
     
     self.update_attributes handed_off: true, purchased: true
   end
