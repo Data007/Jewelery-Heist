@@ -101,10 +101,8 @@ class Admin::OrdersController < AdminController
   
   def find
     begin
-      order = Order.find(params[:order])
-      flash[:notice] = "Order ##{order.id} is now in use. We have saved your previous or with an id of ##{current_customer_order.id}."
-      switch_current_customer_order(order.id)
-      redirect_to admin_order_path(order) and return
+      order = User.find_order(params[:order])
+      redirect_to admin_user_order_path(order.user.pretty_id, order.pretty_id) and return
     else
       flash[:error] = "We could not find an order with the id of ##{params[:order]}. Please make sure the order number is valid and try again."
       redirect_to :back and return

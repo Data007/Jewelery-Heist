@@ -37,3 +37,7 @@ def login_admin(user, password)
   fill_in 'Password', with: password
   click_button 'Login'
 end
+
+def soap
+  save_and_open_page
+end

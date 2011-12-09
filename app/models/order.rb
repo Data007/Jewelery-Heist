@@ -2,6 +2,7 @@ class Order
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Sequence
+  include MafiaConnections
 
   field :refunded,          type: Boolean, default: false
   field :ship,              type: Boolean, default: false
@@ -153,9 +154,12 @@ class Order
   end
 
   def add_item(variation, options={})
+    debugger
     add_line_item(options.merge({
       variation: variation,
-        taxable: true
+        taxable: true,
+          price: variation.price,
+       quantity: 1
     }))
   end
 

@@ -14,9 +14,9 @@ describe 'Orders' do
     })
 
     login_admin(@admin, 'password')
-    visit admin_user_path(@customer)
+    visit admin_user_path(@customer.pretty_id)
 
-    current_path.should == admin_user_path(@customer.id)
+    current_path.should == admin_user_path(@customer.pretty_id)
   end
 
   it 'creates an order' do
@@ -25,28 +25,30 @@ describe 'Orders' do
     @customer.reload
     @order = @customer.orders.last
     
-    current_path.should == admin_user_order_path(@customer.id, @order.id)
+    current_path.should == admin_user_order_path(@customer.pretty_id, @order.pretty_id)
     page.should have_content('Line Items')
     page.should have_content('Payments')
-    page.should have_content("Instore Purchase ##{@order.id}")
+    page.should have_content("Instore Purchase ##{@order.pretty_id}")
 
     click_button 'save line items'
-    current_path.should == admin_user_order_path(@customer.id, @order.id)
+    current_path.should == admin_user_order_path(@customer.pretty_id, @order.pretty_id)
   end
 
-  it 'shows an order'
-  
   context 'items' do
 
     before do
-      @item  = Factory.create(:item, name: 'Test Item')
-      @item.variations.create(price: 30)
+      @item      = Factory.create(:item, name: 'Test Item', size_range: '2-6')
+      @variation = @item.variations.create
+      @variation.update_attribute :price, 30
+
+      @item.reload
+      @variation = @item.variations.first
     end
 
     it 'adds a quick item', js: true do
       @order = @customer.orders.create
 
-      visit admin_user_order_path(@customer.id, @order.id)
+      visit admin_user_order_path(@customer.pretty_id, @order.pretty_id)
 
       click_on 'add a quick line item'
       fill_in  'Name', with: 'test quick item'
@@ -54,7 +56,7 @@ describe 'Orders' do
       uncheck  'Taxable?'
       click_on 'add new line item'
 
-      current_path.should == admin_user_order_path(@customer.id, @order.id)
+      current_path.should == admin_user_order_path(@customer.pretty_id, @order.pretty_id)
       page.should have_content('test quick item')
 
       @customer.reload
@@ -67,7 +69,8 @@ describe 'Orders' do
     end
 
     it 'adds a stock item' do
-      visit admin_user_path(@customer.id)
+      visit admin_user_path(@customer.pretty_id)
+      debugger
 
       click_on 'In Store Purchase'
 
@@ -77,10 +80,9 @@ describe 'Orders' do
 
       fill_in  'search_query', with: 'Test'
       click_on 'search'
-      click_on 'Test Item'
       click_on 'Add to Cart'
 
-      current_path.should == admin_user_order_path(@customer.id, @order.id)
+      current_path.should == admin_user_order_path(@customer.pretty_id, @order.pretty_id)
       page.should have_content('Test Item')
 
       @customer.reload
@@ -102,7 +104,7 @@ describe 'Orders' do
       @item.variations.create(price: 30)
       @order.add_item @item.variations.last
 
-      visit admin_user_order_path(@customer.id, @order.id)
+      visit admin_user_order_path(@customer.pretty_id, @order.pretty_id)
     end
 
     it 'adds a partial payment' do
@@ -110,7 +112,7 @@ describe 'Orders' do
       fill_in  'Amount', with: 15
       click_on 'add new payment'
 
-      current_path.should == admin_user_order_path(@customer.id, @order.id)
+      current_path.should == admin_user_order_path(@customer.pretty_id, @order.pretty_id)
 
       @customer.reload
       @order = @customer.orders.find(@order.id)
@@ -124,7 +126,7 @@ describe 'Orders' do
       fill_in  'Amount', with: @order.total
       click_on 'add new payment'
 
-      current_path.should == admin_user_order_path(@customer.id, @order.id)
+      current_path.should == admin_user_order_path(@customer.pretty_id, @order.pretty_id)
 
       @customer.reload
       @order = @customer.orders.find(@order.id)
@@ -134,6 +136,7 @@ describe 'Orders' do
     end
 
     it 'applies in store credit' do
+      pending 'Customer balance not being worked on right now'
       order = @customer.orders.create purchased: true
       order.payments.create payment_type: 'instore credit', amount: -15
 
@@ -147,7 +150,7 @@ describe 'Orders' do
       fill_in  'Amount', with: 15
       click_on 'add new payment'
 
-      current_path.should == admin_user_order_path(@customer.id, @order.id)
+      current_path.should == admin_user_order_path(@customer.pretty_id, @order.pretty_id)
 
       @customer.reload
       @order = @customer.orders.find(@order.id)
@@ -162,7 +165,7 @@ describe 'Orders' do
       fill_in  'Amount', with: 15
       click_on 'add new payment'
 
-      current_path.should == admin_user_order_path(@customer.id, @order.id)
+      current_path.should == admin_user_order_path(@customer.pretty_id, @order.pretty_id)
 
       @customer.reload
       @order = @customer.orders.find(@order.id)
@@ -175,7 +178,7 @@ describe 'Orders' do
       fill_in  'Amount', with: @order.balance
       click_on 'add new payment'
 
-      current_path.should == admin_user_order_path(@customer.id, @order.id)
+      current_path.should == admin_user_order_path(@customer.pretty_id, @order.pretty_id)
 
       @customer.reload
       @order = @customer.orders.find(@order.id)
@@ -188,7 +191,7 @@ describe 'Orders' do
 
   it 'adds a note' do
     order = @customer.orders.create purchased: true
-    visit admin_user_order_path(@customer.id, order.id)
+    visit admin_user_order_path(@customer.pretty_id, order.pretty_id)
 
     fill_in  'Note', with: 'I should add some items eventually'
     click_on 'update order notes'
@@ -196,7 +199,7 @@ describe 'Orders' do
     @customer.reload
     order = @customer.orders.find(order.id)
     order.notes.should == 'I should add some items eventually'
-    current_path.should == admin_user_order_path(@customer.id, order.id)
+    current_path.should == admin_user_order_path(@customer.pretty_id, order.pretty_id)
     page.should have_content('I should add some items eventually')
   end
 

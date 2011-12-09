@@ -41,7 +41,7 @@ class LineItem
     self.price = launder_money(self.price)
   end
 
-  def refund
+  def remove_variation
     unless self.is_quick_item
       variation = self.variation
       variation.update_attribute :quantity, (variation.quantity + self.quantity)
@@ -53,6 +53,10 @@ class LineItem
     else
       line_id = self.quick_id
     end
+  end
+
+  def refund
+    remove_variation
     
     self.update_attribute :refunded, true
   end
