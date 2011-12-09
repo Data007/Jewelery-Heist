@@ -33,6 +33,8 @@ class Order
   embeds_one  :address
   embeds_one  :ticket
 
+  accepts_nested_attributes_for :address
+
   before_save  :set_address
   after_create :setup_ticket
 
