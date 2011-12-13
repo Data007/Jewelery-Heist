@@ -212,7 +212,9 @@ class Order
       end
     end
 
-    self.address = user.addresses.last.clone unless self.address.present?
+    begin
+      self.address = user.addresses.last.clone unless self.address.present?
+    rescue; end
     
     self.ticket.current_stage = "handed off"
     self.ticket.next_stage
