@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '~> 3.0.9'
 
 # http://collectiveidea.com/blog/archives/2010/11/29/ssl-with-rails/
 gem 'rack-ssl'
 
-gem 'mongoid',  '~> 2.0.0'
+gem 'mongoid',  '~> 2.2.0'
 gem 'bson_ext', '~> 1.2'
 gem 'rails3-generators'
  

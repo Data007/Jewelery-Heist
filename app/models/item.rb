@@ -95,10 +95,7 @@ class Item
         if keyword.match(/(ID)?\d+-?\d?/x)
           ids << keyword
         else
-          names << Regexp.new(keyword)
-          names << Regexp.new(keyword.capitalize)
-          names << Regexp.new(keyword.upcase)
-          names << Regexp.new(keyword.downcase)
+          names << keyword
         end
       end
 
@@ -106,10 +103,20 @@ class Item
       names.flatten if names.present?
 
       if names.present?
+        names = names.join(' ')
         query_hash = [
-          {name:                       {'$in' => names}},
-          {description:                {'$in' => names}},
-          {'variations.description' => {'$in' => names}}
+          {name:                       Regexp.new(names)},
+          {name:                       Regexp.new(names.titleize)},
+          {name:                       Regexp.new(names.downcase)},
+          {name:                       Regexp.new(names.upcase)},
+          {description:                Regexp.new(names)},
+          {description:                Regexp.new(names.titleize)},
+          {description:                Regexp.new(names.downcase)},
+          {description:                Regexp.new(names.upcase)},
+          {'variations.description' => Regexp.new(names)},
+          {'variations.description' => Regexp.new(names.titleize)},
+          {'variations.description' => Regexp.new(names.downcase)},
+          {'variations.description' => Regexp.new(names.upcase)}
         ]
 
         results = any_of(query_hash)
