@@ -98,6 +98,10 @@ class User
   def open_web_order
     orders.where(purchased: false, location: 'website', staging_type: 'purchase').first
   end
+
+  def closed_orders
+    orders.where(purchased: true)
+  end
   
   # Authentication
   def generate_new_password
@@ -184,6 +188,11 @@ class User
       end.flatten.compact.include?(false)
     end
     self.addresses = new_addresses
+  end
+
+  def last_shipping_address
+    return nil unless closed_orders.present?
+    return closed_orders.last.address
   end
 
   # Permissions
