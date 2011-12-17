@@ -47,15 +47,12 @@ class OrdersController < ApplicationController
   def addressed
     @updated_order = current_order
     address_hash = params[:address]
-    if @updated_order.update_attributes address_hash
-      address = Address.from_hash address_hash
-      @current_user.add_address(address)
-      flash[:notice] = "Your shipping address has been added. Thank you."
-      redirect_to checkout_path(@updated_order.pretty_id)
-    else
-      flash[:error] = "There was an error in your address. Please look it over and try again."
-      render :template => "orders/shipping"
-    end
+    address = current_user.addresses.where(address_hash)
+    address = address.present? ? address.first : current_user.addresses.create(address_hash)
+    @updated_order.address = address
+    @updated_order.save
+    flash[:notice] = "Your shipping address has been added. Thank you."
+    redirect_to checkout_path(@updated_order.pretty_id)
   end
   
   def pay
