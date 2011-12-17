@@ -4,7 +4,7 @@
       .actions
         = link_to "edit", edit_admin_item_variation_path(item.pretty_id, variation.pretty_id)
         = link_to "delete", admin_item_variation_path(item.pretty_id, variation.pretty_id), method: :delete, class: "delete"
-      - image = variation.assets.length > 0 && variation.assets.first.image_file_name != nil ? variation.assets.first.image.url(:manage) : "/images/ui/no_image.jpg"
+      - image = variation.assets.by_position.compact.length > 0 && variation.assets.by_position.compact.first.image_file_name != nil ? variation.assets.by_position.compact.first.image.url(:manage) : "/images/ui/no_image.jpg"
       = link_to image_tag(image), edit_admin_item_variation_path(item.pretty_id, variation.pretty_id)
       .item_id
         ID#{@item.pretty_id}-#{variation.pretty_id}
