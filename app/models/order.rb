@@ -76,7 +76,7 @@ class Order
   end
 
   def has_valid_shipping_address?
-    self.address.present?
+    address
   end
 
   def full_shipping

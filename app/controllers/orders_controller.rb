@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
     address_hash = params[:address]
     address = current_user.addresses.where(address_hash)
     address = address.present? ? address.first : current_user.addresses.create(address_hash)
-    @updated_order.address = address
+    @updated_order.address = address.clone
     @updated_order.save
     flash[:notice] = "Your shipping address has been added. Thank you."
     redirect_to checkout_path(@updated_order.pretty_id)
@@ -157,7 +157,7 @@ class OrdersController < ApplicationController
     end
     
     def has_shipping_address?
-      if @current_order.has_valid_shipping_address?
+      if current_order.has_valid_shipping_address?
         return true
       else
         redirect_to shipping_path, :method => :post
