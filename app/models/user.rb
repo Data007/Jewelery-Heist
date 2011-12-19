@@ -106,7 +106,7 @@ class User
   # Authentication
   def generate_new_password
     new_password = User.generate_plain_token
-    password = password_confirmation = new_password
+    self.password = self.password_confirmation = new_password
     save
     return new_password
   end

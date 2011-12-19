@@ -22,6 +22,6 @@ class UserMailer < ActionMailer::Base
     @user  = user
     @order = order
 
-    mail :to => user.emails.first, :bcc => 'management@wexfordjewelers.com', :subject => "Wexford Jewelers : Your Order ##{order.pretty_id}"
+    mail :to => user.emails.join(', '), :bcc => 'management@wexfordjewelers.com', :subject => "Wexford Jewelers : Your Order ##{order.pretty_id}"
   end
 end
