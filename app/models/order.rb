@@ -148,7 +148,10 @@ class Order
   end
 
   def refund_line_item(line_item_id)
-    line_items.find(line_item_id).update_attribute :refunded, true
+    line_item = line_items.where(pretty_id: line_item_id).first
+    if line_item
+      line_item.update_attribute :refunded, true
+    end
   end
 
   def add_line_item(new_line_item)
