@@ -38,7 +38,7 @@ class LineItem
       end
     end
 
-    self.price = launder_money(self.price)
+    self.price = launder_money(self.price).to_f
   end
 
   def remove_variation
