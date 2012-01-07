@@ -18,6 +18,7 @@ include ActionView::Helpers::TextHelper
 RSpec.configure do |config|
   config.mock_with :rspec
   config.include Mongoid::Matchers
+  Capybara.javascript_driver = :webkit
 
   # Clean up the database
   config.before :suite do
