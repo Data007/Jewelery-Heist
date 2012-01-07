@@ -14,11 +14,11 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 require 'action_view'
 include ActionView::Helpers::NumberHelper
 include ActionView::Helpers::TextHelper
+include ActionView::Helpers::UrlHelper
 
 RSpec.configure do |config|
   config.mock_with :rspec
   config.include Mongoid::Matchers
-  Capybara.javascript_driver = :webkit
 
   # Clean up the database
   config.before :suite do

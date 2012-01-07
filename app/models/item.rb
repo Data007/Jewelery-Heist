@@ -6,6 +6,8 @@ class Item
 
   field :name
   field :description
+  field :price,         type: Float,   default: 0.0
+  field :quantity,      type: Integer, default: 1
   field :ghost,         type: Boolean, default: false
   field :one_of_a_kind, type: Boolean, default: false
   field :customizable,  type: Boolean, default: false
@@ -13,11 +15,16 @@ class Item
   field :published,     type: Boolean, default: false
   field :discontinued,  type: Boolean, default: false
   field :cost,          type: Float
+  field :metals,        type: Array
+  field :finishes,      type: Array
+  field :jewels,        type: Array
+  field :colors,        type: Array
   field :designer_id
   field :size_range
   field :category
   field :gender
   field :custom_id
+  field :backorder_notes
   field :customizable_notes
   field :discontinued_notes
 
@@ -209,7 +216,40 @@ class Item
     self.collections.collect {|collection| collection.id }.join(",")
   end
   
-    
+  def colors_csv
+    colors.map(&:position).join(',')
+  end
+
+  def colors_csv=(csv)
+    self.colors = csv.split(',').sort.map {|position| Item.colors_from_position(position).first}.compact
+  end
+
+  def metal_csv
+    return '' unless metals
+    metals.join(',')
+  end
+
+  def metal_csv=(csv)
+    self.metals = csv.split(',')
+  end
+
+  def finish_csv
+    return '' unless finishes
+    finishes.join(',')
+  end
+
+  def finish_csv=(csv)
+    self.finishes = csv.split(',')
+  end
+
+  def jewel_csv
+    return '' unless jewels
+    jewels.join(',')
+  end
+
+  def jewel_csv=(csv)
+    self.jewels = csv.split(',')
+  end
 
 private
 

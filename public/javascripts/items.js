@@ -101,6 +101,43 @@ function setup_items() {
   setup_customizable();
   setup_discontinued();
   setup_one_of_a_kind();
+  setup_variation_fields();
+}
+
+function check_for_metal_duplicates(value, metal) {
+  var token_duplicate = false;
+  return token_duplicate;
+}
+
+function setup_variation_fields() {
+  setup_metal_fields();
+  setup_finish_fields();
+  setup_gem_fields();
+}
+
+function setup_metal_fields() {
+  $("#item_metal_csv").tokenizeInput({
+    url: "/admin/live_searches/metals/",
+    disableQueryToken: true
+  });
+}
+
+function setup_finish_fields() {
+  $("#item_finish_csv").tokenizeInput({
+    url: "/admin/live_searches/finishes/",
+    disableQueryToken: true
+  });
+}
+
+function setup_gem_fields() {
+  $("#item_jewel_csv").tokenizeInput({
+    url: "/admin/live_searches/jewels/",
+    disableQueryToken: true
+  });
+}
+
+function extract_from_csv(data) {
+  return data.split(",");
 }
 
 load_functions.push("setup_items");

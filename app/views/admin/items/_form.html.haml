@@ -14,11 +14,26 @@
       = item.label :description
       = item.text_area :description
     .field.required
+      = item.label :price
+      = item.text_field :price
+    .field.required
+      = item.label :quantity
+      = item.text_field :quantity
+    .field.required
       = item.label :size_range
       = item.text_field :size_range
     .field.required
       = item.label :category
       = item.select :category, Item.categories
+    .field.required
+      = item.label :metal_csv, 'Metals'
+      = item.text_field :metal_csv, class: 'metal_field'
+    .field.required
+      = item.label :finish_csv, 'Finishes'
+      = item.text_field :finish_csv, class: 'finish_field'
+    .field.required
+      = item.label :jewel_csv, 'Gems'
+      = item.text_field :jewel_csv, class: 'jewel_field'
     .field.required
       = item.label :gender
       = item.select :gender, Item.genders
@@ -44,6 +59,9 @@
     .field
       = item.label :one_of_a_kind
       = item.check_box :one_of_a_kind
+    .field.required
+      = item.label :backorder_notes
+      = item.text_field :backorder_notes
     .field#customizable
       = item.label :customizable
       = item.check_box :customizable

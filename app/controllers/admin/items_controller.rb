@@ -1,9 +1,19 @@
 class Admin::ItemsController < AdminController
 
-  before_filter :find_item, :except => [:index, :published, :new]
+  before_filter :find_item, :except => [:index, :published, :new, :create]
 
   def new
-    @item = Item.create name: 'A new name'
+    @item = Item.new
+    render template: 'admin/items/new'
+  end
+
+  def create
+    @item = Item.new params[:item]
+    if @item.save
+      redirect_to edit_admin_item_path(@item.pretty_id), notice: "#{@item.name.titleize} has been created for you."
+    else
+      render template: 'admin/items/new'
+    end
   end
   
   def show

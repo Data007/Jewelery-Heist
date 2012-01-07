@@ -2,8 +2,8 @@
   %h1 Create a new item
   
 - content_for :page_actions do
-  .button.dangerous= link_to 'cancel', cancel_admin_item_path(@item.pretty_id)
+  .button.dangerous= link_to 'cancel', :back
   
 - content_for :page_content do
-  - form_for :item, @item, url: admin_item_path(@item.pretty_id), html: { method: :put, multipart: true } do |item|
+  - form_for [:admin, @item], html: { multipart: true } do |item|
     = render partial: "admin/items/form", locals: {item: item}
