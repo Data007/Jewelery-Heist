@@ -14,7 +14,7 @@
     item = variation.parent_item %>
     
   <p>
-    Item: <%= link_to item.name, "http://wexfordjewelers.com/items/#{item.pretty_id}&?variation_id=#{variation.pretty_id}" %> (<%= item.pretty_id %>-<%= variation.pretty_id %>)<br />
+    Item: <%= link_to item.name, "http://wexfordjewelers.com/items/#{item.pretty_id}?variation_id=#{variation.pretty_id}" %> (<%= item.pretty_id %>-<%= variation.pretty_id %>)<br />
     Size: <%= line_item.size %><br />
     Price: <%= number_to_currency line_item.price %><br />
     Quantity: <%= line_item.quantity %><br />
