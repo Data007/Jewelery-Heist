@@ -1,4 +1,4 @@
-%h1 Available Inventory
+%h2 Available Inventory
 %table
   %tbody
     - @variations.each do |variation|
@@ -16,3 +16,13 @@
         %td
           Price:
           %b $#{variation.price}
+%h2 Retail Summary
+%table{cellspacing: '2em'}
+  %thead
+    %tr
+      %th{style: 'text-align: left'} Quantity Total
+      %th{style: 'text-align: left'} Retail Price Total
+  %tbody
+    %tr
+      %td= @quantity_total
+      %td= number_to_currency @retail_total
