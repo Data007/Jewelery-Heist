@@ -4,17 +4,12 @@
   .item_actions
     #{link_to "Edit", edit_admin_item_path(item.pretty_id)} |
     #{link_to (item.custom_id.present? ? "ID#{item.pretty_id} | OID#{item.custom_id}" : "ID#{item.pretty_id}"), admin_item_path(item.pretty_id)}
-    %span (#{pluralize(item.variations.length, "variation")})
   .item_header
     .name= link_to (item.name ? item.name : "this item needs a name"), admin_item_path(item.pretty_id)
 
   .item_body.content
-    - if item.variations.active.length > 0
-      - asset = item.variations.active.first.assets.by_position.compact.first
-      - if asset
-        = link_to(image_tag(asset.image.url(:manage)), admin_item_path(item.pretty_id))
-      - else
-        = link_to(image_tag("/images/ui/no_image.jpg"), admin_item_path(item.pretty_id))
+    - if item.assets.present?
+      = link_to image_tag(item.assets.by_position.first.image.url(:manage)), admin_item_path(item.pretty_id)
     - else
       = link_to(image_tag("/images/ui/no_image.jpg"), admin_item_path(item.pretty_id))
     .statuses

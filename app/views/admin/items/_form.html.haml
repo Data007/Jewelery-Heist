@@ -76,13 +76,13 @@
       = item.text_area :discontinued_notes
   %hr
   - unless @item.new_record?
-    #variations
-      .section_header
-        .section_title
-          %h1 Variations
-        .section_actions
-          = raw button_for_url("create a new variation", new_admin_item_variation_path(:item_id => @item.pretty_id), :class => "button create_variation_button")
-      = render :partial => "admin/items/variations/index", :locals => {:item => @item}
+    = item.fields_for :assets, Asset.new do |current_asset|
+      .field.image_uploader{:'data-item-id' => @item.id}
+        = current_asset.label :image, "Upload a New Image"
+        = current_asset.file_field :image, :class => "original_file_field"
+    .field.images{:id => "images_for_item_#{@item.id}"}
+      - @item.assets.by_position.each do |uploaded_asset|
+        = render partial: 'asset', object: uploaded_asset
     
   .form_actions
     = submit_tag "save", :class => "submit"

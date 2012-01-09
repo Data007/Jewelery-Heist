@@ -1,0 +1,7 @@
+.image{id: "image_#{asset.id}"}
+  .actions
+    = link_to "view", asset.image.url(:original), target: "_blank"
+    .delete{:href => admin_item_asset_path(@item, asset), parent_image_id: "image_#{asset.id}"}
+      delete
+  = image_tag asset.image.url(:manage)
+  .id{style: "visibility: hidden", id: asset.id}

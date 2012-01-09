@@ -30,6 +30,7 @@ class Asset
     path: "variation/:attachment/:id/:basename-:style.:extension",
     url:  ":s3_domain_url"
   
+  embedded_in :item
   embedded_in :variation
 
   def refresh_image

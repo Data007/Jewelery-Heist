@@ -121,6 +121,12 @@ DragonHoard::Application.routes.draw do
           get :remove
           get :restore
         end
+
+        resources :assets, controller: 'items/assets' do
+          member do
+            get :update_position
+          end
+        end
         
         resources :variations, controller: 'items/variations' do
           member do

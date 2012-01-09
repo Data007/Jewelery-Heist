@@ -31,6 +31,7 @@ class Item
   field :pretty_id,    type: Integer
   sequence :pretty_id  
 
+  embeds_many :assets
   embeds_many :variations
   has_and_belongs_to_many :collections
 
