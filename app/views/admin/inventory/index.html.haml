@@ -17,11 +17,11 @@
           Price:
           %b $#{variation.price}
 %h2 Retail Summary
-%table{cellspacing: '2em'}
+%table
   %thead
     %tr
-      %th{style: 'text-align: left'} Quantity Total
-      %th{style: 'text-align: left'} Retail Price Total
+      %th{style: 'text-align: left; padding-right: 2em;'} Quantity Total
+      %th{style: 'text-align: left; padding-right: 2em;'} Retail Price Total
   %tbody
     %tr
       %td= @quantity_total
