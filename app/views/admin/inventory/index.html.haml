@@ -8,5 +8,11 @@
             - variation.assets.by_position[0..3].each do |asset|
               = image_tag asset.image.url(:thumbnail)
         %td
-          ID#{variation.parent_item.pretty_id}-#{variation.pretty_id} /
-          OID#{variation.parent_item.custom_id}-#{variation.custom_id}
+          %b ID#{variation.parent_item.pretty_id}-#{variation.pretty_id} /
+          %b OID#{variation.parent_item.custom_id}-#{variation.custom_id}
+        %td
+          Quantity:
+          %b #{variation.quantity}
+        %td
+          Price:
+          %b $#{variation.price}
