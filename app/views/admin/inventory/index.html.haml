@@ -1,0 +1,15 @@
+%table
+  %thead
+    %tr
+      %th &nbsp;
+      %th ID/OID
+  %tbody
+    - @variations.each do |variation|
+      %tr
+        %td
+          - if variation.assets
+            - variation.assets.by_position[0..3].each do |asset|
+              = image_tag asset.image.url(:thumbnail)
+        %td
+          ID#{variation.parent_item.pretty_id}-#{variation.pretty_id} /
+          OID#{variation.parent_item.custom_id}-#{variation.custom_id}
