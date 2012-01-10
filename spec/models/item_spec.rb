@@ -2,6 +2,35 @@ require 'spec_helper'
 
 describe Item do
 
+  context 'Asset sort' do
+    
+    before do
+      @item = Factory.create :item
+      @asset1 = @item.assets.create
+      @asset2 = @item.assets.create
+      @asset3 = @item.assets.create
+
+      @asset1.position.should == 0
+      @asset2.position.should == 1
+      @asset3.position.should == 2
+    end
+
+    it 'puts asset 1 in the middle of the stack' do
+      @item.update_asset_position(@asset1, 1)
+      
+      @asset1 = @item.assets.find(@asset1.id)
+      @asset2 = @item.assets.find(@asset2.id)
+
+      @asset1.position.should == 1
+      @asset2.position.should == 0
+    end
+
+    it 'puts asset 3 on the top of the stack'
+    it 'puts asset 2 on the bottom of the stack'
+
+  end
+
+
   context '#search' do
     
     before do

@@ -252,6 +252,21 @@ class Item
     self.jewels = csv.split(',')
   end
 
+  def update_asset_position(asset, position=nil)
+    new_position = position.nil? ? self.assets.count : position.to_i
+    
+    asset_list = self.assets.where(:position.lte => position) - [asset]
+    asset_list.push asset
+    asset_list = asset_list + (self.assets.where(:position.gt => position) - [asset])
+
+    asset_list.each_with_index do |saved_asset, index|
+      saved_asset.update_attribute :position, index
+    end
+
+    assets = asset_list
+    save
+  end
+
 private
 
   def split_size_range(range)

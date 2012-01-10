@@ -4,7 +4,7 @@
     #{@item.name} (#{@item.custom_id.present? ? "ID#{@item.pretty_id} | OID#{@item.custom_id}" : "ID#{@item.pretty_id}"})
 
 - content_for :page_actions do
-  = link_to 'view', admin_item_path(@item.pretty_id), class: 'button'
+  %span.button= link_to 'view', admin_item_path(@item.pretty_id)
   
 - content_for :page_content do
   - form_for :item, @item, :url => admin_item_path(@item.pretty_id), :html => { :method => :put, :multipart => true } do |item|

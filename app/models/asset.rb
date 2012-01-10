@@ -33,6 +33,8 @@ class Asset
   embedded_in :item
   embedded_in :variation
 
+  before_create :set_position
+
   def refresh_image
     image_path = store_image(migratory_url, image_file_name)
     new_image = File.open(image_path)
@@ -40,6 +42,14 @@ class Asset
     image = new_image
 
     save
+  end
+
+  def set_position
+    if item.present?
+      self.position = item.assets.count
+    else
+      self.position = 0
+    end
   end
 
 private
