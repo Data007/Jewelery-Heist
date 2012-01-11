@@ -167,7 +167,7 @@ function setup_image_positioning() {
       var position = images.index(ui.item);
       $.ajax({
         method: "GET",
-        url: ("/admin/items/" + $(".variation").attr('data-item-id') + "/variations/" + $(".variation").attr('data-variation-id') + "/attachments/" + ui.item.find(".id").attr("id") + "/update_position/?position=" + position)
+        url: ("/admin/items/" + $(".images").attr('data-item-id') + "/assets/" + ui.item.find(".id").attr("id") + "/update_position/?position=" + position)
       });
     }
   });

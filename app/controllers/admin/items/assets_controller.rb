@@ -21,6 +21,7 @@ class Admin::Items::AssetsController < Admin::ItemsController
   def update_position
     asset = @item.assets.find(params[:id])
     @item.update_asset_position(asset, params[:position])
+    render text: 'ok'
   end
 
   def destroy

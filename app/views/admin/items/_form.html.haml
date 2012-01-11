@@ -80,7 +80,7 @@
       .field.image_uploader{:'data-item-id' => @item.id}
         = current_asset.label :image, "Upload a New Image"
         = current_asset.file_field :image, :class => "original_file_field"
-    .field.images{:id => "images_for_item_#{@item.id}"}
+    .field.images{id: "images_for_item_#{@item.id}", :'data-item-id' => @item.id}
       - @item.assets.by_position.each do |uploaded_asset|
         = render partial: 'asset', object: uploaded_asset
     
