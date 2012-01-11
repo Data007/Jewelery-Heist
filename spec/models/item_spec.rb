@@ -25,8 +25,27 @@ describe Item do
       @asset2.position.should == 0
     end
 
-    it 'puts asset 3 on the top of the stack'
-    it 'puts asset 2 on the bottom of the stack'
+    it 'puts asset 3 on the top of the stack' do
+      @item.update_asset_position(@asset3, 0)
+      
+      @asset1 = @item.assets.find(@asset1.id)
+      @asset2 = @item.assets.find(@asset2.id)
+      @asset3 = @item.assets.find(@asset3.id)
+
+      @asset1.position.should == 1
+      @asset2.position.should == 2
+      @asset3.position.should == 0
+    end
+
+    it 'puts asset 2 on the bottom of the stack' do
+      @item.update_asset_position(@asset2, 2)
+      
+      @asset3 = @item.assets.find(@asset3.id)
+      @asset2 = @item.assets.find(@asset2.id)
+
+      @asset3.position.should == 1
+      @asset2.position.should == 2
+    end
 
   end
 

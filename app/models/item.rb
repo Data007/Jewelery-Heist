@@ -255,13 +255,10 @@ class Item
   def update_asset_position(asset, position=nil)
     new_position = position.nil? ? self.assets.count : position.to_i
     
-    asset_list = self.assets.where(:position.lte => position) - [asset]
-    asset_list.push asset
-    asset_list = asset_list + (self.assets.where(:position.gt => position) - [asset])
+    asset_list = self.assets - [asset]
+    asset_list.insert new_position, asset
 
-    asset_list.each_with_index do |saved_asset, index|
-      saved_asset.update_attribute :position, index
-    end
+    asset_list.each_with_index { |saved_asset, index| saved_asset.update_attribute :position, index }
 
     assets = asset_list
     save
