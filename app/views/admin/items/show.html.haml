@@ -1,15 +1,8 @@
-- current_variation = @variation ? @variation : @item.variations.first
 = content_for :page_title do
   %h1
     = @item.name ? @item.name : 'this item needs a name'
     %span#tag_id.tag_id
-      ID#{@item.pretty_id}-#{current_variation ? current_variation.pretty_id : 'n/a'}
-      - if @item.custom_id.present?
-        |
-        - if current_variation
-          OID#{@item.custom_id}-#{current_variation.custom_id.present? ? current_variation.custom_id : current_variation.pretty_id}
-        - else
-          OID#{@item.custom_id}-n/a
+      ID#{@item.pretty_id}
 
 = content_for :page_actions do
   - if !@item.ghost
@@ -24,65 +17,54 @@
     
 - content_for :page_content do
   #item_view
-    - unless current_variation.parent_item.available
+    - unless @item.available
       .sold
         %h1 Sold
     .images#main_view
-      #major_image.major_image= image_tag current_variation.assets.by_position.compact.present? ? current_variation.assets.by_position.compact.first.image.url(:large) : "/images/ui/no_image.jpg"
+      #major_image.major_image= image_tag @item.assets.by_position.compact.present? ? @item.assets.by_position.compact.first.image.url(:large) : "/images/ui/no_image.jpg"
       .minor_images.wrapper-pane
         .image_wrapper.contents-pane
-          - current_variation.assets.by_position.compact.each do |asset|
+          - @item.assets.by_position.compact.each do |asset|
             = image_tag asset.image.url(:large, false), :class => 'minor_image'
       .meta
         %h2.name= @item.name
         - if @item.designer
           %h3.designed_by Designed By #{@item.designer.name}
-        /.colors
-        /  %h3.color_tags Color Tags
-        /  - current_variation.colors.each do |color|
-        /    = link_to color, color_path(color), :class => "color active position_#{color.position}", :color_id => color.id
-    - if @item.variations.length > 1
-      .variations.wrapper-pane
-        .image_wrapper.contents-pane
-          - @item.variations.each do |variation|
-            - if variation.assets.by_position.compact.length > 0
-              .variation{:id => "variation_#{variation.id}"}
-                = link_to image_tag(variation.assets.by_position.compact.first.image.url(:medium)), admin_item_path(@item.pretty_id, variation_id: variation.pretty_id)
     .details
       .meta
         %h2 Item Details
         .price.row
           %span.label Price
-          #{number_to_currency(current_variation.price)}
+          #{number_to_currency(@item.price)}
           - if @item.available
             .sizes.row
               %span.label Select Your Size
               = select 'item','sizes', @item.sizes.collect {|size| [size,size]}, selected: @item.sizes[@item.sizes.length / 2]
             - if @order
               .row
-                %span= link_to 'Add to Cart', new_admin_user_order_line_item_path(@user.pretty_id, @order.pretty_id, variation_id: current_variation.pretty_id), class: 'add_to_cart input'
+                %span= link_to 'Add to Cart', new_admin_user_order_line_item_path(@user.pretty_id, @order.pretty_id), class: 'add_to_cart input'
             - else
               %b{style: 'color: red'} You must start an order with a customer before you can add an item to a cart.
-          - if current_variation.metals.present?
+          - if @item.metals.present?
             .metals.row
               %span.label Metals
-              = raw current_variation.metals.uniq.inject('') {|metals, metal| metals += "<span class='metal tag'>#{metal.downcase}</span>"}
-          - if current_variation.jewels.present?
+              = raw @item.metals.uniq.inject('') {|metals, metal| metals += "<span class='metal tag'>#{metal.downcase}</span>"}
+          - if @item.jewels.present?
             .jewels.row
               %span.label Jewels
-              = raw current_variation.jewels.uniq.inject('') {|jewels, jewel| jewels += "<span class='jewel tag'>#{jewel.downcase}</span>"}
-          - if current_variation.finishes.present?
+              = raw @item.jewels.uniq.inject('') {|jewels, jewel| jewels += "<span class='jewel tag'>#{jewel.downcase}</span>"}
+          - if @item.finishes.present?
             .finishes.row
               %span.label Finish
-              = raw current_variation.finishes.uniq.inject('') {|finishes, finish| finishes += "<span class='finish tag'>#{finish.downcase}</span>"}
+              = raw @item.finishes.uniq.inject('') {|finishes, finish| finishes += "<span class='finish tag'>#{finish.downcase}</span>"}
           .availability.row
-            - if current_variation.item.one_of_a_kind
+            - if @item.one_of_a_kind
               :textile
                 This is a One of a Kind item.
   
                 Although there may be pieces made somewhat like this in the future, there will never be the exact one, ever again. If you love this unique piece of wearable art, snatch it up while you can!
             - else
-              - if current_variation.quantity > 0
+              - if @item.quantity > 0
                 :textile
                   This item is currently in stock.
   
@@ -90,7 +72,7 @@
                   Because of specialty sizing this item will ship within 3 business days.
               - else
                 :markdown
-                  #{current_variation.backorder_notes}
+                  #{@item.backorder_notes}
           .customizable.row
             - if @item.customizable
               .label Other Options
@@ -102,9 +84,6 @@
             .description
               :markdown
                 #{@item.description}
-            .variation_description
-              :markdown
-                #{current_variation.description}
         / .collections.row
         /   - if @item.collections.length > 1
         /     %h2 This item is part of the Following #{@item.collections.length > 1 ? "Collections" : "Collection"}

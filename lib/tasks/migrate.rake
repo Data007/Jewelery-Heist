@@ -476,4 +476,16 @@ namespace :migrate do
     puts " --- Creating variations ... done"
   end
 
+  namespace :v2 do
+
+    desc 'migrate variations to item'
+    task :variations => :environment do
+      puts 'Migrating Variations to Items'
+      Item.all.each do |item|
+        print '.'
+      end
+    end
+
+  end
+
 end

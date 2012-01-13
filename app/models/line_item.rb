@@ -20,6 +20,7 @@ class LineItem
   sequence :pretty_id  
 
   embeds_one  :variation
+  embeds_one  :item
   embedded_in :order
 
   scope :taxable,    where(taxable: true)

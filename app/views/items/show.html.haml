@@ -2,11 +2,9 @@
   %h1 Item not found
   %p We couldn't find that item. Perhaps it no longer exists. Please feel free to browse the rest of #{link_to 'our jewelry', items_path}.
 - else
-  - current_variation = @current_variation ? @current_variation : @item.variations.active.first
-  
   - content_for :image_src do
-    - if current_variation.assets.length > 0
-      = current_variation.assets.first.image.url(:thumbnail, false)
+    - if @item.assets.length > 0
+      = @item.assets.first.image.url(:thumbnail, false)
   
   - content_for :extra_js do
     = javascript_include_tag "website/items/show"
@@ -28,8 +26,6 @@
     :ruby
       description = []
       description << @item.description.gsub("\"","\'")
-      @item.variations.active.each {|v| description << v.description.gsub("\"","\'") if v.description }
-    = description.join(" - ")
   
   - if @item.ghost
     %h1 Item Unavailable
@@ -38,70 +34,56 @@
     #item_view{class: "#{@item.available ? 'available' : 'unavailable'}"}
       .images#main_view
         #major_image.major_image
-          - major_image =  current_variation.assets.by_position.first ? current_variation.assets.by_position.first.image.url(:large) : 'ui/no_image.jpg'
+          - major_image =  @item.assets.by_position.first ? @item.assets.by_position.first.image.url(:large) : 'ui/no_image.jpg'
           = image_tag major_image
         .content.wrapper-pane
           .contents-pane
             .description
               :markdown
                 #{@item.description}
-            .variation_description
-              :markdown
-                #{current_variation.description}
         .minor_images.wrapper-pane
           .image_wrapper.contents-pane
-            - current_variation.assets.by_position.each do |asset|
+            - @item.assets.by_position.each do |asset|
               = image_tag asset.image.url(:large, false), :class => "minor_image"
         .meta
           %h2.name= @item.name
           - if @item.designer
             %h3.designed_by Designed By #{@item.designer.name}
-          /.colors
-          /  %h3.color_tags Color Tags
-          /  - current_variation.colors.each do |color|
-          /    = link_to color.names, color_path(color.names), class: "color active position_#{color.position}", color_id: color.id
-      - if @item.variations.active.length > 1
-        .variations.wrapper-pane
-          .image_wrapper.contents-pane
-            - @item.variations.active.each do |variation|
-              - if variation.assets.length > 0
-                .variation{id: "variation_#{variation.id}"}
-                  = link_to image_tag(variation.assets.by_position.first.image.url(:medium)), item_path(@item.pretty_id, variation_id: variation.pretty_id)
       .details
         .meta
           %h2 Item Details
           .price.row
             %span.label Price
-            #{number_to_currency(current_variation.price)}
+            #{number_to_currency(@item.price)}
           - if @item.available
             .sizes.row
               %span.label Select Your Size
               = select "item","sizes", @item.sizes.collect {|size| [size,size]}, selected: @item.sizes[@item.sizes.length / 2]
             - if @current_order
               .row
-                %span= link_to "Add to Cart", order_items_path(@current_order.pretty_id, item_id: @item.pretty_id, variation_id: current_variation.pretty_id), class: "add_to_cart input", method: :post
+                %span= link_to "Add to Cart", order_items_path(@current_order.pretty_id, item_id: @item.pretty_id), class: "add_to_cart input", method: :post
           - else
             %h3 Sold
-          - if current_variation.metals.present?
+          - if @item.metals.present?
             .metals.row
               %span.label Metals
-              = raw current_variation.metals.uniq.inject('') {|metals, metal| metals += "<span class='metal tag'>#{metal.downcase}</span>"}
-          - if current_variation.jewels.present?
+              = raw @item.metals.uniq.inject('') {|metals, metal| metals += "<span class='metal tag'>#{metal.downcase}</span>"}
+          - if @item.jewels.present?
             .jewels.row
               %span.label Jewels
-              = raw current_variation.jewels.uniq.inject('') {|jewels, jewel| jewels += "<span class='jewel tag'>#{jewel.downcase}</span>"}
-          - if current_variation.finishes.present?
+              = raw @item.jewels.uniq.inject('') {|jewels, jewel| jewels += "<span class='jewel tag'>#{jewel.downcase}</span>"}
+          - if @item.finishes.present?
             .finishes.row
               %span.label Finish
-              = raw current_variation.finishes.uniq.inject('') {|finishes, finish| finishes += "<span class='finish tag'>#{finish.downcase}</span>"}
+              = raw @item.finishes.uniq.inject('') {|finishes, finish| finishes += "<span class='finish tag'>#{finish.downcase}</span>"}
           .availability.row
-            - if current_variation.item.one_of_a_kind
+            - if @item.one_of_a_kind
               :textile
                 This is a One of a Kind item.
                 
                 Although there may be pieces made somewhat like this in the future, there will never be the exact one, ever again. If you love this unique piece of wearable art, snatch it up while you can!
             - else
-              - if current_variation.quantity > 0
+              - if @item.quantity > 0
                 :textile
                   This item is currently in stock.
                   
@@ -112,7 +94,7 @@
                   %i
                     %b This item is currently out of stock.
                 :markdown
-                  #{current_variation.backorder_notes}
+                  #{@item.backorder_notes}
           .customizable.row
             - if @item.customizable
               .label Other Options
@@ -137,6 +119,6 @@
                   .image_wrapper.contents-pane
                     - collection.items.published.listable.each do |item|
                       - unless item == @item
-                        - if item.variations.active.first.assets.length > 0
+                        - if item.active.first.assets.length > 0
                           .variation
-                            = link_to image_tag(item.variations.active.first.assets.by_position.first.image.url(:medium)), item_path(item.pretty_id)
+                            = link_to image_tag(item.active.first.assets.by_position.first.image.url(:medium)), item_path(item.pretty_id)
