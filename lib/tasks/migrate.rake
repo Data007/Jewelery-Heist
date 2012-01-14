@@ -482,8 +482,37 @@ namespace :migrate do
     task :variations => :environment do
       puts 'Migrating Variations to Items'
       Item.all.each do |item|
-        print '.'
+        item.variations.each_with_index do |variation, index|
+          if index == 0
+            new_item = item
+            new_item.description = (new_item.description + variation.description) if variation.description.present?
+            new_item.price       = variation.price
+            new_item.quantity    = variation.quantity
+            new_item.metals      = variation.metals
+            new_item.finishes    = variation.finishes
+            new_item.jewels      = variation.jewels
+            new_item.colors      = variation.colors
+            variation.assets.each do |asset|
+              new_item.assets << asset
+            end
+          else
+            new_item = Item.create
+            new_item.description = variation.description
+            new_item.price       = variation.price
+            new_item.quantity    = variation.quantity
+            new_item.metals      = variation.metals
+            new_item.finishes    = variation.finishes
+            new_item.jewels      = variation.jewels
+            new_item.colors      = variation.colors
+            variation.assets.each do |asset|
+              new_item.assets << asset
+            end
+          end
+          new_item.save
+          print '.'
+        end
       end
+      puts "\nDone"
     end
 
   end

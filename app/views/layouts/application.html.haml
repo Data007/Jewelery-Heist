@@ -120,7 +120,7 @@
               = link_to "Checkout", checkout_path(@current_order.pretty_id), method: :post
             .line_items
               - @current_order.line_items.each do |line_item|
-                - if line_item.variation.present?
+                - if line_item.variation.present? && line_item.item.present?
                   .line_item
                     = link_to image_tag(line_item.item.assets.by_position.first.image.url(:tiny)), item_path(id: line_item.item.pretty_id)
                 - elsif line_item.is_quick_item?

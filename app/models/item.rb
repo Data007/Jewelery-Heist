@@ -38,10 +38,15 @@ class Item
   validates :name, presence: true
 
   before_save :validate_cost
-  after_save  :create_variation
+  before_save :validate_price
+  # after_save  :create_variation
 
   def validate_cost
     self.cost = launder_money(self.cost)
+  end
+
+  def validate_price
+    self.price = launder_money(self.price)
   end
 
   def create_variation
