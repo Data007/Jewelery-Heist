@@ -24,6 +24,7 @@ class Item
   field :category
   field :gender
   field :custom_id
+  field :old_variation_id
   field :backorder_notes
   field :customizable_notes
   field :discontinued_notes
