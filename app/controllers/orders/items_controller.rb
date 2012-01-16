@@ -8,13 +8,12 @@ class Orders::ItemsController < ApplicationController
   end
   
   def create
-    variation = Item.find_variation(params[:variation_id])
-    item      = Item.where(pretty_id: params[:item_id]).first
+    item = Item.where(pretty_id: params[:item_id]).first
     if item.available
       line_item = current_order.line_items.create(
-        variation: variation,
-        price:     variation.price,
-        size:      (params[:item_size].present? ? params[:item_size] : variation.item.sizes.first)
+        item: item,
+        price:     item.price,
+        size:      (params[:item_size].present? ? params[:item_size] : item.sizes.first)
       )
 
       flash[:notice] = "Your item has been added"

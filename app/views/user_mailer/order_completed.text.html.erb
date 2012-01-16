@@ -9,12 +9,9 @@
 <p>Your order is as follows:</p>
 
 <% @order.line_items.each do |line_item| -%>
-  <%
-    variation = line_item.variation
-    item = variation.parent_item %>
-    
+  <% item = line_item.item %>
   <p>
-    Item: <%= link_to item.name, "http://wexfordjewelers.com/items/#{item.pretty_id}?variation_id=#{variation.pretty_id}" %> (<%= item.pretty_id %>-<%= variation.pretty_id %>)<br />
+    Item: <%= link_to item.name, item_url(item.pretty_id) %> (<%= item.pretty_id %>)<br />
     Size: <%= line_item.size %><br />
     Price: <%= number_to_currency line_item.price %><br />
     Quantity: <%= line_item.quantity %><br />

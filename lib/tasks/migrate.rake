@@ -12,15 +12,15 @@ def store_image(url, image_name)
   end
 
   image_path = "#{Rails.root}/tmp/#{pid}/#{safe_image_name(image_name)}"# unless Rails.env.production?
-  # image_path = "#{Rails.root}/tmp/#{pid}-#{safe_image_name(image_name)}" if Rails.env.production?
   
   Net::HTTP.start(host) do |http|
     response = http.get(path)
+    return nil if response.code == '404'
     open(image_path, 'wb') do |file|
       file.write(response.body)
     end
   end
-  image_path
+  return image_path
 end
 
 def migration_token
@@ -493,7 +493,17 @@ namespace :migrate do
             new_item.jewels      = variation.jewels
             new_item.colors      = variation.colors
             variation.assets.each do |asset|
-              new_item.assets << asset
+              if asset.image_file_name.present?
+                new_asset = new_item.assets.new
+
+                image_path = store_image(asset.image.url(:original), asset.image_file_name)
+                if image_path
+                  image = File.open(image_path)
+
+                  new_asset.image = image
+                  new_asset.save
+                end
+              end
             end
           else
             new_item = Item.create
@@ -505,7 +515,17 @@ namespace :migrate do
             new_item.jewels      = variation.jewels
             new_item.colors      = variation.colors
             variation.assets.each do |asset|
-              new_item.assets << asset
+              if asset.image_file_name.present?
+                new_asset = new_item.assets.new
+
+                image_path = store_image(asset.image.url(:original), asset.image_file_name)
+                if image_path
+                  image = File.open(image_path)
+
+                  new_asset.image = image
+                  new_asset.save
+                end
+              end
             end
           end
           new_item.save

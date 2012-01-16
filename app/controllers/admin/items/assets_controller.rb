@@ -2,7 +2,7 @@ class Admin::Items::AssetsController < Admin::ItemsController
   before_filter :find_item
 
   def create
-    asset = @item.assets.new({position: @item.assets.length + 1})
+    asset = @item.assets.new
         
     asset.image = params[:image]
     asset.save

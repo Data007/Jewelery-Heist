@@ -207,8 +207,8 @@ class Order
   def hand_off
     self.line_items.each do |line_item|
       unless line_item.is_quick_item?
-        item = line_item.variation.parent_item
-        line_item.variation.update_attributes quantity: line_item.variation.quantity - 1 if line_item.variation.quantity > 0
+        item = line_item.item
+        line_item.item.update_attributes quantity: line_item.item.quantity - 1 if line_item.item.quantity > 0
         if item.one_of_a_kind
           item.update_attributes available: false
         end
@@ -241,7 +241,7 @@ class Order
   def validate_line_items
     line_items.each do |line_item|
       unless line_item.is_quick_item?
-        line_item.destroy if !line_item.variation.parent_item.available
+        line_item.destroy if !line_item.item.available
       end
     end
   end

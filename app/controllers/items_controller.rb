@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
   end
   
   def show
+    # TODO: Replace with a normal lookup; kill backwards compatibility with old ids
     item_id, custom_id = params[:id].match(/^(\d+)(\S+)?/).captures
 
     begin

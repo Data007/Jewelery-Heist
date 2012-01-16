@@ -17,13 +17,12 @@
     %tbody
       - @finished_order.line_items.each do |line_item|
         - unless line_item.is_quick_item?
-          - variation = line_item.variation
-          - item      = variation.parent_item
+          - item = line_item.item
           %tr
-            %td.left ID#{item.pretty_id}-#{variation.pretty_id}
+            %td.left ID#{item.pretty_id}
             %td.left
-              = link_to image_tag(variation.assets.by_position.first.image.url(:tiny), class: "thumbnail_32"), item_path(item.pretty_id, variation_id: variation.pretty_id)
-              = link_to item.name, item_path(item.pretty_id, variation_id: variation.pretty_id)
+              = link_to image_tag(item.assets.by_position.first.image.url(:tiny), class: "thumbnail_32"), item_path(item.pretty_id)
+              = link_to item.name, item_path(item.pretty_id)
             %td= line_item.size
             %td= number_to_currency line_item.price
             %td= line_item.quantity

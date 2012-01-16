@@ -19,13 +19,12 @@
         %tbody
           - @order.line_items.each_with_index do |line_item, index|
             - unless line_item.is_quick_item?
-              - variation = line_item.variation
-              - item      = variation.parent_item
+              - item = line_item.item
               %tr
-                %td.left ID#{item.pretty_id}-#{variation.pretty_id}
+                %td.left ID#{item.pretty_id}
                 %td.left
-                  = link_to image_tag(variation.assets.by_position.first.image.url(:tiny), class: "thumbnail_32"), item_path(item.pretty_id, variation_id: variation.pretty_id)
-                  = link_to item.name, item_path(item.pretty_id, variation_id: variation.pretty_id)
+                  = link_to image_tag(item.assets.by_position.first.image.url(:tiny), class: "thumbnail_32"), item_path(item.pretty_id)
+                  = link_to item.name, item_path(item.pretty_id)
                 %td
                   %select{name: "order[line_items][#{index}][size]", id: "order[line_items][#{index}][size]".parameterize("_")}
                     - item.sizes.collect {|size| [size,size]}.each do |size|
