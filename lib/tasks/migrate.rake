@@ -485,7 +485,13 @@ namespace :migrate do
         item.variations.each_with_index do |variation, index|
           if index == 0
             new_item                  = item
-            new_item.description      = (new_item.description + variation.description) if variation.description.present?
+            
+            if new_item.description.present?
+              new_item.description    = (new_item.description + variation.description) if variation.description.present?
+            else
+              new_item.description    = variation.description if variation.description.present?
+            end
+
             new_item.price            = variation.price
             new_item.quantity         = variation.quantity
             new_item.metals           = variation.metals
