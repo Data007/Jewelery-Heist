@@ -502,7 +502,9 @@ namespace :migrate do
                   image = File.open(image_path)
 
                   new_asset.image = image
-                  new_asset.save
+                  begin
+                    new_asset.save
+                  rescue; end
                 end
               end
             end
@@ -526,7 +528,9 @@ namespace :migrate do
                   image = File.open(image_path)
 
                   new_asset.image = image
-                  new_asset.save
+                  begin
+                    new_asset.save
+                  rescue; end
                 end
               end
             end
