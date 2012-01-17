@@ -148,9 +148,9 @@ class Order
   end
 
   def refund_line_item(line_item_id)
-    line_item = line_items.where(pretty_id: line_item_id).first
+    line_item = line_items.find(line_item_id)
     if line_item
-      line_item.update_attribute :refunded, true
+      line_item.refund
     end
   end
 
@@ -158,12 +158,11 @@ class Order
     line_items << ((new_line_item.class == LineItem) ? new_line_item : LineItem.new(new_line_item))
   end
 
-  def add_item(variation, options={})
-    debugger
+  def add_item(item, options={})
     add_line_item(options.merge({
-      variation: variation,
+           item: item,
         taxable: true,
-          price: variation.price,
+          price: item.price,
        quantity: 1
     }))
   end
@@ -207,8 +206,8 @@ class Order
   def hand_off
     self.line_items.each do |line_item|
       unless line_item.is_quick_item?
-        item = line_item.item
-        line_item.item.update_attributes quantity: line_item.item.quantity - 1 if line_item.item.quantity > 0
+        item = Item.find(line_item.item.id)
+        item.update_attributes(quantity: (item.quantity - 1)) if item.quantity > 0
         if item.one_of_a_kind
           item.update_attributes available: false
         end
@@ -264,6 +263,11 @@ class Order
       map    { |order    | order.line_items                         }.flatten.
       select { |line_item| line_item.pretty_id == line_item_id.to_i }.flatten.
       first
+    end
+
+    def all
+      User.all.
+      map(&:orders).flatten.compact
     end
 
     def purchase

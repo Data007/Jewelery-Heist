@@ -100,7 +100,6 @@ class Admin::Users::OrdersController < Admin::UsersController
   
   def show
     @order = User.find_order(params[:id])
-    
     session[:admin_order_id] = @order.pretty_id if @order
     
 #    current_customer_order.update_attributes :clerk => @current_user unless current_customer_order.clerk_id != nil
@@ -137,8 +136,8 @@ class Admin::Users::OrdersController < Admin::UsersController
     
     def hand_off_order
       current_customer_order.line_items.the_living.each do |line_item|
-        item = line_item.variation.item
-        line_item.variation.update_attributes :quantity => line_item.variation.quantity - 1 if line_item.variation.quantity > 0
+        item = line_item.item
+        line_item.update_attributes :quantity => line_item.quantity - 1 if line_item.quantity > 0
         if item.one_of_a_kind
           item.update_attributes :available => false, :published => false
         end

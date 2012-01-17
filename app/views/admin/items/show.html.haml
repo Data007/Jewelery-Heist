@@ -42,7 +42,7 @@
               = select 'item','sizes', @item.sizes.collect {|size| [size,size]}, selected: @item.sizes[@item.sizes.length / 2]
             - if @order
               .row
-                %span= link_to 'Add to Cart', new_admin_user_order_line_item_path(@user.pretty_id, @order.pretty_id), class: 'add_to_cart input'
+                %span= link_to 'Add to Cart', new_admin_user_order_line_item_path(user_id: @user.pretty_id, order_id: @order.pretty_id, item_id: @item.pretty_id), class: 'add_to_cart input'
             - else
               %b{style: 'color: red'} You must start an order with a customer before you can add an item to a cart.
           - if @item.metals.present?

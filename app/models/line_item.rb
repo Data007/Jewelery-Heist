@@ -42,13 +42,17 @@ class LineItem
     self.price = launder_money(self.price).to_f
   end
 
-  def remove_variation
+  def remove_item(refund=false)
     unless self.is_quick_item
-      variation = self.variation
-      variation.update_attribute :quantity, (variation.quantity + self.quantity)
-      
-      item = variation.parent_item
-      item.update_attribute :available, true
+      item = Item.find(self.item.id)
+
+      if refund
+        item.update_attributes(quantity: (item.quantity + self.quantity), available: true)
+        order.payments.create(
+          payment_type: 'instorecredit',
+          amount:       -price
+        )
+      end
       
       line_id = self.id
     else
@@ -57,7 +61,7 @@ class LineItem
   end
 
   def refund
-    remove_variation
+    remove_item true
     
     self.update_attribute :refunded, true
   end

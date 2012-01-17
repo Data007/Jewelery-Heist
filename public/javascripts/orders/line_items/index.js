@@ -4,14 +4,19 @@ function update_totals() {
   var tax = 0;
   var total = 0;
   $(".line_item").each(function(){
-    var price = $(this).children(".price").children("input").val();
+    var price    = 0;
     var quantity = 1;
-    
+    var refunded = ($(this).children(".refunded").attr('data-refunded') == 'true');
+
+    if($(this).children('.price').children('input').val() != undefined) {
+      price = $(this).children(".price").children("input").val();
+    } else {price = $(this).children('.price').attr('data-price');}
+
     if($(this).children(".quantity").children("input").val() != undefined) {
       quantity = $(this).children(".quantity").children("input").val();
-    } else {quantity = $(this).children(".quantity").text();}
-    
-    var line_total = ($(this).children(".refunded").text() == "REFUNDED") ? 0 : (price * quantity);
+    } else {quantity = $(this).children(".quantity").attr('data-quantity');}
+
+    var line_total = (refunded ? -(price * quantity) : (price * quantity));
     
     if($(this).children(".taxable").children("input:checked").length > 0) {
       taxable_subtotal += (line_total);
@@ -19,7 +24,7 @@ function update_totals() {
       untaxable_subtotal += (line_total);
     }
     
-    $(this).children(".total").html("$" + line_total.toFixed(2))
+    $(this).children(".total").html("$" + (refunded ? line_total : line_total).toFixed(2));
   });
   tax = (taxable_subtotal * 0.06);
   shipping = 0;

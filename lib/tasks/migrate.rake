@@ -479,7 +479,7 @@ namespace :migrate do
   namespace :v2 do
 
     desc 'migrate variations to item'
-    task :variations => :environment do
+    task variations: :environment do
       puts 'Migrating Variations to Items'
       Item.all.each do |item|
         item.variations.each_with_index do |variation, index|
@@ -534,6 +534,26 @@ namespace :migrate do
           new_item.save
           print '.'
         end
+      end
+      puts "\nDone"
+    end
+
+    desc 'Migrate line_items to using item instead of variation'
+    task line_items: :environment do
+      puts 'Migrating line_items to use item instead of variation'
+      Order.all.map(&:line_items).flatten.compact.each do |line_item|
+        unless line_item.is_quick_item? && !line_item.variation.present?
+          if line_item.variation.present?
+            begin
+              item = Item.where(old_variation_id: line_item.variation.id).first
+              line_item.item = (item.present? ? item : line_item.variation.parent_item)
+              line_item.save
+            rescue
+              puts "\nItem not found for variation #{line_item.variation.id}"
+            end
+          end
+        end
+        print '.'
       end
       puts "\nDone"
     end
