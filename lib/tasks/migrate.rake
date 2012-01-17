@@ -515,16 +515,26 @@ namespace :migrate do
               end
             end
           else
-            item_exists               = Item.where(old_variation_id: variation.id)
-            new_item                  = item_exists.present? ? item_exists.first : Item.create
-            new_item.description      = ("#{new_item.description}" + "#{variation.description}") if variation.description.present?
-            new_item.price            = variation.price
-            new_item.quantity         = variation.quantity
-            new_item.metals           = variation.metals
-            new_item.finishes         = variation.finishes
-            new_item.jewels           = variation.jewels
-            new_item.colors           = variation.colors
-            new_item.old_variation_id = variation.id
+            item_exists                 = Item.where(old_variation_id: variation.id)
+            new_item                    = item_exists.present? ? item_exists.first : Item.new
+            new_item.name               = item.name
+            new_item.description        = ("#{new_item.description}" + "#{variation.description}") if variation.description.present?
+            new_item.price              = variation.price
+            new_item.quantity           = variation.quantity
+            new_item.metals             = variation.metals
+            new_item.finishes           = variation.finishes
+            new_item.jewels             = variation.jewels
+            new_item.colors             = variation.colors
+            new_item.old_variation_id   = variation.id
+            new_item.available          = item.available,
+            new_item.ghost              = item.ghost,
+            new_item.one_of_a_kind      = item.one_of_a_kind,
+            new_item.customizable       = item.customizable,
+            new_item.published          = item.published,
+            new_item.discontinued       = item.discontinued,
+            new_item.backorder_notes    = item.backorder_notes,
+            new_item.discontinued_notes = item.discontinued_notes,
+            new_item.customizable_notes = item.customizable_notes
             variation.assets.each do |asset|
               if asset.image_file_name.present? && new_item.assets.map(&:image_file_name).include?(asset.image_file_name) == false
                 new_asset = new_item.assets.new
