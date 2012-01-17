@@ -548,6 +548,28 @@ namespace :migrate do
       puts "\nDone"
     end
 
+    desc 'Make sure availability and quantity is correct for variation migration'
+    task rectify_items: :environment do
+      puts 'Syncing items to old items'
+      Item.excludes(old_variation_id: nil).each do |item|
+        old_variation = Item.find_variation(item.old_variation_id)
+        old_item      = old_variation.item
+        item.update_attributes(
+          available:          old_item.available,
+          ghost:              old_item.ghost,
+          one_of_a_kind:      old_item.one_of_a_kind,
+          customizable:       old_item.customizable,
+          published:          old_item.published,
+          discontinued:       old_item.discontinued,
+          backorder_notes:    old_item.backorder_notes,
+          discontinued_notes: old_item.discontinued_notes,
+          customizable_notes: old_item.customizable_notes
+        )
+        print '.'
+      end
+      puts "\nDone"
+    end
+
     desc 'Migrate line_items to using item instead of variation'
     task line_items: :environment do
       puts 'Migrating line_items to use item instead of variation'
