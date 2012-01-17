@@ -106,8 +106,8 @@ class Item
       results  = nil
       
       keywords.each do |keyword|
-        if keyword.match(/(ID)?\d+-?\d?/x)
-          ids << keyword
+        if keyword.match(/[IDid]+?(\d+)/)
+          ids << keyword.match(/[IDid]+?(\d+)/).captures.first.to_i
         else
           names << keyword
         end
@@ -138,19 +138,8 @@ class Item
 
       if ids.present?
         ids.each do |item_id|
-          if item_id.match(/^{OID|ID}?(\d+)-(\d+)$/)
-            item_pretty_id, variation_pretty_id = item_id.match(/^{OID|ID}?(\d+)-(\d+)$/).captures
-            
-            if item_id.match(/^OID/)
-              query_hash = {custom_id: [item_pretty_id.to_i]}
-              query_hash['variations.custom_id'] = [variation_pretty_id.to_i] if variation_pretty_id.present?
-            else  
-              query_hash = {pretty_id: [item_pretty_id.to_i]}
-              query_hash['variations.pretty_id'] = [variation_pretty_id.to_i] if variation_pretty_id.present?
-            end
-
-            results.nil? ? results = any_in(query_hash) : results.any_in(query_hash)
-          end
+          query_hash = {pretty_id: [item_id]}
+          results.nil? ? results = any_in(query_hash) : results.any_in(query_hash)
         end
       end
       

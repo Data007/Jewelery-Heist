@@ -1,7 +1,7 @@
 - content_for :page_title do
   %h1
     Editing
-    #{@item.name} (#{@item.custom_id.present? ? "ID#{@item.pretty_id} | OID#{@item.custom_id}" : "ID#{@item.pretty_id}"})
+    #{@item.name} (ID#{@item.pretty_id})
 
 - content_for :page_actions do
   %span.button= link_to 'view', admin_item_path(@item.pretty_id)
