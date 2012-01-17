@@ -25,7 +25,7 @@
   - content_for :meta_description do
     :ruby
       description = []
-      description << @item.description.gsub("\"","\'")
+      description << @item.description.gsub("\"","\'") if @item.description.present?
   
   - if @item.ghost
     %h1 Item Unavailable
