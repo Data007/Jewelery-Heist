@@ -2304,19 +2304,19 @@ ul.actions {
 /* line 14, ../../../app/stylesheets/collections.sass */
 /* line 1777, ../../app/stylesheets/layout.scss */
 .collections .collection.position_0 {
-  background-position: 0px -80px;
+  background-position: -480px -80px;
 }
 
 /* line 16, ../../../app/stylesheets/collections.sass */
 /* line 1781, ../../app/stylesheets/layout.scss */
 .collections .collection.position_0:hover {
-  background-position: 0px -160px;
+  background-position: -480px -160px;
 }
 
 /* line 18, ../../../app/stylesheets/collections.sass */
 /* line 1785, ../../app/stylesheets/layout.scss */
 .collections .collection.position_0.selected {
-  background-position: 0px 0px;
+  background-position: -480px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
@@ -2324,19 +2324,19 @@ ul.actions {
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 1791, ../../app/stylesheets/layout.scss */
 .collections .collection.position_1 {
-  background-position: -60px -80px;
+  background-position: -420px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 1795, ../../app/stylesheets/layout.scss */
 .collections .collection.position_1:hover {
-  background-position: -60px -160px;
+  background-position: -420px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
 /* line 1799, ../../app/stylesheets/layout.scss */
 .collections .collection.position_1.selected {
-  background-position: -60px 0px;
+  background-position: -420px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
@@ -2344,19 +2344,19 @@ ul.actions {
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 1805, ../../app/stylesheets/layout.scss */
 .collections .collection.position_2 {
-  background-position: -120px -80px;
+  background-position: -360px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 1809, ../../app/stylesheets/layout.scss */
 .collections .collection.position_2:hover {
-  background-position: -120px -160px;
+  background-position: -360px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
 /* line 1813, ../../app/stylesheets/layout.scss */
 .collections .collection.position_2.selected {
-  background-position: -120px 0px;
+  background-position: -360px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
@@ -2384,19 +2384,19 @@ ul.actions {
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 1833, ../../app/stylesheets/layout.scss */
 .collections .collection.position_4 {
-  background-position: -240px -80px;
+  background-position: 0px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 1837, ../../app/stylesheets/layout.scss */
 .collections .collection.position_4:hover {
-  background-position: -240px -160px;
+  background-position: 0px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
 /* line 1841, ../../app/stylesheets/layout.scss */
 .collections .collection.position_4.selected {
-  background-position: -240px 0px;
+  background-position: 0px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
@@ -2404,19 +2404,19 @@ ul.actions {
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 1847, ../../app/stylesheets/layout.scss */
 .collections .collection.position_5 {
-  background-position: -300px -80px;
+  background-position: -240px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 1851, ../../app/stylesheets/layout.scss */
 .collections .collection.position_5:hover {
-  background-position: -300px -160px;
+  background-position: -240px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
 /* line 1855, ../../app/stylesheets/layout.scss */
 .collections .collection.position_5.selected {
-  background-position: -300px 0px;
+  background-position: -240px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
@@ -2424,19 +2424,19 @@ ul.actions {
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 1861, ../../app/stylesheets/layout.scss */
 .collections .collection.position_6 {
-  background-position: -360px -80px;
+  background-position: -300px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 1865, ../../app/stylesheets/layout.scss */
 .collections .collection.position_6:hover {
-  background-position: -360px -160px;
+  background-position: -300px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
 /* line 1869, ../../app/stylesheets/layout.scss */
 .collections .collection.position_6.selected {
-  background-position: -360px 0px;
+  background-position: -300px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
@@ -2444,19 +2444,19 @@ ul.actions {
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 1875, ../../app/stylesheets/layout.scss */
 .collections .collection.position_7 {
-  background-position: -420px -80px;
+  background-position: -540px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 1879, ../../app/stylesheets/layout.scss */
 .collections .collection.position_7:hover {
-  background-position: -420px -160px;
+  background-position: -540px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
 /* line 1883, ../../app/stylesheets/layout.scss */
 .collections .collection.position_7.selected {
-  background-position: -420px 0px;
+  background-position: -540px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
@@ -2464,19 +2464,19 @@ ul.actions {
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 1889, ../../app/stylesheets/layout.scss */
 .collections .collection.position_8 {
-  background-position: -480px -80px;
+  background-position: -660px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 1893, ../../app/stylesheets/layout.scss */
 .collections .collection.position_8:hover {
-  background-position: -480px -160px;
+  background-position: -660px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
 /* line 1897, ../../app/stylesheets/layout.scss */
 .collections .collection.position_8.selected {
-  background-position: -480px 0px;
+  background-position: -660px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
@@ -2484,19 +2484,19 @@ ul.actions {
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 1903, ../../app/stylesheets/layout.scss */
 .collections .collection.position_9 {
-  background-position: -540px -80px;
+  background-position: -60px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 1907, ../../app/stylesheets/layout.scss */
 .collections .collection.position_9:hover {
-  background-position: -540px -160px;
+  background-position: -60px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
 /* line 1911, ../../app/stylesheets/layout.scss */
 .collections .collection.position_9.selected {
-  background-position: -540px 0px;
+  background-position: -60px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }
@@ -2524,19 +2524,19 @@ ul.actions {
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 1931, ../../app/stylesheets/layout.scss */
 .collections .collection.position_11 {
-  background-position: -660px -80px;
+  background-position: -120px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 1935, ../../app/stylesheets/layout.scss */
 .collections .collection.position_11:hover {
-  background-position: -660px -160px;
+  background-position: -120px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
 /* line 1939, ../../app/stylesheets/layout.scss */
 .collections .collection.position_11.selected {
-  background-position: -660px 0px;
+  background-position: -120px 0px;
   border-bottom: 3px solid #5aff5a;
   margin-bottom: 4px;
 }

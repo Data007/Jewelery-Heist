@@ -17,13 +17,13 @@
 /* line 14, ../../../app/stylesheets/collections.sass */
 /* line 16, ../../app/stylesheets/collections.scss */
 .collections .collection.position_0 {
-  background-position: 0px -80px;
+  background-position: -480px -80px;
 }
 
 /* line 16, ../../../app/stylesheets/collections.sass */
 /* line 20, ../../app/stylesheets/collections.scss */
 .collections .collection.position_0:hover {
-  background-position: 0px -160px;
+  background-position: -480px -160px;
 }
 
 /* line 18, ../../../app/stylesheets/collections.sass */
@@ -36,14 +36,15 @@
 
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 30, ../../app/stylesheets/collections.scss */
+
 .collections .collection.position_1 {
-  background-position: -60px -80px;
+  background-position: -420px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 34, ../../app/stylesheets/collections.scss */
 .collections .collection.position_1:hover {
-  background-position: -60px -160px;
+  background-position: -420px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
@@ -78,12 +79,14 @@
 /* line 58, ../../app/stylesheets/collections.scss */
 .collections .collection.position_3 {
   background-position: -180px -80px;
+  background-position: -240px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 62, ../../app/stylesheets/collections.scss */
 .collections .collection.position_3:hover {
   background-position: -180px -160px;
+  background-position: -240px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
@@ -97,13 +100,13 @@
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 72, ../../app/stylesheets/collections.scss */
 .collections .collection.position_4 {
-  background-position: -240px -80px;
+  background-position: 0px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 76, ../../app/stylesheets/collections.scss */
 .collections .collection.position_4:hover {
-  background-position: -240px -160px;
+  background-position: 0px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
@@ -157,13 +160,13 @@
 /* line 24, ../../../app/stylesheets/collections.sass */
 /* line 114, ../../app/stylesheets/collections.scss */
 .collections .collection.position_7 {
-  background-position: -420px -80px;
+  background-position: -60px -80px;
 }
 
 /* line 26, ../../../app/stylesheets/collections.sass */
 /* line 118, ../../app/stylesheets/collections.scss */
 .collections .collection.position_7:hover {
-  background-position: -420px -160px;
+  background-position: -60px -160px;
 }
 
 /* line 28, ../../../app/stylesheets/collections.sass */
