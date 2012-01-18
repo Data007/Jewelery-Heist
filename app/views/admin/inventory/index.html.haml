@@ -1,21 +1,20 @@
 %h2 Available Inventory
 %table
   %tbody
-    - @variations.each do |variation|
+    - @items.each do |item|
       %tr
         %td
-          - if variation.assets
-            - variation.assets.by_position[0..3].each do |asset|
-              = image_tag asset.image.url(:thumbnail)
+          - if item.assets
+            - item.assets.by_position[0..3].each do |asset|
+              = link_to image_tag(asset.image.url(:thumbnail)), edit_admin_item_path(item.pretty_id)
         %td
-          %b ID#{variation.parent_item.pretty_id}-#{variation.pretty_id} /
-          %b OID#{variation.parent_item.custom_id}-#{variation.custom_id}
+          %b= link_to "ID#{item.pretty_id}", edit_admin_item_path(item.pretty_id)
         %td
           Quantity:
-          %b #{variation.quantity}
+          %b #{item.quantity}
         %td
           Price:
-          %b $#{variation.price}
+          %b $#{item.price}
 %h2 Retail Summary
 %table
   %thead

@@ -1,11 +1,8 @@
 class Admin::InventoryController < ApplicationController
   def index
-    @variations = Item.available.map(&:variations)
-      .flatten.compact
-      .select {|variation| variation if !variation.archived && variation.quantity > 0}
-      .flatten.compact
-    @quantity_total = @variations.sum(&:quantity)
-    @retail_total   = @variations.sum(&:price)
+    @items = Item.where(available: true).excludes(quantity: 0)
+    @quantity_total = @items.map(&:quantity).sum
+    @retail_total   = @items.map(&:price).sum
     render layout: false
   end
 end
