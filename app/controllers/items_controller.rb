@@ -1,14 +1,18 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.published.listable.paginate(pagination_hash)
-    respond_to do |format|
-      format.js {render :partial => "items/thumbnail", :collection => @items}
-      format.json do
-        render :json => (@items.collect {|item|
-          item.id
-        }).to_json
+    begin
+      @items = Item.published.listable.paginate(pagination_hash)
+      respond_to do |format|
+        format.js {render :partial => "items/thumbnail", :collection => @items}
+        format.json do
+          render :json => (@items.collect {|item|
+            item.id
+          }).to_json
+        end
+        format.html {}
       end
-      format.html {}
+    rescue
+      render template: 'responses/404', status: 404
     end
   end
   
@@ -16,7 +20,7 @@ class ItemsController < ApplicationController
     begin
       @item = Item.where(pretty_id: params[:id]).first
     rescue
-      render template: 'responses/404'
+      render template: 'responses/405', status: 405
     end
   end
 end
