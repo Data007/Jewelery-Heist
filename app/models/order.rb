@@ -240,7 +240,7 @@ class Order
   def validate_line_items
     line_items.each do |line_item|
       unless line_item.is_quick_item?
-        line_item.destroy unless line_item.present?
+        line_item.destroy unless line_item.item.present?
         line_item.destroy unless line_item.item.available
       end
     end
