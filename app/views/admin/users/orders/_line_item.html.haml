@@ -1,4 +1,5 @@
-- item = line_item.item
+- variation = line_item.variation
+- item = line_item.item.present? ? line_item.item : variation.parent_item
 
 %tr.line_item
   %td{:valign => "top"}
