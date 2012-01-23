@@ -144,10 +144,6 @@ GEM
       cocaine (>= 0.0.2)
       mime-types
     polyglot (0.3.3)
-    powify (0.8.2)
-      json
-      rake
-      rdoc
     rack (1.2.5)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
@@ -270,7 +266,6 @@ DEPENDENCIES
   multi_json
   newrelic_rpm
   nokogiri
-  powify
   rack-ssl
   rails (~> 3.0.9)
   rails3-generators

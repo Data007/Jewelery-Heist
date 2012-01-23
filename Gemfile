@@ -13,7 +13,6 @@ gem 'escape_utils'
 gem 'nokogiri'
 gem 'multi_json'
 gem 'httparty', '~> 0.7.8'
-gem 'powify'
 gem 'formatize'
 gem 'haml'
 gem 'haml-rails'
@@ -26,8 +25,9 @@ gem 'hoptoad_notifier'
 
 group :production do
   gem 'newrelic_rpm'
-  gem 'thin'
 end
+
+gem 'thin'
 
 gem 'jquery-rails'
 gem 'dynamic_form'
