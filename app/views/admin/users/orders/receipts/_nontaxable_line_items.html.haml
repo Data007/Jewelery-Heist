@@ -26,9 +26,10 @@
               %td{:colspan => 9}
                 = line_item.description
         - else
+          - item = line_item.item.present? ? line_item.item : line_item.variation.parent_item
           %tr
-            %td #{line_item.item.pretty_id}
-            %td #{line_item.item.name}
+            %td #{item.pretty_id}
+            %td #{item.name}
             %td #{line_item.size}
             %td #{number_to_currency line_item.price}
             %td #{line_item.quantity}
