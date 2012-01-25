@@ -14,6 +14,7 @@ DragonHoard::Application.configure do
   
   config.middleware.insert_before ActionDispatch::Cookies, Rack::SSL
   config.middleware.insert_before ActionDispatch::Static,  Rack::SSL
+  config.action_mailer.default_url_options = { host: 'wexfordjewelers.com' }
 end
 
 ActionMailer::Base.smtp_settings = {
