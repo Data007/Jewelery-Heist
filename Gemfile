@@ -40,6 +40,9 @@ group :development do
   gem 'wirble'
   gem 'heroku'
   gem 'taps'
+
+  gem 'simplecov'
+  gem 'simplecov-rcov'
 end
 
 group :test, :development do

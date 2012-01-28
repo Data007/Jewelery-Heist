@@ -121,4 +121,8 @@ describe Item do
 
   end
 
+  context 'Clone Tool' do
+    pending 'waiting for coverage stats'
+  end
+
 end
