@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/asset.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Wj C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/asset.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-asset_rb.html">app/models/asset.rb</a></td>
+            <td class='right_align'><tt>102</tt></td>
+            <td class='right_align'><tt>47</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>73.53%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:74px"></div>
+        <div class="uncovered" style="width:26px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>42.55%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:43px"></div>
+        <div class="uncovered" style="width:57px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class Asset</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   include Mongoid::Document</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   include Mongoid::Timestamps</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>   include Mongoid::Paperclip</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>   field :position,     type: Integer</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   field :migratory_url</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   field :migrated,     type: Boolean, default: false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>   scope :by_position, order_by([[:position, :asc]])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a>   default_scope order_by([[:position, :asc]])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>   has_mongoid_attached_file :image,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>     styles: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a>       tiny:      &quot;100x80&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a>       thumbnail: &quot;100x120&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>       small:     &quot;160x120&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a>       medium:    &quot;280x240&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a>       large:     &quot;520x480&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a>       manage:    &quot;340x313&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a>     },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>     storage: :s3,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a>     s3_credentials: &quot;#{Rails.root}/config/#{Rails.env}_s3.yml&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a>     s3_headers: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a>       content_type:        'application/octet-stream',</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a>       content_disposition: 'attachment'</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a>     },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>     s3_protocol: 'https',</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a>     path: &quot;variation/:attachment/:id/:basename-:style.:extension&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a>     url:  &quot;:s3_domain_url&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>   embedded_in :item</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>   embedded_in :variation</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>   before_create :set_position</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line39">39</a>   def refresh_image</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line40">40</a>     image_path = store_image(migratory_url, image_file_name)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line41">41</a>     new_image = File.open(image_path)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line43">43</a>     image = new_image</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line45">45</a>     save</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line48">48</a>   def set_position</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line49">49</a>     if item.present?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line50">50</a>       self.position = item.assets.count</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>     else</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line52">52</a>       self.position = 0</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line54">54</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line56">56</a> private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line58">58</a>   def safe_image_name(name)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line59">59</a>     name.gsub(' ', '-')</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line62">62</a>   def store_image(url, image_name)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line63">63</a>     print ' - Setting up image paths ... '</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a>     </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line65">65</a>     host       = url.split('/')[2]</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line66">66</a>     path       = &quot;/#{url.split('/')[3..-1].join('/').gsub(/\?.*$/, '')}&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line67">67</a>     pid        = Process.pid</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line68">68</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line69">69</a>     puts 'done'</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line70">70</a>     print ' - Checking for tmp directory ... '</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line71">71</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line72">72</a>     unless Dir.exists? &quot;#{Rails.root}/tmp/#{pid}&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line73">73</a>       system &quot;mkdir #{Rails.root}/tmp/#{pid}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line76">76</a>     puts 'done'</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a>   </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line78">78</a>     image_path = &quot;#{Rails.root}/tmp/#{pid}/#{safe_image_name(image_name)}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line79">79</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line80">80</a>     Net::HTTP.start(host) do |http|</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line81">81</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line82">82</a>       print &quot;-- Contacting remote #{host}#{path} ... &quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line84">84</a>       begin</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line85">85</a>         response = http.get(path)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line86">86</a>         puts 'done'</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line87">87</a>       rescue =&gt; error</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line88">88</a>         puts &quot;ERROR: #{error}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line90">90</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line91">91</a>       print &quot;-- Saving image to #{image_path} ... &quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line92">92</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line93">93</a>       open(image_path, 'wb') do |file|</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line94">94</a>         file.write(response.body)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line95">95</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line96">96</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line97">97</a>       puts 'done'</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line98">98</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line99">99</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line100">100</a>     image_path</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line101">101</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line102">102</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line103">103</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2012-01-29 18:15:53 -0700 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

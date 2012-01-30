@@ -1,0 +1,548 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/controllers/admin/orders_controller.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Wj C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/controllers/admin/orders_controller.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-controllers-admin-orders_controller_rb.html">app/controllers/admin/orders_controller.rb</a></td>
+            <td class='right_align'><tt>163</tt></td>
+            <td class='right_align'><tt>97</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>55.83%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:56px"></div>
+        <div class="uncovered" style="width:44px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>25.77%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:26px"></div>
+        <div class="uncovered" style="width:74px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class Admin::OrdersController &lt; AdminController</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line3">3</a>   # before_filter :force_stage, :only =&gt; [:lookup, :address]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   before_filter :find_order, :only =&gt; [:show, :force_lookup, :refund, :address, :update, :print]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>   before_filter :lookup_phone, :only =&gt; [:lookup]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>   after_filter :clear_lookup_phone, :only =&gt; [:address, :cancel]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a>   # after_filter :force_stage, :only =&gt; [:new]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   def index</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line9">9</a>     @orders = params[:find] ? Order.send(params[:find].to_sym).paginate(pagination_hash) : Order.payments_made.paginate(pagination_hash)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>   def new</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line13">13</a>     staging_type = params[:staging_type] ? params[:staging_type] : &quot;purchase&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line14">14</a>     location = params[:location] ? params[:location] : &quot;instore&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a>     </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line16">16</a>     case staging_type</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a>     when &quot;repair&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line18">18</a>       due_at = &quot;3 weeks&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>     when &quot;custom&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line20">20</a>       due_at = &quot;6 weeks&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a>     </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line23">23</a>     session_order = Order.create(:location =&gt; location, :staging_type =&gt; staging_type, :handed_off =&gt; false, :clerk_id =&gt; @current_user.id, :due_at =&gt; due_at)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line24">24</a>     session[:customer_order_id] = session_order.id</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a>     </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line26">26</a>     current_customer_order.ticket.current_stage = &quot;customer lookup&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>   def force_lookup</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line30">30</a>     flash[:error] = &quot;We don't have any customer info for this order. Please lookup a customer&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line31">31</a>     current_customer_order.ticket.current_stage = &quot;customer lookup&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line32">32</a>     render :template =&gt; &quot;admin/users/orders/new&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>   def lookup</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line36">36</a>     phone = flatten_phone(params[:user][:phone])</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line37">37</a>     @customers = User.find(:all, :conditions =&gt; {:phone =&gt; phone})</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line38">38</a>     redirect_to address_admin_order_path(@order) + &quot;?user[phone]=#{phone}&quot; unless @customers.length &gt; 0</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>   def address</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line42">42</a>     if params[:customer_id]</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line43">43</a>       customer = User.find(params[:customer_id])</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line44">44</a>       address = customer.addresses.last</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line45">45</a>       current_customer_order.update_attributes :user_id =&gt; customer.id</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line46">46</a>       current_customer_order.update_attributes :address_1 =&gt; address.address_1, :address_2 =&gt; address.address_2, :city =&gt; address.city, :province =&gt; address.province, :country =&gt; address.country, :postal_code =&gt; address.postal_code if params[:address]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a>     end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line48">48</a>     if session[:lookup_phone] or params[:user]</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line49">49</a>       lookup_phone</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a>     end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line51">51</a>     current_customer_order.ticket.current_stage = &quot;addressing&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>   def cancel</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line55">55</a>     current_customer_order.clear</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line56">56</a>     current_customer_order.delete</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line57">57</a>     session[:customer_order_id] = nil</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line58">58</a>     redirect_to admin_root_path</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line59">59</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line61">61</a>   def create</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line64">64</a>   def update</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line65">65</a>     params[:order].delete(&quot;shipping_option&quot;) unless params[:order][:ship]</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line66">66</a>     @order = Order.find(params[:id])</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line67">67</a>     @order.update_attributes params[:order]</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line68">68</a>     redirect_to admin_order_path(@order)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line71">71</a>   def refund</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line72">72</a>     @order = User.find_order(params[:id])</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line73">73</a>     customer = @order.user</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line74">74</a>     payments = @order.paid</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line75">75</a>     if @order.refund</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line76">76</a>       flash[:notice] = &quot;Order #{@order.pretty_id} has been refunded.&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line77">77</a>       flash[:important] = &quot;There is a balance of $#{payments} owed to #{customer.name}.&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a>     else</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line79">79</a>       flash[:error] = &quot;There was an error refunding this order. Please try again.&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line80">80</a>     end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line81">81</a>     redirect_to admin_user_order_path(@order.user.pretty_id, @order.pretty_id)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line84">84</a>   def show</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line85">85</a>     @order = User.find_order(params[:id])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line86">86</a>     </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line87">87</a>     session[:customer_order_id] = @order.id if @order</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a>     </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a> #    current_customer_order.update_attributes :clerk =&gt; @current_user unless current_customer_order.clerk_id != nil</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line90">90</a>     </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line91">91</a>     unless @order.has_valid_shipping_address?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line92">92</a>       redirect_to address_admin_order_path(@order) and return</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line93">93</a>     else</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line94">94</a>       render :template =&gt; &quot;admin/users/orders/show_#{@order.location}_#{@order.staging_type}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line95">95</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line96">96</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line97">97</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line98">98</a>   def print</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line99">99</a>     template = &quot;admin/users/orders/print_#{@order.location}_#{@order.staging_type}&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line100">100</a>     render :template =&gt; template, :layout =&gt; &quot;print&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line101">101</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line102">102</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line103">103</a>   def find</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line104">104</a>     begin</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line105">105</a>       order = User.find_order(params[:order])</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line106">106</a>       redirect_to admin_user_order_path(order.user.pretty_id, order.pretty_id) and return</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a>     else</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line108">108</a>       flash[:error] = &quot;We could not find an order with the id of ##{params[:order]}. Please make sure the order number is valid and try again.&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line109">109</a>       redirect_to :back and return</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line110">110</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line111">111</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line112">112</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line113">113</a>   def destroy</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line114">114</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line115">115</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line116">116</a>   private</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line117">117</a>     def switch_current_customer_order(order_id)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line118">118</a>       current_customer_order.save!</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line119">119</a>       session[:customer_order_id] = order_id</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line120">120</a>       current_customer_order</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line121">121</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line122">122</a>     </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line123">123</a>     def hand_off_order</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line124">124</a>       current_customer_order.line_items.the_living.each do |line_item|</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line125">125</a>         item = line_item.variation.item</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line126">126</a>         line_item.variation.update_attributes :quantity =&gt; line_item.variation.quantity - 1 if line_item.variation.quantity &gt; 0</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line127">127</a>         if item.one_of_a_kind</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line128">128</a>           item.update_attributes :available =&gt; false, :published =&gt; false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line129">129</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line130">130</a>       end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line131">131</a>       current_customer_order.update_attributes :handed_off =&gt; true, :ghost =&gt; true</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line132">132</a>       session[:customer_order_id] = nil</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line133">133</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line134">134</a>     </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line135">135</a>     def lookup_phone</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line136">136</a>       @lookup_phone = session[:lookup_phone] ? session[:lookup_phone] : params[:user][:phone]</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line137">137</a>       session[:lookup_phone] = @lookup_phone</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line138">138</a>       return @lookup_phone</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line139">139</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line140">140</a>     </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line141">141</a>     def clear_lookup_phone</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line142">142</a>       session[:lookup_phone] = nil</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line143">143</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line144">144</a>     </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line145">145</a>     def flatten_phone(phone)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line146">146</a>       new_phone = phone.gsub(&quot;(&quot;,&quot;&quot;).gsub(&quot;)&quot;,&quot;&quot;).gsub(&quot;-&quot;,&quot;&quot;).gsub(&quot;,&quot;,&quot;&quot;).gsub(&quot;.&quot;,&quot;&quot;).gsub(&quot; &quot;,&quot;&quot;).gsub(&quot;+&quot;,&quot;&quot;)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line147">147</a>       new_phone.insert(3,&quot;-&quot;).insert(7,&quot;-&quot;)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line148">148</a>       return new_phone</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line149">149</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line150">150</a>     </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line151">151</a>     def force_customer</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line152">152</a>       unless current_customer_order.address</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line153">153</a>         session[:force_customer] = &quot;true&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line154">154</a>         redirect_to force_lookup_admin_order_path(current_customer_order) and return</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line155">155</a>       else</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line156">156</a>         session[:force_customer] = nil</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line157">157</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line158">158</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line159">159</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line160">160</a>     def find_order</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line161">161</a>       @order = User.find_order(params[:id])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line162">162</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line163">163</a> end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line164">164</a> </pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2012-01-29 18:15:53 -0700 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>
