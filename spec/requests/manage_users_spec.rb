@@ -11,6 +11,7 @@ describe 'Manage Users' do
   context 'admins' do
 
     it 'logs in to manage' do
+      pending 'Major overhaul'
       visit admin_root_path
 
       fill_in 'Login',    with: @admin.login
@@ -21,6 +22,7 @@ describe 'Manage Users' do
     end
 
     it 'logs out the user' do
+      pending 'Major overhaul'
       login_admin(@admin, 'password')
       page.should have_content("Welcome #{@admin.name}!")
       
@@ -48,6 +50,7 @@ describe 'Manage Users' do
     context 'finds' do
 
       it 'by name' do
+        pending 'Major overhaul'
         visit admin_root_path
 
         fill_in 'Name', with: @customer.name
@@ -60,6 +63,7 @@ describe 'Manage Users' do
       end
 
       it 'by address' do
+        pending 'Major overhaul'
         visit admin_root_path
 
         fill_in 'Address 1', with: 'circ'
@@ -73,6 +77,7 @@ describe 'Manage Users' do
       end
 
       it 'by phone' do
+        pending 'Major overhaul'
         visit admin_root_path
 
         fill_in 'Phone Number', with: '884-3024'
@@ -85,6 +90,7 @@ describe 'Manage Users' do
       end
         
       it 'by email' do
+        pending 'Major overhaul'
         visit admin_root_path
 
         fill_in 'Email', with: 'customer_1'
@@ -102,6 +108,7 @@ describe 'Manage Users' do
     context 'creates' do
     
       it 'after a failed search' do
+        pending 'Major overhaul'
         visit admin_root_path
 
         fill_in 'Name', with: 'Buster Bluth'
@@ -117,6 +124,7 @@ describe 'Manage Users' do
       end
 
       it 'directly' do
+        pending 'Major overhaul'
         visit admin_root_path
 
         click_link 'Create a new user'

@@ -5,7 +5,7 @@
       - if @order.present?
         .link= link_to "view current order", admin_order_path(@order)
       .link
-        - form_tag find_admin_orders_path, :method => :get do
+        = form_tag find_admin_orders_path, :method => :get do
           = text_field_tag "order"
           = submit_tag "lookup order", :class => "submit"
   .menu

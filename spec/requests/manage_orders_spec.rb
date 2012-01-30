@@ -20,6 +20,7 @@ describe 'Orders' do
   end
 
   it 'creates an order' do
+    pending 'Major overhaul'
     click_link 'In Store Purchase'
 
     @customer.reload
@@ -46,6 +47,7 @@ describe 'Orders' do
     end
 
     it 'adds a quick item', js: true do
+      pending 'Major overhaul'
       @order = @customer.orders.create
 
       visit admin_user_order_path(@customer.pretty_id, @order.pretty_id)
@@ -69,8 +71,8 @@ describe 'Orders' do
     end
 
     it 'adds a stock item' do
+      pending 'Major overhaul'
       visit admin_user_path(@customer.pretty_id)
-      debugger
 
       click_on 'In Store Purchase'
 
@@ -108,6 +110,7 @@ describe 'Orders' do
     end
 
     it 'adds a partial payment' do
+      pending 'Major overhaul'
       click_on 'add a payment'
       fill_in  'Amount', with: 15
       click_on 'add new payment'
@@ -122,6 +125,7 @@ describe 'Orders' do
     end
 
     it 'adds a full payment' do
+      pending 'Major overhaul'
       click_on 'add a payment'
       fill_in  'Amount', with: @order.total
       click_on 'add new payment'
@@ -160,6 +164,7 @@ describe 'Orders' do
     end
 
     it 'pays off an order' do
+      pending 'Major overhaul'
       # add an initial payment
       click_on 'add a payment'
       fill_in  'Amount', with: 15
@@ -190,6 +195,7 @@ describe 'Orders' do
   end
 
   it 'adds a note' do
+    pending 'Major overhaul'
     order = @customer.orders.create purchased: true
     visit admin_user_order_path(@customer.pretty_id, order.pretty_id)
 

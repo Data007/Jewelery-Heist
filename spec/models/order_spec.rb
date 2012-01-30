@@ -28,6 +28,7 @@ describe Order do
     end
 
     it 'adds from a variation' do
+      pending 'needs refactored since there are no more variations'
       variation = @item.variations.create name: 'Adds from Variation Hash'
       
       @order.add_item variation, size: 8.5
