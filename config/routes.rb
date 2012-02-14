@@ -121,6 +121,7 @@ DragonHoard::Application.routes.draw do
           get :cancel
           get :remove
           get :restore
+          get :clone
         end
 
         resources :assets, controller: 'items/assets' do

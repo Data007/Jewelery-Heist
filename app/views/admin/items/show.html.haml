@@ -9,6 +9,7 @@
     .button.dangerous= link_to 'remove', remove_admin_item_path(@item.pretty_id)
   - else
     .button.dangerous= link_to 'restore', restore_admin_item_path(@item.pretty_id)
+  .button.dangerous= link_to 'clone', clone_admin_item_path(@item.pretty_id)
   .button= link_to 'edit', edit_admin_item_path(@item.pretty_id)
 
 - content_for :extra_js do

@@ -3,6 +3,7 @@
 .item.container
   .item_actions
     #{link_to "Edit", edit_admin_item_path(item.pretty_id)} |
+    #{link_to 'Clone', clone_admin_item_path(item.pretty_id)} |
     #{link_to "ID#{item.pretty_id}", admin_item_path(item.pretty_id)}
   .item_header
     .name= link_to (item.name ? item.name : "this item needs a name"), admin_item_path(item.pretty_id)

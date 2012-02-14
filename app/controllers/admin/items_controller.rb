@@ -15,6 +15,13 @@ class Admin::ItemsController < AdminController
       render template: 'admin/items/new'
     end
   end
+
+  def clone
+    @new_item = @item.clone
+    @new_item.pretty_id = nil
+    @new_item.save
+    redirect_to edit_admin_item_path(@new_item.pretty_id), notice: "Cloned from #{@item.name.titleize}"
+  end
   
   def show
   end
