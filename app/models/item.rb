@@ -14,6 +14,7 @@ class Item
   field :available,     type: Boolean, default: true
   field :published,     type: Boolean, default: false
   field :discontinued,  type: Boolean, default: false
+  field :cloned,        type: Boolean, default: false
   field :cost,          type: Float
   field :metals,        type: Array
   field :finishes,      type: Array

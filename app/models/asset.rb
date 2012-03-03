@@ -6,6 +6,7 @@ class Asset
   field :position,     type: Integer
   field :migratory_url
   field :migrated,     type: Boolean, default: false
+  field :cloned,       type: Boolean, default: false
 
   scope :by_position, order_by([[:position, :asc]])
   
@@ -39,7 +40,7 @@ class Asset
     image_path = store_image(migratory_url, image_file_name)
     new_image = File.open(image_path)
 
-    image = new_image
+    self.image = new_image
 
     save
   end
@@ -61,11 +62,11 @@ private
   def store_image(url, image_name)
     print ' - Setting up image paths ... '
     
-    host       = url.split('/')[2]
-    path       = "/#{url.split('/')[3..-1].join('/').gsub(/\?.*$/, '')}"
-    pid        = Process.pid
+    host  = url.split('/')[2]
+    path  = "/#{url.split('/')[3..-1].join('/').gsub(/\?.*$/, '')}"
+    pid   = Process.pid
 
-    puts 'done'
+    puts  'done'
     print ' - Checking for tmp directory ... '
 
     unless Dir.exists? "#{Rails.root}/tmp/#{pid}"

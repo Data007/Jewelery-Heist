@@ -17,9 +17,28 @@ class Admin::ItemsController < AdminController
   end
 
   def clone
-    @new_item = @item.clone
+    @new_item           = @item.clone
     @new_item.pretty_id = nil
+    @new_item.cloned    = true
     @new_item.save
+    @new_item.update_attribute :assets, []
+    @new_item.reload
+
+    @item.assets.each do |asset|
+      asset_hash = {
+        image_file_name:    asset.image_file_name,
+        image_content_type: asset.image_content_type,
+        image_file_size:    asset.image_file_size,
+        image_updated_at:   asset.image_updated_at,
+        migratory_url:      asset.image.url(:original),
+        position:           asset.position,
+        cloned:             true
+      }
+
+      new_asset = @new_item.assets.create(asset_hash)
+      new_asset.refresh_image
+    end
+
     redirect_to edit_admin_item_path(@new_item.pretty_id), notice: "Cloned from #{@item.name.titleize}"
   end
   
