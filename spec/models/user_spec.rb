@@ -6,7 +6,7 @@ describe User do
   context 'Validation' do
 
     before do
-      @user = Factory.build :user
+      @user = FactoryGirl.build :user
     end
 
     it 'validates presence of name' do
@@ -24,7 +24,7 @@ describe User do
   context 'Contact Information' do
 
     before do
-      @user = Factory.create :user
+      @user = FactoryGirl.create :user
     end
 
     it 'has emails' do
@@ -62,14 +62,14 @@ describe User do
     end
 
     it 'hashes password on save' do
-      user = Factory.build :user
+      user = FactoryGirl.build :user
       user.password_hash.should_not be
       user.save
       user.reload.password_hash.should == User.hash_password('password')
     end
 
     it 'does not hash on save with a bad password confirmation match' do
-      user = Factory.build :user, password_confirmation: 'passwor'
+      user = FactoryGirl.build :user, password_confirmation: 'passwor'
       user.errors.should_not include(:password_confirmation)
       user.save
       user.errors.should     include(:password_confirmation)
@@ -81,7 +81,7 @@ describe User do
   context '#authorize' do
 
     before do
-      @user = Factory.create :user, is_active: true
+      @user = FactoryGirl.create :user, is_active: true
     end
 
     it 'is not active' do
@@ -109,7 +109,7 @@ describe User do
   context '#full_search' do
 
     before do
-      3.times {|i| Factory.create :customer, login: "customer_#{i}", name: "Customer User #{i}"}
+      3.times {|i| FactoryGirl.create :customer, login: "customer_#{i}", name: "Customer User #{i}"}
     end
 
     it 'finds users by any_of' do
@@ -155,8 +155,8 @@ describe User do
     end
 
     it 'finds users by partial phone' do
-      user_1 = Factory.create :customer, phones: ['231-884-3024']
-      user_2 = Factory.create :customer, phones: ['231-884-3306']
+      user_1 = FactoryGirl.create :customer, phones: ['231-884-3024']
+      user_2 = FactoryGirl.create :customer, phones: ['231-884-3306']
 
       users = User.full_search({phone: '3024'})
       users.length.should == 1
@@ -186,8 +186,8 @@ describe User do
     end
 
     it 'finds users by partial email' do
-      user_1 = Factory.create :customer, emails: ['email1@example.net']
-      user_2 = Factory.create :customer, emails: ['email2@example.net']
+      user_1 = FactoryGirl.create :customer, emails: ['email1@example.net']
+      user_2 = FactoryGirl.create :customer, emails: ['email2@example.net']
 
       users = User.full_search({email: 'mail1'})
       users.length.should == 1
@@ -196,7 +196,7 @@ describe User do
     end
 
     it 'finds users by full address' do
-      user = Factory.create :customer
+      user = FactoryGirl.create :customer
       user.addresses.create!({
         address_1:   '1 CIRCLE DR.',
         city:        'CIRCULAR LOGIC',
@@ -217,7 +217,7 @@ describe User do
     end
 
     it 'finds users by partial address' do
-      user = Factory.create :customer
+      user = FactoryGirl.create :customer
       user.addresses.create!({
         address_1:   '1 CIRCLE DR.',
         city:        'CIRCULAR LOGIC',
@@ -246,7 +246,7 @@ describe User do
     end
 
     it 'does not create a user if one exists' do
-      user_1 = Factory.create :customer, name: 'customer user'
+      user_1 = FactoryGirl.create :customer, name: 'customer user'
       user_2 = User.create_from_search_params(name: 'customer user')
       user_2.should == user_1
       User.count.should == 1
@@ -258,19 +258,19 @@ describe User do
 
     before do
     pending 'Need to recalculate expectations'
-      @customer = Factory.create :customer
+      @customer = FactoryGirl.create :customer
 
-      @item_1 = Factory.create :item
-      @item_1.variations << Factory.create(:variation, price: 50.00)
+      @item_1 = FactoryGirl.create :item
+      @item_1.variations << FactoryGirl.create(:variation, price: 50.00)
 
-      @item_2 = Factory.create :item
-      @item_2.variations << Factory.create(:variation, price: 60.00)
+      @item_2 = FactoryGirl.create :item
+      @item_2.variations << FactoryGirl.create(:variation, price: 60.00)
 
-      @order_1  = Factory.create(:order, user: @customer)
-      @order_1.line_items << Factory.create(:line_item, variation: @item_1.variations.first, quantity: 1)
+      @order_1  = FactoryGirl.create(:order, user: @customer)
+      @order_1.line_items << FactoryGirl.create(:line_item, variation: @item_1.variations.first, quantity: 1)
 
-      @order_2  = Factory.create(:order, user: @customer)
-      @order_2.line_items << Factory.create(:line_item, variation: @item_2.variations.first, quantity: 1)
+      @order_2  = FactoryGirl.create(:order, user: @customer)
+      @order_2.line_items << FactoryGirl.create(:line_item, variation: @item_2.variations.first, quantity: 1)
     end
 
     context 'Spent Money' do

@@ -3,9 +3,9 @@ require 'spec_helper'
 describe 'Orders' do
 
   before do
-    @admin = Factory.create :admin
+    @admin = FactoryGirl.create :admin
 
-    @customer = Factory.create :customer, phones: ['231-884-3024'], emails: ['customer_1@example.net']
+    @customer = FactoryGirl.create :customer, phones: ['231-884-3024'], emails: ['customer_1@example.net']
     @customer.addresses.create!({
       address_1:   '1 CIRCULAR DR',
       city:        'LOGIC',
@@ -38,7 +38,7 @@ describe 'Orders' do
   context 'items' do
 
     before do
-      @item      = Factory.create(:item, name: 'Test Item', size_range: '2-6')
+      @item      = FactoryGirl.create(:item, name: 'Test Item', size_range: '2-6')
       @variation = @item.variations.create
       @variation.update_attribute :price, 30
 
@@ -102,7 +102,7 @@ describe 'Orders' do
 
     before do
       @order = @customer.orders.create purchased: true
-      @item  = Factory.create(:item, name: 'Test Item')
+      @item  = FactoryGirl.create(:item, name: 'Test Item')
       @item.variations.create(price: 30)
       @order.add_item @item.variations.last
 

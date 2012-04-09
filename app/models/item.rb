@@ -15,6 +15,7 @@ class Item
   field :published,     type: Boolean, default: false
   field :discontinued,  type: Boolean, default: false
   field :cloned,        type: Boolean, default: false
+  field :in_gallery,    type: Boolean, default: false
   field :cost,          type: Float
   field :metals,        type: Array
   field :finishes,      type: Array
@@ -78,6 +79,7 @@ class Item
   scope :listable,      where(available: true, ghost: false)
   scope :ooak,          where(one_of_a_kind: true)
   scope :nooak,         where(one_of_a_kind: false)
+  scope :in_gallery,    where(in_gallery: true)
 
   scope :with_color_id, ->(color_id) {
     where('variations.colors._id' => color_id)

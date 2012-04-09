@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Order do
   
   before do
-    @user      = Factory.create(:customer)
-    @item      = Factory.create(:item)
+    @user      = FactoryGirl.create(:customer)
+    @item      = FactoryGirl.create(:item)
     @variation = @item.variations.create
   end
 
   it 'adds from line item hash' do
-    line_item = Factory.build(:line_item, variation: @variation)
+    line_item = FactoryGirl.build(:line_item, variation: @variation)
     order     = @user.orders.create
 
     order.add_line_item line_item

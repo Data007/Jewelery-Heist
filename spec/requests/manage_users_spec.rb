@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'Manage Users' do
 
   before do
-    @admin = Factory.create :admin
+    @admin = FactoryGirl.create :admin
   end
 
   context 'admins' do
@@ -36,7 +36,7 @@ describe 'Manage Users' do
   context 'customers' do
 
     before do
-      @customer = Factory.create :customer, phones: ['231-884-3024'], emails: ['customer_1@example.net']
+      @customer = FactoryGirl.create :customer, phones: ['231-884-3024'], emails: ['customer_1@example.net']
       @customer.addresses.create!({
         address_1:   '1 CIRCULAR DR',
         city:        'LOGIC',

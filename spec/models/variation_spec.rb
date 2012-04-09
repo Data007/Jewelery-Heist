@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Variation do
   before do
-    @item = Factory.create :item
+    @item = FactoryGirl.create :item
   end
 
   it 'finds jewels' do

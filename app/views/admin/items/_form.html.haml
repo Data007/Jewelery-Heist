@@ -74,6 +74,9 @@
     .field#discontinued_notes
       = item.label :discontinued_notes
       = item.text_area :discontinued_notes
+    .field#in_gallery
+      = item.label :in_gallery
+      = item.check_box :in_gallery
   %hr
   - unless @item.new_record?
     = item.fields_for :assets, Asset.new do |current_asset|

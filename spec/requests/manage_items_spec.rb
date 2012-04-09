@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Manage Items' do
   
   before do
-    @admin = Factory.create :admin
+    @admin = FactoryGirl.create :admin
     login_admin(@admin, 'password')
   end
 

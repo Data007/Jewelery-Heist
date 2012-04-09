@@ -5,7 +5,7 @@ describe Item do
   context 'Asset sort' do
     
     before do
-      @item = Factory.create :item
+      @item = FactoryGirl.create :item
       @asset1 = @item.assets.create
       @asset2 = @item.assets.create
       @asset3 = @item.assets.create
@@ -53,8 +53,8 @@ describe Item do
   context '#search' do
     
     before do
-      @item_1 = Factory.create :item, name: 'Test Item 1'
-      @item_2 = Factory.create :item, name: 'Test Item 2'
+      @item_1 = FactoryGirl.create :item, name: 'Test Item 1'
+      @item_2 = FactoryGirl.create :item, name: 'Test Item 2'
     end
 
     it 'finds one by ID + old_id'
@@ -86,7 +86,7 @@ describe Item do
   context 'Sizes' do
 
     before do
-      @item = Factory.create :item
+      @item = FactoryGirl.create :item
     end
 
     it 'parses a size range with a -' do
