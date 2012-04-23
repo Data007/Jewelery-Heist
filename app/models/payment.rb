@@ -16,6 +16,10 @@ class Payment
     self.amount = launder_money(self.amount)
   end
 
+  def refund
+    order.payments.create amount: -self.amount, payment_type: 'instorecredit', check_number: self.check_number 
+  end
+
   class << self
 
     def payment_type_options

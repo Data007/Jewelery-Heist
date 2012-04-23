@@ -2,5 +2,5 @@
 
 FactoryGirl.define do
   factory :metal do
-    end
+  end
 end

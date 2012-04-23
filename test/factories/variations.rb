@@ -1,6 +1,8 @@
 # Read about factories at http://github.com/thoughtbot/factory_girl
 
-Factory.define :variation do |f|
-  f.price    50.0
-  f.quantity 1
+FactoryGirl.define do
+  factory :variation do
+    price    50.0
+    quantity 1
+  end
 end

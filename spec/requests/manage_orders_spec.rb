@@ -194,6 +194,44 @@ describe 'Orders' do
   
   end
 
+  context 'Refunds' do
+
+    before do
+      @order   = @customer.orders.create purchased: true
+      @item    = FactoryGirl.create :item, name: 'Test Item', price: 30
+      @order.add_item @item
+      @payment = @order.payments.create amount: 10
+
+      @order.paid.should    == @payment.amount
+      @order.balance.should == @order.total - @payment.amount
+
+      visit admin_user_order_path(@customer.pretty_id, @order.pretty_id)
+    end
+
+    it 'refunds a payment' do
+      within('.payment') do
+        click_link 'refund'
+      end
+
+      @customer.reload
+      @order = @customer.orders.find(@order.id)
+
+      @order.paid.should == 0
+      @order.balance.should == @order.total
+      @order.payments.count.should == 2
+
+      payment1 = @order.payments.first
+      payment2 = @order.payments.last
+
+      payment1.amount.should == 10
+      payment2.amount.should == -10
+    end
+      
+    it 'refunds an item'
+    it 'refunds the order'
+
+  end
+
   it 'adds a note' do
     pending 'Major overhaul'
     order = @customer.orders.create purchased: true

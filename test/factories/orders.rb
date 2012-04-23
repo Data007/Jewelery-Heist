@@ -1,4 +1,6 @@
 # Read about factories at http://github.com/thoughtbot/factory_girl
 
-Factory.define :order do |f|
+FactoryGirl.define do
+  factory :order do
+  end
 end

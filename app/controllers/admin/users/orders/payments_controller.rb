@@ -10,7 +10,8 @@ class Admin::Users::Orders::PaymentsController < Admin::Users::OrdersController
   
   def destroy
     @payment = @order.payments.find(params[:id])
-    @order.payments << @order.payments.create(amount: -(@payment.amount), payment_type: 'instorecredit', check_number: @payment.check_number)
+    @payment.refund
+
     redirect_to admin_user_order_path(@user.pretty_id, @order.pretty_id)
   end
 

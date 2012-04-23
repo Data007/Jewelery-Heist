@@ -1,4 +1,6 @@
 # Read about factories at http://github.com/thoughtbot/factory_girl
 
-Factory.define :asset do |f|
+FactoryGirl.define do
+  factory :asset do
+  end
 end
