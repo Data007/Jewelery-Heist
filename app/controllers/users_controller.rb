@@ -21,7 +21,9 @@ class UsersController < ApplicationController
   end
   
   def registered
-    @user = User.new(params[:user])
+    @user           = User.new(params[:user])
+    @user.is_active = true
+
     if @user.save
       flash[:notice] = "Welcome to Wexford Jewelers! We're very glad you joined!"
       session[:user_id] = @user.id

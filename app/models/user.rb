@@ -119,6 +119,12 @@ class User
         errors.add :password_confirmation, 'does not match the password'
       end
     end
+    
+    if (old_password.present? && new_password.present?)
+      if User.hash_password(old_password) == password_hash
+        self.password_hash = User.hash_password(new_password)
+      end
+    end
   end
 
   def is_admin?
@@ -142,7 +148,7 @@ class User
     end
 
     def generate_password_hash
-      hash_password(Time.now.to_s)
+      User.hash_password(Time.now.to_s)
     end
 
     def hash_password(password)
@@ -150,7 +156,7 @@ class User
     end
 
     def authorize(login, password)
-      user = where(login: login, password_hash: hash_password(password)).first
+      user = User.where(login: login, password_hash: User.hash_password(password)).first
       (user && user.is_active) ? user : nil
     end
 

@@ -16,6 +16,9 @@
         = label "user", "password"
         = password_field "user", "password", :value => nil
       .row
+        = label "user", "password confirmation"
+        = password_field "user", "password_confirmation", :value => nil
+      .row
         = submit_tag "register"
   
     %p Why #{link_to "register for an account", register_users_path}? Because we are just that cool! Also, you will never be able to own any of our fine jewelry unless you register online or #{link_to "visit our store", about_us_path + "#contact_us"} in #{link_to "Cadillac, Michigan", about_us_path + "#contact_us"}.
