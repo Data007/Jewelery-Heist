@@ -196,7 +196,7 @@ class Order
   end
 
   def credits_total
-    -payments.where(payment_type: /credit/, :amount.lt => 0).map(&:amount).sum
+    -self.payments.where(payment_type: /credit/, :amount.lt => 0).map(&:amount).sum
   end
 
   def balance
