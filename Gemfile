@@ -49,6 +49,8 @@ end
 group :test, :development do
   gem 'ruby-debug',   :platform => :ruby_18
   gem 'ruby-debug19', :platform => :mri_19
+  gem 'pry'
+  gem 'pry-nav'
 end
 
 group :test do
