@@ -72,7 +72,8 @@ class Order
   end
 
   def due_date
-    return self.due_at == "same day" ? self.created_at : self.created_at.advance(:weeks => self.due_at.split(" ")[0].to_i)
+    parsed_created_at = Time.parse(self[:created_at]).getlocal
+    return self.due_at == "same day" ? parsed_created_at : parsed_created_at.advance(weeks: self.due_at.split(" ")[0].to_i)
   end
 
   def has_valid_shipping_address?
