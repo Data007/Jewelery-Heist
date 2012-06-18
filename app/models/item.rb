@@ -27,11 +27,13 @@ class Item
   field :gender
   field :custom_id
   field :old_variation_id
-  field :backorder_notes
+
+  field :backorder_notes, type: String, default: 'Although this item is currently sold out, we can recast this. Ordering this item will put the job in our work queue and your piece will ship within 4 - 7 weeks after the order has processed.'
+
   field :customizable_notes
   field :discontinued_notes
 
-  field :pretty_id,    type: Integer
+  field :pretty_id,         type: Integer
   sequence :pretty_id  
 
   embeds_many :assets
