@@ -50,6 +50,7 @@ group :test, :development do
   gem 'ruby-debug',   :platform => :ruby_18
   gem 'ruby-debug19', :platform => :mri_19
   gem 'pry'
+  gem 'pry-rails'
   gem 'pry-nav'
 end
 
