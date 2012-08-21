@@ -142,7 +142,7 @@ class Ticket
     ]
   }
   
-  default_scope :order => "due_at ASC"
+  # default_scope :order => "due_at ASC"
     
   def before_save
     raise InvalidKind, "#{self.kind} is not a valid kind of ticket" unless STAGES[:"#{self.kind}"]

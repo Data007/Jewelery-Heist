@@ -1,66 +1,70 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
-gem 'rails', '~> 3.0.9'
+gem 'rails', '3.2.8'
+
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
+end
+
+gem 'coffee-filter'
+gem 'haml_coffee_assets'
+gem 'execjs'
 
 # http://collectiveidea.com/blog/archives/2010/11/29/ssl-with-rails/
 gem 'rack-ssl'
 
-gem 'mongoid',  '~> 2.2.0'
-gem 'bson_ext', '~> 1.2'
-gem 'rails3-generators'
- 
-gem 'escape_utils'
-gem 'nokogiri'
-gem 'multi_json'
-gem 'httparty', '~> 0.7.8'
-gem 'formatize'
+gem 'jquery-rails'
+
 gem 'haml'
 gem 'haml-rails'
-gem 'compass'
-gem 'will_paginate', '~> 3.0.2'
 gem 'aws-sdk'
-gem 'paperclip', '3.0.2'
-gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
-gem 'stringex'
-gem 'hoptoad_notifier'
-
-group :production do
-  gem 'newrelic_rpm'
-end
-
-gem 'thin'
-
-gem 'jquery-rails'
+gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'dynamic_form'
+
+gem 'therubyracer'
+
+gem 'omniauth' # It's a sane default these days
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
 
 gem 'braintree'
 
-gem 'factory_girl_rails'
+gem 'airbrake'
+
+gem 'formatize'
+gem 'escape_utils'
+gem 'stringex'
+gem 'will_paginate', '~> 3.0.2'
+
+group :production do
+  gem 'thin'
+  gem 'newrelic_rpm'
+end
 
 group :development do
-  gem 'wirble'
   gem 'heroku'
   gem 'taps'
-
-  gem 'simplecov'
-  gem 'simplecov-rcov'
+  gem 'thin'
 end
 
 group :test, :development do
-  gem 'ruby-debug',   :platform => :ruby_18
-  gem 'ruby-debug19', :platform => :mri_19
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'mongoid-rspec'
+  gem 'timecop'
+  gem 'vcr'
+  gem 'fakeweb'
+  gem 'email_spec' 
+  gem 'rack_session_access'
   gem 'pry'
-  gem 'pry-rails'
   gem 'pry-nav'
+
+  # Pretty printed test output
+  gem 'turn', require: false
 end
 
-group :test do
-  gem 'rspec'
-  gem 'rspec-rails'
-  gem 'cucumber'
-  gem 'cucumber-rails'
-  gem 'database_cleaner'
-  gem 'capybara'
-  gem 'email_spec'
-  gem 'launchy'
-end

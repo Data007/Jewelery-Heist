@@ -1,12 +1,33 @@
 development:
-  host: localhost
-  database: dragon_hoard_development
+  sessions:
+    default:
+      database: dragon_hoard_development
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
+  options:
 
 test:
-  host: localhost
-  database: dragon_hoard_test
+  sessions:
+    default:
+      database: dragon_hoard_test
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
+  options:
 
-# set these environment variables on your prod server
+# mongodb://heroku_app6881640:l9dfeluqrt92s0l8mm1odl0m2o@ds031347-b.mongolab.com:31347/heroku_app6881640
 production:
-  uri: <%= ENV['MONGOHQ_URL'] %>
+  sessions:
+    default:
+      database: heroku_app6881640
+      username: heroku_app6881640
+      password: l9dfeluqrt92s0l8mm1odl0m2o
+      hosts:
+        - ds031347-b.mongolab.com:31347
+      options:
+        consistency: :strong
+  options:
 
