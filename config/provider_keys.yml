@@ -1,0 +1,35 @@
+development:
+  facebook:
+    consumer_key: 304534272976885
+    consumer_secret: cd75cabbaefc644cac164b90ba57cef9
+  twitter:
+    consumer_key: bvRFWt6ZbF9LGV7PnA
+    consumer_secret: l5GfIJGy3YOJwkw7YkvLu3m19oBYYCShE6WtmsLQXk
+  google:
+    consumer_key: 18554699237-08rp4n8g3qk3hqu86n3luv8n2nkfda3i.apps.googleusercontent.com
+    consumer_secret: Y5lzJrl1_WMu7TW1ZOVi5qYi
+  dwolla:
+    consumer_key: pfq6x8U6ib0M84dL+C2uyDJ3qQeUmITFiTmLyx9F4Jz9U/KuEq
+    consumer_secret: KZ1uZSfMwcUuPuSBoXczUxqPYuuLtoiByVxR/af522c1ndBNMO
+
+test:
+  facebook:
+    consumer_key: 304534272976885
+    consumer_secret: cd75cabbaefc644cac164b90ba57cef9
+  twitter:
+    consumer_key: bvRFWt6ZbF9LGV7PnA
+    consumer_secret: l5GfIJGy3YOJwkw7YkvLu3m19oBYYCShE6WtmsLQXk
+  google:
+    consumer_key: 18554699237-08rp4n8g3qk3hqu86n3luv8n2nkfda3i.apps.googleusercontent.com
+    consumer_secret: Y5lzJrl1_WMu7TW1ZOVi5qYi
+
+production:
+  facebook:
+    consumer_key: 246453358807560
+    consumer_secret: d974601a19cc27504d72f82fdaee4cb7
+  twitter:
+    consumer_key: h2lhg3ykLzLyvAeyNWNS2g
+    consumer_secret: kGdzsCoki0hzdGoRmyLqW7ibYF5KRQo5FRADY7VyRuE
+  google:
+    consumer_key: 18554699237.apps.googleusercontent.com
+    consumer_secret: blAQfres57daXYXI5EANX801
