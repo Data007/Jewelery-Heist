@@ -57,10 +57,15 @@ class User
         find_address = new_find_address
       end
 
-      result = any_of(*user_query) unless user_query.empty?
-      result = (result ? result.and(find_address) : where(find_address)) if find_address && !find_address.empty?
-      result = (result ? result.any_in(phones: [find_phone]) : any_in(phones: [find_phone])) if find_phone
-      result = (result ? result.any_in(emails: [find_email]) : any_in(emails: [find_email])) if find_email
+      if (!find_address || find_address.empty?) && (!find_phone || find_phone.empty?) && (!find_email || find_email.empty?) && (!user_query || user_query.empty?)
+        result = all
+      else
+        result = any_of(*user_query) unless user_query.empty?
+        result = (result ? result.and(find_address) : where(find_address)) if find_address && !find_address.empty?
+        result = (result ? result.any_in(phones: [find_phone]) : any_in(phones: [find_phone])) if find_phone
+        result = (result ? result.any_in(emails: [find_email]) : any_in(emails: [find_email])) if find_email
+      end
+
       return result
     end
 
