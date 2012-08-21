@@ -6,23 +6,19 @@
     %link{rel: "image_src", href: "#{yield :image_src}"}
     %meta{name: "keywords", content: "ring, pendant, necklace, bracelet, custom, engagement, wedding, #{yield :meta_keywords}"}
     %title Wexford Jewelers | our passion is design #{yield :page_title}
-    = stylesheet_link_tag "website/screen"
+    = stylesheet_link_tag "/stylesheets/website/screen.css"
     :plain
       <!--[if lte IE 7]>
         <link rel="stylesheet" type="text/css" media="screen, projection" href="http://universal-ie6-css.googlecode.com/files/ie6.0.3.css" />
       <![endif]-->
-    / Load frameworks
     = javascript_include_tag "jquery", 'rails', "ejs/ejs_production", "class","jquery.truncate", 'jquery-value-checkbox', "init", "jquery.autocomplete"
-    / Load 
     = javascript_include_tag "controllers", "website/items", "website/pagination"
-    / Load page specific scripts
     = yield :extra_js
-    / Load init scripts
     = javascript_include_tag "application"
 
     = csrf_meta_tag
     
-    - if RAILS_ENV=="production"
+    - if Rails.env.production?
       :plain
         <script type="text/javascript">
       

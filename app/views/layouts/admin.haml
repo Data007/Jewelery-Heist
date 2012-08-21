@@ -3,21 +3,22 @@
   %head
     %title manage.wexfordjewelers.com
     
-    = stylesheet_link_tag "layout", "jquery.tokenizeforms"
-    = stylesheet_link_tag "print", :media => "print"
+    = stylesheet_link_tag "/stylesheets/layout", "/stylesheets/jquery.tokenizeforms"
+    = stylesheet_link_tag "/stylesheets/print", :media => "print"
     = yield :extra_css
     
-    = javascript_include_tag "jquery", "jquery-ui", "ejs", "jquery.input-helper", "jquery.form", "jquery.livequery", "jquery.orangevolt-focused", "jquery.autocomplete", "jquery.tokenizeforms", "jquery-value-checkbox", "init", "header_menus"
+    - ["jquery", "jquery-ui", "ejs", "jquery.input-helper", "jquery.form", "jquery.livequery", "jquery.orangevolt-focused", "jquery.autocomplete", "jquery.tokenizeforms", "jquery-value-checkbox", "init", "header_menus"].each do |js_file|
+      = javascript_include_tag "/javascripts/#{js_file}"
     = yield :file_uploads
     = yield :extra_js
-    = javascript_include_tag "application"
+    = javascript_include_tag '/javascripts/application'
 
-    = javascript_include_tag 'rails'
+    = javascript_include_tag '/javascripts/rails'
     = csrf_meta_tag
   %body
     #wrapper
       #print_logo
-        = image_tag "logo.jpg", :height => "100px"
+        = image_tag "/images/logo.jpg", :height => "100px"
         %h3 Wexford Jewelers
         %p
           801 N. Mitchell St., Cadillac, MI 49601 <br />
@@ -63,4 +64,4 @@
     #ajax-status
       #ajax-status-container
         %p We're processing your request
-        = image_tag "ui/progress_bar.gif"
+        = image_tag "/images/ui/progress_bar.gif"
