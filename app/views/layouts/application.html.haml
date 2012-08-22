@@ -24,7 +24,6 @@
     %link{href: 'images/apple-touch-icon.png', rel: 'apple-touch-icon-precomposed'}
     %link{href: 'images/favicon.ico', rel: 'shortcut icon'}
 
-
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -33,12 +32,23 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand{href: '#'} DragonHoardRails32
+          = link_to 'WJ', [:root], class: 'brand'
+          %ul.nav
+            %li
+              = form_tag search_path, method: :get, class: 'navbar-search' do
+                = text_field_tag 'q', nil, placeholder: 'Search', class: 'search-query'
+
           .container.nav-collapse
             %ul.nav
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+              - if @current_user
+                %li= link_to 'Account', '#'
+              %li.dropdown
+                %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
+                  Account
+                  %b.caret &nbsp;
+                %ul.dropdown-menu
+                  %li login form
+                  %li social stuff
 
     .container-fluid
 
@@ -57,3 +67,15 @@
         %p &copy; Company 2012
 
     = javascript_include_tag "application"
+
+    - if Rails.env.production?
+      :javascript
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-520761-7']);
+        _gaq.push(['_trackPageview']);
+      
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
