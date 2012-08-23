@@ -46,6 +46,7 @@ gem 'will_paginate', '~> 3.0.2'
 group :production do
   gem 'thin'
   gem 'newrelic_rpm'
+  ruby '1.9.3'
 end
 
 group :development do
