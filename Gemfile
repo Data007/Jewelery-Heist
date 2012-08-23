@@ -7,8 +7,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-  # gem 'compass-rails', '~> 1.0.3'
-  # gem 'zurb-foundation', '~> 3.0.9'
 end
 
 gem 'coffee-filter'
@@ -23,7 +21,9 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails'
 gem 'aws-sdk'
+gem 'mongoid', '~>3.0.0'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+gem 'mongoid-sequence', git: 'https://github.com/dragonhoard/mongoid-sequence.git'
 gem 'dynamic_form'
 
 gem 'therubyracer'
