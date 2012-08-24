@@ -163,9 +163,6 @@ DragonHoardRails32::Application.routes.draw do
   
   resources :users do
     collection do
-      get  :login
-      get  :logout
-      post :authenticate
       get  :register
       post :registered
       get  :forgot_password
@@ -177,8 +174,6 @@ DragonHoardRails32::Application.routes.draw do
     end
   end
     
-  match '/users/fb_authenticate/:uid' => 'users#fb_authenticate', as: :fb_authenticate
-  match 'dashboard' => 'users#dashboard', as: :dashboard
   
   match '/orders/:id/checkout' => 'orders#checkout', method: :post, as: :checkout
   match '/orders/:id/shipping' => 'orders#shipping', method: :post, as: :shipping
@@ -209,8 +204,11 @@ DragonHoardRails32::Application.routes.draw do
   resource :search, only: [:show]
   resources :colors, only: [:show]
   
-  match '/login' => 'users#login', as: :login
-  match '/logout' => 'users#logout', as: :logout
+  resource :session
+
+  match 'login'     => 'sessions#new',     as: :login
+  match 'logout'    => 'sessions#destroy', as: :logout
+  match 'dashboard' => 'users#dashboard',  as: :dashboard
   
   root to: 'pages#home'
   

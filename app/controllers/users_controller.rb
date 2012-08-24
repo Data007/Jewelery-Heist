@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :force_login, :except => [:fb_authenticate, :login, :authenticate, :logout, :register, :registered, :forgot_password, :generate_new_password]
-  # skip_after_filter :save_previous_page
-  before_filter :force_add_email, :except => [:edit, :update, :fb_authenticate, :login, :authenticate, :logout, :register, :registered, :forgot_password, :generate_new_password]
+  before_filter :force_login, :except => [:fb_authenticate, :registered, :forgot_password, :generate_new_password]
+  before_filter :force_add_email, :except => [:edit, :update, :fb_authenticate, :register, :registered, :forgot_password, :generate_new_password]
   
   def fb_authenticate
     begin
@@ -31,25 +30,6 @@ class UsersController < ApplicationController
     else
       flash[:error] = "We register you. Please check your details and try again."
       render :template => "users/login"
-    end
-  end
-  
-  def login
-    # session[:previous_page] = request.referer
-    @user = User.new
-  end
-  
-  def authenticate
-    # session[:previous_page] = request.referer unless request.referer == "/users/login"
-    user = User.authorize(params[:user][:login], params[:user][:password])
-    
-    if user
-      session[:user_id] = user.id
-      flash[:notice] = "You have been successfully authenticated #{user.name}"
-      redirect_to_back_or_dashboard
-    else
-      flash[:warning] = "Your username or password is incorrect"
-      redirect_to login_users_path
     end
   end
   
@@ -100,19 +80,6 @@ class UsersController < ApplicationController
       flash[:error] = "<p>We could not find a user by that email address. Please try another email address.</p><p>If you continue having issues please <a href='#{about_us_path}#contact_us'>contact us</a> and we will try to fix the problem as soon as possible.</p>"
       redirect_to forgot_password_users_path
     end
-  end
-  
-  def logout
-    session[:user_id] = nil
-    case request.referer
-    when dashboard_path
-      url = root_path
-    when login_users_path
-      url = root_path
-    else
-      url = :back
-    end
-    redirect_to url
   end
   
   private

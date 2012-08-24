@@ -39,14 +39,17 @@
           .container.nav-collapse
             %ul.nav
               - if @current_user
-                %li= link_to 'Account', '#'
-              %li.dropdown
-                %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
-                  Login
-                  %b.caret &nbsp;
-                %ul.dropdown-menu
-                  %li login form
-                  %li social stuff
+                %li= link_to 'Account', [:dashboard]
+                %li= link_to 'Logout', [:logout]
+              - else
+                %li.dropdown
+                  %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
+                    Login
+                    %b.caret &nbsp;
+                  %ul.dropdown-menu.desktop.hidden-phone.hidden-tablet
+                    %li= render partial: 'layouts/login_form'
+                  %ul.dropdown-menu.hidden-desktop
+                    %li= render partial: 'layouts/login_form'
 
     .container-fluid
       .row-fluid
