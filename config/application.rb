@@ -20,6 +20,9 @@ module DragonHoardRails32
       g.view_specs          false
       g.helper_specs        false
       g.controller_specs    false
+
+      g.javascripts         false
+      g.stylesheets         false
     end
 
     config.hamlcoffee.escapeAttributes = false

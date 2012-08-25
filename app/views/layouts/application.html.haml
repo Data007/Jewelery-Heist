@@ -25,36 +25,34 @@
       %link{href: 'images/favicon.ico', rel: 'shortcut icon'}
 
   %body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container-fluid
-          %a.btn.btn-navbar{data: {target: '.nav-collapse', toggle: 'collapse'}}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          = link_to 'WJ', [:root], class: 'brand'
-          = form_tag search_path, method: :get, class: 'navbar-search' do
-            = text_field_tag 'q', nil, placeholder: 'Search', class: 'search-query'
-
-          .container.nav-collapse
-            %ul.nav
-              - if @current_user
-                %li= link_to 'Account', [:dashboard]
-                %li= link_to 'Logout', [:logout]
-              - else
-                %li.dropdown
-                  %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
-                    Login
-                    %b.caret &nbsp;
-                  %ul.dropdown-menu.desktop.hidden-phone.hidden-tablet
-                    %li= render partial: 'layouts/login_form'
-                  %ul.dropdown-menu.hidden-desktop
-                    %li= render partial: 'layouts/login_form'
-
-    .container-fluid
-      .row-fluid
-        .span12
-          = yield
+    %header
+      %nav.navbar.fixed-top
+        = link_to 'WJ', [:root], class: 'brand'
+        = form_tag search_path, method: :get do
+          = text_field_tag 'q', nil, placeholder: 'Search', class: 'rounded'
+          = submit_tag 'Search'
+        %ul.nav
+          - if @current_user
+            %li= link_to 'Account', [:dashboard]
+            %li= link_to 'Logout', [:logout]
+          - else
+            %li.dropdown
+              %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
+                Login
+                %b.caret &nbsp;
+              %ul
+                %li= render partial: 'layouts/login_form'
+      %nav.subnavbar.fixed-top
+        %ul.nav
+          %li= link_to 'Jewelery'
+          %li= link_to 'Collections'
+          %li= link_to 'About'
+          %li= link_to 'Contact Us'
+          %li= link_to 'FAQ'
+          %li= link_to 'Blog'
+        
+      %section
+        = yield
     
       %footer
         %p &copy; Wexford Jewelers, Inc. 2012
