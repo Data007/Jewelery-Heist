@@ -1,0 +1,45 @@
+/* This fluid grid is based on a 980px fluid grid.
+ * It's a 6 column grid which provides enough division for major elements.
+ *
+ * The inspiration for this comes mainly from these two articles:
+ *   http://www.alistapart.com/articles/fluidgrids/
+ *   http://www.alistapart.com/articles/responsive-web-design/
+ */
+
+.row
+  clear: both
+  width: 100%
+
+@media screen and (min-width: 1000px)
+  #page
+    margin: 5px auto
+    padding: 0
+    max-width: 53.88888888888888888889em
+
+  .column
+    position: relative
+    float: left
+    margin: 0
+    width: 98.967354%
+    padding-left: 0.516323%
+    padding-right: 0.516323%
+    background-color: #eee
+    &.one
+      width: 15.431271%
+      background-color: #222
+      color: white
+    &.two
+      width: 32.472795%
+      background-color: #444
+    &.three
+      width: 48.967354%
+      background-color: #666
+    &.four
+      width: 65.461913%
+      background-color: #888
+    &.five
+      width: 82.472795%
+      background-color: #aaa
+    &.six
+      width: 98.967354%
+      background-color: #ccc

@@ -25,36 +25,37 @@
       %link{href: 'images/favicon.ico', rel: 'shortcut icon'}
 
   %body
-    %header
-      %nav.navbar.fixed-top
-        = link_to 'WJ', [:root], class: 'brand'
-        = form_tag search_path, method: :get do
-          = text_field_tag 'q', nil, placeholder: 'Search', class: 'rounded'
-          = submit_tag 'Search'
-        %ul.nav
-          - if @current_user
-            %li= link_to 'Account', [:dashboard]
-            %li= link_to 'Logout', [:logout]
-          - else
-            %li.dropdown
-              %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
-                Login
-                %b.caret &nbsp;
-              %ul
-                %li= render partial: 'layouts/login_form'
-      %nav.subnavbar.fixed-top
-        %ul.nav
-          %li= link_to 'Jewelery'
-          %li= link_to 'Collections'
-          %li= link_to 'About'
-          %li= link_to 'Contact Us'
-          %li= link_to 'FAQ'
-          %li= link_to 'Blog'
-        
-      %section
+    #page
+      %header.row
+        %nav.navbar.fixed-top
+          = link_to 'WJ', [:root], class: 'brand'
+          = form_tag search_path, method: :get do
+            = text_field_tag 'q', nil, placeholder: 'Search', class: 'rounded'
+            = submit_tag 'Search'
+          %ul.nav
+            - if @current_user
+              %li= link_to 'Account', [:dashboard]
+              %li= link_to 'Logout', [:logout]
+            - else
+              %li.dropdown
+                %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
+                  Login
+                  %b.caret &nbsp;
+                %ul
+                  %li= render partial: 'layouts/login_form'
+        %nav.subnavbar.fixed-top
+          %ul.nav
+            %li= link_to 'Jewelery'
+            %li= link_to 'Collections'
+            %li= link_to 'About'
+            %li= link_to 'Contact Us'
+            %li= link_to 'FAQ'
+            %li= link_to 'Blog'
+          
+      %section.row
         = yield
-    
-      %footer
+      
+      %footer.row
         %p &copy; Wexford Jewelers, Inc. 2012
 
     = javascript_include_tag "application"
