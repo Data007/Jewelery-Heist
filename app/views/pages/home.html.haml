@@ -1,16 +1,14 @@
 %article.row
-  .column.one .column.one
-  .column.five .column.five
-  .column.two .column.two
-  .column.four .column.four
-  .column.three .column.three
-  .column.three .column.three
-  .column.six .column.six
-  .column .column
+  #inventory
+    - first_item = @items.pop
+    .column.three.item.big-item
+      .image= link_to image_tag(first_item.assets.by_position.first.image.url), item_path(first_item.pretty_id)
+  
+    .column.three.small-items
+      - @items.each do |item|
+        .column.three.item
+          .image= link_to image_tag(item.assets.by_position.first.image.url), item_path(item.pretty_id)
 
-#inventory
-  .big-item
-  .small-items
 #featured-items
   .small-items
 #articles
