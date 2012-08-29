@@ -27,23 +27,26 @@
   %body
     .page
       %header.row
-        %nav.navbar.fixed-top
-          = link_to 'WJ', [:root], class: 'brand'
-          = form_tag search_path, method: :get do
-            = text_field_tag 'q', nil, placeholder: 'Search', class: 'rounded'
-            = submit_tag 'Search'
-          %ul.nav
-            - if @current_user
-              %li= link_to 'Account', [:dashboard]
-              %li= link_to 'Logout', [:logout]
-            - else
-              %li.dropdown
-                %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
-                  Login
-                  %b.caret &nbsp;
-                %ul
-                  %li= render partial: 'layouts/login_form'
-        %nav.subnavbar.fixed-top
+        %nav.navbar.fixed-top.row
+          .column.one
+            = link_to 'WJ', [:root], class: 'brand'
+          .column.two
+            = form_tag search_path, method: :get do
+              = text_field_tag 'q', nil, placeholder: 'Search', class: 'rounded'
+              = submit_tag 'Search'
+          .column.three
+            %ul.nav
+              - if @current_user
+                %li= link_to 'Account', [:dashboard]
+                %li= link_to 'Logout', [:logout]
+              - else
+                %li.dropdown
+                  %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
+                    Login
+                    %b.caret &nbsp;
+                  %ul
+                    %li= render partial: 'layouts/login_form'
+        %nav.subnavbar.fixed-top.column.row
           %ul.nav
             %li= link_to 'Jewelery'
             %li= link_to 'Collections'
