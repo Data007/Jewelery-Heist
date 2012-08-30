@@ -4,6 +4,19 @@
  * The inspiration for this comes mainly from these two articles:
  *   http://www.alistapart.com/articles/fluidgrids/
  *   http://www.alistapart.com/articles/responsive-web-design/
+ *
+ * To find a percentage, divide the target pixel by 980 then multiply by 100. For example:
+ * (5.0 / 980.0) * 100 = 0.5102040816326531
+ *
+ * Percentages are for layout elements. Use em's for font size. The formula for that is
+ * target pixel / 18.0
+ * 
+ * For example:
+ * (10.0 / 18) = 0.5555555555555556em
+ *
+ * The base pixel sizes are thus:
+ * layout = 980
+ * font   = 18
  */
 
 .row
