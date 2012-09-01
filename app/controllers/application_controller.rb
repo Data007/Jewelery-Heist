@@ -27,7 +27,7 @@ private
   def force_login
     unless is_logged_in?
       session[:previous_page] = request.referer
-      redirect_to login_users_path
+      redirect_to [:login]
     end
   end
   

@@ -28,7 +28,7 @@
   .login_form
     %h1 Login
     
-    - form_tag authenticate_users_path, :method => :post do
+    = form_tag [:session], :method => :post do
       .row
         = label "user", "login"
         = text_field "user", "login"
