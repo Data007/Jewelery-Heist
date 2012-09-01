@@ -1,13 +1,14 @@
 @mixin clearfix
-    display: inline-block
-    &:after
-      content: "."
-      display: block
-      height: 0
-      clear: both
-      visibility: hidden
-    * html
-      height: 1px
+  display: inline-block
+  &:after
+    content: "."
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
+  * html
+    height: 1px
+
 @mixin rounded($radius)
   -moz-border-radius: $radius
   -webkit-border-radius: $radius
