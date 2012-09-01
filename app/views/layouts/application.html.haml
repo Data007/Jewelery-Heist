@@ -32,7 +32,7 @@
             = link_to 'WJ', [:root], class: 'brand'
           .column.two
             = form_tag search_path, method: :get do
-              = text_field_tag 'q', nil, placeholder: 'Search', class: 'rounded'
+              = text_field_tag 'q', nil, placeholder: 'Search'
               = submit_tag 'Search', class: 'rounded'
           .column.three.align-right
             %ul.nav
