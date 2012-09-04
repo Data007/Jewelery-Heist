@@ -33,7 +33,7 @@
           .column.two
             = form_tag search_path, method: :get do
               = text_field_tag 'q', nil, placeholder: 'Search'
-              = submit_tag 'Search', class: 'rounded'
+              = submit_tag 'Search'
           .column.three.align-right
             %ul.nav
               - if @current_user
