@@ -38,5 +38,4 @@ module DragonHoardRails32
   end
 end
 
-require "#{Rails.root}/lib/sequence.rb"
 require "#{Rails.root}/lib/mafia_connections.rb"
