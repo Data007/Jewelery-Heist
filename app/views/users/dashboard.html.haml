@@ -1,80 +1,59 @@
-.form_wrapper
-  .edit
-    %h1 Edit your profile
-    - form_for @user do |user_form|
-      .left-column
-        %h3 Personal Information
-        %hr
-        .row
-          = user_form.label           :name
-          = user_form.text_field      :name
-        
-        %h3 Login Information
-        %hr
-        .row
-          = user_form.label           :login
-          = user_form.text_field      :login
-        .row
-          = user_form.label           :old_password, "Current Password"
-          = user_form.password_field  :old_password, :value => ""
-          = user_form.label           :new_password
-          = user_form.password_field  :new_password
-      
-      .center-column
-        %h3 Email Addresses
-        - @user.emails.each_with_index do |email, index|
-          %hr
-          .row
-            = label_tag  "user[emails][#{index}][address]", 'Email'
-            = text_field "user[emails][#{index}]", 'address', value: email
-        %hr
-        .row
-          = label_tag      "user[emails][#{@user.emails.length + 1}][address]", 'New email address'
-          = text_field_tag "user[emails][#{@user.emails.length + 1}][address]"
-        
-        %h3 Phone Numbers
-        - @user.phones.each_with_index do |phone, index|
-          %hr
-          .row
-            = label_tag  "user[phones][#{index}][number]", 'Phone'
-            = text_field "user[phones][#{index}]", 'number', value: phone
-        %hr
-        .row
-          = label_tag      "user[phones][#{@user.phones.length + 1}][number]", 'New phone number'
-          = text_field_tag "user[phones][#{@user.phones.length + 1}][number]"
-          
-      .right-column.column
-        %h3 Addresses
-        - user_form.fields_for :addresses do |address_form|
-          %hr
-          .row
-            = address_form.label :address_1, "Address line 1"
-            = address_form.text_field :address_1
-            = address_form.label :address_2, "Address line 2"
-            = address_form.text_field :address_2
-            = address_form.label :city
-            = address_form.text_field :city
-            = address_form.label :province, "State or Province"
-            = address_form.text_field :province
-            = address_form.label :postal_code
-            = address_form.text_field :postal_code
-            = address_form.label :country
-            = address_form.text_field :country
-        %hr
-        .row
-          %h3 New Address
-          = label_tag      "user[addresses][#{@user.addresses.length + 1}][address_1]", 'Address line 1'
-          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][address_1]"
-          = label_tag      "user[addresses][#{@user.addresses.length + 1}][address_2]", 'Address line 2'
-          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][address_2]"
-          = label_tag      "user[addresses][#{@user.addresses.length + 1}][city]", 'City'
-          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][city]"
-          = label_tag      "user[addresses][#{@user.addresses.length + 1}][province]", 'State or Province'
-          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][province]"
-          = label_tag      "user[addresses][#{@user.addresses.length + 1}][postal_code]", 'Postal Code'
-          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][postal_code]"
-          = label_tag      "user[addresses][#{@user.addresses.length + 1}][country]", 'Country'
-          = text_field_tag "user[addresses][#{@user.addresses.length + 1}][country]"
-           
+%h1 Edit your profile
+.row
+  = form_for @user, class: 'column six' do |user_form|
+    .column.two
+      %h3 Personal Information
+      %hr
       .row
-        #{submit_tag "save changes"} | #{link_to "Forgot your password?", forgot_password_users_path}
+        = user_form.text_field      :name, placeholder: 'Name'
+      
+      %h3 Login Information
+      %hr
+      .row
+        = user_form.text_field      :login, placeholder: 'Login'
+      .row
+        = user_form.password_field  :old_password, value: "", placeholder: 'Current Password'
+        = user_form.password_field  :new_password, placeholder: 'New Password'
+    
+    .column.two
+      %h3 Email Addresses
+      - @user.emails.each_with_index do |email, index|
+        %hr
+        .row
+          = text_field "user[emails][#{index}]", 'address', value: email, placeholder: 'Email'
+      %hr
+      .row
+        = text_field_tag "user[emails][#{@user.emails.length + 1}][address]", nil, placeholder: 'New email address'
+      
+      %h3 Phone Numbers
+      - @user.phones.each_with_index do |phone, index|
+        %hr
+        .row
+          = text_field "user[phones][#{index}]", 'number', value: phone, placeholder: 'Phone'
+      %hr
+      .row
+        = text_field_tag "user[phones][#{@user.phones.length + 1}][number]", nil, placeholder: 'New phone number'
+        
+    .column.two
+      %h3 Addresses
+      - user_form.fields_for :addresses do |address_form|
+        %hr
+        .row
+          = address_form.text_field :address_1, value: address_form.object.address_1, placeholder: 'Address line 1'
+          = address_form.text_field :address_2, value: address_form.object.address_2, placeholder: 'Address line 2'
+          = address_form.text_field :city, value: address_form.object.city, placeholder: 'City'
+          = address_form.text_field :province, value: address_form.object.province, placeholder: 'State or Province'
+          = address_form.text_field :postal_code, value: address_form.object.postal_code, placeholder: 'Postal or Zip Code'
+          = address_form.text_field :country, value: address_form.object.country, placeholder: 'Country'
+      %hr
+      .row
+        %h3 New Address
+        = text_field_tag "user[addresses][#{@user.addresses.length + 1}][address_1]", nil, placeholder: 'Address line 1'
+        = text_field_tag "user[addresses][#{@user.addresses.length + 1}][address_2]", nil, placeholder: 'Address line 2'
+        = text_field_tag "user[addresses][#{@user.addresses.length + 1}][city]", nil, placeholder: 'City'
+        = text_field_tag "user[addresses][#{@user.addresses.length + 1}][province]", nil, placeholder: 'State or Province'
+        = text_field_tag "user[addresses][#{@user.addresses.length + 1}][postal_code]", nil, placeholder: 'Postal or Zip Code'
+        = text_field_tag "user[addresses][#{@user.addresses.length + 1}][country]", nil, placeholder: 'Country'
+         
+    .row.column
+      #{submit_tag "save changes"} | #{link_to "Forgot your password?", forgot_password_users_path}
