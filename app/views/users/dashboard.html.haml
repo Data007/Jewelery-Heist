@@ -55,5 +55,6 @@
         = text_field_tag "user[addresses][#{@user.addresses.length + 1}][postal_code]", nil, placeholder: 'Postal or Zip Code'
         = text_field_tag "user[addresses][#{@user.addresses.length + 1}][country]", nil, placeholder: 'Country'
          
-    .row.column
-      #{submit_tag "save changes"} | #{link_to "Forgot your password?", forgot_password_users_path}
+    .actions
+      = link_to "Forgot your password?", forgot_password_users_path
+      = submit_tag "save changes"
