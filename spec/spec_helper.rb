@@ -4,7 +4,6 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/dsl'
 require 'capybara/rails'
-require 'ruby-debug'
 require 'support/vcr_support'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
