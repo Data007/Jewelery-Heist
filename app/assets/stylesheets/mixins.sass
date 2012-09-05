@@ -13,3 +13,7 @@
   -moz-border-radius: $radius
   -webkit-border-radius: $radius
   border-radius: $radius
+
+@mixin desktop
+  @media screen and (min-width: 1024px)
+    @content
