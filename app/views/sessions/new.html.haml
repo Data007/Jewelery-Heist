@@ -1,39 +1,19 @@
 .row
-  .registration_form.column.three
-    %h1 Register
-    
-    = form_tag [:register, :users] do
-      .row
-        = label "user", "name"
-        = text_field "user", "name", placeholder: 'Name'
-      .row
-        = label "user", "login"
-        = text_field "user", "login", placeholder: 'Login'
-      .row
-        = label_tag "user[emails][]", 'Email'
-        = text_field_tag "user[emails][]", nil, placeholder: 'Email@stuff.com'
-      .row
-        = label "user", "password"
-        = password_field "user", "password", :value => nil, placeholder: 'password'
-      .row
-        = label "user", "password confirmation"
-        = password_field "user", "password_confirmation", :value => nil, placeholder: 'password'
-      .row
+  .column.three#registration-form
+    = form_tag registered_users_path, method: :post do
+      %legend Register
+      = text_field "user", "name", value: nil, placeholder: 'Name'
+      = text_field "user", "login", value: nil, placeholder: 'Login'
+      = text_field "user", "email", value: nil, placeholder: 'Email'
+      = password_field "user", "password", value: nil, placeholder: 'Password'
+      .actions
         = submit_tag "register"
   
-    %p Why #{link_to "register for an account", register_users_path}? Because we are just that cool! Also, you will never be able to own any of our fine jewelry unless you register online or #{link_to "visit our store", about_us_path + "#contact_us"} in #{link_to "Cadillac, Michigan", about_us_path + "#contact_us"}.
-  
-    %p Let’s face it, you’ll save gas money this way.
-  
-  .login_form.column.three
-    %h1 Login
-    
-    = form_tag [:session], :method => :post do
-      .row
-        = label "user", "login"
-        = text_field "user", "login"
-      .row
-        = label "user", "password"
-        = password_field "user", "password"
-      .row
-        #{submit_tag "login"} | #{link_to "Forgot your password?", forgot_password_users_path}
+  .column.three#login-form
+    = form_tag [:session] do
+      %legend Login
+      = text_field "user", "login", value: nil, placeholder: 'login'
+      = password_field "user", "password", value: nil, placeholder: 'password'
+      .actions
+        = link_to "Forgot your password?", [:forgot_password, :users]
+        = submit_tag 'Login'
