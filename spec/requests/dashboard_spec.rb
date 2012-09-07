@@ -8,7 +8,7 @@ describe 'Dashboard' do
     login_with_dh @user.login, 'password'
   end
 
-  it 'shows the dashboard after login' do
+  it 'Shows the dashboard after login' do
     current_url.should == url_for([:dashboard])
   end
   

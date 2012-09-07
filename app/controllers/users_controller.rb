@@ -34,7 +34,6 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    binding.pry
     @user = current_user
   end
   
