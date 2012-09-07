@@ -1,10 +1,10 @@
-.form_wrapper
+.row
   %h1 Checking Out Order (##{@order.pretty_id})
   
   %p The item(s) in your shopping cart is still available on the website until the payment has processed. If it is a One of a Kind item, it goes to the first buyer. If it is a stock item, it can always be backordered for you. Thank you for your understanding in this matter.
   
   - if @order.line_items.length > 0
-    - form_for @order, url: pay_path(@order.pretty_id), method: :post do |order_form|
+    = form_for @order, url: pay_path(@order.pretty_id), method: :post do |order_form|
       
       %table.stylized
         %thead
