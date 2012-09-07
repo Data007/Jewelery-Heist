@@ -16,6 +16,6 @@
             - unless item == @item
               .variation
                 - begin
-                  = link_to(image_tag(item.assets.by_position.first.image(:manage)), collection_path(collection.pretty_id))
+                  = link_to image_tag(item.assets.by_position.first.image(:manage)), item_path(item.pretty_id)
                 - rescue
   = will_paginate @collections
