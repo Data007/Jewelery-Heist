@@ -1,14 +1,16 @@
-.collection
+.row.column
   %h2.name= link_to "The #{@collection.name} Collection", collection_path(@collection.pretty_id)
   .description
     :markdown
       #{@collection.description}
   - @collection.items.published.each do |item|
-        
-    .item{:id => "item_#{item}"}
+    .column.two{:id => "item_#{item}"}
       .thumbnail
         - begin
           = link_to(image_tag(item.assets.by_position.first.image.url(:medium)), item_path(item.pretty_id))
         - rescue
       .meta_data
-        .name= link_to truncate(item.name, length: 45, omission: "..."), item_path(item.pretty_id)
+        .name.align-right
+          = link_to item.name, item_path(item.pretty_id)
+        .price.align-right
+          = link_to number_to_currency(item.price), item_path(item.pretty_id)

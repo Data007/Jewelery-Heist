@@ -1,21 +1,16 @@
-- content_for :extra_js do
-  = javascript_include_tag "website/collections/index"
-  = javascript_include_tag "jquery.pans.js"
-  
-#collections
+.row
   = will_paginate @collections
   - @collections.each do |collection|
-    .collection
+    .row.collection.column
       %h2.name= link_to "The #{collection.name} Collection", collection_path(collection.pretty_id)
       .description
         :markdown
           #{collection.description}
-      .items.wrapper-pane
-        .image_wrapper.contents-pane
-          - collection.items.published.each do |item|
-            - unless item == @item
-              .variation
-                - begin
-                  = link_to image_tag(item.assets.by_position.first.image(:manage)), item_path(item.pretty_id)
-                - rescue
+      .items
+        - collection.items.published.each do |item|
+          - unless item == @item
+            .column.two
+              - begin
+                = link_to image_tag(item.assets.by_position.first.image(:manage)), item_path(item.pretty_id)
+              - rescue
   = will_paginate @collections

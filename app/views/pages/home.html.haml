@@ -3,19 +3,19 @@
     - first_item = @items.pop
     .column.three.item.big-item
       .image= link_to image_tag(first_item.assets.by_position.first.image.url), item_path(first_item.pretty_id)
-      .row
-        = first_item.name
       .row.align-right
-        = number_to_currency first_item.price
+        = link_to first_item.name, item_path(first_item.pretty_id)
+      .row.align-right
+        = link_to number_to_currency(first_item.price), item_path(first_item.pretty_id)
   
     .column.three.small-items
       - @items.each do |item|
         .column.three.item
           .image= link_to image_tag(item.assets.by_position.first.image.url), item_path(item.pretty_id)
-          .row
-            = item.name
+          .row.align-right
+            = link_to item.name, item_path(item.pretty_id)
           .row.align-right  
-            = number_to_currency item.price
+            = link_to number_to_currency(item.price), item_path(item.pretty_id)
 
 #featured-items
   .small-items
