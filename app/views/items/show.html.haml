@@ -1,125 +1,125 @@
-- unless @item
-  %h1 Item not found
-  %p We couldn't find that item. Perhaps it no longer exists. Please feel free to browse the rest of #{link_to 'our jewelry', items_path}.
-- else
-  - content_for :image_src do
-    - if @item.assets.length > 0
-      = @item.assets.first.image.url(:thumbnail, false)
-  
-  - content_for :extra_js do
-    = javascript_include_tag "website/items/show"
-    = javascript_include_tag "jquery.pans.js"
-  
-  - content_for :page_title do
-    >> #{@item.name}
-    
-  - content_for :meta_keywords do
-    :ruby
-      keywords = []
-      @item.variations.each do |v|
-        v.metals.each {|m| keywords << m } if v.metals.present?
-        v.jewels.each {|j| keywords << j } if v.jewels.present?
-        # v.colors.each {|c| c.names.split(",").each {|n| keywords << n unless keywords.include?(n)} } if v.colors.present?
-      end
-    = keywords.join(", ")
-  - content_for :meta_description do
-    :ruby
-      description = []
-      description << @item.description.gsub("\"","\'") if @item.description.present?
-  
-  - if @item.ghost
-    %h1 Item Unavailable
-    %p This item is not currently available.
+.row
+  - unless @item
+    .column.six
+      %h1 Item not found
+      %p We couldn't find that item. Perhaps it no longer exists. Please feel free to browse the rest of #{link_to 'our jewelry', items_path}.
   - else
-    #item_view{class: "#{@item.available ? 'available' : 'unavailable'}"}
-      .images#main_view
-        #major_image.major_image
-          - major_image =  @item.assets.by_position.first ? @item.assets.by_position.first.image.url(:large) : 'ui/no_image.jpg'
-          = image_tag major_image
-        .content.wrapper-pane
-          .contents-pane
-            .description
-              :markdown
-                #{@item.description}
-        .minor_images.wrapper-pane
-          .image_wrapper.contents-pane
+    - content_for :image_src do
+      - if @item.assets.length > 0
+        = @item.assets.first.image.url(:thumbnail, false)
+    
+    - content_for :page_title do
+      >> #{@item.name}
+      
+    - content_for :meta_keywords do
+      :ruby
+        keywords = []
+        @item.variations.each do |v|
+          v.metals.each {|m| keywords << m } if v.metals.present?
+          v.jewels.each {|j| keywords << j } if v.jewels.present?
+          # v.colors.each {|c| c.names.split(",").each {|n| keywords << n unless keywords.include?(n)} } if v.colors.present?
+        end
+      = keywords.join(", ")
+    - content_for :meta_description do
+      :ruby
+        description = []
+        description << @item.description.gsub("\"","\'") if @item.description.present?
+    
+    - if @item.ghost
+      .column.six
+        %h1 Item Unavailable
+        %p This item is not currently available.
+    - else
+      .row
+        .column.six
+          .row
             - @item.assets.by_position.each do |asset|
-              = image_tag asset.image.url(:large, false), :class => "minor_image"
-        .meta
-          %h2.name= @item.name
-          - if @item.designer
-            %h3.designed_by Designed By #{@item.designer.name}
-      .details
-        .meta
-          %h2 Item Details
-          .price.row
-            %span.label Price
-            #{number_to_currency(@item.price)}
-          - if @item.available
-            .sizes.row
-              %span.label Select Your Size
-              = select "item","sizes", @item.sizes.collect {|size| [size,size]}, selected: @item.sizes[@item.sizes.length / 2]
-            - if @current_order
-              .row
-                %span= link_to "Add to Cart", order_items_path(@current_order.pretty_id, item_id: @item.pretty_id), class: "add_to_cart input", method: :post
-          - else
-            %h3 Sold
-          - if @item.metals.present?
-            .metals.row
-              %span.label Metals
-              = raw @item.metals.uniq.inject('') {|metals, metal| metals += "<span class='metal tag'>#{metal.downcase}</span>"}
-          - if @item.jewels.present?
-            .jewels.row
-              %span.label Jewels
-              = raw @item.jewels.uniq.inject('') {|jewels, jewel| jewels += "<span class='jewel tag'>#{jewel.downcase}</span>"}
-          - if @item.finishes.present?
-            .finishes.row
-              %span.label Finish
-              = raw @item.finishes.uniq.inject('') {|finishes, finish| finishes += "<span class='finish tag'>#{finish.downcase}</span>"}
-          .availability.row
-            - if @item.one_of_a_kind
-              :textile
-                This is a One of a Kind item.
-                
-                Although there may be pieces made somewhat like this in the future, there will never be the exact one, ever again. If you love this unique piece of wearable art, snatch it up while you can!
-            - else
-              - if @item.quantity > 0
-                :textile
-                  This item is currently in stock.
-                  
-                  
-                  Because of specialty sizing this item will ship within 3 business days.
-              - else
-                %p
-                  %i
-                    %b This item is currently out of stock.
-
+              .column.two
+                = image_tag asset.image.url(:large, false)
+          .row
+            .column.two
+              .meta
+                %h2 Item Details
+                .price.row
+                  %span.label Price
+                  #{number_to_currency(@item.price)}
+                - if @item.available
+                  .sizes.row
+                    %span.label Select Your Size
+                    = select "item","sizes", @item.sizes.collect {|size| [size,size]}, selected: @item.sizes[@item.sizes.length / 2]
+                  - if @current_order
+                    .row
+                      %span= link_to "Add to Cart", order_items_path(@current_order.pretty_id, item_id: @item.pretty_id), class: "add_to_cart input", method: :post
+                - else
+                  %h3 Sold
+                - if @item.metals.present?
+                  .metals.row
+                    %span.label Metals
+                    = raw @item.metals.uniq.inject('') {|metals, metal| metals += "<span class='metal tag'>#{metal.downcase}</span>"}
+                - if @item.jewels.present?
+                  .jewels.row
+                    %span.label Jewels
+                    = raw @item.jewels.uniq.inject('') {|jewels, jewel| jewels += "<span class='jewel tag'>#{jewel.downcase}</span>"}
+                - if @item.finishes.present?
+                  .finishes.row
+                    %span.label Finish
+                    = raw @item.finishes.uniq.inject('') {|finishes, finish| finishes += "<span class='finish tag'>#{finish.downcase}</span>"}
+                .availability.row
+                  - if @item.one_of_a_kind
+                    :textile
+                      This is a One of a Kind item.
+                      
+                      Although there may be pieces made somewhat like this in the future, there will never be the exact one, ever again. If you love this unique piece of wearable art, snatch it up while you can!
+                  - else
+                    - if @item.quantity > 0
+                      :textile
+                        This item is currently in stock.
+                        
+                        
+                        Because of specialty sizing this item will ship within 3 business days.
+                    - else
+                      %p
+                        %i
+                          %b This item is currently out of stock.
+  
+                      :markdown
+                        #{@item.backorder_notes}
+                .customizable.row
+                  - if @item.customizable
+                    .label Other Options
+                    :markdown
+                      #{@item.customizable_notes}
+                      
+                      [See here](/policy/faq#custom1) for more details on our custom orders.
+            .column.four
+              .meta
+                %h2.name= @item.name
+                - if @item.designer
+                  %h3.designed_by Designed By #{@item.designer.name}
+              .description
                 :markdown
-                  #{@item.backorder_notes}
-          .customizable.row
-            - if @item.customizable
-              .label Other Options
-              :markdown
-                #{@item.customizable_notes}
-                
-                [See here](/policy/faq#custom1) for more details on our custom orders.
-        .content
-          .collections.row
-            - if @item.collections.length > 1
-              %h2 This item is part of the Following #{@item.collections.length > 1 ? "Collections" : "Collection"}
-            - elsif @item.collections.length == 1
-              %h2 This item is part of the #{@item.collections.first.name.capitalize} Collection
-            - @item.collections.each do |collection|
-              .collection
-                %h3.name= link_to "The #{collection.name.capitalize} Collection", collection_path(collection.pretty_id)
-                .description
-                  :markdown
-                    #{collection.description}
-                %p Other items available in the #{collection.name.capitalize} collection
-                .items.wrapper-pane
-                  .image_wrapper.contents-pane
-                    - collection.items.published.listable.each do |item|
-                      - unless item == @item
-                        - if item.assets.length > 0
-                          .variation
-                            = link_to image_tag(item.assets.by_position.first.image.url(:medium)), item_path(item.pretty_id)
+                  #{@item.description}
+              .content
+                .collections.row
+                  - if @item.collections.length > 1
+                    %h2 This item is part of the Following #{@item.collections.length > 1 ? "Collections" : "Collection"}
+                  - elsif @item.collections.length == 1
+                    %h2 This item is part of the #{@item.collections.first.name.capitalize} Collection
+                  - @item.collections.each do |collection|
+                    .collection.row
+                      %h3.name= link_to "The #{collection.name.capitalize} Collection", collection_path(collection.pretty_id)
+                      .description
+                        :markdown
+                          #{collection.description}
+                      %p Other items available in the #{collection.name.capitalize} collection
+                      .column.six
+                        - collection.items.published.listable.each do |item|
+                          - unless item == @item
+                            - if item.assets.length > 0
+                              .column.two
+                                = link_to image_tag(item.assets.by_position.first.image.url(:medium)), item_path(item.pretty_id)
+                                .name.align-right
+                                  = link_to item.name, item_path(item.pretty_id)
+                                .price.align-right
+                                  = link_to number_to_currency(item.price)
+
