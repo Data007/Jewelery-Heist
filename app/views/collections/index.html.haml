@@ -13,4 +13,8 @@
               - begin
                 = link_to image_tag(item.assets.by_position.first.image(:manage)), item_path(item.pretty_id)
               - rescue
+              .row.align-right
+                = link_to item.name, item_path(item.pretty_id)
+              .row.align-right  
+                = link_to number_to_currency(item.price), item_path(item.pretty_id)
   = will_paginate @collections
