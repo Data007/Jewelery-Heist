@@ -48,12 +48,12 @@
                     %li= render partial: 'layouts/login_form'
         %nav.subnavbar.fixed-top.column.row
           %ul.nav
-            %li= link_to 'Jewelery'
-            %li= link_to 'Collections'
-            %li= link_to 'About'
-            %li= link_to 'Contact Us'
-            %li= link_to 'FAQ'
-            %li= link_to 'Blog'
+            %li= link_to 'Jewelery', [:items]
+            %li= link_to 'Collections', [:collections]
+            %li= link_to 'About', [:about_us]
+            %li= link_to 'Contact Us', url_for([:about_us]) + '#contact_us'
+            %li= link_to 'FAQ', [:faq]
+            -#%li= link_to 'Blog'
           
       %section.row
         = yield
