@@ -1,5 +1,5 @@
 .form_wrapper
-  - form_tag addressed_path, :method => :post do
+  = form_tag addressed_path, :method => :post do
     - last_address = @current_user.last_shipping_address
     - unless last_address
       - last_address = @current_user.addresses.last if @current_user.addresses.present?
