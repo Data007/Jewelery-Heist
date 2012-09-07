@@ -112,7 +112,10 @@ class OrdersController < ApplicationController
         @finished_order = current_order
         hand_off_order
         @order = current_order
-        UserMailer.deliver_order_completed(@finished_order.user, @finished_order)
+
+        # TODO: Upgrade current mailers
+        # UserMailer.deliver_order_completed(@finished_order.user, @finished_order)
+
         render :template => "orders/complete"
       elsif @result.transaction
         @order = current_order
