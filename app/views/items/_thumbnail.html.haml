@@ -1,5 +1,8 @@
-.item{:id => "item_#{thumbnail.pretty_id}"}
+.column.two{:id => "item_#{thumbnail.pretty_id}"}
   - image = thumbnail.assets.compact.present? ? thumbnail.assets.by_position.compact.first.image.url(:medium) : "/images/ui/no_image.jpg"
   .thumbnail= link_to image_tag(image), item_path(thumbnail.pretty_id)
   .meta_data
-    .name= link_to truncate(thumbnail.name, length: 45, omission: '...'), item_path(thumbnail.pretty_id)
+    .name.align-right
+      = link_to thumbnail.name, item_path(thumbnail.pretty_id)
+    .price.align-right
+      = link_to number_to_currency(thumbnail.price), item_path(thumbnail.pretty_id)

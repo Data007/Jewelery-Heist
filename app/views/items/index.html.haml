@@ -1,8 +1,8 @@
-#items
+.row
   = will_paginate @items
+.row
   - if @title
     %h2.query-title= @title
-  #item_pages
-    .page
-      = render :partial => "items/thumbnail", :collection => @items
+  = render partial: "items/thumbnail", collection: @items
+.row
   = will_paginate @items
