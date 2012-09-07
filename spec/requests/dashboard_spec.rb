@@ -3,7 +3,10 @@ require 'spec_helper'
 describe 'Dashboard' do
   
   before do
-    @user = FactoryGirl.create :web_user
+    binding.pry
+    @user = FactoryGirl.create :web_user, name: 'temp1'
+    @item = FactoryGirl.create :item
+    @asset = FactoryGirl.create :asset, item_id: @item.id
 
     login_with_dh @user.login, 'password'
   end
