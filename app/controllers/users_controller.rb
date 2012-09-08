@@ -6,11 +6,11 @@ class UsersController < ApplicationController
     begin
       user = User.find_by_facebook_uid(params[:uid])
       session[:user_id] = user.id
-      redirect_to_back_or_dashboard
+      redirect_to_back_or_account
     rescue
       user = User.create(:facebook_uid => params[:uid])
       session[:user_id] = user.id
-      redirect_to_back_or_dashboard
+      redirect_to_back_or_account
     end
   end
   
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "Welcome to Wexford Jewelers! We're very glad you joined!"
       session[:user_id] = @user.id
-      redirect_to_back_or_dashboard
+      redirect_to_back_or_account
     else
       flash[:error] = "We register you. Please check your details and try again."
       render :template => "users/login"
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
       @user.save
       
       flash[:notice] = "Your profile has been updated."
-      redirect_to_back_or_dashboard
+      redirect_to_back_or_account
     else
       flash[:message] = ""
       @user.errors.each {|error| flash[:message] += "<div class='error'>#{error}</div>"}
@@ -83,8 +83,8 @@ class UsersController < ApplicationController
       return action_name == "logout" ? false : true
     end
     
-    def redirect_to_back_or_dashboard
-      next_page = session[:previous_page] ? session[:previous_page] : dashboard_path
+    def redirect_to_back_or_account
+      next_page = session[:previous_page] ? session[:previous_page] : [:account]
       session[:previous_page] = nil
       redirect_to next_page
     end
