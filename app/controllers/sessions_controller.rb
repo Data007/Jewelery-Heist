@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     
     if user
       session[:user_id] = user.id
-      redirect_to [:dashboard], flash: {notice: "You have been successfully authenticated #{user.name}"}
+      redirect_to [:account], flash: {notice: "You have been successfully authenticated #{user.name}"}
     else
       redirect_to [:login], flash: {warning: "Your username or password is incorrect"}
     end

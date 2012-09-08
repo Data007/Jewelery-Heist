@@ -4,5 +4,8 @@ FactoryGirl.define do
     description 'Development Item'
     price 10.0
     quantity 2
+    published true
+    available true
+    ghost false
   end
 end

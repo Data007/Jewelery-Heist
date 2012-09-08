@@ -78,7 +78,7 @@ class Item
   scope :unpublished,   where(published: false)
   scope :available,     where(available: true)
   scope :not_available, where(available: false)
-  scope :listable,      where(available: true, ghost: false)
+  scope :listable,      where(published: true, available: true, ghost: false)
   scope :ooak,          where(one_of_a_kind: true)
   scope :nooak,         where(one_of_a_kind: false)
   scope :in_gallery,    where(in_gallery: true)

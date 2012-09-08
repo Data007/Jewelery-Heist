@@ -5,6 +5,7 @@ FactoryGirl.define do
     name 'User'
     password 'password'
     password_confirmation {|user| user.password}
+    is_active true
 
     factory :web_user do
       name 'Web User'

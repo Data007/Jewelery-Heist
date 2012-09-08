@@ -3,16 +3,15 @@ require 'spec_helper'
 describe 'Dashboard' do
   
   before do
-    binding.pry
-    @user = FactoryGirl.create :web_user, name: 'temp1'
-    @item = FactoryGirl.create :item
-    @asset = FactoryGirl.create :asset, item_id: @item.id
-
-    login_with_dh @user.login, 'password'
+    @user  = FactoryGirl.create :web_user
+    @item  = FactoryGirl.create :item
+    @asset = @item.assets.create
   end
 
   it 'Shows the dashboard after login' do
-    current_url.should == url_for([:dashboard])
+    login_with_dh @user.login, 'password'
+
+    current_url.should == url_for([:account])
   end
   
   context 'cart' do

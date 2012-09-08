@@ -206,9 +206,9 @@ DragonHoardRails32::Application.routes.draw do
   
   resource :session
 
-  match 'login'     => 'sessions#new',     as: :login
-  match 'logout'    => 'sessions#destroy', as: :logout
-  match 'dashboard' => 'users#dashboard',  as: :dashboard
+  match 'login'   => 'sessions#new',        as: :login
+  match 'logout'  => 'sessions#destroy',    as: :logout
+  match 'account' => 'users/accounts#show', as: :account
   
   root to: 'pages#home'
   

@@ -37,7 +37,7 @@
           .column.three.align-right
             %ul.nav
               - if @current_user
-                %li= link_to 'Account', [:dashboard]
+                %li= link_to 'Account', [:account]
                 %li= link_to 'Logout', [:logout]
               - else
                 %li.dropdown
