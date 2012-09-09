@@ -1,0 +1,28 @@
+.column.four
+  - if @current_order
+    = form_for @current_order do
+      %legend You Current Shopping Cart
+
+      %table#current-cart
+        %thead
+          %tr
+            %th &nbsp;
+            %th Description
+            %th Price
+            %th Quantity
+            %th &nbsp;
+        %tbody.items
+          - @current_order.line_items.each do |line_item|
+            - item = line_item.item
+            %tr.item
+              %td
+                = link_to image_tag(item.assets.by_position.first.image.url(:thumbnail)), item_path(item.pretty_id)
+              %td= truncate item.description, length: 25
+              %td= number_to_currency line_item.price
+              %td= line_item.quantity
+              %td
+                = link_to 'Remove'
+    
+.column.two
+  %ul#sidebar
+    %li= link_to 'Account', [:account]
