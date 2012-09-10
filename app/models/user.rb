@@ -30,6 +30,7 @@ class User
 
   validates :first_name, presence: {message: 'You must provide a first name'}, on: :create
   validates :last_name, presence: {message: 'You must provide a last name'}, on: :create
+  validates :login, presence: {message: 'You must provide a login'}, on: :create
 
   before_save :generate_password_hash
 

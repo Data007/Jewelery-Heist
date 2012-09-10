@@ -9,11 +9,10 @@ describe 'Web User Registration' do
     before do
       visit url_for([:root])
       click_link 'Register'
+      click_button 'Register'
     end
 
     it 'validates first name' do
-      click_button 'Register'
-
       page.should have_content('You must provide a first name')
 
       fill_in 'user_first_name', with: 'Web'
@@ -23,8 +22,6 @@ describe 'Web User Registration' do
     end
 
     it 'validates last name' do
-      click_button 'Register'
-
       page.should have_content('You must provide a last name')
 
       fill_in 'user_last_name', with: 'User'
@@ -33,7 +30,17 @@ describe 'Web User Registration' do
       page.should_not have_content('You must provide a last name')
     end
 
-    it 'validates login'
+    it 'validates login' do
+      page.should have_content('You must provide a login')
+
+      within '#registration-form' do
+        fill_in 'user_login', with: 'webuser'
+        click_button 'Register'
+      end
+
+      page.should_not have_content('You must provide a login')
+    end
+
     it 'validates email'
     it 'validates password'
     
