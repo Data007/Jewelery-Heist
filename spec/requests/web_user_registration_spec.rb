@@ -30,17 +30,6 @@ describe 'Web User Registration' do
       page.should_not have_content('You must provide a last name')
     end
 
-    it 'validates login' do
-      page.should have_content('You must provide a login')
-
-      within '#registration-form' do
-        fill_in 'user_login', with: 'webuser'
-        click_button 'Register'
-      end
-
-      page.should_not have_content('You must provide a login')
-    end
-
     it 'validates email'
     it 'validates password'
     
