@@ -54,6 +54,11 @@
             %li= link_to 'Contact Us', url_for([:about_us]) + '#contact_us'
             %li= link_to 'FAQ', [:faq]
             -#%li= link_to 'Blog'
+
+      - if flash.present?
+        %section.row
+          - flash.each do |(key, value)|
+            = content_tag :div, raw(value), class: 'message', id: "#{key}-message"
           
       %section.row
         = yield

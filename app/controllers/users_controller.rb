@@ -1,35 +1,20 @@
 class UsersController < ApplicationController
-  before_filter :force_login, :except => [:fb_authenticate, :registered, :forgot_password, :generate_new_password]
-  before_filter :force_add_email, :except => [:edit, :update, :fb_authenticate, :register, :registered, :forgot_password, :generate_new_password]
-  
-  def fb_authenticate
-    begin
-      user = User.find_by_facebook_uid(params[:uid])
-      session[:user_id] = user.id
-      redirect_to_back_or_account
-    rescue
-      user = User.create(:facebook_uid => params[:uid])
-      session[:user_id] = user.id
-      redirect_to_back_or_account
-    end
-  end
-  
-  def register
+  before_filter :force_login, :except => [:new, :create, :forgot_password, :generate_new_password]
+
+  def new
     @user = User.new
-    render :template => "users/login"
   end
-  
-  def registered
+
+  def create
     @user           = User.new(params[:user])
     @user.is_active = true
 
     if @user.save
-      flash[:notice] = "Welcome to Wexford Jewelers! We're very glad you joined!"
       session[:user_id] = @user.id
-      redirect_to_back_or_account
+      redirect_to [:account], flash: {notice: "Welcome to Wexford Jewelers! We're very glad you joined!"}
     else
-      flash[:error] = "We register you. Please check your details and try again."
-      render :template => "users/login"
+      flash[:error] = "We couldn't register you. Please check your details and try again."
+      render template: 'users/new'
     end
   end
   

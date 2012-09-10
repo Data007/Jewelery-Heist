@@ -1,0 +1,15 @@
+= form_for @user do |f|
+  %legend Register
+
+  = error_messages_for @user
+
+  = f.text_field     :first_name,            placeholder: 'First Name'
+  = f.text_field     :last_name,             placeholder: 'Last Name'
+  = f.text_field     :login,                 placeholder: 'Login'
+  = f.email_field    :email,                 placeholder: 'Email'
+  = f.email_field    :email_confirmation,    placeholder: 'Email Confirmation'
+  = f.password_field :password,              placeholder: 'Password'
+  = f.password_field :password_confirmation, placeholder: 'Password Confirmation'
+
+  .actions
+    = submit_tag "Register"

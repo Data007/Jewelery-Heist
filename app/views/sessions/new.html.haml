@@ -1,13 +1,6 @@
 .row
   .column.three#registration-form
-    = form_tag registered_users_path, method: :post do
-      %legend Register
-      = text_field "user", "name", value: nil, placeholder: 'Name'
-      = text_field "user", "login", value: nil, placeholder: 'Login'
-      = text_field "user", "email", value: nil, placeholder: 'Email'
-      = password_field "user", "password", value: nil, placeholder: 'Password'
-      .actions
-        = submit_tag "register"
+    = render partial: 'users/registration_form'
   
   .column.three#login-form
     = form_tag [:session] do

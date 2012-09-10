@@ -4,5 +4,5 @@
   = password_field 'user', 'password', placeholder: 'Password'
   .actions
     = link_to "Forgot your password?", forgot_password_users_path
-    = link_to 'Register', [:register, :users]
+    = link_to 'Register', [:new, :user]
     = submit_tag 'Login'

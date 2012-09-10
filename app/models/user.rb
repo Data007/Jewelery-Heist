@@ -12,6 +12,8 @@ class User
   field :is_active,    type: Boolean, default: false
   field :role,                        default: 'public'
   field :name
+  field :first_name
+  field :last_name
   field :company
   field :designer,     type: Boolean, default: false
   field :custom_id
@@ -24,9 +26,9 @@ class User
 
   accepts_nested_attributes_for :addresses
 
-  attr_accessor :password, :password_confirmation, :new_password, :old_password
+  attr_accessor :password, :password_confirmation, :new_password, :old_password, :email, :email_confirmation
 
-  validates :name, presence: true, on: :create
+  validates :first_name, presence: {message: 'You must provide a first name'}, on: :create
 
   before_save :generate_password_hash
 
