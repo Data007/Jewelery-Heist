@@ -7,7 +7,7 @@ describe 'Dashboard' do
     @item  = FactoryGirl.create :item
     @item.assets.create
 
-    login_with_dh @user.login, 'password'
+    login_with_dh @user.email, 'password'
   end
 
   it 'Shows the dashboard after login' do

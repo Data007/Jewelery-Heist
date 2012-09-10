@@ -1,8 +1,8 @@
 = form_tag [:session] do
   %legend WJ Account
-  = text_field 'user', 'login', placeholder: 'Login'
+  = text_field 'user', 'email', placeholder: 'Login'
   = password_field 'user', 'password', placeholder: 'Password'
   .actions
-    = link_to "Forgot your password?", forgot_password_users_path
+    = link_to "Forgot your password?", [:forgot_password, :users]
     = link_to 'Register', [:new, :user]
     = submit_tag 'Login'

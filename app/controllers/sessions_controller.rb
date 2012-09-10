@@ -1,15 +1,16 @@
 class SessionsController < ApplicationController
   def new
+    @user = User.new
   end
 
   def create
-    user = User.authorize(params[:user][:login], params[:user][:password])
+    @user = User.authorize(params[:user][:email], params[:user][:password])
     
-    if user
-      session[:user_id] = user.id
-      redirect_to [:account], flash: {notice: "You have been successfully authenticated #{user.name}"}
+    if @user
+      session[:user_id] = @user.id
+      redirect_to [:account], flash: {notice: "You have been successfully authenticated #{@user.full_name}"}
     else
-      redirect_to [:login], flash: {warning: "Your username or password is incorrect"}
+      redirect_to [:login], flash: {warning: "Your email or password is incorrect"}
     end
   end
 

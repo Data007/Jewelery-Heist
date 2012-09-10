@@ -35,9 +35,11 @@ describe 'Web User Registration' do
         page.should have_content('You must provide an email')
         page.should have_content('You must provide an email confirmation')
 
-        fill_in 'user_email', with: 'web.user@example.com'
-        fill_in 'user_email_confirmation', with: 'web.use@example.com'
-        click_button 'Register'
+        within '#registration-form' do
+          fill_in 'user_email', with: 'web.user@example.com'
+          fill_in 'user_email_confirmation', with: 'web.user@example.com'
+          click_button 'Register'
+        end
 
         page.should_not have_content('You must provide an email')
         page.should_not have_content('You must provide an email confirmation')
@@ -49,7 +51,7 @@ describe 'Web User Registration' do
 
         within '#registration-form' do
           fill_in 'user_password', with: 'password'
-          fill_in 'user_password_confirmation', with: 'pass'
+          fill_in 'user_password_confirmation', with: 'password'
           click_button 'Register'
         end
 
@@ -127,7 +129,24 @@ describe 'Web User Registration' do
         page.should have_content("Thank you for registering #{User.first.full_name}!")
       end
 
-      it 'allows user to log in'
+      it 'allows user to log in' do
+        click_link 'Logout'
+        fill_in 'user_email', with: 'wu@example.com'
+        fill_in 'user_password', with: 'pass'
+        click_button 'Login'
+        
+        current_url.should == url_for([:account])
+      end
+
+      it 'fails to log in with bad email' do
+        click_link 'Logout'
+        fill_in 'user_email', with: 'w@example.com'
+        fill_in 'user_password', with: 'pass'
+        click_button 'Login'
+        
+        current_url.should == url_for([:login])
+        page.should have_content('Your email or password is incorrect')
+      end
     end
   end
 end

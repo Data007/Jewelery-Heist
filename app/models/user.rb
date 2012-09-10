@@ -6,6 +6,7 @@ class User
   include Mongoid::Sequence
 
   field :emails,       type: Array,   default: []
+  field :email
   field :phones,       type: Array,   default: []
   field :login
   field :password_hash
@@ -26,7 +27,7 @@ class User
 
   accepts_nested_attributes_for :addresses
 
-  attr_accessor :password, :password_confirmation, :new_password, :old_password, :email, :email_confirmation
+  attr_accessor :password, :password_confirmation, :new_password, :old_password, :email_confirmation
 
   validates :first_name, presence: {message: 'You must provide a first name'}, on: :create
   validates :last_name, presence: {message: 'You must provide a last name'}, on: :create
@@ -174,8 +175,8 @@ class User
       Digest::SHA256.hexdigest password
     end
 
-    def authorize(login, password)
-      user = User.where(login: login, password_hash: User.hash_password(password)).first
+    def authorize(email, password)
+      user = User.where(email: email, password_hash: User.hash_password(password)).first
       (user && user.is_active) ? user : nil
     end
 
