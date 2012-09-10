@@ -63,29 +63,6 @@
 
     = javascript_include_tag "application"
 
-    :javascript
-      var initDropdown = function(){
-        $('.nav .dropdown-toggle').click(function(){
-          if($(this).hasClass('hide-dropdown')){
-            $(this).parent().find('ul').hide();
-            $(this)
-              .addClass('show-dropdown')
-              .removeClass('hide-dropdown');
-          }else{
-            $(this).parent().find('ul').show();
-            $(this)
-              .removeClass('show-dropdown')
-              .addClass('hide-dropdown');
-          }
-        });
-
-        $('.nav .dropdown ul').hide();
-      };
-
-      $('document').ready(function(){
-        initDropdown();
-      });
-
     - if Rails.env.production?
       :javascript
         var _gaq = _gaq || [];
