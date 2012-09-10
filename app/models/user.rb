@@ -30,7 +30,13 @@ class User
 
   validates :first_name, presence: {message: 'You must provide a first name'}, on: :create
   validates :last_name, presence: {message: 'You must provide a last name'}, on: :create
-  validates :login, presence: {message: 'You must provide a login'}, on: :create
+  validates :email, presence: {message: 'You must provide an email'}, on: :create
+  validates :email_confirmation, presence: {message: 'You must provide an email confirmation'}, on: :create
+  validates :password, presence: {message: 'You must provide an password'}, on: :create
+  validates :password_confirmation, presence: {message: 'You must provide an password confirmation'}, on: :create
+
+  validates :email, confirmation: {message: 'Your emails do not match.'}
+  validates :password, confirmation: {message: 'Your passwords do not match.'}
 
   before_save :generate_password_hash
 

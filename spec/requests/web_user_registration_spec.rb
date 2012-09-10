@@ -30,10 +30,66 @@ describe 'Web User Registration' do
       page.should_not have_content('You must provide a last name')
     end
 
-    it 'validates email'
-    it 'validates password'
+    it 'validates email' do
+      page.should have_content('You must provide an email')
+      page.should have_content('You must provide an email confirmation')
+
+      fill_in 'user_email', with: 'web.user@example.com'
+      fill_in 'user_email_confirmation', with: 'web.use@example.com'
+      click_button 'Register'
+
+      page.should_not have_content('You must provide an email')
+      page.should_not have_content('You must provide an email confirmation')
+    end
+
+    it 'validates password' do
+      page.should have_content('You must provide an password')
+      page.should have_content('You must provide an password confirmation')
+
+      within '#registration-form' do
+        fill_in 'user_password', with: 'password'
+        fill_in 'user_password_confirmation', with: 'pass'
+        click_button 'Register'
+      end
+
+      page.should_not have_content('You must provide an password')
+      page.should_not have_content('You must provide an password confirmation')
+    end
     
-    it 'confirms email'
-    it 'confirms password'
+    it 'confirms email' do
+      within '#registration-form' do
+        fill_in 'user_email', with: 'wu@example.com'
+        fill_in 'user_email_confirmation', with: 'w@example.com'
+        click_button 'Register'
+      end
+
+      page.should have_content('Your emails do not match.')
+
+      within '#registration-form' do
+        fill_in 'user_email', with: 'wu@example.com'
+        fill_in 'user_email_confirmation', with: 'wu@example.com'
+        click_button 'Register'
+      end
+
+      page.should_not have_content('Your emails do not match.')
+    end
+
+    it 'confirms password' do
+      within '#registration-form' do
+        fill_in 'user_password', with: 'password'
+        fill_in 'user_password_confirmation', with: 'pass'
+        click_button 'Register'
+      end
+
+      page.should have_content('Your passwords do not match.')
+
+      within '#registration-form' do
+        fill_in 'user_password', with: 'password'
+        fill_in 'user_password_confirmation', with: 'password'
+        click_button 'Register'
+      end
+
+      page.should_not have_content('Your passwords do not match.')
+    end
   end
 end
