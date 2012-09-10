@@ -29,6 +29,7 @@ class User
   attr_accessor :password, :password_confirmation, :new_password, :old_password, :email, :email_confirmation
 
   validates :first_name, presence: {message: 'You must provide a first name'}, on: :create
+  validates :last_name, presence: {message: 'You must provide a last name'}, on: :create
 
   before_save :generate_password_hash
 
