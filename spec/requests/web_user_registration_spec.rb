@@ -109,7 +109,25 @@ describe 'Web User Registration' do
       User.first.full_name.should == 'Web User'
     end
 
-    it 'redirects new user to account'
-    it 'allows user to log in'
+    context 'after creating a user' do
+      before do
+        within '#registration-form' do
+          fill_in 'user_first_name', with: 'Web'
+          fill_in 'user_last_name', with: 'User'
+          fill_in 'user_email', with: 'wu@example.com'
+          fill_in 'user_email_confirmation', with: 'wu@example.com'
+          fill_in 'user_password', with: 'pass'
+          fill_in 'user_password_confirmation', with: 'pass'
+          click_button 'Register'
+        end
+      end
+
+      it 'redirects new user to account' do
+        current_url.should == url_for([:account])
+        page.should have_content("Thank you for registering #{User.first.full_name}!")
+      end
+
+      it 'allows user to log in'
+    end
   end
 end

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to [:account], flash: {notice: "Welcome to Wexford Jewelers! We're very glad you joined!"}
+      redirect_to [:account], flash: {notice: "Thank you for registering #{@user.full_name}! Welcome to Wexford Jewelers! We're very glad you joined!"}
     else
       flash[:error] = "We couldn't register you. Please check your details and try again."
       render template: 'users/new'
