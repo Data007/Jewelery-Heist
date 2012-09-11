@@ -29,17 +29,21 @@
 
   #payment-history
     %h2 Payment History
-    %table
-      %thead
-        %tr
-          %th Order
-          %th Paid On
-          %th Paid With
-          %th Amount
-      %tbody.payments
-        - @current_user.payments.each do |payment|
-          %tr.payment
-            %td= payment.order.pretty_id
-            %td= payment.created_at
-            %td= payment.payment_type
-            %td= payment.amount
+    - if @current_user.payments
+      %table
+        %thead
+          %tr
+            %th Order
+            %th Paid On
+            %th Paid With
+            %th Amount
+        %tbody.payments
+          - @current_user.payments.each do |payment|
+            %tr.payment
+              %td= payment.order.pretty_id
+              %td= payment.created_at
+              %td= payment.payment_type
+              %td= payment.amount
+    - else
+      .notice-message
+        You haven't made any payments yet.

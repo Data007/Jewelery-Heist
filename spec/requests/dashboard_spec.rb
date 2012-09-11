@@ -31,7 +31,13 @@ describe 'Dashboard' do
   end
   
   context 'orders' do
-    it 'shows my past orders'
+    it 'shows my past orders' do
+      within '#order-history' do
+        page.should have_css('.orders .order')
+        all('.orders .order').count.should == 1
+        page.should have_content(@order)
+      end
+    end
   end
 
   context 'payments' do
