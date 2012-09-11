@@ -7,5 +7,9 @@ FactoryGirl.define do
     published true
     available true
     ghost false
+    
+    after :create do |item, evaluator|
+      FactoryGirl.create_list :asset, 1, item: item
+    end
   end
 end

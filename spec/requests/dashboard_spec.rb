@@ -7,7 +7,6 @@ describe 'Dashboard' do
     @item  = FactoryGirl.create :item
     @order = FactoryGirl.create :order, user: @user
     @payment = FactoryGirl.create :payment, order: @order
-    @item.assets.create
 
     login_with_dh @user.email, 'password'
   end
