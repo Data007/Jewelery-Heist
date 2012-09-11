@@ -52,4 +52,13 @@ describe 'Dashboard' do
       end
     end
   end
+
+  context 'in the dashboard editing phone numbers' do
+    it 'adds a phone number' do
+      click_link 'Phones'
+      current_url.should = url_for([:account, :phone])
+
+      click_link 'Add a Phone number'
+    end
+  end
 end
