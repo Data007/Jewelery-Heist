@@ -1,3 +1,7 @@
+.column.two
+  %ul#sidebar
+    %li= link_to 'Account', [:account]
+
 .column.four
   - if @current_order
     = form_for @current_order do
@@ -22,7 +26,20 @@
               %td= line_item.quantity
               %td
                 = link_to 'Remove'
-    
-.column.two
-  %ul#sidebar
-    %li= link_to 'Account', [:account]
+
+  #payment-history
+    %h2 Payment History
+    %table
+      %thead
+        %tr
+          %th Order
+          %th Paid On
+          %th Paid With
+          %th Amount
+      %tbody.payments
+        - @current_user.payments.each do |payment|
+          %tr.payment
+            %td= payment.order.pretty_id
+            %td= payment.created_at
+            %td= payment.payment_type
+            %td= payment.amount

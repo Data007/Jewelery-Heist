@@ -188,6 +188,12 @@ class User
     orders.where(purchased: true)
   end
 
+  def payments
+    orders.map(&:payments)
+      .flatten
+      .compact
+  end
+
   def total_spent
     purchased_orders.map(&:total).sum
   end

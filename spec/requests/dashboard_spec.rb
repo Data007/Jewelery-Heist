@@ -36,8 +36,14 @@ describe 'Dashboard' do
 
   context 'payments' do
     it 'shows my past payments' do
-      visit url_for([:account])
-      current_url.should == url_for([:account])
+      within '#payment-history' do
+        page.should have_css('.payments .payment')
+        all('.payments .payment').count.should == 1
+        page.should have_content(@payment.order.pretty_id)
+        page.should have_content(@payment.created_at)
+        page.should have_content(@payment.payment_type)
+        page.should have_content(@payment.amount)
+      end
     end
   end
 end
