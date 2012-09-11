@@ -5,6 +5,7 @@ describe 'Dashboard' do
   before do
     @user  = FactoryGirl.create :web_user
     @item  = FactoryGirl.create :item
+    @order = FactoryGirl.create :order, user: @user
     @item.assets.create
 
     login_with_dh @user.email, 'password'
@@ -34,6 +35,9 @@ describe 'Dashboard' do
   end
 
   context 'payments' do
-    it 'shows my past payments'
+    it 'shows my past payments' do
+      visit url_for([:account])
+      current_url.should == url_for([:account])
+    end
   end
 end
