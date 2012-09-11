@@ -36,7 +36,6 @@ describe 'Dashboard' do
         page.should have_css('.orders .order')
         all('.orders .order').count.should == 2
         # page.should have_content(@order)
-        soap
       end
     end
   end
