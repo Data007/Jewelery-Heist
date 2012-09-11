@@ -29,7 +29,7 @@
 
   #payment-history
     %h2 Payment History
-    - if @current_user.payments
+    - if @current_user.payments.present?
       %table
         %thead
           %tr
