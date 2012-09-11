@@ -27,6 +27,24 @@
               %td
                 = link_to 'Remove'
 
+  #order-history
+    %h2 Order History
+    - if @current_user.orders.present?
+      %table
+        %thead
+          %tr
+            %th ID
+            %th Purchased
+            %th Price
+            %th Balance
+        %tbody.orders
+          - @current_user.orders.each do |order|
+            %tr.order
+              %td= order.pretty_id
+              %td= order.created_at
+              %td= order.total
+              %td
+                = link_to 'Pay' 
   #payment-history
     %h2 Payment History
     - if @current_user.payments.present?

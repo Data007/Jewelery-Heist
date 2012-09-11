@@ -34,8 +34,9 @@ describe 'Dashboard' do
     it 'shows my past orders' do
       within '#order-history' do
         page.should have_css('.orders .order')
-        all('.orders .order').count.should == 1
-        page.should have_content(@order)
+        all('.orders .order').count.should == 2
+        # page.should have_content(@order)
+        soap
       end
     end
   end
