@@ -38,6 +38,27 @@ describe 'Dashboard' do
         # page.should have_content(@order)
       end
     end
+
+    it 'has an order view' do
+      click_link @order.pretty_id
+      current_url.should == url_for[:account, @order]
+      within '#order-history' do
+        page.should have_content('Status')
+        page.should have_content('Shipping Address')
+        page.should have_content('Care Of')
+        page.should have_content('Items')
+        page.should have_content('Description')
+        page.should have_content('Price')
+        page.should have_content('Tax')
+        page.should have_content('Shipping')
+        page.should have_content('Total')
+        page.should have_content('Paid')
+        page.should have_content('Payments')
+        page.should have_content('Paid On')
+        page.should have_content('Paid With')
+        page.should have_content('Amount')
+      end
+    end
   end
 
   context 'payments' do
@@ -54,11 +75,6 @@ describe 'Dashboard' do
   end
 
   context 'in the dashboard editing phone numbers' do
-    it 'adds a phone number' do
-      click_link 'Phones'
-      current_url.should = url_for([:account, :phone])
-
-      click_link 'Add a Phone number'
-    end
+    it 'adds a phone number'
   end
 end
