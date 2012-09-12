@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_filter :force_login
-  before_filter :force_add_email,                 except: [:show, :clear, :update_attributes]
   before_filter :"has_shipping_address?",         only:   [:checkout, :pay, :complete]
   before_filter :carry_over_order_notes,          only:   [:checkout, :pay, :complete]
   

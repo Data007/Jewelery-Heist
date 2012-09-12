@@ -171,9 +171,9 @@ DragonHoardRails32::Application.routes.draw do
   end
     
   
-  match '/orders/:id/checkout' => 'orders#checkout', method: :post, as: :checkout
-  match '/orders/:id/shipping' => 'orders#shipping', method: :post, as: :shipping
-  match '/orders/:id/addressed' => 'orders#addressed', method: :post, as: :addressed
+  match '/orders/:id/checkout' => 'orders#checkout', method: :get, as: :checkout
+  match '/orders/:id/shipping' => 'orders#shipping', method: :get, as: :shipping
+  match '/orders/:id/addressed' => 'orders#addressed', method: :get, as: :addressed
   match '/orders/:id/pay' => 'orders#pay', method: :post, as: :pay
   match '/orders/:id/complete' => 'orders#complete', method: :post, as: :complete
   
