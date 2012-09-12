@@ -40,7 +40,8 @@
         %tbody.orders
           - @current_user.orders.each do |order|
             %tr.order
-              %td= order.pretty_id
+              %td
+                = link_to  order.pretty_id, [@current_user, order]
               %td= order.created_at
               %td= order.total
               %td
