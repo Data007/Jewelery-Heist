@@ -163,15 +163,11 @@ DragonHoardRails32::Application.routes.draw do
   
   resources :users do
     collection do
-      get  :register
-      post :registered
       get  :forgot_password
       post :generate_new_password
     end
-    
-    member do
-      get :dashboard
-    end
+
+    resources :orders, controller: 'users/orders'
   end
     
   

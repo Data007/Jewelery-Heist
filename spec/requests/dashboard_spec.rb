@@ -40,8 +40,8 @@ describe 'Dashboard' do
     end
 
     it 'has an order view' do
-      click_link @order.pretty_id
-      current_url.should == url_for[@user, @order]
+      click_link @order.pretty_id.to_s
+      current_url.should == user_order_url(@user.pretty_id, @order.pretty_id)
       within '#order-history' do
         page.should have_content('Status')
         page.should have_content('Shipping Address')

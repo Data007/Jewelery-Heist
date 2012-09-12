@@ -41,7 +41,7 @@
           - @current_user.orders.each do |order|
             %tr.order
               %td
-                = link_to  order.pretty_id, [@current_user, order]
+                = link_to order.pretty_id, user_order_path(@current_user.pretty_id, order.pretty_id)
               %td= order.created_at
               %td= order.total
               %td
