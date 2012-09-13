@@ -6,6 +6,7 @@ describe 'Dashboard' do
     @user  = FactoryGirl.create :web_user
     @item  = FactoryGirl.create :item
     @order = FactoryGirl.create :order, user: @user
+    @address = FactoryGirl.create :address, order: @order 
     @payment = FactoryGirl.create :payment, order: @order
 
     login_with_dh @user.email, 'password'
@@ -43,7 +44,6 @@ describe 'Dashboard' do
       click_link @order.pretty_id.to_s
       current_url.should == user_order_url(@user.pretty_id, @order.pretty_id)
       within '#order-history' do
-        page.should have_content('Status')
         page.should have_content('Shipping Address')
         page.should have_content('Care Of')
         page.should have_content('Items')

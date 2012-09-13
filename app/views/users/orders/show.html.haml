@@ -1,2 +1,7 @@
 .column.two
-  %h2 Order Show
+  #order-history
+    -#%ul
+      -#%li= 'Status: '
+    %ul
+      %li= 'Shipping Address'
+      %li= @current_order.address.to_single_line
