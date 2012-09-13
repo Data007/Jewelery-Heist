@@ -4,4 +4,57 @@
       -#%li= 'Status: '
     %ul
       %li= 'Shipping Address'
+    %ul
       %li= @current_order.address.to_single_line
+      %li= link_to 'Add a New Address'
+    %legend 'Items'
+    %table#Items
+      %thead
+        %tr
+          %th &nbsp;
+          %th Description
+          %th Price
+          %th Quantity
+          %th &nbsp;
+      %tbody.items
+        - @current_order.line_items.each do |line_item|
+          - item = line_item.item
+          %tr.item
+            %td
+              = link_to image_tag(item.assets.by_position.first.image.url(:thumbnail)), item_path(item.pretty_id)
+            %td= truncate item.description, length: 25
+            %td= number_to_currency line_item.price
+            %td= line_item.quantity
+    %ul
+      %li= 'Tax'
+      %li= @current_order.tax 
+      %li= 'Shipping'
+      %li= @current_orde 
+      %li= 'Shipping'
+      %li= @current_order.shipping_cost
+      %li= 'Total'
+      %li= @current_order.total 
+      %li= link_to 'Make a Payment'
+
+    %legend 'Payments'
+    #payment-history
+      %h2 Payment History
+      - if @current_user.payments.present?
+        %table
+          %thead
+            %tr
+              %th Order
+              %th Paid On
+              %th Paid With
+              %th Amount
+          %tbody.payments
+            - @current_user.payments.each do |payment|
+              %tr.payment
+                %td= payment.order.pretty_id
+                %td= payment.created_at
+                %td= payment.payment_type
+                %td= payment.amount
+      - else
+        .notice-message
+          You haven't made any payments yet.
+      

@@ -45,7 +45,6 @@ describe 'Dashboard' do
       current_url.should == user_order_url(@user.pretty_id, @order.pretty_id)
       within '#order-history' do
         page.should have_content('Shipping Address')
-        page.should have_content('Care Of')
         page.should have_content('Items')
         page.should have_content('Description')
         page.should have_content('Price')
@@ -57,6 +56,7 @@ describe 'Dashboard' do
         page.should have_content('Paid On')
         page.should have_content('Paid With')
         page.should have_content('Amount')
+        soap
       end
     end
   end
