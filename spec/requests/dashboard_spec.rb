@@ -56,7 +56,6 @@ describe 'Dashboard' do
         page.should have_content('Paid On')
         page.should have_content('Paid With')
         page.should have_content('Amount')
-        soap
       end
     end
   end
