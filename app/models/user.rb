@@ -175,8 +175,9 @@ class User
       Digest::SHA256.hexdigest password
     end
 
-    def authorize(email, password)
-      user = User.where(email: email, password_hash: User.hash_password(password)).first
+    def authorize(email_or_login, password)
+      user = User.where(email: email_or_login, password_hash: User.hash_password(password)).first
+      user = User.where(login: email_or_login, password_hash: User.hash_password(password)).first unless user
       (user && user.is_active) ? user : nil
     end
 
