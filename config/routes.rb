@@ -168,6 +168,7 @@ DragonHoardRails32::Application.routes.draw do
     end
 
     resources :orders, controller: 'users/orders'
+    resource :profile, controller: 'users/profile'
   end
     
   

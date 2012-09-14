@@ -1,6 +1,7 @@
 .column.two
   %ul#sidebar
     %li= link_to 'Account', [:account]
+    %li= link_to 'Profile', [@current_user, :profile]
 
 .column.four
   - if @current_order
