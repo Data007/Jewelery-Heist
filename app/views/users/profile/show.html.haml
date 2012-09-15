@@ -1,1 +1,28 @@
-%h2 HI
+.column.three
+  .row
+    =@current_user.first_name
+  .row
+    =@current_user.last_name
+  .row
+    =@current_user.email
+  .row
+    = link_to 'Edit'
+.column.three
+  %legend Addresses
+  .column.five
+    = link_to 'New'
+  .row
+    -@current_user.addresses.each do |address|
+      = address.to_single_line
+      .row
+        = link_to 'Remove'
+        = link_to 'Edit'  
+  %legend 'Phones'
+  .column.five
+    = link_to 'New'
+  .row
+    -@current_user.phones.each do |phone|
+      = phone.to_s
+      .row
+        = link_to 'Remove'
+        = link_to 'Edit'  
