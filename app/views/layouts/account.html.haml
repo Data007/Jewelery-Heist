@@ -61,12 +61,15 @@
             = content_tag :div, raw(value), class: 'message', id: "#{key}-message"
           
       %section.row
-        .column.two
-          %ul#sidebar
-            %li= link_to 'Account', [:account]
-            %li= link_to 'Profile', [:profile]
-        
-        .column.four
+        - if @current_user
+          .column.two
+            %ul#sidebar
+              %li= link_to 'Account', [:account]
+              %li= link_to 'Profile', [:profile]
+          
+          .column.four
+            = yield
+        - else
           = yield
       
       %footer.row
