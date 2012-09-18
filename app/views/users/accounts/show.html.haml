@@ -37,7 +37,7 @@
           %tr.order
             %td
               = link_to order.pretty_id, user_order_path(@current_user.pretty_id, order.pretty_id)
-            %td= order.created_at
+            %td= order.created_at.day.ordinalize
             %td= order.total
             %td
               = link_to 'Pay' 
@@ -55,7 +55,7 @@
         - @current_user.payments.each do |payment|
           %tr.payment
             %td= payment.order.pretty_id
-            %td= payment.created_at
+            %td= payment.created_at.day.ordinalize
             %td= payment.payment_type
             %td= payment.amount
   - else
