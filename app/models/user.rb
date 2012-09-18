@@ -7,7 +7,6 @@ class User
 
   field :emails,       type: Array,   default: []
   field :email
-  field :phones,       type: Array,   default: []
   field :login
   field :password_hash
   field :is_active,    type: Boolean, default: false
@@ -24,6 +23,7 @@ class User
 
   embeds_many :addresses
   embeds_many :orders
+  embeds_many :phones
 
   accepts_nested_attributes_for :addresses
 

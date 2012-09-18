@@ -19,36 +19,40 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
-    render :template => "users/dashboard"
   end
   
   def update
-    @user     = current_user
+    @current_user.update_attributes params[:user]
+    redirect_to [:profile]
+   # @user     = current_user
 
-    emails    = params[:user].delete(:emails)
-    emails    = emails.collect {|(key,value)| value['address']}.flatten.reject(&:empty?).uniq
+    #emails    = params[:user].delete(:emails)
+    #binding.pry
+    #emails    = emails.collect {|(key,value)| value['address']}.flatten.reject(&:empty?).uniq
 
-    phones    = params[:user].delete(:phones)
-    phones    = phones.collect {|(key,value)| value['number']}.flatten.reject(&:empty?).uniq
+    #phones    = params[:user].delete(:phones)
+    #phones    = phones.collect {|(key,value)| value['number']}.flatten.reject(&:empty?).uniq
 
-    if @user.update_attributes params[:user]
-      @user.emails = emails
-      @user.phones = phones
-      @user.save
+    #if @user.update_attributes params[:user]
+     # @user.emails = emails
+      #@user.phones = phones
+      #@user.save
       
-      flash[:notice] = "Your profile has been updated."
-      redirect_to_back_or_account
-    else
-      flash[:message] = ""
-      @user.errors.each {|error| flash[:message] += "<div class='error'>#{error}</div>"}
-      redirect_to dashboard_path
-    end
+      #flash[:notice] = "Your profile has been updated."
+      #redirect_to_back_or_account
+    #else
+      #flash[:message] = ""
+      #@user.errors.each {|error| flash[:message] += "<div class='error'>#{error}</div>"}
+      #redirect_to dashboard_path
+    #end
   end
   
   def forgot_password
   end
-  
+
+  def profile
+  end
+
   def generate_new_password
     @user = User.where(:emails.in => [params[:user][:email]])
     if @user.present?

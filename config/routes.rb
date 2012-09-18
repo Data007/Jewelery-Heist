@@ -168,9 +168,10 @@ DragonHoardRails32::Application.routes.draw do
     end
 
     resources :orders, controller: 'users/orders'
-    resource :profile, controller: 'users/profile'
+    resources :addresses, controller: 'users/addresses'
+    resources :phones, controller: 'users/phones'
   end
-    
+  match '/profile' => 'users#profile', as: :profile
   
   match '/orders/:id/checkout' => 'orders#checkout', method: :get, as: :checkout
   match '/orders/:id/shipping' => 'orders#shipping', method: :get, as: :shipping
