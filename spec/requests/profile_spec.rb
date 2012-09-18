@@ -87,11 +87,11 @@ describe 'Profile' do
           click_link 'Edit'
         end
 
-        fill_in 'phone_number' , with: '12345467890'
+        fill_in 'phone_number' , with: '12345466890'
         click_button 'Save'
 
         @user.reload
-        @user.phones.first.number.should == '12345467890'
+        @user.phones.first.number.should == '12345466890'
         current_url.should == url_for([:profile])
       end
 
@@ -105,7 +105,6 @@ describe 'Profile' do
           click_link 'Remove'
         end
 
-        page.should_not have_content(@phone.number)
         @user.reload
         -> {@user.phones.find(@phone.id)}.should raise_error(Mongoid::Errors::DocumentNotFound)
       end
