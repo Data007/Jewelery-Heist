@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_filter :force_login, :except => [:new, :create, :forgot_password, :generate_new_password]
 
+  layout 'account'
+
   def new
     @user = User.new
   end
