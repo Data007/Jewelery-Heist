@@ -20,12 +20,18 @@
           = link_to 'Remove'
           = link_to 'Edit', [:edit, @current_user, address] 
 .phones
-  %legend 'Phones'
-  .column.five
-    = link_to 'New', [:new, @current_user, :phone]
-  .row
-    -@current_user.phones.each do |phone|
-      .row= phone.number
-      .row
-        = link_to 'Remove'
-        = link_to 'Edit'  
+  %legend Phones
+  = link_to 'New', [:new, @current_user, :phone]
+
+  %table
+    %thead
+      %tr
+        %th Number
+        %th &nbsp;
+    %tbody
+      -@current_user.phones.each do |phone|
+        %tr.phone{id: dom_id(phone)}
+          %td= phone.number
+          %td
+            = link_to 'Remove', [@current_user, phone], method: :delete
+            = link_to 'Edit'  

@@ -9,4 +9,9 @@ class Users::PhonesController < UsersController
     @phone = @current_user.phones.create(params[:phone])
     redirect_to [:profile]
   end
+
+  def destroy
+    @current_user.phones.find(params[:id]).destroy
+    redirect_to [:profile]
+  end
 end

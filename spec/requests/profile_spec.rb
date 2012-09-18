@@ -68,22 +68,41 @@ describe 'Profile' do
       @user.addresses.count.should == 2
     end
     
-    it 'adds a phone number' do
-      @user.phones.count.should == 2
-      visit url_for([:profile])
+    context 'phone numbers' do
+      it 'adds a phone number' do
+        @user.phones.count.should == 2
+        visit url_for([:profile])
 
-      within '.phones' do
-        click_link 'New'
+        within '.phones' do
+          click_link 'New'
+        end
+
+        current_url.should == url_for([:new, @user, :phone])
+        fill_in 'phone_number', with: '2314567890'
+        click_button 'Save'
+
+        current_url.should == url_for([:profile])
+
+        @user.reload
+        @user.phones.count.should == 3
       end
 
-      current_url.should == url_for([:new, @user, :phone])
-      fill_in 'phone_number', with: '2314567890'
-      click_button 'Save'
+      it 'removes a phone number' do
+        @phone = @user.phones.first
+        visit url_for([:profile])
 
-      current_url.should == url_for([:profile])
+        page.should have_content(@phone.number)
 
-      @user.reload
-      @user.phones.count.should == 3
+        within "#phone_#{@phone.id}" do
+          click_link 'Remove'
+        end
+
+        page.should_not have_content(@phone.number)
+        @user.reload
+        -> {@user.phones.find(@phone.id)}.should raise_error(Mongoid::Errors::DocumentNotFound)
+      end
+
+      it 'edits a phone number'
     end
 
     it 'edits a address' do
