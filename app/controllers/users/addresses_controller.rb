@@ -1,5 +1,7 @@
 class Users::AddressesController < UsersController
-    before_filter :find_address, except: [:new, :create, :index]
+  before_filter :find_address, except: [:new, :create, :index]
+  before_filter :force_login
+
   def new
     @address = @current_user.addresses.new
   end
@@ -14,6 +16,11 @@ class Users::AddressesController < UsersController
 
   def update
     @address.update_attributes params[:address]
+    redirect_to [:profile]
+  end
+
+  def destroy
+    @current_user.addresses.find(params[:id]).destroy
     redirect_to [:profile]
   end
   

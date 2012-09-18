@@ -1,24 +1,35 @@
-.column.three
-  .profile
-    .row
-      =@current_user.first_name
-    .row
-      =@current_user.last_name
-    .row
-      =@current_user.email
-    .row
-      = link_to 'Edit', [:edit, @current_user]
+.profile
+  %legend Profile
+  %table
+    %thead
+      %tr
+        %th Frist Name
+        %th Last Name
+        %th Email
+        %th &nbsp;
+      %tbody
+        %tr 
+          %th= @current_user.first_name
+          %th= @current_user.last_name
+          %th= @current_user.email
+          %th
+            = link_to 'Edit', [:edit, @current_user]
 .address
-  .column.three
-    %legend Addresses
-    .column.five
-      = link_to 'New', [:new, @current_user, :address]
-    .row
-      - @current_user.addresses.each do |address|
-        = address.to_single_line
-        .row
-          = link_to 'Remove'
-          = link_to 'Edit', [:edit, @current_user, address] 
+  %legend Addresses
+  = link_to 'New', [:new, @current_user, :address]
+
+  %table
+    %thead
+      %tr
+        %th Address Line 1
+        %th &nbsp;
+      %tbody
+        -@current_user.addresses.each do |address|
+          %tr.address{id: dom_id(address)}
+            %td= address.to_single_line
+            %td
+              = link_to 'Remove', [@current_user, address], method: :delete
+              = link_to 'Edit', [:edit, @current_user, address] 
 .phones
   %legend Phones
   = link_to 'New', [:new, @current_user, :phone]
@@ -34,4 +45,4 @@
           %td= phone.number
           %td
             = link_to 'Remove', [@current_user, phone], method: :delete
-            = link_to 'Edit'  
+            = link_to 'Edit', [:edit, @current_user, phone]  
