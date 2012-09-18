@@ -1,0 +1,6 @@
+= form_for [@current_user, @credit_card] do |f|
+  = f.text_field :number, placeholder: 'Credit Card Number'
+  = f.text_field :date, placeholder: 'Date On Card'
+  = f.text_field :ccv_code, placeholder: 'CCV Code'
+  = f.text_field :name_on_card, placeholder: 'Name on Card'
+  = f.submit 'Save'

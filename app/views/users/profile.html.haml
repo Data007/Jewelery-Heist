@@ -46,3 +46,25 @@
           %td
             = link_to 'Remove', [@current_user, phone], method: :delete
             = link_to 'Edit', [:edit, @current_user, phone]  
+.credit_cards
+  %legend Credit Cards
+  = link_to 'New', [:new, @current_user, :credit_card]
+
+  %table
+    %thead
+      %tr
+        %th Number
+        %th Date
+        %th CCV Code
+        %th Name On Card
+        %th &nbsp;
+    %tbody
+      -@current_user.credit_cards.each do |card|
+        %tr.card{id: dom_id(card)}
+          %td= card.number
+          %td= card.date
+          %td= card.ccv_code
+          %td= card.name_on_card
+          %td
+            = link_to 'Remove', [@current_user, card], method: :delete
+            = link_to 'Edit', [:edit, @current_user, card]

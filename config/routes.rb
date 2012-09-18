@@ -170,6 +170,7 @@ DragonHoardRails32::Application.routes.draw do
     resources :orders, controller: 'users/orders'
     resources :addresses, controller: 'users/addresses'
     resources :phones, controller: 'users/phones'
+    resources :credit_cards, controller: 'users/credit_cards'
   end
   match '/profile' => 'users#profile', as: :profile
   

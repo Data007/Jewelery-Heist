@@ -8,6 +8,7 @@ describe 'Profile' do
 
     @item = FactoryGirl.create :item
     @address = FactoryGirl.create :address, user: @user
+    @credit_card = FactoryGirl.create :credit_card, user: @user
     
     login_with_dh @user.email, 'password'
   end
@@ -108,8 +109,6 @@ describe 'Profile' do
         @user.reload
         -> {@user.phones.find(@phone.id)}.should raise_error(Mongoid::Errors::DocumentNotFound)
       end
-
-      it 'edits a phone number'
     end
 
     context 'with a address' do
@@ -174,6 +173,70 @@ describe 'Profile' do
         page.should_not have_content(@address.to_single_line)
         @user.reload
         -> {@user.addresses.find(@address.id)}.should raise_error(Mongoid::Errors::DocumentNotFound)
+      end
+    end
+
+    context 'with a credit card' do
+      it 'displays the users credit card' do
+        visit url_for([:profile])
+        page.should have_content('Credit Cards')
+        page.should have_content(@user.credit_cards.first.number)
+        page.should have_content(@user.credit_cards.first.date)
+        page.should have_content(@user.credit_cards.first.ccv_code)
+        page.should have_content(@user.credit_cards.first.name_on_card)
+        page.should have_content('New')
+        page.should have_content('Edit')
+        page.should have_content('Remove')
+      end
+
+      it 'adds a new credit card' do
+        @user.credit_cards.count.should == 1
+        visit url_for([:profile])
+
+        within '.credit_cards' do
+          click_link 'New'
+        end
+
+        current_url.should == url_for([:new, @user, :credit_card])
+        
+        fill_in 'credit_card_number', with: '0987654321098765'
+        fill_in 'credit_card_date', with: '08/09/1212'
+        fill_in 'credit_card_ccv_code', with: '234'
+        fill_in 'credit_card_name_on_card', with: 'Hoe jenkins'
+        click_button 'Save'
+
+        @user.reload
+        @user.credit_cards.count.should == 2
+      end
+
+      it 'edits a credit card' do
+        visit url_for([:profile])
+
+        within '.credit_cards' do
+          click_link 'Edit'
+        end
+        
+        fill_in 'credit_card_number', with: '1234567890123456'
+        click_button 'Save'
+        
+        @user.reload
+        @user.credit_cards.first.number.should == '1234567890123456'
+        current_url.should == url_for([:profile])
+      end
+
+      it 'removes a credit card' do
+        @credit_card = @user.credit_cards.first
+        visit url_for([:profile])
+
+        page.should have_content(@credit_card.number)
+
+        within "#credit_card_#{@credit_card.id}" do
+          click_link 'Remove'
+        end
+
+        page.should_not have_content(@credit_card.number)
+        @user.reload
+        -> {@user.credit_cards.find(@credit_card.id)}.should raise_error(Mongoid::Errors::DocumentNotFound)
       end
     end
   end
