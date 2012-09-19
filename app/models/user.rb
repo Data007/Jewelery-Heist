@@ -30,6 +30,7 @@ class User
 
   attr_accessor :password, :password_confirmation, :new_password, :old_password, :email_confirmation
 
+  validates :email, format: {with: /^[a-zA-Z\w\W]+@[a-z]+.[a-z]{3}$/, message: "%{value} is not a proper phone number"}
   validates :first_name, presence: {message: 'You must provide a first name'}, on: :create
   validates :last_name, presence: {message: 'You must provide a last name'}, on: :create
   validates :email, presence: {message: 'You must provide an email'}, on: :create

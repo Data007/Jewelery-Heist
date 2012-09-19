@@ -1,0 +1,7 @@
+
+Phone
+  with a phone number
+    validates it puts in a correct phone number
+
+Finished in 0.10563 seconds
+1 example, 0 failures
