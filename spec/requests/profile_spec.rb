@@ -87,11 +87,11 @@ describe 'Profile' do
           click_link 'Edit'
         end
 
-        fill_in 'phone_number' , with: '12345466890'
+        fill_in 'phone_number' , with: '1234546689'
         click_button 'Save'
 
         @user.reload
-        @user.phones.first.number.should == '12345466890'
+        @user.phones.first.number.should == '1234546689'
         current_url.should == url_for([:profile])
       end
 
@@ -219,7 +219,7 @@ describe 'Profile' do
         click_button 'Save'
         
         @user.reload
-        @user.credit_cards.first.number.should == '1234567890123456'
+        @user.credit_cards.first.number.should == 1234567890123456
         current_url.should == url_for([:profile])
       end
 

@@ -66,7 +66,7 @@ describe 'Dashboard' do
         page.should have_css('.payments .payment')
         all('.payments .payment').count.should == 1
         page.should have_content(@payment.order.pretty_id)
-        page.should have_content(@payment.created_at)
+        page.should have_content(localize(@payment.created_at, format: :long))
         page.should have_content(@payment.payment_type)
         page.should have_content(@payment.amount)
       end

@@ -6,6 +6,10 @@ require 'capybara/dsl'
 require 'capybara/rails'
 require 'support/vcr_support'
 
+# Require essential view helpers
+require 'action_view/helpers/translation_helper'
+include ActionView::Helpers::TranslationHelper
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join('spec/support/**/*.rb')].each {|f| require f}

@@ -7,7 +7,7 @@ class Users::CreditCardsController < ApplicationController
   end
 
   def create
-    @credit_cards = @current_user.credit_cards.create(params[:credit_card])
+    @credit_card = @current_user.credit_cards.create(params[:credit_card])
     redirect_to [:profile]
   end
 
