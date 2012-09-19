@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :phone do
+    number '2319208877'
   end
 end
