@@ -1,69 +1,63 @@
-.column.two
-  %ul#sidebar
-    %li= link_to 'Account', [:account]
-    %li= link_to 'Profile', [:profile]
+- if @current_order
+  = form_for @current_order do
+    %legend You Current Shopping Cart
 
-.column.four
-  - if @current_order
-    = form_for @current_order do
-      %legend You Current Shopping Cart
+    %table#current-cart
+      %thead
+        %tr
+          %th &nbsp;
+          %th Description
+          %th Price
+          %th Quantity
+          %th &nbsp;
+      %tbody.items
+        - @current_order.line_items.each do |line_item|
+          - item = line_item.item
+          %tr.item
+            %td
+              = link_to image_tag(item.assets.by_position.first.image.url(:thumbnail)), item_path(item.pretty_id)
+            %td= truncate item.description, length: 25
+            %td= number_to_currency line_item.price
+            %td= line_item.quantity
+            %td
+              = link_to 'Remove'
 
-      %table#current-cart
-        %thead
-          %tr
-            %th &nbsp;
-            %th Description
-            %th Price
-            %th Quantity
-            %th &nbsp;
-        %tbody.items
-          - @current_order.line_items.each do |line_item|
-            - item = line_item.item
-            %tr.item
-              %td
-                = link_to image_tag(item.assets.by_position.first.image.url(:thumbnail)), item_path(item.pretty_id)
-              %td= truncate item.description, length: 25
-              %td= number_to_currency line_item.price
-              %td= line_item.quantity
-              %td
-                = link_to 'Remove'
-
-  #order-history
-    %h2 Order History
-    - if @current_user.orders.present?
-      %table
-        %thead
-          %tr
-            %th ID
-            %th Purchased
-            %th Price
-            %th Balance
-        %tbody.orders
-          - @current_user.orders.each do |order|
-            %tr.order
-              %td
-                = link_to order.pretty_id, user_order_path(@current_user.pretty_id, order.pretty_id)
-              %td= order.created_at
-              %td= order.total
-              %td
-                = link_to 'Pay' 
-  #payment-history
-    %h2 Payment History
-    - if @current_user.payments.present?
-      %table
-        %thead
-          %tr
-            %th Order
-            %th Paid On
-            %th Paid With
-            %th Amount
-        %tbody.payments
-          - @current_user.payments.each do |payment|
-            %tr.payment
-              %td= payment.order.pretty_id
-              %td= payment.created_at
-              %td= payment.payment_type
-              %td= payment.amount
-    - else
-      .notice-message
-        You haven't made any payments yet.
+#order-history
+  %h2 Order History
+  - if @current_user.orders.present?
+    %table
+      %thead
+        %tr
+          %th ID
+          %th Purchased
+          %th Price
+          %th Balance
+      %tbody.orders
+        - @current_user.orders.each do |order|
+          %tr.order
+            %td
+              = link_to order.pretty_id, user_order_path(@current_user.pretty_id, order.pretty_id)
+            %td= l order.created_at, format: :long
+            %td= order.total
+            %td
+              = link_to 'Pay' 
+#payment-history
+  %h2 Payment History
+  - if @current_user.payments.present?
+    %table
+      %thead
+        %tr
+          %th Order
+          %th Paid On
+          %th Paid With
+          %th Amount
+      %tbody.payments
+        - @current_user.payments.each do |payment|
+          %tr.payment
+            %td= payment.order.pretty_id
+            %td= l payment.created_at, format: :long
+            %td= payment.payment_type
+            %td= payment.amount
+  - else
+    .notice-message
+      You haven't made any payments yet.
