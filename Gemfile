@@ -34,6 +34,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 
 gem 'braintree'
+gem 'credit_card_validator'
 
 gem 'airbrake'
 
