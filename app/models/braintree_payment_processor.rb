@@ -1,0 +1,2 @@
+class BraintreePaymentProcessor < PaymentProcessor
+end

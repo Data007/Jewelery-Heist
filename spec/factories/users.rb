@@ -16,6 +16,12 @@ FactoryGirl.define do
       first_name 'Web'
       last_name 'User'
       login 'webuser'
+
+      factory :web_user_with_address do
+        after(:create) do |web_user, evaluator|
+          FactoryGirl.create :address, user: web_user
+        end
+      end
     end
   end
 end
