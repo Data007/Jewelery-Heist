@@ -175,6 +175,9 @@ describe 'Profile' do
       end
     end
 
+    context 'credit card validations' do
+    end
+
     context 'with a credit card' do
       it 'displays the users credit card' do
         visit url_for([:profile])
@@ -198,8 +201,8 @@ describe 'Profile' do
 
         current_url.should == url_for([:new, @user, :credit_card])
         
-        fill_in 'credit_card_number', with: '0987654321098765'
-        fill_in 'credit_card_date', with: '08/09/1212'
+        fill_in 'credit_card_number', with: '4111111111111111'
+        fill_in 'credit_card_date', with: '08/12'
         fill_in 'credit_card_ccv_code', with: '234'
         fill_in 'credit_card_name_on_card', with: 'Hoe jenkins'
         click_button 'Save'
