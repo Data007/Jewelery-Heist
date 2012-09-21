@@ -17,5 +17,6 @@ describe PaymentProcessor do
       PaymentProcessor.validate_card(@test_card.merge({card_number: 4111111111111112})).should_not be
       PaymentProcessor.validate_card(@test_card).should be
     end
+
   end
 end
