@@ -32,6 +32,7 @@ class Order
   embeds_many :payments
   embeds_one  :address
   embeds_one  :ticket
+  embeds_one  :cart
 
   accepts_nested_attributes_for :address
 
