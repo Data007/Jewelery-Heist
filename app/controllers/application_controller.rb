@@ -2,14 +2,15 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   before_filter :current_user
-  before_filter :current_order
-  before_filter :clean_up_order
+  before_filter :cart
+  before_filter :clean_up_cart
 
 private
 
-  def current_order
-    return nil unless current_user
-    @current_order ||= @current_user.open_web_order.present? ? @current_user.open_web_order : @current_user.orders.create(location: 'website')
+  def cart
+    @cart ||= session[:cart_id].present? ? Cart.find(session[:cart_id]) : Cart.create
+    session[:cart_id] = @cart.id
+    return @cart
   end
 
   def current_user
@@ -20,8 +21,9 @@ private
     rescue; end
   end
 
-  def clean_up_order
-    @current_order.validate_line_items if @current_order.present?
+  def clean_up_cart
+    # TODO: add cart cleanup method
+    # cart.validate_line_items if cart.present?
   end
 
   def force_login

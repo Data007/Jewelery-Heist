@@ -160,7 +160,11 @@ DragonHoardRails32::Application.routes.draw do
 
   resources :items
   resources :collections, only: [:index, :show]
-  
+
+  resource  :cart do
+    resources :line_items, controller: 'carts/line_items'
+  end
+
   resources :users do
     collection do
       get  :forgot_password

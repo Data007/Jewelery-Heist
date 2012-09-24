@@ -3,7 +3,6 @@ class Cart
   include Mongoid::Timestamps
   include Mongoid::Sequence
   
-
-  embedded_in :user
-  embeds_many :items
+  belongs_to  :user
+  embeds_many :line_items
 end

@@ -44,12 +44,13 @@
                   %span.label Price
                   #{number_to_currency(@item.price)}
                 - if @item.available
-                  .sizes.row
-                    %span.label Select Your Size
-                    = select "item","sizes", @item.sizes.collect {|size| [size,size]}, selected: @item.sizes[@item.sizes.length / 2]
-                  - if @current_order
+                  = form_for [:cart, LineItem.new] do |f|
+                    = hidden_field_tag 'item_id', @item.id
                     .row
-                      %span= link_to "Add to Cart", order_items_path(@current_order.pretty_id, item_id: @item.pretty_id), class: "add_to_cart input", method: :post
+                      = f.label :size, 'Select Your Size'
+                      = f.select :size, options_for_select(@item.sizes, @item.sizes[@item.sizes.length / 2])
+                    .row
+                      = f.submit 'Add to Cart'
                 - else
                   %h3 Sold
                 - if @item.metals.present?
