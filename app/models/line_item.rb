@@ -22,6 +22,7 @@ class LineItem
   embeds_one  :variation
   embeds_one  :item
   embedded_in :order
+  embedded_in :cart
 
   scope :taxable,    where(taxable: true)
   scope :nontaxable, where(taxable: false)
