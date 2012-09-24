@@ -38,4 +38,4 @@ module DragonHoardRails32
   end
 end
 
-require "#{Rails.root}/lib/mafia_connections.rb"
+Dir[Rails.root.join('lib/**/*.rb')].each {|f| require f}
