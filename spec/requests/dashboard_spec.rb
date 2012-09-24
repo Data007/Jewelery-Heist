@@ -20,7 +20,7 @@ describe 'Dashboard' do
     it 'shows an item in my cart' do
       visit '/'
       click_link @item.name
-      click_link 'Add to Cart'
+      click_button 'Add to Cart'
       click_link 'Account'
 
       within '#current-cart' do
@@ -35,7 +35,7 @@ describe 'Dashboard' do
     it 'shows my past orders' do
       within '#order-history' do
         page.should have_css('.orders .order')
-        all('.orders .order').count.should == 2
+        all('.orders .order').count.should == 1
         # page.should have_content(@order)
       end
     end
