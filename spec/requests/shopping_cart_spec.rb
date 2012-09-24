@@ -8,10 +8,8 @@ describe 'Shopping Cart' do
 
   context 'Shopping Cart' do
     it 'adds a item to the cart' do
-      visit url_for([@item])
+      visit item_path(@item.pretty_id)
 
-      binding.pry
-      soap
       click_link 'Add to Cart'
       @user.cart.should == @item
     end
