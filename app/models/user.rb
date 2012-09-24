@@ -25,6 +25,7 @@ class User
   embeds_many :orders
   embeds_many :phones
   embeds_many :credit_cards
+  embeds_one :cart
 
   accepts_nested_attributes_for :addresses
 
