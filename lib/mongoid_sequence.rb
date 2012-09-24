@@ -5,14 +5,13 @@ module Mongoid
       if (ids.all? {|query_id| query_id.is_a?(Integer)})
         ids.each do |query_id|
           sequence_fields.each do |sequence_field|
-            document = where(sequence_field.to_sym => query_id)
-            @found_documents.nil? ? @found_documents = document : @found_documents << document
+            @document ||= where(sequence_field.to_sym => query_id).first
           end
         end
       else
-        @found_documents = super(args)
+        @document ||= super(args)
       end
-      @found_documents.first
+      @document
     end
   end
 end
