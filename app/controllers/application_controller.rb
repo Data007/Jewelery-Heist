@@ -9,6 +9,7 @@ private
 
   def merge_carts user
     if user.cart != nil
+      #line you need to check
       user.cart.line_items << @cart
     else
       user.cart = @cart
