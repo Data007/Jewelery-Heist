@@ -62,7 +62,15 @@ describe 'Shopping Cart' do
         click_button 'Add to Cart'
       end
 
-      it 'transfers anonymous cart to logged in user'
+      it 'transfers anonymous cart to logged in user' do
+        fill_in 'user_email', with: @user.email
+        fill_in 'user_password', with: 'password'
+
+        click_button 'Login'
+
+        @cart.reload
+        @cart.user.should == @user
+      end
       
       context 'with a previous cart' do
         it 'merges anonymous cart with previous cart'
