@@ -9,7 +9,7 @@ describe 'Shopping Cart' do
 
   context 'as an Anonymous User' do
     it 'adds a item to the cart' do
-      visit url_for([@item])
+      visit item_path(@item.pretty_id)
       cart = Cart.last
 
       click_button 'Add to Cart'
