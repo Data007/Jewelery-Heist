@@ -44,7 +44,7 @@ gem 'stringex'
 gem 'will_paginate', '~> 3.0.2'
 
 group :production do
-  gem 'thin'
+  gem 'puma'
   gem 'newrelic_rpm', '3.4.1'
   ruby '1.9.3'
 end
@@ -52,7 +52,7 @@ end
 group :development do
   gem 'heroku'
   gem 'taps'
-  gem 'thin'
+  gem 'puma'
 end
 
 group :test, :development do
