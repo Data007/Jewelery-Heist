@@ -7,6 +7,15 @@ class ApplicationController < ActionController::Base
 
 private
 
+  def merge_carts user
+    if user.cart != nil
+      #user.cart << @cart, just embed the @cart in the user.cart object
+    else
+      user.cart = @cart
+      @cart = nil
+    end
+  end
+
   def cart
     @cart ||= session[:cart_id].present? ? Cart.find(session[:cart_id]) : Cart.create
     session[:cart_id] = @cart.id
