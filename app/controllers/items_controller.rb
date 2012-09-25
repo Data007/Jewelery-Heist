@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
   
   def show
     begin
-      @item = Item.where(pretty_id: params[:id]).first
+      @item = Item.find(params[:id])
     rescue
       render template: 'responses/405', status: 405
     end
