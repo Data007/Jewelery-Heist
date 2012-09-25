@@ -9,7 +9,7 @@ private
 
   def merge_carts user
     if user.cart != nil
-      #user.cart << @cart, just embed the @cart in the user.cart object
+      user.cart.line_items << @cart
     else
       user.cart = @cart
       @cart = nil
