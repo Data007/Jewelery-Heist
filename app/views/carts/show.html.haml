@@ -8,10 +8,10 @@
         %th Quantity
         %th &nbsp;
       %tbody
-        - @cart.line_items.each do |item|
-          %tr.item{id: dom_id(item)}
-            %td= item.name
-            %td= item.price
-            %td= item.quantity
+        - @cart.line_items.each do |line_item|
+          %tr.item{id: dom_id(line_item)}
+            %td= line_item.item.name
+            %td= line_item.item.price
+            %td= line_item.item.quantity
             %td
               = link_to 'Delete'

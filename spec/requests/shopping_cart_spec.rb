@@ -56,7 +56,11 @@ describe 'Shopping Cart' do
         click_link "Cart(#{@cart.line_items.count})"
         current_url.should == url_for([:cart])
 
-        page.should have_content(@cart.line_items.first.name)
+        @cart.line_items.first.item.name.should be
+        @cart.line_items.first.item.price.should be
+        @cart.line_items.first.item.quantity.should be
+        
+        page.should have_content(@cart.line_items.first.item.name)
         page.should have_content(@cart.line_items.first.price)
         page.should have_content(@cart.line_items.first.quantity)
         page.should have_link('Delete')
