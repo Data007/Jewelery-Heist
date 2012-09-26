@@ -18,11 +18,13 @@ describe 'Shopping Cart' do
       cart.line_items.map(&:item).include?(@item).should be
     end
 
+
     context 'with an item in a cart' do
       before do
         visit item_path(@item.pretty_id)
         @cart = Cart.last
         click_button 'Add to Cart'
+        @cart.reload
       end
 
       it 'transfers cart to user after registration' do
@@ -46,6 +48,18 @@ describe 'Shopping Cart' do
 
         @cart.reload
         @cart.user.should == user
+      end
+        
+      it 'views the cart' do
+        visit url_for([:root])
+
+        click_link "Cart(#{@cart.line_items.count})"
+        current_url.should == url_for([:cart])
+
+        page.should have_content(@cart.line_items.first.name)
+        page.should have_content(@cart.line_items.first.price)
+        page.should have_content(@cart.line_items.first.quantity)
+        page.should have_link('Delete')
       end
     end
   end

@@ -1,0 +1,17 @@
+.cart
+  %legend Cart
+  %table
+    %thead  
+      %tr
+        %th Name
+        %th Price
+        %th Quantity
+        %th &nbsp;
+      %tbody
+        - @cart.line_items.each do |item|
+          %tr.item{id: dom_id(item)}
+            %td= item.name
+            %td= item.price
+            %td= item.quantity
+            %td
+              = link_to 'Delete'
