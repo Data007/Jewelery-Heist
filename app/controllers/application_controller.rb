@@ -7,19 +7,20 @@ class ApplicationController < ActionController::Base
 
 private
 
-  def merge_carts user
-    if user.cart != nil
-      #line you need to check
-      user.cart.line_items << @cart
-    else
-      user.cart = @cart
-      @cart = nil
-    end
-  end
-
   def cart
     @cart ||= session[:cart_id].present? ? Cart.find(session[:cart_id]) : Cart.create
     session[:cart_id] = @cart.id
+
+    if current_user
+      if current_user.cart
+        current_user.cart.line_items.each do |li|
+          li.cart = @cart
+          li.save
+        end
+      end
+      current_user.cart = @cart
+    end
+
     return @cart
   end
 

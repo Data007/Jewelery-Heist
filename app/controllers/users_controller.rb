@@ -18,8 +18,6 @@ class UsersController < ApplicationController
       flash[:error] = "We couldn't register you. Please check your details and try again."
       render template: 'users/new'
     end
-
-    merge_carts @user
   end
   
   def edit

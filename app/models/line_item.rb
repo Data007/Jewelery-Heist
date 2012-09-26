@@ -15,12 +15,12 @@ class LineItem
   field :quick_id
   field :size
   field :custom_id
+  field :item_id
 
   field :pretty_id,    type: Integer
   sequence :pretty_id  
 
   embeds_one  :variation
-  embeds_one  :item
   embedded_in :order
   embedded_in :cart
 
@@ -28,6 +28,14 @@ class LineItem
   scope :nontaxable, where(taxable: false)
 
   before_save :validate_price
+
+  def item
+    Item.find(item_id)
+  end
+
+  def item= new_item
+    self.item_id = new_item.id
+  end
 
   def total
     (quantity.present? ? quantity : 1) * (price.present? ? price : 0)

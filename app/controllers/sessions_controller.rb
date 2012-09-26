@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
     if @user
       session[:user_id] = @user.id
       redirect_to [:account], flash: {notice: "You have been successfully authenticated #{@user.full_name}"}
-      merge_carts @user
     else
       redirect_to [:login], flash: {warning: "Your email or password is incorrect"}
     end 

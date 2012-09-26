@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Shopping Cart' do
   before do
     @item = FactoryGirl.create :item
-    @item_2 = FactoryGirl.create :item
+    @item_2 = FactoryGirl.create :item, name: 'item two', price: 50
   end
 
   context 'as an Anonymous User' do
@@ -73,7 +73,29 @@ describe 'Shopping Cart' do
       end
       
       context 'with a previous cart' do
-        it 'merges anonymous cart with previous cart'
+        before do
+          @old_cart = FactoryGirl.create :cart, user: @user
+          @old_cart.line_items.create item: @item_2
+        end
+
+        it 'merges anonymous cart with previous cart' do
+          @user.reload
+          @user.cart.should == @old_cart
+
+          fill_in 'user_email', with: @user.email
+          fill_in 'user_password', with: 'password'
+
+          click_button 'Login'
+
+          @user.reload
+          @user.cart.should == @cart
+
+          @cart.reload
+          @cart.user.should == @user
+          
+          @cart.line_items.count.should == 2
+          @cart.line_items.map(&:item).include?(@item_2).should be
+        end
       end
     end
   end
