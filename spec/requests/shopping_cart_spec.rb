@@ -80,7 +80,13 @@ describe 'Shopping Cart' do
           page.should_not have_content("Address line 1 can't be blank")
         end
 
-        it 'validates shipping address city'
+        it 'validates shipping address city' do
+          page.should have_content("City can't be blank")
+          fill_in 'cart_shipping_address_city', with: 'la'
+          click_button 'Save'
+          page.should_not have_content("City can't be blank")
+        end
+
         it 'validates shipping address province'
         it 'validates shipping address postal code'
         it 'validates shipping address country'

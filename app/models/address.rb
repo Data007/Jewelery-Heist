@@ -13,6 +13,7 @@ class Address
   embedded_in :order
 
   validates :address_1, presence: {message: "Address line 1 can't be blank."}
+  validates :city, presence: true
 
   def to_single_line
     address  = "#{address_1}, "
