@@ -94,7 +94,13 @@ describe 'Shopping Cart' do
           page.should_not have_content("State or province can't be blank")
         end
 
-        it 'validates shipping address postal code'
+        it 'validates shipping address postal code' do
+          page.should have_content("Postal Code can't be blank")
+          fill_in 'cart_shipping_address_postal_code', with: '34567'
+          click_button 'Save'
+          page.should_not have_content("Postal Code can't be blank")
+        end
+
         it 'validates shipping address country'
         it 'validates email'
         it 'validates phone'
