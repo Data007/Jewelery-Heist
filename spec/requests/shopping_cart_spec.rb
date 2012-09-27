@@ -70,29 +70,50 @@ describe 'Shopping Cart' do
         before do
           click_link 'Check Out'
           current_url == url_for([:checkout])
+          click_button 'Save'
         end
+
+        it 'validates shipping address line 1' do
+          page.should have_content("Address line 1 can't be blank")
+          fill_in 'cart_shipping_address_address_1', with: 'W. side foo'
+          click_button 'Save'
+          page.should_not have_content("Address line 1 can't be blank")
+        end
+
+        it 'validates shipping address city'
+        it 'validates shipping address province'
+        it 'validates shipping address postal code'
+        it 'validates shipping address country'
+        it 'validates email'
+        it 'validates phone'
+        it 'validates first name'
+        it 'validates last name'
 
         it 'fills in the Shipping Address, name, email, phone' do
-          within('.shipping') do
-            fill_in 'cart_name', with: 'test_name'
-            fill_in 'cart_address', with: '3456 S. gigiidy RD'
-            fill_in 'cart_city', with: 'goo'
-            fill_in 'cart_province', with: 'MI'
-            fill_in 'cart_postal_code', with: '45637'
-            fill_in 'cart_country', with: 'US'
-            fill_in 'cart_email', with: 'bugsbunny@gmail.com'
-            fill_in 'cart_phone', with: '2314567890'
+          fill_in 'cart_first_name', with: 'Anonymous'
+          fill_in 'cart_last_name', with: 'User'
+          fill_in 'cart_shipping_address_address_1', with: '3456 S. gigiidy RD'
+          fill_in 'cart_shipping_address_city', with: 'goo'
+          fill_in 'cart_shipping_address_province', with: 'MI'
+          fill_in 'cart_shipping_address_postal_code', with: '45637'
+          fill_in 'cart_shipping_address_country', with: 'US'
+          fill_in 'cart_email', with: 'bugsbunny@gmail.com'
+          fill_in 'cart_phone', with: '2314567890'
 
-            click_button 'Save'
-            @cart.address.address_1.should == '3456 S. gigiidy RD'
-            @cart.address.city.should == 'goo'
-            @cart.address.province.should == 'MI'
-            @cart.address.postal_code.should == '45637'
-            @cart.address.country.should == 'US'
-            @cart.email.should == 'bugsbunny@gmail.com'  
-            @cart.phone.should == '2314567890'
-          end
+          click_button 'Save'
+
+          @cart.reload
+          @cart.shipping_address.address_1.should == '3456 S. gigiidy RD'
+          @cart.shipping_address.city.should == 'goo'
+          @cart.shipping_address.province.should == 'MI'
+          @cart.shipping_address.postal_code.should == '45637'
+          @cart.shipping_address.country.should == 'US'
+          @cart.email.should == 'bugsbunny@gmail.com'  
+          @cart.phone.should == '2314567890'
         end
+      end
+
+      context 'paying for cart' do
       end
     end
   end

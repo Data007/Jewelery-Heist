@@ -12,6 +12,8 @@ class Address
   embedded_in :user
   embedded_in :order
 
+  validates :address_1, presence: {message: "Address line 1 can't be blank."}
+
   def to_single_line
     address  = "#{address_1}, "
     address += "#{address_2}, " if address_2.present?
