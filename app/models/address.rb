@@ -14,6 +14,7 @@ class Address
 
   validates :address_1, presence: {message: "Address line 1 can't be blank."}
   validates :city, presence: true
+  validates :province, presence: {message: "State or province can't be blank."}
 
   def to_single_line
     address  = "#{address_1}, "
