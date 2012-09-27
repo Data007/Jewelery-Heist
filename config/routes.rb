@@ -164,7 +164,7 @@ DragonHoardRails32::Application.routes.draw do
   resource  :cart do
     resources :line_items, controller: 'carts/line_items'
   end
-  match 'cart/checkout' => 'cart#checkout', as: :checkout
+  match 'carts/checkout' => 'carts#checkout', as: :checkout
 
   resources :users do
     collection do
