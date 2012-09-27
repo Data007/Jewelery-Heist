@@ -101,7 +101,12 @@ describe 'Shopping Cart' do
           page.should_not have_content("Postal Code can't be blank")
         end
 
-        it 'validates shipping address country'
+        it 'validates shipping address country' do
+          page.should have_content("Country can't be blank")
+          fill_in 'cart_shipping_address_country', with: 'US'
+          click_button 'Save'
+          page.should_not have_content("Country can't be blank")
+        end
         it 'validates email'
         it 'validates phone'
         it 'validates first name'
