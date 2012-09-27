@@ -65,6 +65,35 @@ describe 'Shopping Cart' do
         page.should have_content(@cart.line_items.first.quantity)
         page.should have_link('Delete')
       end
+
+      context 'starts the checkout process' do
+        before do
+          click_link 'Check Out'
+          current_url == url_for([:checkout])
+        end
+
+        it 'fills in the Shipping Address, name, email, phone' do
+          within('.shipping') do
+            fill_in 'cart_name', with: 'test_name'
+            fill_in 'cart_address', with: '3456 S. gigiidy RD'
+            fill_in 'cart_city', with: 'goo'
+            fill_in 'cart_province', with: 'MI'
+            fill_in 'cart_postal_code', with: '45637'
+            fill_in 'cart_country', with: 'US'
+            fill_in 'cart_email', with: 'bugsbunny@gmail.com'
+            fill_in 'cart_phone', with: '2314567890'
+
+            click_button 'Save'
+            @cart.address.address_1.should == '3456 S. gigiidy RD'
+            @cart.address.city.should == 'goo'
+            @cart.address.province.should == 'MI'
+            @cart.address.postal_code.should == '45637'
+            @cart.address.country.should == 'US'
+            @cart.email.should == 'bugsbunny@gmail.com'  
+            @cart.phone.should == '2314567890'
+          end
+        end
+      end
     end
   end
 

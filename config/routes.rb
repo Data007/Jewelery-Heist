@@ -164,6 +164,7 @@ DragonHoardRails32::Application.routes.draw do
   resource  :cart do
     resources :line_items, controller: 'carts/line_items'
   end
+  match 'cart/checkout' => 'cart#checkout', as: :checkout
 
   resources :users do
     collection do
@@ -177,12 +178,6 @@ DragonHoardRails32::Application.routes.draw do
     resources :credit_cards, controller: 'users/credit_cards'
   end
   match '/profile' => 'users#profile', as: :profile
-  
-  match '/orders/:id/checkout' => 'orders#checkout', method: :get, as: :checkout
-  match '/orders/:id/shipping' => 'orders#shipping', method: :get, as: :shipping
-  match '/orders/:id/addressed' => 'orders#addressed', method: :get, as: :addressed
-  match '/orders/:id/pay' => 'orders#pay', method: :post, as: :pay
-  match '/orders/:id/complete' => 'orders#complete', method: :post, as: :complete
   
   resources :orders do
     member do
