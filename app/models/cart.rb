@@ -14,4 +14,7 @@ class Cart
   embeds_one  :shipping_address#, cascade_callbacks: true
 
   validates :email, presence: true, format: {with: /^\w+[\w\+\-.]+@[\w\-.]+.[\w]{2,4}$/, message: "%{value} is not a proper email"}, if: 'current_stage.present?'
+
+  validates :phone, presence: true, if: 'current_stage.present?'
+  validates :first_name, presence: {message: "First Name can't be blank"}, if: 'current_stage.present?'
 end

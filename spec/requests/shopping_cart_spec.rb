@@ -120,8 +120,20 @@ describe 'Shopping Cart' do
           page.should_not have_content("Email can't be blank")
         end
 
-        it 'validates phone'
-        it 'validates first name'
+        it 'validates phone' do
+          page.should have_content("Phone can't be blank")
+          fill_in 'cart_phone', with: '1'
+          click_button 'Save'
+          page.should_not have_content("Phone can't be blank")         
+        end
+
+        it 'validates first name' do
+          page.should have_content("First Name can't be blank")
+          fill_in 'cart_first_name', with: 'george'
+          click_button 'Save'
+          page.should_not have_content("First Name can't be blank")
+        end
+
         it 'validates last name'
 
         it 'fills in the Shipping Address, name, email, phone' do
