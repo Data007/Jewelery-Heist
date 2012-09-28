@@ -17,4 +17,5 @@ class Cart
 
   validates :phone, presence: true, if: 'current_stage.present?'
   validates :first_name, presence: {message: "First Name can't be blank"}, if: 'current_stage.present?'
+  validates :last_name, presence: {message: "Last Name can't be blank"}, if: 'current_stage.present?'
 end

@@ -134,7 +134,12 @@ describe 'Shopping Cart' do
           page.should_not have_content("First Name can't be blank")
         end
 
-        it 'validates last name'
+        it 'validates last name' do
+          page.should have_content("Last Name can't be blank")
+          fill_in 'cart_last_name', with: 'omallie'
+          click_button 'Save'
+          page.should_not have_content("Last Name can't be blank")
+        end
 
         it 'fills in the Shipping Address, name, email, phone' do
           fill_in 'cart_first_name', with: 'Anonymous'
