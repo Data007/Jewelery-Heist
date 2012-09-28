@@ -124,6 +124,13 @@ describe 'Shopping Cart' do
           page.should have_content("Phone can't be blank")
           fill_in 'cart_phone', with: '1'
           click_button 'Save'
+
+          page.should have_content('1 is not a proper phone number. Example: (231)775-1289')
+          page.should_not have_content("Phone can't be blank")
+
+          fill_in 'cart_phone', with: '2319203456'
+          click_button 'Save'
+          page.should_not have_content('1 is not a proper phone number, Example: (231)775-1289')
           page.should_not have_content("Phone can't be blank")         
         end
 
