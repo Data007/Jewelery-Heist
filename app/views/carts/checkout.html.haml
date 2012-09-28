@@ -5,6 +5,7 @@
   = error_messages_for @cart.shipping_address
 
   = hidden_field_tag :current_step, 'checkout'
+  = cart_form.hidden_field :current_step, value: 'payments'
 
   %fieldset
     %legend Personal Information

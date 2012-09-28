@@ -107,7 +107,19 @@ describe 'Shopping Cart' do
           click_button 'Save'
           page.should_not have_content("Country can't be blank")
         end
-        it 'validates email'
+
+        it 'validates email' do
+          page.should have_content("Email can't be blank")
+          fill_in 'cart_email', with: 'd'
+          click_button 'Save'
+          page.should have_content("d is not a proper email")
+          page.should_not have_content("Email can't be blank")
+          fill_in 'cart_email', with: 'thejoker@deepwoodsbrigade.com'
+          click_button 'Save'
+          page.should_not have_content("d is not a proper email")
+          page.should_not have_content("Email can't be blank")
+        end
+
         it 'validates phone'
         it 'validates first name'
         it 'validates last name'
