@@ -180,6 +180,7 @@ describe 'Shopping Cart' do
   context 'as a registered user' do
     before do
       @user = FactoryGirl.create :user
+      @address = FactoryGirl.create :address, user: @user
     end
 
     context 'with an item in an anonymous cart' do
@@ -197,6 +198,41 @@ describe 'Shopping Cart' do
 
         @cart.reload
         @cart.user.should == @user
+      end
+
+      context 'starts the checkout process' do
+        before do
+          login_with_dh('dh@example.com', 'password')
+          visit url_for([:account])
+          click_link 'Check Out'
+          current_url == url_for([:checkout])
+        end
+
+        it 'fills in the Shipping Address, name, email, phone' do
+          fill_in 'cart_first_name', with: @user.first_name
+          fill_in 'cart_last_name', with:  @user.last_name
+          fill_in 'cart_shipping_address_address_1', with: @user.addresses.first.address_1
+          fill_in 'cart_shipping_address_city', with: @user.addresses.first.city
+          fill_in 'cart_shipping_address_province', with: @user.addresses.first.province
+          fill_in 'cart_shipping_address_postal_code', with: @user.addresses.first.postal_code
+          fill_in 'cart_shipping_address_country', with: @user.addresses.first.country
+          fill_in 'cart_email', with: @user.email
+          fill_in 'cart_phone', with: '2314567890'
+
+          click_button 'Save'
+
+          address = @user.addresses.first
+          @cart.reload
+          @cart.shipping_address.address_1.should == address.address_1
+          @cart.shipping_address.city.should == address.city
+          @cart.shipping_address.province.should == address.province
+          @cart.shipping_address.postal_code.should == address.postal_code
+          @cart.shipping_address.country.should == address.country
+          @cart.email.should == @user.email
+          @cart.phone.should == '2314567890'
+
+          @cart.user.should == @user
+        end
       end
       
       context 'with a previous cart' do
