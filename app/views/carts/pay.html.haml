@@ -1,19 +1,19 @@
-%h1 Cart Checkout
+%h1 Cart Payment
 
 = form_for [@cart] do |cart_form|
   = error_messages_for @cart
-  = error_messages_for @cart.shipping_address
+  = error_messages_for @cart.payment
 
-  = hidden_field_tag :current_stage, 'checkout'
-  = cart_form.hidden_field :current_stage, value: 'pay'
+  = hidden_field_tag :current_step, 'payment'
+  = cart_form.hidden_field :current_step, value: 'summary'
 
   %fieldset
-    %legend Personal Information
+    %legend Credit Card Information
     
-    = cart_form.text_field :first_name, placeholder: 'First Name'
-    = cart_form.text_field :last_name, placeholder: 'Last Name'
+    = cart_form.text_field :first_name, placeholder: 'Cardholder Name'
+    = cart_form.text_field :last_name, placeholder: 'Card Number'
 
-  = cart_form.fields_for :shipping_address do |address_form|
+  = cart_form.fields_for :billing_address do |address_form|
     %fieldset.column
       %legend Shipping Address Information
 
@@ -23,11 +23,5 @@
       = address_form.text_field :province, placeholder: 'State or Province'
       = address_form.text_field :postal_code, placeholder: 'Zip Code or Postal Code'
       = address_form.text_field :country, placeholder: 'Country'
-
-  %fieldset
-    %legend Contact Information
-
-    = cart_form.text_field :email, placeholder: 'Email'
-    = cart_form.text_field :phone, placeholder: 'Phone Number'
 
   = cart_form.submit 'Save'

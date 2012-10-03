@@ -161,6 +161,8 @@ describe 'Shopping Cart' do
 
           click_button 'Save'
 
+          current_url.should == url_for([:new, :cart, :payments])
+
           @cart.reload
           @cart.shipping_address.address_1.should == '3456 S. gigiidy RD'
           @cart.shipping_address.city.should == 'goo'
@@ -169,10 +171,47 @@ describe 'Shopping Cart' do
           @cart.shipping_address.country.should == 'US'
           @cart.email.should == 'bugsbunny@gmail.com'  
           @cart.phone.should == '2314567890'
+          @cart.current_stage.should == 'payment'
         end
-      end
 
-      context 'paying for cart' do
+        context 'paying for cart' do
+          before do
+            fill_in 'cart_first_name', with: 'Anonymous'
+            fill_in 'cart_last_name', with: 'User'
+            fill_in 'cart_shipping_address_address_1', with: '3456 S. gigiidy RD'
+            fill_in 'cart_shipping_address_city', with: 'goo'
+            fill_in 'cart_shipping_address_province', with: 'MI'
+            fill_in 'cart_shipping_address_postal_code', with: '45637'
+            fill_in 'cart_shipping_address_country', with: 'US'
+            fill_in 'cart_email', with: 'bugsbunny@gmail.com'
+            fill_in 'cart_phone', with: '2314567890'
+
+            click_button 'Save'
+          end
+
+          context 'and validating credit card' do
+            before do
+              click_button 'Pay'
+            end
+
+            it 'validates number' do
+              page.should have_content("Card number can't be blank")
+              fill_in 'cart_credit_card_number', with: '4111111111111111'
+              click_button 'Pay'
+              page.should_not have_content("Card number can't be blank")
+            end
+
+            it 'validates month'
+            it 'validates cvv'
+            it 'validates name'
+            it 'validates billing address'
+          end
+
+          context 'with valid card' do
+            it 'processes payment'
+            it 'shows an order summary'
+          end
+        end
       end
     end
   end

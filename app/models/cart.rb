@@ -11,7 +11,9 @@ class Cart
 
   belongs_to  :user
   embeds_many :line_items
-  embeds_one  :shipping_address#, cascade_callbacks: true
+  embeds_one  :payment
+  embeds_one  :shipping_address
+  embeds_one  :billing_address
 
   validates :email, presence: true, format: {with: /^\w+[\w\+\-.]+@[\w\-.]+.[\w]{2,4}$/, message: "%{value} is not a proper email"}, if: 'current_stage.present?'
 
