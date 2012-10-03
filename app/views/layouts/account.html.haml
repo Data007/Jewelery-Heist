@@ -39,7 +39,7 @@
               - if @current_user
                 %li= link_to 'Account', [:account]
                 %li= link_to 'Logout', [:logout]
-                %li= link_to 'Check Out', [:checkout]
+                %li= link_to 'Check Out', [:cart]
               - else
                 %li.dropdown
                   %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
