@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe Cart do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context ' with a cart' do
+    before do
+      @cart = FactoryGirl.create :cart
+    end
+
+    it 'validates handling method' do
+      @cart.handling.should == 5
+    end
+  end
 end
