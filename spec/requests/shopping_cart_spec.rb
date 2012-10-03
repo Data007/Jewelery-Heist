@@ -66,9 +66,23 @@ describe 'Shopping Cart' do
         page.should have_link('Delete')
       end
 
+      it'views the cart when starting shipping' do
+        visit url_for([:root])
+
+        click_link 'Check Out'
+        current_url.should == url_for([:cart])
+
+        page.should have_content(@item.name)
+        page.should have_content(@item.price)
+
+        click_link 'Next'
+        current_url.should == url_for([:checkout])
+      end
+
       context 'starts the checkout process' do
         before do
           click_link 'Check Out'
+          click_link 'Next'
           current_url == url_for([:checkout])
           click_button 'Save'
         end
