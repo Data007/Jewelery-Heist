@@ -66,16 +66,6 @@ describe 'Shopping Cart' do
         page.should have_link('Delete')
       end
 
-      it'views the cart when starting shipping' do
-        visit url_for([:root])
-
-        click_link 'Check Out'
-        current_url.should == url_for([:checkout])
-
-        page.should have_content(@item.name)
-        page.should have_content(@item.price)
-      end
-
       context 'starts the checkout process' do
         before do
           click_link 'Check Out'
@@ -183,6 +173,16 @@ describe 'Shopping Cart' do
           @cart.email.should == 'bugsbunny@gmail.com'  
           @cart.phone.should == '2314567890'
           @cart.current_stage.should == 'payment'
+        end
+
+        it'views the cart when starting shipping' do
+          visit url_for([:root])
+
+          click_link 'Check Out'
+          current_url.should == url_for([:checkout])
+
+          page.should have_content(@item.name)
+          page.should have_content(@item.price)
         end
 
         context 'paying for cart' do
