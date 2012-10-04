@@ -39,7 +39,7 @@
               - if @current_user
                 %li= link_to 'Account', [:account]
                 %li= link_to 'Logout', [:logout]
-                %li= link_to 'Check Out', [:login]
+                %li= link_to 'Check Out', [:checkout]
                 %li= link_to "Cart(#{@cart.line_items.count})", [:cart]
               - else
                 %li= link_to "Cart(#{@cart.line_items.count})", [:cart]

@@ -253,8 +253,8 @@ describe 'Shopping Cart' do
       context 'starts the checkout process' do
         before do
           login_with_dh('dh@example.com', 'password')
-          visit url_for([:checkout])
-          #click_link 'Check Out'
+          visit url_for([:account])
+          click_link 'Check Out'
           current_url == url_for([:checkout])
         end
 
@@ -282,6 +282,11 @@ describe 'Shopping Cart' do
           @cart.phone.should == '2314567890'
 
           @cart.user.should == @user
+        end
+
+        it 'shows the cart in the check out process' do
+          page.should have_content(@item.name)
+          page.should have_content(@item.price)
         end
       end
       
