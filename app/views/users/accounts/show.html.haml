@@ -1,5 +1,5 @@
 - if @cart
-  = form_for @cart do
+  = form_for @cart do |cart_form|
     %legend You Current Shopping Cart
 
     %table#current-cart
@@ -21,6 +21,7 @@
             %td= line_item.quantity
             %td
               = link_to 'Remove'
+    = link_to 'Checkout', [:checkout]
 
 #order-history
   %h2 Order History

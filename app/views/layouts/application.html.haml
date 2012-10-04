@@ -36,11 +36,12 @@
               = submit_tag 'Search'
           .column.three.align-right
             %ul.nav
+              %li= link_to "Cart (#{@cart.line_items.count})", [:cart]
+              %li= link_to 'Check Out', [:checkout]
+
               - if @current_user
                 %li= link_to 'Account', [:account]
                 %li= link_to 'Logout', [:logout]
-                %li= link_to 'Check Out', [:login]
-                %li= link_to "Cart(#{@cart.line_items.count})", [:cart]
               - else
                 %li.dropdown
                   %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
@@ -48,8 +49,6 @@
                     %b.caret &nbsp;
                   %ul
                     %li= render partial: 'layouts/login_form'
-                    %li= link_to 'Check Out', [:cart]
-                    %li= link_to "Cart(#{@cart.line_items.count})", [:cart]
         %nav.subnavbar.fixed-top.column.row
           %ul.nav
             %li= link_to 'Jewelery', [:items]

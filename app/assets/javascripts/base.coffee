@@ -1,1 +1,1 @@
-$('input', 'textare').placeholder()
+$('input', 'textarea').placeholder()

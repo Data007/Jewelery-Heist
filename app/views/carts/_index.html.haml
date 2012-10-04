@@ -1,18 +1,23 @@
-.cart
-  %legend Cart
-  %table
-    %thead  
+= form_for @cart do |cart_form|
+  %legend You Current Shopping Cart
+
+  %table#current-cart
+    %thead
       %tr
-        %th Name
+        %th &nbsp;
+        %th Description
         %th Price
         %th Quantity
         %th &nbsp;
-      %tbody
-        - @cart.line_items.each do |line_item|
-          %tr.item{id: dom_id(line_item)}
-            %td= line_item.item.name
-            %td= line_item.item.price
-            %td= line_item.item.quantity
-            %td
-              = link_to 'Delete'
-  %div= link_to 'Next', [:checkout]
+    %tbody.items
+      = cart_form.fields_for :line_items do |line_item_form|
+        - line_item = line_item_form.object
+        - item      = line_item.item
+        %tr.item
+          %td
+            = link_to image_tag(item.assets.by_position.first.image.url(:thumbnail)), item_path(item.pretty_id)
+          %td= truncate item.description, length: 25
+          %td= number_to_currency line_item.price
+          %td= line_item_form.select :quantity, options_for_select((1..20))
+          %td
+            = link_to 'Remove'
