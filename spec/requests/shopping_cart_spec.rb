@@ -70,19 +70,16 @@ describe 'Shopping Cart' do
         visit url_for([:root])
 
         click_link 'Check Out'
-        current_url.should == url_for([:cart])
+        current_url.should == url_for([:checkout])
 
         page.should have_content(@item.name)
         page.should have_content(@item.price)
-
-        click_link 'Next'
-        current_url.should == url_for([:checkout])
       end
 
       context 'starts the checkout process' do
         before do
           click_link 'Check Out'
-          click_link 'Next'
+          click_link 'Continue Check Out'
           current_url == url_for([:checkout])
           click_button 'Save'
         end

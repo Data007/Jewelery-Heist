@@ -42,14 +42,14 @@
                 %li= link_to 'Check Out', [:login]
                 %li= link_to "Cart(#{@cart.line_items.count})", [:cart]
               - else
+                %li= link_to "Cart(#{@cart.line_items.count})", [:cart]
+                %li= link_to 'Check Out', [:checkout]
                 %li.dropdown
                   %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
                     Login
                     %b.caret &nbsp;
                   %ul
                     %li= render partial: 'layouts/login_form'
-                    %li= link_to 'Check Out', [:cart]
-                    %li= link_to "Cart(#{@cart.line_items.count})", [:cart]
         %nav.subnavbar.fixed-top.column.row
           %ul.nav
             %li= link_to 'Jewelery', [:items]
