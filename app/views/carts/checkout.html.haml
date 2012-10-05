@@ -7,29 +7,45 @@
   = hidden_field_tag :current_stage, 'checkout'
   = cart_form.hidden_field :current_stage, value: 'pay'
 
-  %fieldset
-    %legend Personal Information
+  - if @current_user
+    = cart_form.hidden_field :first_name, value: @current_user.first_name
+    = cart_form.hidden_field :last_name, value: @current_user.last_name
+    = cart_form.hidden_field :email, value: @current_user.email
+    = cart_form.hidden_field :phone, value: @current_user.phones.first.number
+
+    %fieldset
+      %legend Shipping Address
+
+      - @current_user.addresses.each do |address|
+        .column.two
+          - cart_address_id = "cart_shipping_address_#{address.id}"
+          = cart_form.radio_button :shipping_address_id, address.id, id: cart_address_id
+          = cart_form.label :shipping_address, address.to_single_line, for: cart_address_id
+          
+  - else
+    %fieldset
+      %legend Personal Information
     
-    = cart_form.text_field :first_name, placeholder: 'First Name'
-    = cart_form.text_field :last_name, placeholder: 'Last Name'
+      = cart_form.text_field :first_name, placeholder: 'First Name'
+      = cart_form.text_field :last_name, placeholder: 'Last Name'
 
-  = cart_form.fields_for :shipping_address do |address_form|
-    %fieldset.column
-      %legend Shipping Address Information
+    = cart_form.fields_for :shipping_address do |address_form|
+      %fieldset.column
+        %legend Shipping Address Information
 
-      = address_form.text_field :address_1, placeholder: 'Line 1'
-      = address_form.text_field :address_2, placeholder: 'Line 2'
-      = address_form.text_field :city, placeholder: 'City'
-      = address_form.text_field :province, placeholder: 'State or Province'
-      = address_form.text_field :postal_code, placeholder: 'Zip Code or Postal Code'
-      = address_form.text_field :country, placeholder: 'Country'
+        = address_form.text_field :address_1, placeholder: 'Line 1'
+        = address_form.text_field :address_2, placeholder: 'Line 2'
+        = address_form.text_field :city, placeholder: 'City'
+        = address_form.text_field :province, placeholder: 'State or Province'
+        = address_form.text_field :postal_code, placeholder: 'Zip Code or Postal Code'
+        = address_form.text_field :country, placeholder: 'Country'
 
-  %fieldset
-    %legend Contact Information
+      %fieldset
+        %legend Contact Information
 
-    = cart_form.text_field :email, placeholder: 'Email'
-    = cart_form.text_field :phone, placeholder: 'Phone Number'
+        = cart_form.text_field :email, placeholder: 'Email'
+        = cart_form.text_field :phone, placeholder: 'Phone Number'
 
-  = cart_form.submit 'Save'
+  = cart_form.submit 'Next'
 
 = render partial: 'index'

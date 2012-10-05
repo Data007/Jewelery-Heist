@@ -19,6 +19,7 @@ FactoryGirl.define do
 
       factory :web_user_with_address do
         after(:create) do |web_user, evaluator|
+          FactoryGirl.create :phone, user: web_user
           FactoryGirl.create :address, user: web_user
         end
       end

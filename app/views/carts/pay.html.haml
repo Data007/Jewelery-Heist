@@ -1,10 +1,10 @@
 %h1 Cart Payment
 
-= form_for [:process, @cart] do |cart_form|
+= form_for [@cart] do |cart_form|
   = error_messages_for @cart
   = error_messages_for @cart.payment
 
-  = hidden_field_tag :current_step, 'payment'
+  = hidden_field_tag :current_step, 'pay'
   = cart_form.hidden_field :current_step, value: 'summary'
 
   %fieldset

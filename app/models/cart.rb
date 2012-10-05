@@ -9,6 +9,8 @@ class Cart
   field :phone
   field :current_stage
 
+  attr_accessor :shipping_address_id
+
   belongs_to  :user
   embeds_many :line_items
   embeds_one  :payment
@@ -23,9 +25,19 @@ class Cart
   validates :first_name, presence: {message: "First Name can't be blank"}, if: 'current_stage.present?'
   validates :last_name, presence: {message: "Last Name can't be blank"}, if: 'current_stage.present?'
 
+  before_save :set_shipping_address
 
-  public
-    def handling
-      return 5
+  def handling
+    return 5
+  end
+
+  private
+    def set_shipping_address
+      return true unless shipping_address_id
+
+      address = User.all.map(&:addresses).flatten.compact.select {|address| address.id.to_s == shipping_address_id}.first
+      self.shipping_address = address if address
+      binding.pry
+      save
     end
 end

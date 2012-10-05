@@ -229,8 +229,8 @@ describe 'Shopping Cart' do
 
   context 'as a registered user' do
     before do
-      @user = FactoryGirl.create :user
-      @address = FactoryGirl.create :address, user: @user
+      @user    = FactoryGirl.create :web_user_with_address
+      @address = @user.addresses.first
     end
 
     context 'with an item in an anonymous cart' do
@@ -272,6 +272,15 @@ describe 'Shopping Cart' do
           page.should_not have_content ('cart_shipping_address_country')
           page.should_not have_content ('cart_email')
           page.should_not have_content ('cart_phone')
+
+          page.should have_content(@address.to_single_line)
+          choose("cart_shipping_address_#{@address.id}")
+          click_button 'Next'
+
+          current_url.should == url_for([:pay])
+
+          @cart.reload
+          @cart.shipping_address.should == @address
         end
       end
       
