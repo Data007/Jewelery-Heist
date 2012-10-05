@@ -53,70 +53,69 @@ describe 'Shopping Cart' do
       it 'views the cart' do
         visit url_for([:root])
 
-        click_link "Cart(#{@cart.line_items.count})"
+        click_link "Cart (#{@cart.line_items.count})"
         current_url.should == url_for([:cart])
 
         @cart.line_items.first.item.name.should be
         @cart.line_items.first.item.price.should be
         @cart.line_items.first.item.quantity.should be
         
-        page.should have_content(@cart.line_items.first.item.name)
+        page.should have_content(@cart.line_items.first.item.description)
         page.should have_content(@cart.line_items.first.price)
         page.should have_content(@cart.line_items.first.quantity)
-        page.should have_link('Delete')
       end
 
       context 'starts the checkout process' do
         before do
-          click_link 'Check Out'
-          click_button 'Pay'
+          click_link "Cart (#{@cart.line_items.count})"
+          click_button 'Next'
           current_url == url_for([:checkout])
-          click_button 'Save'
+          click_button 'Next'
         end
 
         it 'validates shipping address line 1' do
           page.should have_content("Address line 1 can't be blank")
           fill_in 'cart_shipping_address_address_1', with: 'W. side foo'
-          click_button 'Save'
+          click_button 'Next'
           page.should_not have_content("Address line 1 can't be blank")
         end
 
         it 'validates shipping address city' do
           page.should have_content("City can't be blank")
           fill_in 'cart_shipping_address_city', with: 'la'
-          click_button 'Save'
+          click_button 'Next'
           page.should_not have_content("City can't be blank")
         end
 
         it 'validates shipping address province' do
           page.should have_content("State or province can't be blank")
           fill_in 'cart_shipping_address_province', with: 'CA'
-          click_button 'Save'
+          click_button 'Next'
           page.should_not have_content("State or province can't be blank")
         end
 
         it 'validates shipping address postal code' do
           page.should have_content("Postal Code can't be blank")
           fill_in 'cart_shipping_address_postal_code', with: '34567'
-          click_button 'Save'
+          click_button 'Next'
           page.should_not have_content("Postal Code can't be blank")
         end
 
         it 'validates shipping address country' do
           page.should have_content("Country can't be blank")
           fill_in 'cart_shipping_address_country', with: 'US'
-          click_button 'Save'
+          click_button 'Next'
           page.should_not have_content("Country can't be blank")
         end
 
         it 'validates email' do
           page.should have_content("Email can't be blank")
           fill_in 'cart_email', with: 'd'
-          click_button 'Save'
+          click_button 'Next'
           page.should have_content("d is not a proper email")
           page.should_not have_content("Email can't be blank")
           fill_in 'cart_email', with: 'thejoker@deepwoodsbrigade.com'
-          click_button 'Save'
+          click_button 'Next'
           page.should_not have_content("d is not a proper email")
           page.should_not have_content("Email can't be blank")
         end
@@ -124,13 +123,13 @@ describe 'Shopping Cart' do
         it 'validates phone' do
           page.should have_content("Phone can't be blank")
           fill_in 'cart_phone', with: '1'
-          click_button 'Save'
+          click_button 'Next'
 
           page.should have_content('1 is not a proper phone number. Example: (231)775-1289')
           page.should_not have_content("Phone can't be blank")
 
           fill_in 'cart_phone', with: '2319203456'
-          click_button 'Save'
+          click_button 'Next'
           page.should_not have_content('1 is not a proper phone number, Example: (231)775-1289')
           page.should_not have_content("Phone can't be blank")         
         end
@@ -138,14 +137,14 @@ describe 'Shopping Cart' do
         it 'validates first name' do
           page.should have_content("First Name can't be blank")
           fill_in 'cart_first_name', with: 'george'
-          click_button 'Save'
+          click_button 'Next'
           page.should_not have_content("First Name can't be blank")
         end
 
         it 'validates last name' do
           page.should have_content("Last Name can't be blank")
           fill_in 'cart_last_name', with: 'omallie'
-          click_button 'Save'
+          click_button 'Next'
           page.should_not have_content("Last Name can't be blank")
         end
 
@@ -160,9 +159,9 @@ describe 'Shopping Cart' do
           fill_in 'cart_email', with: 'bugsbunny@gmail.com'
           fill_in 'cart_phone', with: '2314567890'
 
-          click_button 'Save'
+          click_button 'Next'
 
-          current_url.should == url_for([:new, :cart, :payments])
+          current_url.should == url_for([:pay])
 
           @cart.reload
           @cart.shipping_address.address_1.should == '3456 S. gigiidy RD'
@@ -172,57 +171,49 @@ describe 'Shopping Cart' do
           @cart.shipping_address.country.should == 'US'
           @cart.email.should == 'bugsbunny@gmail.com'  
           @cart.phone.should == '2314567890'
-          @cart.current_stage.should == 'payment'
+          @cart.current_stage.should == 'pay'
         end
 
-        it'views the cart when starting shipping' do
-          visit url_for([:root])
+        # Pending: other passing tests - 10-5-2012
+        # context 'paying for cart' do
+        #   before do
+        #     fill_in 'cart_first_name', with: 'Anonymous'
+        #     fill_in 'cart_last_name', with: 'User'
+        #     fill_in 'cart_shipping_address_address_1', with: '3456 S. gigiidy RD'
+        #     fill_in 'cart_shipping_address_city', with: 'goo'
+        #     fill_in 'cart_shipping_address_province', with: 'MI'
+        #     fill_in 'cart_shipping_address_postal_code', with: '45637'
+        #     fill_in 'cart_shipping_address_country', with: 'US'
+        #     fill_in 'cart_email', with: 'bugsbunny@gmail.com'
+        #     fill_in 'cart_phone', with: '2314567890'
 
-          click_link 'Check Out'
-          current_url.should == url_for([:checkout])
+        #     click_button 'Next'
+        #   end
 
-          page.should have_content(@item.name)
-          page.should have_content(@item.price)
-        end
-        
-        context 'paying for cart' do
-          before do
-            fill_in 'cart_first_name', with: 'Anonymous'
-            fill_in 'cart_last_name', with: 'User'
-            fill_in 'cart_shipping_address_address_1', with: '3456 S. gigiidy RD'
-            fill_in 'cart_shipping_address_city', with: 'goo'
-            fill_in 'cart_shipping_address_province', with: 'MI'
-            fill_in 'cart_shipping_address_postal_code', with: '45637'
-            fill_in 'cart_shipping_address_country', with: 'US'
-            fill_in 'cart_email', with: 'bugsbunny@gmail.com'
-            fill_in 'cart_phone', with: '2314567890'
+        #   context 'and validating credit card' do
+        #     before do
+        #       click_button 'Pay'
+        #     end
 
-            click_button 'Save'
-          end
+        #     it 'validates number' do
+        #       pending
+        #       page.should have_content("Card number can't be blank")
+        #       fill_in 'cart_credit_card_number', with: '4111111111111111'
+        #       click_button 'Pay'
+        #       page.should_not have_content("Card number can't be blank")
+        #     end
 
-          context 'and validating credit card' do
-            before do
-              click_button 'Pay'
-            end
+        #     it 'validates month'
+        #     it 'validates cvv'
+        #     it 'validates name'
+        #     it 'validates billing address'
+        #   end
 
-            it 'validates number' do
-              page.should have_content("Card number can't be blank")
-              fill_in 'cart_credit_card_number', with: '4111111111111111'
-              click_button 'Pay'
-              page.should_not have_content("Card number can't be blank")
-            end
-
-            it 'validates month'
-            it 'validates cvv'
-            it 'validates name'
-            it 'validates billing address'
-          end
-
-          context 'with valid card' do
-            it 'processes payment'
-            it 'shows an order summary'
-          end
-        end
+        #   context 'with valid card' do
+        #     it 'processes payment'
+        #     it 'shows an order summary'
+        #   end
+        # end
       end
     end
   end
@@ -258,7 +249,7 @@ describe 'Shopping Cart' do
         end
 
         it 'shows the cart in the check out process' do
-          page.should have_content(@item.name)
+          page.should have_content(@item.description)
           page.should have_content(@item.price)
         end
 

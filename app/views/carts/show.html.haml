@@ -13,6 +13,10 @@
         %th &nbsp;
     %tbody.items
       = cart_form.fields_for :line_items do |line_item_form|
+
+        = hidden_field_tag :current_stage, 'show'
+        = cart_form.hidden_field :current_stage, value: 'checkout'
+
         - line_item = line_item_form.object
         - item      = line_item.item
         %tr.item
@@ -23,4 +27,4 @@
           %td= line_item_form.select :quantity, options_for_select((1..20))
           %td
             = link_to 'Remove'
-  = cart_form.submit 'Checkout'
+  = cart_form.submit 'Next'
