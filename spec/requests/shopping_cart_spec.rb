@@ -66,19 +66,6 @@ describe 'Shopping Cart' do
         page.should have_link('Delete')
       end
 
-      it'views the cart when starting shipping' do
-        visit url_for([:root])
-
-        click_link 'Check Out'
-        current_url.should == url_for([:cart])
-
-        page.should have_content(@item.name)
-        page.should have_content(@item.price)
-
-        click_link 'Next'
-        current_url.should == url_for([:checkout])
-      end
-
       context 'starts the checkout process' do
         before do
           click_link 'Check Out'
@@ -188,6 +175,16 @@ describe 'Shopping Cart' do
           @cart.current_stage.should == 'payment'
         end
 
+        it'views the cart when starting shipping' do
+          visit url_for([:root])
+
+          click_link 'Check Out'
+          current_url.should == url_for([:checkout])
+
+          page.should have_content(@item.name)
+          page.should have_content(@item.price)
+        end
+
         context 'paying for cart' do
           before do
             fill_in 'cart_first_name', with: 'Anonymous'
@@ -256,8 +253,8 @@ describe 'Shopping Cart' do
       context 'starts the checkout process' do
         before do
           login_with_dh('dh@example.com', 'password')
-          visit url_for([:checkout])
-          #click_link 'Check Out'
+          visit url_for([:account])
+          click_link 'Check Out'
           current_url == url_for([:checkout])
         end
 
@@ -285,6 +282,11 @@ describe 'Shopping Cart' do
           @cart.phone.should == '2314567890'
 
           @cart.user.should == @user
+        end
+
+        it 'shows the cart in the check out process' do
+          page.should have_content(@item.name)
+          page.should have_content(@item.price)
         end
       end
       
