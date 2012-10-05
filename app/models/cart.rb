@@ -35,9 +35,11 @@ class Cart
     def set_shipping_address
       return true unless shipping_address_id
 
-      address = User.all.map(&:addresses).flatten.compact.select {|address| address.id.to_s == shipping_address_id}.first
-      self.shipping_address = address if address
-      binding.pry
-      save
+      address = User.all
+        .map(&:addresses).flatten.compact
+        .select do |address|
+          address.id.to_s == shipping_address_id
+        end.first
+      self.shipping_address = address.clone if address
     end
 end

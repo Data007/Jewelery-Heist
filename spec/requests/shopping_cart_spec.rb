@@ -280,7 +280,7 @@ describe 'Shopping Cart' do
           current_url.should == url_for([:pay])
 
           @cart.reload
-          @cart.shipping_address.should == @address
+          @cart.shipping_address.to_single_line.should == @address.to_single_line
         end
       end
       
