@@ -12,7 +12,7 @@ private
     session[:cart_id] = @cart.id
 
     if current_user
-      if current_user.cart
+      if current_user.cart && current_user.cart.id != session[:cart_id]
         current_user.cart.line_items.each do |li|
           li.cart = @cart
           li.save

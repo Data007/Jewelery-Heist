@@ -82,7 +82,7 @@ describe 'Shopping Cart' do
       context 'starts the checkout process' do
         before do
           click_link 'Check Out'
-          click_link 'Next'
+          click_button 'Pay'
           current_url == url_for([:checkout])
           click_button 'Save'
         end
