@@ -4,6 +4,7 @@ describe 'Shopping Cart' do
   before do
     @item = FactoryGirl.create :item
     @item_2 = FactoryGirl.create :item, name: 'item two', price: 50
+    @item_backorder = FactoryGirl.create :item, name: 'item back order', price: 60, quantity: 0
   end
 
   context 'as an Anonymous User' do
@@ -17,7 +18,6 @@ describe 'Shopping Cart' do
       cart.line_items.count.should == 1
       cart.line_items.map(&:item).include?(@item).should be
     end
-
 
     context 'with an item in a cart' do
       before do
@@ -65,6 +65,28 @@ describe 'Shopping Cart' do
         page.should have_content(@cart.line_items.first.quantity)
       end
 
+      it 'views the back order confirmation' do
+        visit url_for([:root])
+        @cart.line_items = nil
+        @cart.reload
+
+        visit item_path(@item_backorder.pretty_id)
+        click_button 'Add to Cart'
+        @cart.reload
+        click_link "Cart (#{@cart.line_items.count})"
+        current_url.should == url_for([:cart])
+
+        page.should have_content(@item_backorder.backorder_notes)
+        
+        @cart.line_items = nil
+        visit item_path(@item.pretty_id)
+        click_button 'Add to Cart'
+        @cart.reload
+        click_link "Cart (#{@cart.line_items.count})"
+
+        page.should_not have_content(@item.backorder_notes)
+      end
+  
       context 'starts the checkout process' do
         before do
           click_link "Cart (#{@cart.line_items.count})"
