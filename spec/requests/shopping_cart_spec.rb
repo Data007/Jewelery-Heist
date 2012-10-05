@@ -174,46 +174,45 @@ describe 'Shopping Cart' do
           @cart.current_stage.should == 'pay'
         end
 
-        # Pending: other passing tests - 10-5-2012
-        # context 'paying for cart' do
-        #   before do
-        #     fill_in 'cart_first_name', with: 'Anonymous'
-        #     fill_in 'cart_last_name', with: 'User'
-        #     fill_in 'cart_shipping_address_address_1', with: '3456 S. gigiidy RD'
-        #     fill_in 'cart_shipping_address_city', with: 'goo'
-        #     fill_in 'cart_shipping_address_province', with: 'MI'
-        #     fill_in 'cart_shipping_address_postal_code', with: '45637'
-        #     fill_in 'cart_shipping_address_country', with: 'US'
-        #     fill_in 'cart_email', with: 'bugsbunny@gmail.com'
-        #     fill_in 'cart_phone', with: '2314567890'
+        context 'paying for cart' do
+          before do
+            fill_in 'cart_first_name', with: 'Anonymous'
+            fill_in 'cart_last_name', with: 'User'
+            fill_in 'cart_shipping_address_address_1', with: '3456 S. gigiidy RD'
+            fill_in 'cart_shipping_address_city', with: 'goo'
+            fill_in 'cart_shipping_address_province', with: 'MI'
+            fill_in 'cart_shipping_address_postal_code', with: '45637'
+            fill_in 'cart_shipping_address_country', with: 'US'
+            fill_in 'cart_email', with: 'bugsbunny@gmail.com'
+            fill_in 'cart_phone', with: '2314567890'
 
-        #     click_button 'Next'
-        #   end
+            click_button 'Next'
+          end
 
-        #   context 'and validating credit card' do
-        #     before do
-        #       click_button 'Pay'
-        #     end
+          context 'and validating credit card' do
+            before do
+              click_button 'Pay'
+            end
 
-        #     it 'validates number' do
-        #       pending
-        #       page.should have_content("Card number can't be blank")
-        #       fill_in 'cart_credit_card_number', with: '4111111111111111'
-        #       click_button 'Pay'
-        #       page.should_not have_content("Card number can't be blank")
-        #     end
+            it 'validates number' do
+              pending
+              page.should have_content("Card number can't be blank")
+              fill_in 'cart_credit_card_number', with: '4111111111111111'
+              click_button 'Pay'
+              page.should_not have_content("Card number can't be blank")
+            end
 
-        #     it 'validates month'
-        #     it 'validates cvv'
-        #     it 'validates name'
-        #     it 'validates billing address'
-        #   end
+            it 'validates month'
+            it 'validates cvv'
+            it 'validates name'
+            it 'validates billing address'
+          end
 
-        #   context 'with valid card' do
-        #     it 'processes payment'
-        #     it 'shows an order summary'
-        #   end
-        # end
+          context 'with valid card' do
+            it 'processes payment'
+            it 'shows an order summary'
+          end
+        end
       end
     end
   end

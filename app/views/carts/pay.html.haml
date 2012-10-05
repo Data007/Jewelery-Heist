@@ -4,8 +4,8 @@
   = error_messages_for @cart
   = error_messages_for @cart.payment
 
-  = hidden_field_tag :current_step, 'pay'
-  = cart_form.hidden_field :current_step, value: 'summary'
+  = hidden_field_tag :current_stage, 'pay'
+  = cart_form.hidden_field :current_stage, value: 'summary'
 
   %fieldset
     %legend Credit Card Information
@@ -24,4 +24,6 @@
       = address_form.text_field :postal_code, placeholder: 'Zip Code or Postal Code'
       = address_form.text_field :country, placeholder: 'Country'
 
-  = cart_form.submit 'Process Payment'
+  = cart_form.submit 'Next'
+
+= render partial: 'index'
