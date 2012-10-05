@@ -29,7 +29,6 @@ class UsersController < ApplicationController
    # @user     = current_user
 
     #emails    = params[:user].delete(:emails)
-    #binding.pry
     #emails    = emails.collect {|(key,value)| value['address']}.flatten.reject(&:empty?).uniq
 
     #phones    = params[:user].delete(:phones)
