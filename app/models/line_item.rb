@@ -13,7 +13,7 @@ class LineItem
   field :name
   field :description
   field :quick_id
-  field :size
+  field :size,          type: Float
   field :custom_id
   field :item_id
 
@@ -44,7 +44,7 @@ class LineItem
   def validate_price
     unless is_quick_item?
       if price.blank?
-        self.price = variation.present? ? variation.price : 0
+        self.price = item.present? ? item.price : 0
       end
     end
 

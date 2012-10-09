@@ -32,6 +32,10 @@ class Cart
     return 5
   end
 
+  def add_item(item, options={})
+    line_items.create(options.merge!(item: (item.is_a?(Item) ? item : Item.find(item))))
+  end
+
   private
     def current_stage_progressing
       exclude_stages = ['show', 'checkout']
