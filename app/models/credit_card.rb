@@ -10,6 +10,7 @@ class CreditCard
 
   embedded_in :user
 
+  validate :number
   validate :custom_validate
   
   def custom_validate

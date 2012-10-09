@@ -14,6 +14,7 @@ class Cart
   belongs_to  :user
   embeds_many :line_items
   embeds_one  :payment
+  embeds_one  :credit_card
   embeds_one  :shipping_address
   embeds_one  :billing_address
 

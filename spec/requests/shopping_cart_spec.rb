@@ -213,11 +213,11 @@ describe 'Shopping Cart' do
 
           context 'and validating credit card' do
             before do
-              click_button 'Pay'
+              click_button 'Next'
+              click_button 'Next'
             end
 
             it 'validates number' do
-              pending
               page.should have_content("Card number can't be blank")
               fill_in 'cart_credit_card_number', with: '4111111111111111'
               click_button 'Pay'

@@ -3,6 +3,7 @@
 = form_for [@cart] do |cart_form|
   = error_messages_for @cart
   = error_messages_for @cart.payment
+  = error_messages_for @cart.credit_card
 
   = hidden_field_tag :current_stage, 'pay'
   = cart_form.hidden_field :current_stage, value: 'summary'
@@ -10,12 +11,14 @@
   %fieldset
     %legend Credit Card Information
     
-    = cart_form.text_field :first_name, placeholder: 'Cardholder Name'
-    = cart_form.text_field :last_name, placeholder: 'Card Number'
+    = cart_form.text_field :first_name, placeholder: 'First Name'
+    = cart_form.text_field :last_name, placeholder: 'Last Name'
+    = cart_form.fields_for :credit_card do |card_form|
+      = card_form.text_field :number, placeholder: 'Number'
 
   = cart_form.fields_for :billing_address do |address_form|
     %fieldset.column
-      %legend Shipping Address Information
+      %legend Billing Address Information
 
       = address_form.text_field :address_1, placeholder: 'Line 1'
       = address_form.text_field :address_2, placeholder: 'Line 2'
