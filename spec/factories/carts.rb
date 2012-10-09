@@ -9,7 +9,11 @@ FactoryGirl.define do
       phone      '1234567890'
 
       after(:create) do |cart, evaluator|
-        FactoryGirl.create :valid_shipping_address
+        address = FactoryGirl.build :shipping_address
+        cart.shipping_address = address
+
+        item = FactoryGirl.create :item
+        cart.add_item(item)
       end
     end
   end
