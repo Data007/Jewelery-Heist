@@ -198,22 +198,14 @@ describe 'Shopping Cart' do
 
         context 'paying for cart' do
           before do
-            fill_in 'cart_first_name', with: 'Anonymous'
-            fill_in 'cart_last_name', with: 'User'
-            fill_in 'cart_shipping_address_address_1', with: '3456 S. gigiidy RD'
-            fill_in 'cart_shipping_address_city', with: 'goo'
-            fill_in 'cart_shipping_address_province', with: 'MI'
-            fill_in 'cart_shipping_address_postal_code', with: '45637'
-            fill_in 'cart_shipping_address_country', with: 'US'
-            fill_in 'cart_email', with: 'bugsbunny@gmail.com'
-            fill_in 'cart_phone', with: '2314567890'
+            @cart = FactoryGirl.create :cart_ready_for_payment
+            visit url_for([:cart])
 
-            click_button 'Next'
+            current_url.should == url_for([:pay, :cart])
           end
 
           context 'and validating credit card' do
             before do
-              click_button 'Next'
               click_button 'Next'
             end
 
