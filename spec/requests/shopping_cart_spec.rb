@@ -214,8 +214,13 @@ describe 'Shopping Cart' do
               page.should_not have_content("Card number can't be blank")
             end
 
-            it 'validates month'
-            it 'validates cvv'
+            it 'validates cvv' do
+              page.should have_content("Cvv can't be blank")
+              fill_in 'cart_credit_card_cvv', with: '111'
+              click_button 'Next'
+              page.should_not have_content("Cvv can't be blank")
+            end
+
             it 'validates name'
             it 'validates billing address'
           end

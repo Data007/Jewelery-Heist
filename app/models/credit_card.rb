@@ -4,9 +4,10 @@ class CreditCard
   include Mongoid::Sequence
 
   field :number,   type: Integer
-  field :date
-  field :ccv_code
-  field :name_on_card
+  field :month
+  field :year
+  field :cvv
+  field :name
 
   embedded_in :user
 
