@@ -7,7 +7,7 @@ describe CreditCard do
   end
 
   it 'has a custom validation' do
-    ->{@card.update_attributes! ccv_code: ''}.should raise_error(Mongoid::Errors::Validations)
+    ->{@card.update_attributes! ccv: ''}.should raise_error(Mongoid::Errors::Validations)
   end
   pending 'Actual tests needed'
 end

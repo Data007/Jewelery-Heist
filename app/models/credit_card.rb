@@ -6,7 +6,7 @@ class CreditCard
   field :number,   type: Integer
   field :month
   field :year
-  field :cvv
+  field :ccv
   field :name
 
   embedded_in :user
@@ -15,8 +15,6 @@ class CreditCard
   validate :custom_validate
   
   def custom_validate
-    if self.ccv_code == ''  
-      errors.add(:number, "Number cannot be nil") 
-    end
+    errors.add(:number, "Number cannot be nil") unless self.ccv.present?
   end
 end
