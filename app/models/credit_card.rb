@@ -12,6 +12,7 @@ class CreditCard
   embedded_in :user
 
   validates :number, presence: true
+  validates :ccv, presence: true
   validate :custom_validate
   
   def custom_validate

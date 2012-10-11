@@ -16,7 +16,7 @@
     = cart_form.fields_for :credit_card do |card_form|
       = card_form.text_field :number, placeholder: 'Number'
       = card_form.select :month, options_for_select((1..12))
-      = card_form.text_field :cvv
+      = card_form.text_field :ccv
 
   = cart_form.fields_for :billing_address do |address_form|
     %fieldset.column
