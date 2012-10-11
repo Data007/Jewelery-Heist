@@ -13,12 +13,12 @@
       = cart_form.fields_for :line_items do |line_item_form|
         - line_item = line_item_form.object
         - item      = line_item.item
-        %tr.item
+        %tr.item{id: item.id}
           %td
             = link_to image_tag(item.assets.by_position.first.image.url(:thumbnail)), item_path(item.pretty_id)
           %td= truncate item.description, length: 25
           %td= number_to_currency line_item.price
           %td= line_item_form.select :quantity, options_for_select((1..20))
           %td
-            = link_to 'Remove'
+            = link_to 'Remove', cart_line_item_path(cart_id: @cart, id: line_item), method: :delete
   = cart_form.submit 'Next'
