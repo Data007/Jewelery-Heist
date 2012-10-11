@@ -65,6 +65,22 @@ describe 'Shopping Cart' do
         page.should have_content(@cart.line_items.first.quantity)
       end
 
+      it 'removes an item from the cart' do
+        visit url_for([:root])
+  
+        count = @cart.line_items.count
+        click_link "Cart (#{@cart.line_items.count})"
+        current_url.should == url_for([:cart])
+
+        within "##{@cart.line_items.first.item.id}" do
+          click_link 'Remove'
+        end
+
+        @cart.reload
+        @cart.line_items.count.should == count - 1
+      
+      end
+
       it 'views the back order confirmation' do
         visit url_for([:root])
         @cart.line_items = nil
