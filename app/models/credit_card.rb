@@ -4,18 +4,18 @@ class CreditCard
   include Mongoid::Sequence
 
   field :number,   type: Integer
-  field :date
-  field :ccv_code
-  field :name_on_card
+  field :month
+  field :year
+  field :ccv
+  field :name
 
   embedded_in :user
 
-  validate :number
+  validates :number, presence: true
+  validates :ccv, presence: true
   validate :custom_validate
   
   def custom_validate
-    if self.ccv_code == ''  
-      errors.add(:number, "Number cannot be nil") 
-    end
+    errors.add(:number, "Number cannot be nil") unless self.ccv.present?
   end
 end

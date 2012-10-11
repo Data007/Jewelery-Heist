@@ -214,10 +214,8 @@ describe 'Shopping Cart' do
 
         context 'paying for cart' do
           before do
-            @cart = FactoryGirl.create :cart_ready_for_payment
-            visit url_for([:cart])
-
-            current_url.should == url_for([:pay, :cart])
+            @cart = FactoryGirl.create :anonymous_cart_ready_for_payments
+            visit url_for([:pay])
           end
 
           context 'and validating credit card' do
@@ -226,14 +224,19 @@ describe 'Shopping Cart' do
             end
 
             it 'validates number' do
-              page.should have_content("Card number can't be blank")
+              page.should have_content("Number can't be blank")
               fill_in 'cart_credit_card_number', with: '4111111111111111'
-              click_button 'Pay'
+              click_button 'Next'
               page.should_not have_content("Card number can't be blank")
             end
 
-            it 'validates month'
-            it 'validates cvv'
+            it 'validates ccv' do
+              page.should have_content("Ccv can't be blank")
+              fill_in 'cart_credit_card_ccv', with: '111'
+              click_button 'Next'
+              page.should_not have_content("Ccv can't be blank")
+            end
+
             it 'validates name'
             it 'validates billing address'
           end

@@ -6,7 +6,7 @@ FactoryGirl.define do
     postal_code '6478'
     country 'US'
 
-    factory :valid_shipping_address do
+    factory :shipping_address do
     end
 
   end
