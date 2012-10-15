@@ -173,17 +173,17 @@ describe 'Shopping Cart' do
         end
 
         it 'validates first name' do
-          page.should have_content("First Name can't be blank")
+          page.should have_content("First name can't be blank")
           fill_in 'cart_first_name', with: 'george'
           click_button 'Next'
-          page.should_not have_content("First Name can't be blank")
+          page.should_not have_content("First name can't be blank")
         end
 
         it 'validates last name' do
-          page.should have_content("Last Name can't be blank")
+          page.should have_content("Last name can't be blank")
           fill_in 'cart_last_name', with: 'omallie'
           click_button 'Next'
-          page.should_not have_content("Last Name can't be blank")
+          page.should_not have_content("Last name can't be blank")
         end
 
         it 'fills in the Shipping Address, name, email, phone' do
@@ -225,6 +225,7 @@ describe 'Shopping Cart' do
         context 'paying for cart' do
           before do
             @cart = FactoryGirl.create :anonymous_cart_ready_for_payments
+            page.set_rack_session(:cart_id => @cart.id)
             visit url_for([:pay])
           end
 
@@ -247,7 +248,13 @@ describe 'Shopping Cart' do
               page.should_not have_content("Ccv can't be blank")
             end
 
-            it 'validates name'
+            it 'validates name' do
+              page.should have_content("Name can't be blank")
+              fill_in 'cart_credit_card_name', with: 'billing name'
+              click_button 'Next'
+              page.should_not have_content("Name can't be blank")
+            end
+
             it 'validates billing address'
           end
 

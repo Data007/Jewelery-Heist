@@ -13,6 +13,7 @@ class CreditCard
 
   validates :number, presence: true
   validates :ccv, presence: true
+  validates :name, presence: true
   validate :custom_validate
   
   def custom_validate

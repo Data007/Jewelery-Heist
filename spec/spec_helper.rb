@@ -5,6 +5,7 @@ require 'rspec/rails'
 require 'capybara/dsl'
 require 'capybara/rails'
 require 'support/vcr_support'
+require 'rack_session_access/capybara'
 
 # Require essential view helpers
 require 'action_view/helpers/translation_helper'
