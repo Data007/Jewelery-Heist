@@ -5,6 +5,8 @@ class CartsController < ApplicationController
   end
 
   def pay
+    @cart.credit_card     = CreditCard.new unless @cart.credit_card
+    @cart.billing_address = @cart.shipping_address
   end
 
   def update

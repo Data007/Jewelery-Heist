@@ -15,6 +15,12 @@ FactoryGirl.define do
         item = FactoryGirl.create :item
         cart.add_item(item)
       end
+      factory :anonymous_cart_ready_for_billing_address do
+        after(:create) do |cart, evaluator|
+          credit_card = FactoryGirl.build :credit_card
+          cart.credit_card = credit_card
+        end
+      end
     end
   end
 end

@@ -187,6 +187,8 @@ describe 'Shopping Cart' do
         end
 
         it 'fills in the Shipping Address, name, email, phone' do
+          @cart.shipping_address.should_not be
+
           fill_in 'cart_first_name', with: 'Anonymous'
           fill_in 'cart_last_name', with: 'User'
           fill_in 'cart_shipping_address_address_1', with: '3456 S. gigiidy RD'
@@ -236,26 +238,49 @@ describe 'Shopping Cart' do
 
             it 'validates number' do
               page.should have_content("Number can't be blank")
-              fill_in 'cart_credit_card_number', with: '4111111111111111'
+              fill_in 'cart_credit_card_attributes_number', with: '4111111111111111'
               click_button 'Next'
               page.should_not have_content("Card number can't be blank")
             end
 
             it 'validates ccv' do
               page.should have_content("Ccv can't be blank")
-              fill_in 'cart_credit_card_ccv', with: '111'
+              fill_in 'cart_credit_card_attributes_ccv', with: '111'
               click_button 'Next'
               page.should_not have_content("Ccv can't be blank")
             end
 
             it 'validates name' do
               page.should have_content("Name can't be blank")
-              fill_in 'cart_credit_card_name', with: 'billing name'
+              fill_in 'cart_credit_card_attributes_name', with: 'billing name'
               click_button 'Next'
               page.should_not have_content("Name can't be blank")
             end
 
-            it 'validates billing address'
+            it 'validates billing address' do
+              cart = FactoryGirl.create :anonymous_cart_ready_for_billing_address
+              page.set_rack_session(:cart_id => cart.id)
+              visit url_for([:pay])
+
+              cart.billing_address.should_not be
+
+              fill_in 'cart_billing_address_attributes_address_1', with: '3456 S. gigiidy RD'
+              fill_in 'cart_billing_address_attributes_city', with: 'goo'
+              fill_in 'cart_billing_address_attributes_province', with: 'MI'
+              fill_in 'cart_billing_address_attributes_postal_code', with: '45637'
+              fill_in 'cart_billing_address_attributes_country', with: 'US'
+
+              click_button 'Next'
+
+              cart.reload
+              cart.billing_address.should be
+              cart.billing_address.address_1.should == '3456 S. gigiidy RD'
+              cart.billing_address.city.should == 'goo'
+              cart.billing_address.province.should == 'MI'
+              cart.billing_address.postal_code.should == '45637'
+              cart.billing_address.country.should == 'US'
+            end
+
           end
 
           context 'with valid card' do
