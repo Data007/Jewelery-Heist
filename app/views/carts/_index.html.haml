@@ -16,7 +16,14 @@
         %tr.item{id: item.id}
           %td
             = link_to image_tag(item.assets.by_position.first.image.url(:thumbnail)), item_path(item.pretty_id)
-          %td= truncate item.description, length: 25
+          -if item.quantity == 0
+            %td
+              %p= item.description
+              %b
+              %h4 Back Order Confirmation
+              %p= item.backorder_notes
+          -else
+            %td= item.description
           %td= number_to_currency line_item.price
           %td= line_item_form.select :quantity, options_for_select((1..20))
           %td

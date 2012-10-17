@@ -224,6 +224,16 @@ describe 'Shopping Cart' do
           @cart.line_items.count.should == count - 1
         end
 
+        it 'shows the backorder confirmation' do
+          visit item_path(@item_backorder.pretty_id)
+          click_button 'Add to Cart'
+          @cart.reload
+          visit url_for([:checkout])
+
+          @cart.line_items.count.should == 2
+          page.should have_content(@item_backorder.backorder_notes)
+        end
+
         context 'paying for cart' do
           before do
             @cart = FactoryGirl.create :anonymous_cart_ready_for_payments
