@@ -9,6 +9,7 @@ group :assets do
   gem 'compass'
 end
 
+gem 'fedex'
 gem 'coffee-filter'
 gem 'haml_coffee_assets'
 gem 'execjs'

@@ -99,6 +99,9 @@ GEM
     fakeweb (1.3.0)
     faraday (0.8.4)
       multipart-post (~> 1.1)
+    fedex (0.0.1)
+      httparty
+      nokogiri
     ffi (1.1.5)
     formatize (1.1.0)
       RedCloth (~> 4.2)
@@ -314,6 +317,7 @@ DEPENDENCIES
   execjs
   factory_girl_rails
   fakeweb
+  fedex
   formatize
   haml
   haml-rails
