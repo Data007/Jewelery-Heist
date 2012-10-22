@@ -33,7 +33,6 @@ class Fedexer
     end
 
     def get_rate shipment, recipient, packages, shipment_type, shipping_details
-    binding.pry
       shipment.rate(
         shipper: self.shipper,
         recipient: recipient,

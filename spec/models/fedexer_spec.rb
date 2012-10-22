@@ -47,8 +47,17 @@ describe Fedexer do
       end
 
       it 'gets an OverNight Rate' do
-        binding.pry
-        rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user, @user.addresses.first, @user.phones.first), @packages, 'FEDEX_GROUND', Fedexer.default_shipping_details) 
+        rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user, @user.addresses.first, @user.phones.first), @packages, 'STANDARD_OVERNIGHT', Fedexer.default_shipping_details) 
+        rate.should be_an_instance_of(Fedex::Rate)
+      end
+
+      it 'gets an 2 Day Rate' do
+        rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user, @user.addresses.first, @user.phones.first), @packages, 'FEDEX_2_DAY', Fedexer.default_shipping_details) 
+        rate.should be_an_instance_of(Fedex::Rate)
+      end
+
+      it 'gets a standard express rate' do
+        rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user, @user.addresses.first, @user.phones.first), @packages, 'FEDEX_EXPRESS_SAVER', Fedexer.default_shipping_details) 
         rate.should be_an_instance_of(Fedex::Rate)
       end
 
