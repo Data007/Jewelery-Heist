@@ -18,6 +18,12 @@ class Fedexer
       }
     end
 
+    def shipping_details type
+      {
+        
+      }
+    end
+
     def load_keys
       provider_keys = YAML.load_file(File.join(Rails.root, 'config', 'fedex_keys.yml'))[Rails.env]
       provider_keys.inject({}) do |new_hash, (key, value)|
@@ -26,13 +32,14 @@ class Fedexer
       end
     end
 
-    def get_rate shipment, recipient, packages, shipment_type
+    def get_rate shipment, recipient, packages, shipment_type, shipping_details
+    binding.pry
       shipment.rate(
         shipper: self.shipper,
         recipient: recipient,
         packages: packages,
         service_type: shipment_type,
-        shipping_details: self.default_shipping_details
+        shipping_details: shipping_details
       )
     end
 

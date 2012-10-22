@@ -6,10 +6,11 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ! "<RateRequest xmlns=\"http://fedex.com/ws/rate/v10\">\n  <WebAuthenticationDetail>\n
-        \   <UserCredential>\n      <Key> wikjDtsCxIh2iohD</Key>\n      <Password>Cw10xEFUV6f0kmz861HJdf8NQ</Password>\n
+        \   <UserCredential>\n      <Key>wikjDtsCxIh2iohD</Key>\n      <Password>Cw10xEFUV6f0kmz861HJdf8NQ</Password>\n
         \   </UserCredential>\n  </WebAuthenticationDetail>\n  <ClientDetail>\n    <AccountNumber>510087925</AccountNumber>\n
-        \   <MeterNumber>118569532</MeterNumber>\n  </ClientDetail>\n  <Version>\n
-        \   <ServiceId>crs</ServiceId>\n    <Major>10</Major>\n    <Intermediate>0</Intermediate>\n
+        \   <MeterNumber>118569532</MeterNumber>\n    <Localization>\n      <LanguageCode>en</LanguageCode>\n
+        \     <LocaleCode>us</LocaleCode>\n    </Localization>\n  </ClientDetail>\n
+        \ <Version>\n    <ServiceId>crs</ServiceId>\n    <Major>10</Major>\n    <Intermediate>0</Intermediate>\n
         \   <Minor>0</Minor>\n  </Version>\n  <RequestedShipment>\n    <DropoffType>REGULAR_PICKUP</DropoffType>\n
         \   <ServiceType>FEDEX_GROUND</ServiceType>\n    <PackagingType>YOUR_PACKAGING</PackagingType>\n
         \   <Shipper>\n      <Contact>\n        <PersonName>Wexford Jewlers</PersonName>\n
@@ -21,7 +22,7 @@ http_interactions:
         User</PersonName>\n        <CompanyName/>\n        <PhoneNumber>2319208877</PhoneNumber>\n
         \     </Contact>\n      <Address>\n        <StreetLines>2236 S 33 1/2 RD</StreetLines>\n
         \       <City>cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
-        \       <PostalCode>49601-8820</PostalCode>\n        <CountryCode>US</CountryCode>\n
+        \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
         \       <Residential>false</Residential>\n      </Address>\n    </Recipient>\n
         \   <ShippingChargesPayment>\n      <PaymentType>SENDER</PaymentType>\n      <Payor>\n
         \       <AccountNumber>510087925</AccountNumber>\n        <CountryCode>US</CountryCode>\n
@@ -38,17 +39,17 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Fri, 19 Oct 2012 19:18:30 GMT
+      - Mon, 22 Oct 2012 21:08:05 GMT
       server:
       - Apache/2.2
       content-length:
       - '4822'
       x-wily-servlet:
-      - Clear appServerIp=199.81.110.99&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=415&agentHost=qje20205&agentProcess=WebLogic
+      - Clear appServerIp=204.135.253.46&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=186&agentHost=qje20223&agentProcess=WebLogic
       x-powered-by:
       - Servlet/2.5 JSP/2.1
       x-wily-info:
-      - Clear guid=7A766777C7516E630FE2B71965804A8B
+      - Clear guid=8A4DCDEACC87FD2E0C35022068CEFC70
       vary:
       - Accept-Encoding
       connection:
@@ -70,5 +71,5 @@ http_interactions:
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Level>PACKAGE</v10:Level><v10:Description>FedEx
         Ground Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>0.63</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
     http_version: '1.1'
-  recorded_at: Fri, 19 Oct 2012 19:18:31 GMT
+  recorded_at: Mon, 22 Oct 2012 21:08:06 GMT
 recorded_with: VCR 2.2.5

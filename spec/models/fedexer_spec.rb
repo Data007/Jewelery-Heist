@@ -31,8 +31,46 @@ describe Fedexer do
       }]
     end
 
-    it 'gets a rate' do
-      rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user, @user.addresses.first, @user.phones.first), Fedexer.sample_package, 'FEDEX_GROUND') 
+
+    context 'with a package' do
+      before do
+        @packages = [
+          {
+            weight: {units: 'LB', value: 2},
+            dimensions: {length: 10, width: 5, height: 4, units: 'IN'}
+          }]
+      end
+
+      it 'gets a rate Fedex Ground Rate' do
+        rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user, @user.addresses.first, @user.phones.first), @packages, 'FEDEX_GROUND', Fedexer.default_shipping_details) 
+        rate.should be_an_instance_of(Fedex::Rate)
+      end
+
+      it 'gets an OverNight Rate' do
+        binding.pry
+        rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user, @user.addresses.first, @user.phones.first), @packages, 'FEDEX_GROUND', Fedexer.default_shipping_details) 
+        rate.should be_an_instance_of(Fedex::Rate)
+      end
+
+      context 'with multiple packages' do
+        before do
+         @packages = [
+            {
+              weight: {units: 'LB', value: 2},
+              dimensions: {length: 10, width: 5, height: 4, units: 'IN'}
+            },
+            {
+              weight: {units: 'LB', value: 4},
+              dimensions: {length: 10, width: 5, height: 4, units: 'IN'}
+            }
+          ]
+        end
+
+        it 'gets a Fedex Ground Rate' do
+          rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user, @user.addresses.first, @user.phones.first), @packages, 'STANDARD_OVERNIGHT', Fedexer.default_shipping_details) 
+          rate.should be_an_instance_of(Fedex::Rate)
+        end
+      end
     end
   end
 end
