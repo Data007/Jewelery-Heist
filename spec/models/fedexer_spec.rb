@@ -1,8 +1,8 @@
 require 'spec_helper'
-#require 'fedexer'
 
 describe Fedexer do
   use_vcr_cassette
+
   context 'with a fedexer' do
     before do
       @user = FactoryGirl.create :web_user_with_address

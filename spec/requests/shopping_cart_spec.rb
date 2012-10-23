@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'Shopping Cart' do
+  use_vcr_cassette
+
   before do
     @item = FactoryGirl.create :item
     @item_2 = FactoryGirl.create :item, name: 'item two', price: 50
