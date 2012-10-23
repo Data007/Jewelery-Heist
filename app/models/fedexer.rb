@@ -58,10 +58,10 @@ class Fedexer
       }
     end
 
-    def recipient user, address, phone_number
+    def recipient name, address, phone_number
       {
-        name: user.name,
-        phone_number: phone_number.number,
+        name: name,
+        phone_number: phone_number,
         address: address.address_1,
         city: address.city,
         state: address.province,
@@ -69,6 +69,9 @@ class Fedexer
         country_code: address.country,
         residential: 'false'
       }
+    end
+
+    def create_packages packages
     end
   end
 end

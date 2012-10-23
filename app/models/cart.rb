@@ -36,6 +36,10 @@ class Cart
     line_items.create(options.merge!(item: (item.is_a?(Item) ? item : Item.find(item))))
   end
 
+  def get_rate shipping_type
+    Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(self.first_name + " " + self.last_name, self.shipping_address, self.phone), Fedexer.sample_package, shipping_type, Fedexer.default_shipping_details) 
+  end
+
   private
     def current_stage_progressing
       exclude_stages = ['show', 'checkout']

@@ -291,6 +291,10 @@ describe 'Shopping Cart' do
               cart.billing_address.country.should == 'US'
             end
 
+            it 'chooses a shipping option' do
+              visit url_for([:summary])
+            end
+
           end
 
           context 'with valid card' do
