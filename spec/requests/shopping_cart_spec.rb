@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'Shopping Cart' do
+  use_vcr_cassette
+
   before do
     @item = FactoryGirl.create :item
     @item_2 = FactoryGirl.create :item, name: 'item two', price: 50
@@ -289,6 +291,10 @@ describe 'Shopping Cart' do
               cart.billing_address.province.should == 'MI'
               cart.billing_address.postal_code.should == '45637'
               cart.billing_address.country.should == 'US'
+            end
+
+            it 'chooses a shipping option' do
+              visit url_for([:summary])
             end
 
           end

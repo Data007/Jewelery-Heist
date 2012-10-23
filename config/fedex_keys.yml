@@ -1,0 +1,20 @@
+development:
+  key: 'wikjDtsCxIh2iohD'
+  password: 'Cw10xEFUV6f0kmz861HJdf8NQ'
+  account_number: '510087925'
+  meter: '118569532'
+  mode: 'development'
+
+test:
+  key: 'wikjDtsCxIh2iohD'
+  password: 'Cw10xEFUV6f0kmz861HJdf8NQ'
+  account_number: '510087925'
+  meter: '118569532'
+  mode: 'development'
+
+production:
+  key: 'wikjDtsCxIh2iohD'
+  password: 'Cw10xEFUV6f0kmz861HJdf8NQ'
+  account_number: '510087925'
+  meter: '118569532'
+  mode: 'development'

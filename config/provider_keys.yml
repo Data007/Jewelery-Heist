@@ -11,6 +11,9 @@ development:
   dwolla:
     consumer_key: pfq6x8U6ib0M84dL+C2uyDJ3qQeUmITFiTmLyx9F4Jz9U/KuEq
     consumer_secret: KZ1uZSfMwcUuPuSBoXczUxqPYuuLtoiByVxR/af522c1ndBNMO
+  fedex:
+    consumer_key: wikjDtsCxIh2iohD  
+    consumer_secret: Cw10xEFUV6f0kmz861HJdf8NQ
 
 test:
   facebook:

@@ -1,0 +1,20 @@
+%legend Shipping Options
+%table
+  %thead
+    %tr
+      %th Shipping Option
+      %th Price
+      %th &nbsp;
+    %tbody.shipping_costs
+      %tr
+        %td Fedex Express Saver
+        %td= @cart.get_rate('FEDEX_EXPRESS_SAVER').total_net_charge
+      %tr
+        %td Fedex Ground
+        %td= @cart.get_rate('FEDEX_GROUND').total_net_charge
+      %tr
+        %td Fedex 2 Day
+        %td= @cart.get_rate('FEDEX_2_DAY').total_net_charge
+      %tr
+        %td Fedex Over Night
+        %td= @cart.get_rate('STANDARD_OVERNIGHT').total_net_charge
