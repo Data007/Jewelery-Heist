@@ -48,6 +48,20 @@ class Cart
       {name: shipping_option, total_net_charge: rate}
     end
   end
+
+  def tax
+    (line_items.where(taxable: true).map(&:total).sum * 0.06).round(3)
+  end
+  
+  def subtotal
+    (line_items.map(&:total).sum).round(3)
+  end
+
+  def total
+    total = subtotal + tax + get_rate(shipping_type).total_net_charge.to_f
+    '$' + total.round(2).to_s
+  end
+
   private
     def current_stage_progressing
       exclude_stages = ['show', 'checkout']

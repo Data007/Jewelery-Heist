@@ -193,10 +193,10 @@ describe 'Shopping Cart' do
 
           fill_in 'cart_first_name', with: 'Anonymous'
           fill_in 'cart_last_name', with: 'User'
-          fill_in 'cart_shipping_address_address_1', with: '3456 S. gigiidy RD'
-          fill_in 'cart_shipping_address_city', with: 'goo'
+          fill_in 'cart_shipping_address_address_1', with: '2236 S 33 1/2 RD'
+          fill_in 'cart_shipping_address_city', with: 'Cadillac'
           fill_in 'cart_shipping_address_province', with: 'MI'
-          fill_in 'cart_shipping_address_postal_code', with: '45637'
+          fill_in 'cart_shipping_address_postal_code', with: '49601'
           fill_in 'cart_shipping_address_country', with: 'US'
           fill_in 'cart_email', with: 'bugsbunny@gmail.com'
           fill_in 'cart_phone', with: '2314567890'
@@ -206,10 +206,10 @@ describe 'Shopping Cart' do
           current_url.should == url_for([:shipping])
 
           @cart.reload
-          @cart.shipping_address.address_1.should == '3456 S. gigiidy RD'
-          @cart.shipping_address.city.should == 'goo'
+          @cart.shipping_address.address_1.should == '2236 S 33 1/2 RD'
+          @cart.shipping_address.city.should == 'Cadillac'
           @cart.shipping_address.province.should == 'MI'
-          @cart.shipping_address.postal_code.should == '45637'
+          @cart.shipping_address.postal_code.should == '49601'
           @cart.shipping_address.country.should == 'US'
           @cart.email.should == 'bugsbunny@gmail.com'  
           @cart.phone.should == '2314567890'
