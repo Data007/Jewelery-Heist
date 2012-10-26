@@ -5,7 +5,7 @@
   = error_messages_for @cart.shipping_address
 
   = hidden_field_tag :current_stage, 'checkout'
-  = cart_form.hidden_field :current_stage, value: 'pay'
+  = cart_form.hidden_field :current_stage, value: 'shipping'
 
   - if @current_user
     = cart_form.hidden_field :first_name, value: @current_user.first_name

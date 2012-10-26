@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-
   def checkout
     @cart.update_attribute(:current_stage, 'checkout') unless @cart.current_stage 
   end
@@ -16,5 +15,4 @@ class CartsController < ApplicationController
       render template: "carts/#{params[:current_stage]}"
     end
   end
-
 end

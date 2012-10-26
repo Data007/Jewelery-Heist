@@ -167,6 +167,7 @@ DragonHoardRails32::Application.routes.draw do
   match 'cart/checkout' => 'carts#checkout', as: :checkout
   match 'cart/pay'      => 'carts#pay',      as: :pay
   match 'cart/summary'  => 'carts#summary',  as: :summary
+  match 'cart/shipping' => 'carts#shipping', as: :shipping
 
   resources :users do
     collection do

@@ -1,0 +1,14 @@
+= form_for [@cart] do |cart_form|
+  = error_messages_for @cart
+
+  = hidden_field_tag :current_stage, 'shipping'
+  = cart_form.hidden_field :current_stage, value: 'pay'
+
+  %fieldset
+    %legend Shipping Options
+
+    = cart_form.select :shipping_type, options_for_select(shipping_options_for_select(@cart.shipping_options))
+    = cart_form.submit 'Next'
+    
+
+= render partial: 'index'

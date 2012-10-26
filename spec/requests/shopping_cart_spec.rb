@@ -203,7 +203,7 @@ describe 'Shopping Cart' do
 
           click_button 'Next'
 
-          current_url.should == url_for([:pay])
+          current_url.should == url_for([:shipping])
 
           @cart.reload
           @cart.shipping_address.address_1.should == '3456 S. gigiidy RD'
@@ -213,7 +213,7 @@ describe 'Shopping Cart' do
           @cart.shipping_address.country.should == 'US'
           @cart.email.should == 'bugsbunny@gmail.com'  
           @cart.phone.should == '2314567890'
-          @cart.current_stage.should == 'pay'
+          @cart.current_stage.should == 'shipping'
         end
 
         it 'removes an item' do
@@ -234,6 +234,33 @@ describe 'Shopping Cart' do
 
           @cart.line_items.count.should == 2
           page.should have_content(@item_backorder.backorder_notes)
+        end
+
+        context 'with a shipping address' do
+          before do
+            visit url_for([:checkout])
+            fill_in 'cart_first_name', with: 'Anonymous'
+            fill_in 'cart_last_name', with: 'User'
+            fill_in 'cart_shipping_address_address_1', with: '2235 S 33 1/2 RD'
+            fill_in 'cart_shipping_address_city', with: 'Cadillac'
+            fill_in 'cart_shipping_address_province', with: 'MI'
+            fill_in 'cart_shipping_address_postal_code', with: '49601'
+            fill_in 'cart_shipping_address_country', with: 'US'
+            fill_in 'cart_email', with: 'bugsbunny@gmail.com'
+            fill_in 'cart_phone', with: '2314567890'
+            click_button 'Next'
+          end
+
+          it 'selects a shipping option' do
+            current_url.should == url_for([:shipping])
+            
+            select 'Fedex Ground', from: 'cart_shipping_type'
+            click_button 'Next'
+
+            current_url.should == url_for([:pay])
+            @cart.reload
+            @cart.shipping_type.should == 'FEDEX_GROUND' #or something like that
+          end
         end
 
         context 'paying for cart' do
@@ -358,7 +385,7 @@ describe 'Shopping Cart' do
           choose("cart_shipping_address_#{@address.id}")
           click_button 'Next'
 
-          current_url.should == url_for([:pay])
+          current_url.should == url_for([:shipping])
 
           @cart.reload
           @cart.shipping_address.to_single_line.should == @address.to_single_line
