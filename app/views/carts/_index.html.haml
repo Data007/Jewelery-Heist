@@ -1,4 +1,9 @@
 = form_for @cart do |cart_form|
+  - if locals[:current_stage]
+    = hidden_field_tag :current_stage, locals[:current_stage]
+  - if locals[:next_stage]
+    = cart_form.hidden_field :current_stage, value: locals[:next_stage]
+
   %legend You Current Shopping Cart
 
   %table#current-cart
@@ -6,6 +11,7 @@
       %tr
         %th &nbsp;
         %th Description
+        %th Size
         %th Price
         %th Quantity
         %th &nbsp;
@@ -24,6 +30,7 @@
               %p= item.backorder_notes
           -else
             %td= item.description
+          %td= line_item_form.select :size, options_for_select(item.sizes)
           %td= number_to_currency line_item.price
           %td= line_item_form.select :quantity, options_for_select((1..20))
           %td
