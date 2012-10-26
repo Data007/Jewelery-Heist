@@ -8,6 +8,7 @@ class Cart
   field :email
   field :phone
   field :current_stage
+  field :shipping_type, default: Fedexer::SHIPPING_OPTIONS.first
 
   attr_accessor :shipping_address_id
 
@@ -36,10 +37,17 @@ class Cart
     line_items.create(options.merge!(item: (item.is_a?(Item) ? item : Item.find(item))))
   end
 
-  def get_rate shipping_type
-    Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(self.first_name + " " + self.last_name, self.shipping_address, self.phone), Fedexer.sample_package, shipping_type, Fedexer.default_shipping_details) 
+  def get_rate shipping_type='FEDEX_GROUND'
+    shipping_type = self.shipping_type ? self.shipping_type : shipping_type
+    Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient("#{self.first_name} #{self.last_name}", self.shipping_address, self.phone), Fedexer.sample_package, shipping_type, Fedexer.default_shipping_details) 
   end
 
+  def shipping_options
+    Fedexer::SHIPPING_OPTIONS.collect do |shipping_option|
+      rate = self.get_rate(shipping_option).total_net_charge
+      {name: shipping_option, total_net_charge: rate}
+    end
+  end
   private
     def current_stage_progressing
       exclude_stages = ['show', 'checkout']
