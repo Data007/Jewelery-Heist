@@ -11,4 +11,4 @@
     = cart_form.submit 'Next'
     
 
-= render partial: 'index'
+= render 'index', locals: {current_stage: 'shipping', next_stage: 'pay'}

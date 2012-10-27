@@ -390,6 +390,25 @@ describe 'Shopping Cart' do
           @cart.reload
           @cart.shipping_address.to_single_line.should == @address.to_single_line
         end
+
+        context 'with a shipping address' do
+          before do
+            choose("cart_shipping_address_#{@address.id}")
+            click_button 'Next'
+          end
+
+          it 'picks a shipping option' do
+            current_url.should == url_for([:shipping])
+            
+            select 'Fedex Ground', from: 'cart_shipping_type'
+            click_button 'Next'
+
+            current_url.should == url_for([:pay])
+            @cart.reload
+            @cart.shipping_type.should == 'FEDEX_GROUND' #or something like that
+            @cart.total.should == '$18.47'
+          end
+        end
       end
       
       context 'with a previous cart' do

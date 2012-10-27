@@ -1,7 +1,7 @@
 = form_for @cart do |cart_form|
-  - if locals[:current_stage]
+  - if locals[:current_stage].present?
     = hidden_field_tag :current_stage, locals[:current_stage]
-  - if locals[:next_stage]
+  - if locals[:next_stage].present?
     = cart_form.hidden_field :current_stage, value: locals[:next_stage]
 
   %legend You Current Shopping Cart

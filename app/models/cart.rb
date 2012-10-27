@@ -50,11 +50,11 @@ class Cart
   end
 
   def tax
-    (line_items.where(taxable: true).map(&:total).sum * 0.06).round(3)
+    (line_items.where(taxable: true).map(&:total).sum * 0.06).round(2)
   end
   
   def subtotal
-    (line_items.map(&:total).sum).round(3)
+    (line_items.map(&:total).sum).round(2)
   end
 
   def total
