@@ -4,8 +4,10 @@ task one_email: :environment do
     if user.email == nil
       user.email = user.emails.first
       user.emails = []
+      user.save!
     else
       user.emails = []
+      user.save!
     end
   end
 end

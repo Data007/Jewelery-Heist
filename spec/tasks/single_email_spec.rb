@@ -9,17 +9,18 @@ describe 'Email Migration' do
 
   context 'with a user with multiple emails' do
     it 'moves email into the one email' do
-  #    @user.email = nil
-  #    @user.save validate: false
+      @user.email = nil
+      @user.save validate: false
 
-   #   @user.email.should_not be
-   #   @user.emails.should be
-   #   first_email = @user.emails.first
+      @user.email.should_not be
+      @user.emails.should be
+      first_email = @user.emails.first
         
-   #   %x[rake one_email]
+      execute_rake('email.rake', 'one_email')  
 
-   #   @user.emails.should_not be
-   #   @user.email.should == first_email
+      @user.reload
+      @user.emails.should == []
+      @user.email.should == first_email
     end
   end
 end
