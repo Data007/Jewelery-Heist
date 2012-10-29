@@ -23,6 +23,12 @@ FactoryGirl.define do
           FactoryGirl.create :address, user: web_user
         end
       end
+
+      factory :phone_migration_user do
+        name 'phone user'
+        first_name 'phone'
+        last_name 'user'
+      end
     end
   end
 end
