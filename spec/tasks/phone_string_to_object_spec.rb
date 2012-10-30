@@ -10,7 +10,6 @@ describe 'Phone as String saved as an Object' do
 
   context 'with a User' do
     it 'moves a phone string into a String Object' do
-      binding.pry
       execute_rake('phone.rake','phone_string_to_object')
     end
   end
