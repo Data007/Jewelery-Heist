@@ -15,7 +15,15 @@ describe 'Open Orders are moved to carts' do
       execute_rake('order.rake', 'order_to_cart')
 
       @user.reload
-      @user.cart.should be
+      cart = @user.cart
+      cart.should be
+
+      cart.first_name.should == @user.first_name
+      cart.last_name.should == @user.last_name
+      cart.email.should == @user.email
+      cart.current_stage.should == 'checkout'
+      cart.shipping_address.should == @order.address
+      cart.line_items.should == cart.line_items + @order.line_items
     end
  end
 end
