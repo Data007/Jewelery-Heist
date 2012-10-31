@@ -65,7 +65,7 @@ class Order
   end
   
   def set_address
-    self.address = user.addresses.first unless address
+    self.address = self.address unless address
   end
 
   def due_dates

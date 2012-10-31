@@ -24,6 +24,12 @@ FactoryGirl.define do
         end
       end
 
+      factory :web_user_with_order do
+        after(:create) do |web_user, evaluator|
+          FactoryGirl.create :order, user: web_user
+        end
+      end
+
       factory :phone_migration_user do
         name 'phone user'
         first_name 'phone'
