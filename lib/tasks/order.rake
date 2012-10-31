@@ -4,7 +4,6 @@ task order_to_cart: :environment do
   Order.where(purchased: false). each do |order|
     user = order.user
     
-    binding.pry
     user.cart = Cart.new unless user.cart
 
   end  
