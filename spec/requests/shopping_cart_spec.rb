@@ -338,7 +338,6 @@ describe 'Shopping Cart' do
   context 'as a registered user' do
     before do
       @user    = FactoryGirl.create :web_user_with_address
-      @address = @user.addresses.first
     end
 
     context 'with an item in an anonymous cart' do
@@ -360,6 +359,8 @@ describe 'Shopping Cart' do
 
       context 'starts the checkout process' do
         before do
+          @user2 = FactoryGirl.create :user_with_phone_address
+          @address = @user2.addresses.first
           login_with_dh('dh@example.com', 'password')
           click_link 'Check Out'
           current_url == url_for([:checkout])
