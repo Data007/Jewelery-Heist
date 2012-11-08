@@ -33,6 +33,15 @@ class Cart
     return 5
   end
 
+  def process_cart
+    #TODO create a order for the cart
+    self
+  end
+  
+  def full_name
+    first_name + ' ' + last_name
+  end
+
   def add_item(item, options={})
     line_items.create(options.merge!(item: (item.is_a?(Item) ? item : Item.find(item))))
   end
@@ -44,6 +53,8 @@ class Cart
 
   def shipping_options
     Fedexer::SHIPPING_OPTIONS.collect do |shipping_option|
+      self.shipping_type = shipping_option
+      self.save
       rate = self.get_rate(shipping_option).total_net_charge
       {name: shipping_option, total_net_charge: rate}
     end

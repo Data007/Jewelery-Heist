@@ -3,7 +3,7 @@ class Fedexer
   include Mongoid::Timestamps
   include Mongoid::Sequence
 
-  SHIPPING_OPTIONS = ['FEDEX_EXPRESS_SAVER', 'FEDEX_GROUND', 'FEDEX_2_DAY',' STANDARD_OVERNIGHT']
+  SHIPPING_OPTIONS = ['FEDEX_EXPRESS_SAVER', 'FEDEX_GROUND', 'FEDEX_2_DAY','STANDARD_OVERNIGHT']
 
   class << self
     def sample_package
