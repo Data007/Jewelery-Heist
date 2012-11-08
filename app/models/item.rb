@@ -198,7 +198,7 @@ class Item
     else
       available_sizes = [size_range]
     end
-    return available_sizes.flatten
+    return available_sizes.flatten.collect {|size| size.to_f}
   end
 
   def sizes=(new_size_range)

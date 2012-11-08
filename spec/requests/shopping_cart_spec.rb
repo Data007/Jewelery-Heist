@@ -4,7 +4,7 @@ describe 'Shopping Cart' do
   use_vcr_cassette
 
   before do
-    @item = FactoryGirl.create :item
+    @item = FactoryGirl.create :item, size_range: '4-9'
     @item_2 = FactoryGirl.create :item, name: 'item two', price: 50
     @item_backorder = FactoryGirl.create :item, name: 'item back order', price: 60, quantity: 0
   end
@@ -24,9 +24,9 @@ describe 'Shopping Cart' do
     context 'with an item in a cart' do
       before do
         visit item_path(@item.pretty_id)
-        @cart = Cart.last
+        select '7', from: 'line_item_size'
         click_button 'Add to Cart'
-        @cart.reload
+        @cart = Cart.last
       end
 
       it 'transfers cart to user after registration' do
@@ -62,9 +62,12 @@ describe 'Shopping Cart' do
         @cart.line_items.first.item.price.should be
         @cart.line_items.first.item.quantity.should be
         
-        page.should have_content(@cart.line_items.first.item.description)
-        page.should have_content(@cart.line_items.first.price)
-        page.should have_content(@cart.line_items.first.quantity)
+        within('.item') do
+          page.should have_content(@cart.line_items.first.item.description)
+          page.should have_content(@cart.line_items.first.price)
+          page.should have_content(@cart.line_items.first.quantity)
+          page.should have_content(@cart.line_items.first.size)
+        end
       end
 
       it 'removes an item from the cart' do
