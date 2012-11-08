@@ -11,16 +11,33 @@ FactoryGirl.define do
     email 'dh@example.com'
     email_confirmation 'dh@example.com'
 
+    factory :user_with_phone_address do
+      after(:create) do |user, evaluator|
+        FactoryGirl.create :phone, user: user
+        FactoryGirl.create :address, user: user
+      end
+    end
+
     factory :web_user do
       name 'Web User'
       first_name 'Web'
       last_name 'User'
       login 'webuser'
 
+    factory :web_user_with_test_email_address
+      email 'bryan@deepwoodsbrigade.com'
+      email_confirmation 'bryan@deepwoodsbrigade.com'
+
       factory :web_user_with_address do
         after(:create) do |web_user, evaluator|
           FactoryGirl.create :phone, user: web_user
           FactoryGirl.create :address, user: web_user
+        end
+      end
+
+      factory :web_user_with_order do
+        after(:create) do |web_user, evaluator|
+          FactoryGirl.create :order, user: web_user
         end
       end
 

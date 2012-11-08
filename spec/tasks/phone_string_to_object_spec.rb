@@ -10,7 +10,11 @@ describe 'Phone as String saved as an Object' do
 
   context 'with a User' do
     it 'moves a phone string into a String Object' do
+      -> {@user.phones}.should raise_error(NoMethodError)
       execute_rake('phone.rake','phone_string_to_object')
+
+      @user.reload
+      @user.phones.should be
     end
   end
 end

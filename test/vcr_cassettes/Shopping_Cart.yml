@@ -39,17 +39,17 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Tue, 30 Oct 2012 13:47:56 GMT
+      - Thu, 08 Nov 2012 02:06:26 GMT
       server:
       - Apache/2.2
       content-length:
       - '8101'
       x-wily-servlet:
-      - Clear appServerIp=199.81.110.99&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=136&agentHost=qje20205&agentProcess=WebLogic
+      - Clear appServerIp=204.135.252.191&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=169&agentHost=qje20222&agentProcess=WebLogic
       x-powered-by:
       - Servlet/2.5 JSP/2.1
       x-wily-info:
-      - Clear guid=B1EDB6B2C7516E630FE2B719A31C6864
+      - Clear guid=DDC4B124CC87FCBF0C2A8683DACB5C43
       vary:
       - Accept-Encoding
       connection:
@@ -71,7 +71,7 @@ http_interactions:
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>3.82</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
     http_version: '1.1'
-  recorded_at: Tue, 30 Oct 2012 13:47:57 GMT
+  recorded_at: Thu, 08 Nov 2012 02:06:26 GMT
 - request:
     method: post
     uri: https://gatewaybeta.fedex.com/xml/
@@ -111,17 +111,17 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Tue, 30 Oct 2012 13:47:57 GMT
+      - Thu, 08 Nov 2012 02:06:26 GMT
       server:
       - Apache/2.2
       content-length:
       - '8101'
       x-wily-servlet:
-      - Clear appServerIp=199.81.110.99&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=133&agentHost=qje20205&agentProcess=WebLogic
+      - Clear appServerIp=204.135.252.191&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=185&agentHost=qje20222&agentProcess=WebLogic
       x-powered-by:
       - Servlet/2.5 JSP/2.1
       x-wily-info:
-      - Clear guid=B1EDB9CAC7516E630FE2B719BE665079
+      - Clear guid=DDC4B569CC87FCBF0C2A8683BD3B1316
       vary:
       - Accept-Encoding
       connection:
@@ -143,7 +143,7 @@ http_interactions:
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>3.82</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
     http_version: '1.1'
-  recorded_at: Tue, 30 Oct 2012 13:47:57 GMT
+  recorded_at: Thu, 08 Nov 2012 02:06:27 GMT
 - request:
     method: post
     uri: https://gatewaybeta.fedex.com/xml/
@@ -183,17 +183,17 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Tue, 30 Oct 2012 13:47:58 GMT
+      - Thu, 08 Nov 2012 02:06:28 GMT
       server:
       - Apache/2.2
       content-length:
       - '8101'
       x-wily-servlet:
-      - Clear appServerIp=199.81.111.133&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=206&agentHost=qje20204&agentProcess=WebLogic
+      - Clear appServerIp=204.135.252.191&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=208&agentHost=qje20222&agentProcess=WebLogic
       x-powered-by:
       - Servlet/2.5 JSP/2.1
       x-wily-info:
-      - Clear guid=B1EDBCC9C7516F850E4A6985E7D57A32
+      - Clear guid=DDC4BAE9CC87FCBF0C2A8683CD873CC2
       vary:
       - Accept-Encoding
       connection:
@@ -215,7 +215,7 @@ http_interactions:
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>3.82</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
     http_version: '1.1'
-  recorded_at: Tue, 30 Oct 2012 13:47:58 GMT
+  recorded_at: Thu, 08 Nov 2012 02:06:28 GMT
 - request:
     method: post
     uri: https://gatewaybeta.fedex.com/xml/
@@ -255,17 +255,17 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Tue, 30 Oct 2012 13:47:59 GMT
+      - Thu, 08 Nov 2012 02:06:29 GMT
       server:
       - Apache/2.2
       content-length:
       - '8101'
       x-wily-servlet:
-      - Clear appServerIp=199.81.110.99&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=207&agentHost=qje20205&agentProcess=WebLogic
+      - Clear appServerIp=204.135.252.191&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=170&agentHost=qje20222&agentProcess=WebLogic
       x-powered-by:
       - Servlet/2.5 JSP/2.1
       x-wily-info:
-      - Clear guid=B1EDC0C7C7516E630FE2B719B751F64D
+      - Clear guid=DDC4BE88CC87FCBF0C2A8683FF71A4E9
       vary:
       - Accept-Encoding
       connection:
@@ -287,7 +287,7 @@ http_interactions:
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>3.82</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
     http_version: '1.1'
-  recorded_at: Tue, 30 Oct 2012 13:47:59 GMT
+  recorded_at: Thu, 08 Nov 2012 02:06:29 GMT
 - request:
     method: post
     uri: https://gatewaybeta.fedex.com/xml/
@@ -306,7 +306,7 @@ http_interactions:
         \     <Address>\n        <StreetLines>801 North Mitchell Street</StreetLines>\n
         \       <City>Cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
         \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
-        \     </Address>\n    </Shipper>\n    <Recipient>\n      <Contact>\n        <PersonName>Web
+        \     </Address>\n    </Shipper>\n    <Recipient>\n      <Contact>\n        <PersonName>DragonHoard
         User</PersonName>\n        <CompanyName/>\n        <PhoneNumber>2319208877</PhoneNumber>\n
         \     </Contact>\n      <Address>\n        <StreetLines>2236 S 33 1/2 RD</StreetLines>\n
         \       <City>cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
@@ -327,17 +327,17 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Tue, 30 Oct 2012 13:48:06 GMT
+      - Thu, 08 Nov 2012 02:06:35 GMT
       server:
       - Apache/2.2
       content-length:
       - '4822'
       x-wily-servlet:
-      - Clear appServerIp=199.81.111.133&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=106&agentHost=qje20204&agentProcess=WebLogic
+      - Clear appServerIp=204.135.253.46&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=79&agentHost=qje20223&agentProcess=WebLogic
       x-powered-by:
       - Servlet/2.5 JSP/2.1
       x-wily-info:
-      - Clear guid=B1EDDACAC7516F850E4A69853DEE95E6
+      - Clear guid=DDC4D8DECC87FD2E0C350220AF0F2E2B
       vary:
       - Accept-Encoding
       connection:
@@ -359,5 +359,5 @@ http_interactions:
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Level>PACKAGE</v10:Level><v10:Description>FedEx
         Ground Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>0.63</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
     http_version: '1.1'
-  recorded_at: Tue, 30 Oct 2012 13:48:06 GMT
+  recorded_at: Thu, 08 Nov 2012 02:06:36 GMT
 recorded_with: VCR 2.2.5
