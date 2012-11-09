@@ -322,16 +322,24 @@ describe 'Shopping Cart' do
               cart.billing_address.postal_code.should == '45637'
               cart.billing_address.country.should == 'US'
             end
-
-            it 'chooses a shipping option' do
-              visit url_for([:summary])
-            end
-
           end
 
           context 'with valid card' do
             it 'processes payment'
-            it 'shows an order summary'
+            context 'with a order' do
+              before do
+                @cart = FactoryGirl.create :anonymous_cart_ready_for_billing_address
+                visit url_for([:pay])
+              fill_in 'cart_credit_card_attributes_number', with: '4111111111111111'
+              fill_in 'cart_credit_card_attributes_ccv', with: '111'
+              fill_in 'cart_credit_card_attributes_name', with: 'billing name'
+              click_butt
+              end
+
+              it 'shows an order summary' do
+                visit url_for
+              end
+            end
           end
         end
       end
