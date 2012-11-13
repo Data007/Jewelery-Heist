@@ -6,7 +6,7 @@
   = error_messages_for @cart.credit_card
 
   = hidden_field_tag :current_stage, 'pay'
-  = cart_form.hidden_field :current_stage, value: 'summary'
+  = cart_form.hidden_field :current_stage, value: 'process_cart'
 
   %fieldset
     %legend Credit Card Information

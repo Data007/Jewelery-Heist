@@ -21,6 +21,15 @@ FactoryGirl.define do
           cart.credit_card = credit_card
         end
       end
+
+      factory :anonymous_cart_ready_for_processing do
+        after(:create) do |cart, evaluator|
+          credit_card = FactoryGirl.build :credit_card
+          cart.credit_card = credit_card
+          address = FactoryGirl.build :billing_address
+          cart.billing_address = address
+        end
+      end
     end
   end
 end

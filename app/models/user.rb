@@ -22,7 +22,7 @@ class User
   sequence :pretty_id
 
   embeds_many :addresses
-  embeds_many :orders
+  has_many    :orders
   embeds_many :phones
   embeds_many :credit_cards
 

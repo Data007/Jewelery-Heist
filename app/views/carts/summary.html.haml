@@ -1,20 +1,41 @@
-%legend Shipping Options
-%table
+%h1 Your Cart has been completed, order number #{@cart.order.pretty_id}
+%p Thank you #{@cart.full_name} for your purchase.
+
+%h2 Shipping Address
+%pre
+  = @cart.shipping_address.to_single_line
+%legend You Current Shopping Cart
+
+%table#current-cart
   %thead
     %tr
-      %th Shipping Option
-      %th Price
       %th &nbsp;
-    %tbody.shipping_costs
-      %tr
-        %td Fedex Express Saver
-        %td= @cart.get_rate('FEDEX_EXPRESS_SAVER').total_net_charge
-      %tr
-        %td Fedex Ground
-        %td= @cart.get_rate('FEDEX_GROUND').total_net_charge
-      %tr
-        %td Fedex 2 Day
-        %td= @cart.get_rate('FEDEX_2_DAY').total_net_charge
-      %tr
-        %td Fedex Over Night
-        %td= @cart.get_rate('STANDARD_OVERNIGHT').total_net_charge
+      %th Description
+      %th Size
+      %th Price
+      %th Quantity
+      %th &nbsp;
+  %tbody.items
+    = @cart.line_items.each do |line_item_form|
+      - line_item = line_item_form
+      - item      = line_item.item
+      %tr.item{id: item.id}
+        %td
+          = link_to image_tag(item.assets.by_position.first.image.url(:thumbnail)), item_path(item.pretty_id)
+        -if item.quantity == 0
+          %td
+            %p= item.description
+            %b
+            %h4 Back Order Confirmation
+            %p= item.backorder_notes
+        -else
+          %td= item.description
+        %td= line_item_form.size
+        %td= number_to_currency line_item.price
+        %td= line_item_form.quantity
+%h3 Shipping and Handling
+%pre
+  = '$' + @cart.get_rate(@cart.shipping_type).total_net_charge
+%h2 Total
+%pre
+  = @cart.total

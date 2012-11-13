@@ -326,19 +326,31 @@ describe 'Shopping Cart' do
 
           context 'with valid card' do
             it 'processes payment'
-            context 'with a order' do
-              before do
-                @cart = FactoryGirl.create :anonymous_cart_ready_for_billing_address
-                visit url_for([:pay])
+            it 'shows an order summary' 
+          end
+
+          context 'with an order' do
+            before do
+              @cart = FactoryGirl.create :anonymous_cart_ready_for_billing_address
+            end
+
+            it 'views the summary' do
+              visit url_for([:pay])
               fill_in 'cart_credit_card_attributes_number', with: '4111111111111111'
               fill_in 'cart_credit_card_attributes_ccv', with: '111'
               fill_in 'cart_credit_card_attributes_name', with: 'billing name'
-              click_butt
+              click_button 'Next'
+              current_url.should == url_for([:summary])
+                
+              page.should have_content(@cart.first_name)
+              page.should have_content(@cart.last_name)
+              page.should have_content(@cart.shipping_address.to_single_line)
+              @cart.line_items.each do |item| 
+                page.should have_content(item.name)
+                page.should have_content(item.price)
               end
-
-              it 'shows an order summary' do
-                visit url_for
-              end
+              page.should have_content(@cart.get_rate(@cart.shipping_type).total_net_charge)
+              page.should have_content(@cart.total)
             end
           end
         end

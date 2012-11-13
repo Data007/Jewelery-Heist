@@ -27,7 +27,8 @@ class Order
   field :pretty_id,    type: Integer
   sequence :pretty_id  
 
-  embedded_in :user
+  belongs_to  :user
+  belongs_to  :cart
   embeds_many :line_items
   embeds_many :payments
   embeds_one  :address

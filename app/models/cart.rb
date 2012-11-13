@@ -13,6 +13,7 @@ class Cart
   attr_accessor :shipping_address_id
 
   belongs_to  :user
+  has_one     :order
   embeds_many :line_items
   embeds_one  :payment
   embeds_one  :credit_card
@@ -35,7 +36,22 @@ class Cart
 
   def process_cart
     #TODO create a order for the cart
-    self
+    create_order_from_cart  
+  end
+
+  def create_order_from_cart
+    order = Order.new
+    order.user = self.user
+    order.line_items = self.line_items
+    order.payments = self.payment
+    order.address = self.shipping_address
+    order.purchased_at = DateTime.now
+    order.shipping_option = self.shipping_type
+    order.location = 'website'
+    order.save!
+
+    self.order = order
+    self.save!
   end
   
   def full_name

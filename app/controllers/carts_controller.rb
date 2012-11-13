@@ -8,6 +8,14 @@ class CartsController < ApplicationController
     @cart.billing_address = @cart.shipping_address
   end
 
+  def process_cart
+    if @cart.process_cart
+      redirect_to [:summary]
+    else
+      render template: [:pay]
+    end
+  end 
+
   def update
     if @cart.update_attributes params[:cart]
       redirect_to @cart.current_stage.to_sym

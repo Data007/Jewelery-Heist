@@ -39,17 +39,17 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Thu, 08 Nov 2012 15:17:34 GMT
+      - Tue, 13 Nov 2012 01:07:10 GMT
       server:
       - Apache/2.2
       content-length:
       - '4822'
       x-wily-servlet:
-      - Clear appServerIp=199.81.110.99&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=106&agentHost=qje20205&agentProcess=WebLogic
+      - Clear appServerIp=199.81.110.99&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=137&agentHost=qje20205&agentProcess=WebLogic
       x-powered-by:
       - Servlet/2.5 JSP/2.1
       x-wily-info:
-      - Clear guid=E0990153C7516E630FE2B7196030F871
+      - Clear guid=F74E3DDBC7516E630FE2B719FA4B384E
       vary:
       - Accept-Encoding
       connection:
@@ -71,5 +71,5 @@ http_interactions:
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Level>PACKAGE</v10:Level><v10:Description>FedEx
         Ground Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>0.63</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
     http_version: '1.1'
-  recorded_at: Thu, 08 Nov 2012 15:17:34 GMT
+  recorded_at: Tue, 13 Nov 2012 01:07:11 GMT
 recorded_with: VCR 2.2.5
