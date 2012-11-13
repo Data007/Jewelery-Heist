@@ -61,6 +61,22 @@ describe Fedexer do
         rate.should be_an_instance_of(Fedex::Rate)
       end
 
+      context 'with an international address' do
+        before do
+          @user = FactoryGirl.create :web_user_with_international_address
+        end
+
+        it 'gets an international economy rate' do
+          rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user.name, @user.addresses.first, @user.phones.first.number), @packages, 'INTERNATIONAL_ECONOMY', Fedexer.default_shipping_details) 
+          rate.should be_an_instance_of(Fedex::Rate)
+        end
+
+        it 'gets an international priority rate' do
+          rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user.name, @user.addresses.first, @user.phones.first.number), @packages, 'INTERNATIONAL_PRIORITY', Fedexer.default_shipping_details) 
+          rate.should be_an_instance_of(Fedex::Rate)
+        end
+      end
+
       context 'with multiple packages' do
         before do
          @packages = [

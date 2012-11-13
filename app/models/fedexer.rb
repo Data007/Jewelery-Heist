@@ -4,6 +4,7 @@ class Fedexer
   include Mongoid::Sequence
 
   SHIPPING_OPTIONS = ['FEDEX_EXPRESS_SAVER', 'FEDEX_GROUND', 'FEDEX_2_DAY','STANDARD_OVERNIGHT']
+  INTERNATIONAL_SHIPPING_OPTIONS = ['INTERNATIONAL_ECONOMY', 'INTERNATIONAL_PRIORITY']
 
   class << self
     def sample_package

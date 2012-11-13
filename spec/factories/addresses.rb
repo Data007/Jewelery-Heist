@@ -9,5 +9,13 @@ FactoryGirl.define do
     factory :shipping_address do
     end
 
+    factory :international_address do
+      address_1 '25 Raglan Street, Ste. 20'
+      city 'TORONTO'
+      postal_code 'M5V 2Z9'
+      province 'ON'
+      country 'CA'
+    end
+
   end
 end

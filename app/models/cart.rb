@@ -13,7 +13,6 @@ class Cart
   attr_accessor :shipping_address_id
 
   belongs_to  :user
-  has_one     :order
   embeds_many :line_items
   embeds_one  :payment
   embeds_one  :credit_card
@@ -36,22 +35,12 @@ class Cart
 
   def process_cart
     #TODO create a order for the cart
-    create_order_from_cart  
+    
+    self
   end
 
   def create_order_from_cart
-    order = Order.new
-    order.user = self.user
-    order.line_items = self.line_items
-    order.payments = self.payment
-    order.address = self.shipping_address
-    order.purchased_at = DateTime.now
-    order.shipping_option = self.shipping_type
-    order.location = 'website'
-    order.save!
-
-    self.order = order
-    self.save!
+    
   end
   
   def full_name
@@ -68,11 +57,20 @@ class Cart
   end
 
   def shipping_options
-    Fedexer::SHIPPING_OPTIONS.collect do |shipping_option|
-      self.shipping_type = shipping_option
-      self.save
-      rate = self.get_rate(shipping_option).total_net_charge
-      {name: shipping_option, total_net_charge: rate}
+    if shipping_address.country == 'US'
+      Fedexer::SHIPPING_OPTIONS.collect do |shipping_option|
+        self.shipping_type = shipping_option
+        self.save
+        rate = self.get_rate(shipping_option).total_net_charge
+        {name: shipping_option, total_net_charge: rate}
+      end
+    else
+      Fedexer::INTERNATIONAL_SHIPPING_OPTIONS.collect do |shipping_option|
+        self.shipping_type = shipping_option
+        self.save
+        rate = self.get_rate(shipping_option).total_net_charge
+        {name: shipping_option, total_net_charge: rate}
+      end
     end
   end
 

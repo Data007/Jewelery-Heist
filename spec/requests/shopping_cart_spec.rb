@@ -266,6 +266,34 @@ describe 'Shopping Cart' do
           end
         end
 
+        context 'with an international shipping address' do
+          before do
+            visit url_for([:checkout])
+            fill_in 'cart_first_name', with: 'Anonymous'
+            fill_in 'cart_last_name', with: 'User'
+            fill_in 'cart_shipping_address_address_1', with: '25 Raglan Street, Ste. 20'
+            fill_in 'cart_shipping_address_city', with: 'TORONTO'
+            fill_in 'cart_shipping_address_province', with: 'ON'
+            fill_in 'cart_shipping_address_postal_code', with: 'M5V 2Z9'
+            fill_in 'cart_shipping_address_country', with: 'CA'
+            fill_in 'cart_email', with: 'bugsbunny@gmail.com'
+            fill_in 'cart_phone', with: '2314567890'
+            click_button 'Next'
+          end
+
+          it 'selects a shipping option' do
+            current_url.should == url_for([:shipping])
+            
+            select 'International Priority', from: 'cart_shipping_type'
+            click_button 'Next'
+
+            current_url.should == url_for([:pay])
+            @cart.reload
+            @cart.shipping_type.should == 'INTERNATIONAL_PRIORITY' #or something like that
+            soap
+          end
+        end
+
         context 'paying for cart' do
           before do
             @cart = FactoryGirl.create :anonymous_cart_ready_for_payments

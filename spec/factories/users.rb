@@ -35,6 +35,13 @@ FactoryGirl.define do
         end
       end
 
+      factory :web_user_with_international_address do
+        after(:create) do |web_user, evaluator|
+          FactoryGirl.create :phone, user: web_user
+          FactoryGirl.create :international_address, user: web_user
+        end
+      end
+
       factory :web_user_with_order do
         after(:create) do |web_user, evaluator|
           FactoryGirl.create :order, user: web_user
