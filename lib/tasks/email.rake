@@ -3,11 +3,9 @@ task one_email: :environment do
   User.all.each do |user|
     if user.email == nil
       user.email = user.emails.first
-      user.emails = []
-      user.save!
+      user.save!(validate: false)
     else
-      user.emails = []
-      user.save!
+      user.save!(validate: false)
     end
   end
 end
