@@ -12,6 +12,7 @@ class Cart
 
   attr_accessor :shipping_address_id
 
+  has_one     :order
   belongs_to  :user
   embeds_many :line_items
   embeds_one  :payment
@@ -35,12 +36,22 @@ class Cart
 
   def process_cart
     #TODO create a order for the cart
-    
-    self
+    create_order_from_cart
   end
 
   def create_order_from_cart
     
+    order = Order.new
+    order.user = self.user
+    order.line_items = self.line_items
+    order.payments = self.payment
+    order.address = self.shipping_address
+    order.purchased_at = DateTime.now
+    order.shipping_option = self.shipping_type
+    order.location = 'website'
+    order.save!
+    self.order = order
+    self.save!
   end
   
   def full_name
@@ -57,7 +68,7 @@ class Cart
   end
 
   def shipping_options
-    if shipping_address.country == 'US'
+    if self.shipping_address.country == 'US' || self.shipping_address.country == 'United States - US'
       Fedexer::SHIPPING_OPTIONS.collect do |shipping_option|
         self.shipping_type = shipping_option
         self.save

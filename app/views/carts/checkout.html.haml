@@ -38,8 +38,7 @@
         = address_form.text_field :city, placeholder: 'City'
         = address_form.text_field :province, placeholder: 'State or Province'
         = address_form.text_field :postal_code, placeholder: 'Zip Code or Postal Code'
-        = address_form.text_field :country, placeholder: 'Country'
-
+        = address_form.select :country, options_for_select(Fedexer::SHIPPING_COUNTRIES)
       %fieldset
         %legend Contact Information
 

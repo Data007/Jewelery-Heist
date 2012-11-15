@@ -63,7 +63,7 @@ describe Fedexer do
 
       context 'with an international address' do
         before do
-          @user = FactoryGirl.create :web_user_with_international_address
+          @user = FactoryGirl.create :web_user_with_international_europe_address
         end
 
         it 'gets an international economy rate' do
@@ -72,6 +72,17 @@ describe Fedexer do
         end
 
         it 'gets an international priority rate' do
+          rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user.name, @user.addresses.first, @user.phones.first.number), @packages, 'INTERNATIONAL_PRIORITY', Fedexer.default_shipping_details) 
+          rate.should be_an_instance_of(Fedex::Rate)
+        end
+      end
+
+      context 'with an english address' do
+        before do
+          @user = FactoryGirl.create :web_user_with_international_europe_address
+        end
+
+        it 'gets a europe rate' do
           rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@user.name, @user.addresses.first, @user.phones.first.number), @packages, 'INTERNATIONAL_PRIORITY', Fedexer.default_shipping_details) 
           rate.should be_an_instance_of(Fedex::Rate)
         end
