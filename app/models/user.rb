@@ -24,7 +24,7 @@ class User
   embeds_many :addresses
   has_many    :orders
   embeds_many :phones
-  embeds_many :credit_cards
+  has_many    :credit_cards
 
   has_one     :cart
 

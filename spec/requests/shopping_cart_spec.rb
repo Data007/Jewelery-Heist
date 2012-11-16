@@ -356,7 +356,26 @@ describe 'Shopping Cart' do
           end
 
           context 'with valid card' do
-            it 'processes payment'
+            before do
+              @cart = FactoryGirl.create :anonymous_cart_ready_for_billing_address
+              visit url_for([:pay])
+              fill_in 'cart_credit_card_attributes_number', with: '4111111111111111'
+              fill_in 'cart_credit_card_attributes_ccv', with: '111'
+              fill_in 'cart_credit_card_attributes_name', with: 'billing name'
+              fill_in 'cart_billing_address_attributes_address_1', with: '3456 S. gigiidy RD'
+              fill_in 'cart_billing_address_attributes_city', with: 'goo'
+              fill_in 'cart_billing_address_attributes_province', with: 'MI'
+              fill_in 'cart_billing_address_attributes_postal_code', with: '45637'
+              fill_in 'cart_billing_address_attributes_country', with: 'US'
+              select '9', from: 'cart_credit_card_attributes_month'
+              select '17', from: 'cart_credit_card_attributes_year'
+            end
+            it 'processes payment' do
+              click_button 'Next'
+              current_url.should == url_for(:summary)
+
+              @cart.order.purchased.should be
+            end
             it 'shows an order summary' 
           end
 

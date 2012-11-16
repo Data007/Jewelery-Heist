@@ -16,7 +16,7 @@ class Cart
   belongs_to  :user
   embeds_many :line_items
   embeds_one  :payment
-  embeds_one  :credit_card
+  has_one     :credit_card
   embeds_one  :shipping_address
   embeds_one  :billing_address
 
@@ -35,23 +35,32 @@ class Cart
   end
 
   def process_cart
-    #TODO create a order for the cart
-    create_order_from_cart
+    if process_payment
+      create_order_from_cart
+      self.current_stage = 'summary'; save
+      return self
+    else
+      # add errors to base
+      return self
+    end
   end
 
+  def process_payment
+    # TODO: Make actual Braintree calls
+    self.payment = Payment.new(amount: self.total, payment_type: 'credit')
+    save
+  end
   def create_order_from_cart
-    
-    order = Order.new
-    order.user = self.user
-    order.line_items = self.line_items
-    order.payments = self.payment
-    order.address = self.shipping_address
-    order.purchased_at = DateTime.now
-    order.shipping_option = self.shipping_type
-    order.location = 'website'
-    order.save!
-    self.order = order
-    self.save!
+    binding.pry
+    self.order = Order.create(
+      user:             self.user,
+      line_items:       self.line_items,
+      payments:         self.payment,
+      shipping_address: self.shipping_address,
+      shipping_option:  self.shipping_type,
+      location:         'website',
+      payments:         [self.payment.clone]
+    )
   end
   
   def full_name
