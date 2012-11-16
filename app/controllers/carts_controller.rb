@@ -7,6 +7,10 @@ class CartsController < ApplicationController
     @cart.credit_card     = CreditCard.new unless @cart.credit_card
     @cart.billing_address = @cart.shipping_address
   end
+  
+  def summary
+    binding.pry
+  end
 
   def process_cart
     if @cart.process_cart

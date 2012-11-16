@@ -145,8 +145,10 @@ describe 'Shopping Cart' do
         end
 
         it 'validates shipping address country' do
-          page.should have_content("Country can't be blank")
-          fill_in 'cart_shipping_address_country', with: 'US'
+          #TODO Test Drop Down Menu for Countries in Shipping
+          #page.should have_content("Country can't be blank")
+          #fill_in 'cart_shipping_address_country', with: 'US'
+          select 'United States - US', from: 'cart_shipping_address_country'
           click_button 'Next'
           page.should_not have_content("Country can't be blank")
         end
@@ -196,11 +198,13 @@ describe 'Shopping Cart' do
 
           fill_in 'cart_first_name', with: 'Anonymous'
           fill_in 'cart_last_name', with: 'User'
-          fill_in 'cart_shipping_address_address_1', with: '2236 S 33 1/2 RD'
-          fill_in 'cart_shipping_address_city', with: 'Cadillac'
-          fill_in 'cart_shipping_address_province', with: 'MI'
-          fill_in 'cart_shipping_address_postal_code', with: '49601'
-          fill_in 'cart_shipping_address_country', with: 'US'
+          fill_in 'cart_shipping_address_address_1', with: '25 Raglan Street, Ste. 20'
+          fill_in 'cart_shipping_address_city', with: 'TORONTO'
+          fill_in 'cart_shipping_address_postal_code', with: 'M5V 2Z9'
+
+          select 'Canada - CA', from: 'cart_shipping_address_country'
+          fill_in 'cart_shipping_address_province', with: 'ON'
+
           fill_in 'cart_email', with: 'bugsbunny@gmail.com'
           fill_in 'cart_phone', with: '2314567890'
 
@@ -209,11 +213,11 @@ describe 'Shopping Cart' do
           current_url.should == url_for([:shipping])
 
           @cart.reload
-          @cart.shipping_address.address_1.should == '2236 S 33 1/2 RD'
-          @cart.shipping_address.city.should == 'Cadillac'
-          @cart.shipping_address.province.should == 'MI'
-          @cart.shipping_address.postal_code.should == '49601'
-          @cart.shipping_address.country.should == 'US'
+          @cart.shipping_address.address_1.should == '25 Raglan Street, Ste. 20'
+          @cart.shipping_address.city.should == 'TORONTO'
+          @cart.shipping_address.province.should == 'ON'
+          @cart.shipping_address.postal_code.should == 'M5V 2Z9'
+          @cart.shipping_address.country.should == 'Canada - CA'
           @cart.email.should == 'bugsbunny@gmail.com'  
           @cart.phone.should == '2314567890'
           @cart.current_stage.should == 'shipping'
@@ -248,7 +252,7 @@ describe 'Shopping Cart' do
             fill_in 'cart_shipping_address_city', with: 'Cadillac'
             fill_in 'cart_shipping_address_province', with: 'MI'
             fill_in 'cart_shipping_address_postal_code', with: '49601'
-            fill_in 'cart_shipping_address_country', with: 'US'
+            select  'United States - US', from: 'cart_shipping_address_country'
             fill_in 'cart_email', with: 'bugsbunny@gmail.com'
             fill_in 'cart_phone', with: '2314567890'
             click_button 'Next'
@@ -263,6 +267,33 @@ describe 'Shopping Cart' do
             current_url.should == url_for([:pay])
             @cart.reload
             @cart.shipping_type.should == 'FEDEX_GROUND' #or something like that
+          end
+        end
+
+        context 'with an international shipping address' do
+          before do
+            visit url_for([:checkout])
+            fill_in 'cart_first_name', with: 'Anonymous'
+            fill_in 'cart_last_name', with: 'User'
+            fill_in 'cart_shipping_address_address_1', with: '25 Raglan Street, Ste. 20'
+            fill_in 'cart_shipping_address_city', with: 'TORONTO'
+            fill_in 'cart_shipping_address_province', with: 'ON'
+            fill_in 'cart_shipping_address_postal_code', with: 'M5V 2Z9'
+            select  'Canada - CA', from: 'cart_shipping_address_country'
+            fill_in 'cart_email', with: 'bugsbunny@gmail.com'
+            fill_in 'cart_phone', with: '2314567890'
+            click_button 'Next'
+          end
+
+          it 'selects a shipping option' do
+            current_url.should == url_for([:shipping])
+            
+            select 'International Priority', from: 'cart_shipping_type'
+            click_button 'Next'
+
+            current_url.should == url_for([:pay])
+            @cart.reload
+            @cart.shipping_type.should == 'INTERNATIONAL_PRIORITY' #or something like that
           end
         end
 
@@ -325,7 +356,26 @@ describe 'Shopping Cart' do
           end
 
           context 'with valid card' do
-            it 'processes payment'
+            before do
+              @cart = FactoryGirl.create :anonymous_cart_ready_for_billing_address
+              visit url_for([:pay])
+              fill_in 'cart_credit_card_attributes_number', with: '4111111111111111'
+              fill_in 'cart_credit_card_attributes_ccv', with: '111'
+              fill_in 'cart_credit_card_attributes_name', with: 'billing name'
+              fill_in 'cart_billing_address_attributes_address_1', with: '3456 S. gigiidy RD'
+              fill_in 'cart_billing_address_attributes_city', with: 'goo'
+              fill_in 'cart_billing_address_attributes_province', with: 'MI'
+              fill_in 'cart_billing_address_attributes_postal_code', with: '45637'
+              fill_in 'cart_billing_address_attributes_country', with: 'US'
+              select '9', from: 'cart_credit_card_attributes_month'
+              select '17', from: 'cart_credit_card_attributes_year'
+            end
+            it 'processes payment' do
+              click_button 'Next'
+              current_url.should == url_for(:summary)
+
+              @cart.order.purchased.should be
+            end
             it 'shows an order summary' 
           end
 

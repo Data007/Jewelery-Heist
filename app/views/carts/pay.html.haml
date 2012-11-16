@@ -1,6 +1,6 @@
 %h1 Cart Payment
 
-= form_for [@cart] do |cart_form|
+= form_for [@cart], url: [:cart] do |cart_form|
   = error_messages_for @cart
   = error_messages_for @cart.payment
   = error_messages_for @cart.credit_card
@@ -10,10 +10,10 @@
 
   %fieldset
     %legend Credit Card Information
-    
     = cart_form.fields_for :credit_card do |card_form|
       = card_form.text_field :name, placeholder: 'Name'
       = card_form.text_field :number, placeholder: 'Number'
+      = card_form.select :year, options_for_select((1..25))
       = card_form.select :month, options_for_select((1..12))
       = card_form.text_field :ccv, placeholder: 'Ccv'
 

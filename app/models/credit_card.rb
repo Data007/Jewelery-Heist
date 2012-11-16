@@ -9,12 +9,14 @@ class CreditCard
   field :ccv
   field :name
 
-  embedded_in :user
+  belongs_to  :user
+  belongs_to  :cart
 
   validates :number, presence: true
   validates :ccv, presence: true
   validates :name, presence: true
-  validate :custom_validate
+  validates :year, presence: true
+  validate  :custom_validate
   
   def custom_validate
     errors.add(:number, "Number cannot be nil") unless self.ccv.present?
