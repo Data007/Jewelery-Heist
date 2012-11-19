@@ -130,27 +130,11 @@ describe 'Shopping Cart' do
           page.should_not have_content("City can't be blank")
         end
 
-        it 'validates shipping address province' do
-          page.should have_content("State or province can't be blank")
-          fill_in 'cart_shipping_address_province', with: 'CA'
-          click_button 'Next'
-          page.should_not have_content("State or province can't be blank")
-        end
-
         it 'validates shipping address postal code' do
           page.should have_content("Postal Code can't be blank")
           fill_in 'cart_shipping_address_postal_code', with: '34567'
           click_button 'Next'
           page.should_not have_content("Postal Code can't be blank")
-        end
-
-        it 'validates shipping address country' do
-          #TODO Test Drop Down Menu for Countries in Shipping
-          #page.should have_content("Country can't be blank")
-          #fill_in 'cart_shipping_address_country', with: 'US'
-          select 'United States - US', from: 'cart_shipping_address_country'
-          click_button 'Next'
-          page.should_not have_content("Country can't be blank")
         end
 
         it 'validates email' do
@@ -193,7 +177,7 @@ describe 'Shopping Cart' do
           page.should_not have_content("Last name can't be blank")
         end
 
-        it 'fills in the Shipping Address, name, email, phone' do
+        it 'fills in the Shipping Address, name, email, phone', js: true do
           @cart.shipping_address.should_not be
 
           fill_in 'cart_first_name', with: 'Anonymous'
@@ -201,23 +185,22 @@ describe 'Shopping Cart' do
           fill_in 'cart_shipping_address_address_1', with: '25 Raglan Street, Ste. 20'
           fill_in 'cart_shipping_address_city', with: 'TORONTO'
           fill_in 'cart_shipping_address_postal_code', with: 'M5V 2Z9'
-
-          select 'Canada - CA', from: 'cart_shipping_address_country'
-          fill_in 'cart_shipping_address_province', with: 'ON'
+          
+          select 'Canada', from: 'cart_shipping_address_country'
+          select 'Ontario', from: 'cart_shipping_address_province'
 
           fill_in 'cart_email', with: 'bugsbunny@gmail.com'
           fill_in 'cart_phone', with: '2314567890'
 
           click_button 'Next'
 
-          current_url.should == url_for([:shipping])
 
           @cart.reload
           @cart.shipping_address.address_1.should == '25 Raglan Street, Ste. 20'
           @cart.shipping_address.city.should == 'TORONTO'
           @cart.shipping_address.province.should == 'ON'
           @cart.shipping_address.postal_code.should == 'M5V 2Z9'
-          @cart.shipping_address.country.should == 'Canada - CA'
+          @cart.shipping_address.country.should == 'CA'
           @cart.email.should == 'bugsbunny@gmail.com'  
           @cart.phone.should == '2314567890'
           @cart.current_stage.should == 'shipping'
@@ -243,55 +226,50 @@ describe 'Shopping Cart' do
           page.should have_content(@item_backorder.backorder_notes)
         end
 
-        context 'with a shipping address' do
+        context 'with a shipping address', js:true do
           before do
-            visit url_for([:checkout])
+            visit '/cart/checkout'
             fill_in 'cart_first_name', with: 'Anonymous'
             fill_in 'cart_last_name', with: 'User'
             fill_in 'cart_shipping_address_address_1', with: '2235 S 33 1/2 RD'
             fill_in 'cart_shipping_address_city', with: 'Cadillac'
-            fill_in 'cart_shipping_address_province', with: 'MI'
             fill_in 'cart_shipping_address_postal_code', with: '49601'
-            select  'United States - US', from: 'cart_shipping_address_country'
+            select  'United States', from: 'cart_shipping_address_country'
+            select  'Michigan', from: 'cart_shipping_address_province'
             fill_in 'cart_email', with: 'bugsbunny@gmail.com'
             fill_in 'cart_phone', with: '2314567890'
             click_button 'Next'
           end
 
           it 'selects a shipping option' do
-            current_url.should == url_for([:shipping])
-            
             select 'Fedex Ground', from: 'cart_shipping_type'
             click_button 'Next'
 
-            current_url.should == url_for([:pay])
             @cart.reload
             @cart.shipping_type.should == 'FEDEX_GROUND' #or something like that
           end
         end
 
-        context 'with an international shipping address' do
+        context 'with an international shipping address', js:true do
           before do
-            visit url_for([:checkout])
+            visit   '/cart/checkout'
             fill_in 'cart_first_name', with: 'Anonymous'
             fill_in 'cart_last_name', with: 'User'
             fill_in 'cart_shipping_address_address_1', with: '25 Raglan Street, Ste. 20'
             fill_in 'cart_shipping_address_city', with: 'TORONTO'
-            fill_in 'cart_shipping_address_province', with: 'ON'
             fill_in 'cart_shipping_address_postal_code', with: 'M5V 2Z9'
-            select  'Canada - CA', from: 'cart_shipping_address_country'
+            select  'Canada', from: 'cart_shipping_address_country'
+            select  'Ontario', from: 'cart_shipping_address_province'
             fill_in 'cart_email', with: 'bugsbunny@gmail.com'
             fill_in 'cart_phone', with: '2314567890'
             click_button 'Next'
           end
 
           it 'selects a shipping option' do
-            current_url.should == url_for([:shipping])
             
             select 'International Priority', from: 'cart_shipping_type'
             click_button 'Next'
 
-            current_url.should == url_for([:pay])
             @cart.reload
             @cart.shipping_type.should == 'INTERNATIONAL_PRIORITY' #or something like that
           end
@@ -449,9 +427,7 @@ describe 'Shopping Cart' do
           page.should_not have_content ('cart_last_name')
           page.should_not have_content ('cart_shipping_address_address_1')
           page.should_not have_content ('cart_shipping_address_city')
-          page.should_not have_content ('cart_shipping_address_province')
           page.should_not have_content ('cart_shipping_address_postal_code')
-          page.should_not have_content ('cart_shipping_address_country')
           page.should_not have_content ('cart_email')
           page.should_not have_content ('cart_phone')
 

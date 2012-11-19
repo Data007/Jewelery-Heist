@@ -31,6 +31,29 @@ describe Fedexer do
       }]
     end
 
+    context 'with a country code' do
+      before do
+        @code = 'CA'
+      end
+
+      it 'gets a country list' do
+        provinces = Fedexer.provinces(@code)
+        provinces.should include(["Alberta", "AB"])
+        provinces.should include(["British Columbia", "BC"])
+        provinces.should include(["Manitoba", "MB"])
+        provinces.should include(["New Brunswick", "NB"])
+        provinces.should include(["Newfoundland and Labrador", "NL"])
+        provinces.should include(["Nova Scotia", "NS"])
+        provinces.should include(["Northwest Territories", "NT"])
+        provinces.should include(["Nunavut", "NU"])
+        provinces.should include(["Ontario", "ON"])
+        provinces.should include(["Prince Edward Island", "PE"])
+        provinces.should include(["Quebec", "QC"])
+        provinces.should include(["Saskatchewan", "SK"])
+        provinces.should include(["Yukon Territory", "YT"])
+      end
+    end
+
 
     context 'with a package' do
       before do

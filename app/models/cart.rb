@@ -51,7 +51,6 @@ class Cart
     save
   end
   def create_order_from_cart
-    binding.pry
     self.order = Order.create(
       user:             self.user,
       line_items:       self.line_items,

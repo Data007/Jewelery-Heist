@@ -36,9 +36,9 @@
         = address_form.text_field :address_1, placeholder: 'Line 1'
         = address_form.text_field :address_2, placeholder: 'Line 2'
         = address_form.text_field :city, placeholder: 'City'
-        = address_form.text_field :province, placeholder: 'State or Province'
         = address_form.text_field :postal_code, placeholder: 'Zip Code or Postal Code'
         = address_form.select :country, options_for_select(Fedexer::SHIPPING_COUNTRIES)
+        = address_form.select :province, options_for_select([])
       %fieldset
         %legend Contact Information
 
@@ -48,3 +48,35 @@
   = cart_form.submit 'Next'
 
 = render 'index', locals: {current_stage: 'checkout', next_stage: 'shipping'}
+
+- content_for :extra_javascript do
+  - Fedexer::SHIPPING_COUNTRIES.collect {|country| country[1]}.each do |country|
+    :javascript
+      var #{country}Provinces = #{Fedexer.provinces(country)};
+  
+  :javascript
+    var provincesForCountryCode = function(code) {
+      provinces = eval(code + 'Provinces');
+      return provinces;
+    };
+
+    var optionsForSelect = function(optionsArray) {
+      options = '';
+      $(optionsArray).each(function(){
+        options += '<option value="' + this[1] + '">' + this[0] + '</option>';
+      });
+      return options;
+    };
+
+    var setProvincesFromCountryCode = function(countryCode) {
+      provinces       = provincesForCountryCode(countryCode);
+      provincesSelect = $('#cart_shipping_address_province');
+      provincesSelect.html(optionsForSelect(provinces));
+    };
+  
+    $(document).ready(function(){
+      $('#cart_shipping_address_country').change(function(){
+        setProvincesFromCountryCode(this.value);
+      });
+      setProvincesFromCountryCode($('#cart_shipping_address_country').val());
+    });
