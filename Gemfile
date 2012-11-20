@@ -46,6 +46,8 @@ gem 'will_paginate', '~> 3.0.2'
 gem 'puma'
 gem 'countries'
 
+
+
 group :production do
   gem 'newrelic_rpm', '3.4.1'
   ruby '1.9.3'
