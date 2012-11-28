@@ -374,6 +374,8 @@ describe 'Shopping Cart' do
               click_button 'Next'
               current_url.should == url_for(:summary)
 
+              @cart.reload
+              binding.pry
               @cart.order.purchased.should be
             end
             it 'shows an order summary' 

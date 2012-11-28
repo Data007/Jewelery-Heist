@@ -30,14 +30,16 @@ class Order
   belongs_to  :user
   belongs_to  :cart
   embeds_many :line_items
-  embeds_many :payments
-  embeds_one  :address
+  # TODO: create a migration script to move old order[:payments] into an invoice with processed payments
+  embeds_many :invoices
+  # TODO: create a migration script to move order[:address] into order.shipping_address
+  embeds_one  :shipping_address
   embeds_one  :ticket
   embeds_one  :cart
 
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :shipping_address
 
-  before_save  :set_address
+  before_save  :set_shipping_address
   after_create :setup_ticket
 
   default_scope order_by([:pretty_id, :asc])
@@ -65,8 +67,8 @@ class Order
     self.save
   end
   
-  def set_address
-    self.address = self.address unless address
+  def set_shipping_address
+    self.shipping_address = self.shipping_address unless shipping_address
   end
 
   def due_dates
@@ -78,7 +80,7 @@ class Order
   end
 
   def has_valid_shipping_address?
-    address
+    shipping_address
   end
 
   def full_shipping
@@ -132,7 +134,7 @@ class Order
   end
 
   def shipping_options
-    shipping_country = address ? address.country : 'US'
+    shipping_country = shipping_address ? shipping_address.country : 'US'
     options = shipping_by_country(shipping_country).collect do |shipping_option|
   	  ["#{shipping_option[0]} #{subtotal >= shipping_option[2] ? "Free Upgrade" : '$' + shipping_option[1].to_s + '.00'}", shipping_option[0]]
 	  end
@@ -217,7 +219,7 @@ class Order
     end
 
     begin
-      self.address = user.addresses.last.clone unless self.address.present?
+      self.shipping_address = user.addresses.last.clone unless self.shipping_address.present?
     rescue; end
     
     self.ticket.current_stage = "handed off"

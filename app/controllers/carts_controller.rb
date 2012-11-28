@@ -8,10 +8,6 @@ class CartsController < ApplicationController
     @cart.billing_address = @cart.shipping_address
   end
   
-  def summary
-    binding.pry
-  end
-
   def process_cart
     if @cart.process_cart
       redirect_to [:summary]

@@ -35,32 +35,33 @@ class Cart
   end
 
   def process_cart
-    if process_payment
-      create_order_from_cart
+    order = create_order_from_cart
+    # TODO: process_payments
+    # status = order.process_payments(use_payment_processor: true)
+    status = 'ok'
+    if status == 'ok'
       self.current_stage = 'summary'; save
       return self
     else
-      # add errors to base
+      # TODO: add errors to base
       return self
     end
   end
 
-  def process_payment
-    # TODO: Make actual Braintree calls
-    self.payment = Payment.new(amount: self.total, payment_type: 'credit')
-    save
-  end
   def create_order_from_cart
-    binding.pry
     self.order = Order.create(
       user:             self.user,
       line_items:       self.line_items,
       payments:         self.payment,
       shipping_address: self.shipping_address,
       shipping_option:  self.shipping_type,
-      location:         'website',
-      payments:         [self.payment.clone]
+      location:         'website'
     )
+
+    invoice = self.order.invoices.create
+    # TODO: Add payment to invoice
+    # invoice.add_payment(payment_type: 'credit_card', processed: false, amount: self.total)
+    return self.order
   end
   
   def full_name
