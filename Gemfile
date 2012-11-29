@@ -45,6 +45,8 @@ gem 'stringex'
 gem 'will_paginate', '~> 3.0.2'
 gem 'puma'
 gem 'countries'
+gem 'active_shipping'
+gem 'activemerchant'
 
 
 

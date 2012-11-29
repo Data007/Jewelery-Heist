@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://onlinetools.ups.com/ups.app/xml/Rate
+    body:
+      encoding: US-ASCII
+      string: <AccessRequest><AccessLicenseNumber>xml-access-key</AccessLicenseNumber><UserId>auntjudy</UserId><Password>secret</Password></AccessRequest><RatingServiceSelectionRequest><Request><RequestAction>Rate</RequestAction><RequestOption>Shop</RequestOption></Request><PickupType><Code>01</Code></PickupType><CustomerClassification><Code>01</Code></CustomerClassification><Shipment><Shipper><Address><City>Beverly
+        Hills</City><StateProvinceCode>CA</StateProvinceCode><PostalCode>90210</PostalCode><CountryCode>US</CountryCode><ResidentialAddressIndicator>true</ResidentialAddressIndicator></Address></Shipper><ShipTo><Address><City>Ottawa</City><StateProvinceCode>ON</StateProvinceCode><PostalCode>K1P
+        1J1</PostalCode><CountryCode>CA</CountryCode><ResidentialAddressIndicator>true</ResidentialAddressIndicator></Address></ShipTo><Package><PackagingType><Code>02</Code></PackagingType><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>36.614</Length><Width>3.937</Width><Height>3.937</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>0.22</Weight></PackageWeight></Package><Package><PackagingType><Code>02</Code></PackagingType><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>15.0</Length><Width>10.0</Width><Height>4.5</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>7.5</Weight></PackageWeight></Package></Shipment></RatingServiceSelectionRequest>
+    headers:
+      content-type:
+      - application/x-www-form-urlencoded
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 29 Nov 2012 21:47:54 GMT
+      server:
+      - Apache
+      x-frame-options:
+      - SAMEORIGIN
+      pragma:
+      - no-cache
+      content-length:
+      - '357'
+      x-powered-by:
+      - Servlet/2.5 JSP/2.1
+      connection:
+      - close
+      content-type:
+      - application/xml
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0"?>
+
+        <RatingServiceSelectionResponse><Response><ResponseStatusCode>0</ResponseStatusCode><ResponseStatusDescription>Failure</ResponseStatusDescription><Error><ErrorSeverity>Hard</ErrorSeverity><ErrorCode>250003</ErrorCode><ErrorDescription>Invalid
+        Access License number</ErrorDescription></Error></Response></RatingServiceSelectionResponse>'
+    http_version: '1.1'
+  recorded_at: Thu, 29 Nov 2012 21:47:54 GMT
+recorded_with: VCR 2.2.5
