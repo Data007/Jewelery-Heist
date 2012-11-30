@@ -41,6 +41,7 @@
         %p &copy; Wexford Jewelers, Inc. 2012
 
     = javascript_include_tag "application"
+    = yield :extra_javascript
 
     - if Rails.env.production?
       :javascript
