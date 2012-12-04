@@ -68,4 +68,10 @@ describe Cart do
       it 'removes an item'
     end
   end
+
+  context 'with a a shipping address' do
+    before do
+      @cart = FactoryGirl.create :anonymous_cart_ready_for_payments
+    end
+  end
 end

@@ -39,17 +39,17 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Mon, 19 Nov 2012 16:12:32 GMT
+      - Tue, 04 Dec 2012 01:26:46 GMT
       server:
       - Apache/2.2
       content-length:
-      - '8101'
+      - '8105'
       x-wily-servlet:
-      - Clear appServerIp=199.81.110.99&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=370&agentHost=qje20205&agentProcess=WebLogic
+      - Clear appServerIp=199.81.110.99&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=289&agentHost=qje20205&agentProcess=WebLogic
       x-powered-by:
       - Servlet/2.5 JSP/2.1
       x-wily-info:
-      - Clear guid=197148BDC7516E630FE2B719FF7493FD
+      - Clear guid=6385BB92C7516E630D304D00390FE3D6
       vary:
       - Accept-Encoding
       connection:
@@ -65,11 +65,276 @@ http_interactions:
         successfully processed. </v10:LocalizedMessage></v10:Notifications><v10:Version>\n
         \   <v10:ServiceId>crs</v10:ServiceId>\n    <v10:Major>10</v10:Major>\n    <v10:Intermediate>0</v10:Intermediate>\n
         \   <v10:Minor>0</v10:Minor>\n  </v10:Version><v10:RateReplyDetails xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><v10:ServiceType>FEDEX_EXPRESS_SAVER</v10:ServiceType><v10:PackagingType>YOUR_PACKAGING</v10:PackagingType><v10:DestinationAirportId>GRR</v10:DestinationAirportId><v10:IneligibleForMoneyBackGuarantee>false</v10:IneligibleForMoneyBackGuarantee><v10:OriginServiceArea>A5</v10:OriginServiceArea><v10:DestinationServiceArea>A5</v10:DestinationServiceArea><v10:SignatureOption>SERVICE_DEFAULT</v10:SignatureOption><v10:ActualRateType>PAYOR_ACCOUNT_PACKAGE</v10:ActualRateType><v10:RatedShipmentDetails><v10:ShipmentRateDetail><v10:RateType>PAYOR_ACCOUNT_PACKAGE</v10:RateType><v10:RateScale>7167</v10:RateScale><v10:RateZone>2</v10:RateZone><v10:PricingCode>PACKAGE</v10:PricingCode><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:DimDivisor>194</v10:DimDivisor><v10:FuelSurchargePercent>13.5</v10:FuelSurchargePercent><v10:TotalBillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:TotalBillingWeight><v10:TotalBaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:TotalBaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:TotalNetFreight><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:TotalNetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>3.82</v10:Amount></v10:TotalSurcharges><v10:TotalNetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:TotalNetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:TotalNetCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:TotalNetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
-        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>PAYOR_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>3.82</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
-        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails><v10:RatedShipmentDetails><v10:ShipmentRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RateScale>7167</v10:RateScale><v10:RateZone>2</v10:RateZone><v10:PricingCode>PACKAGE</v10:PricingCode><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:DimDivisor>194</v10:DimDivisor><v10:FuelSurchargePercent>13.5</v10:FuelSurchargePercent><v10:TotalBillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:TotalBillingWeight><v10:TotalBaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:TotalBaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:TotalNetFreight><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:TotalNetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>3.82</v10:Amount></v10:TotalSurcharges><v10:TotalNetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:TotalNetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:TotalNetCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:TotalNetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
-        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>11.45</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>3.82</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>15.27</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
-        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><v10:ServiceType>FEDEX_EXPRESS_SAVER</v10:ServiceType><v10:PackagingType>YOUR_PACKAGING</v10:PackagingType><v10:DestinationAirportId>GRR</v10:DestinationAirportId><v10:IneligibleForMoneyBackGuarantee>false</v10:IneligibleForMoneyBackGuarantee><v10:OriginServiceArea>A5</v10:OriginServiceArea><v10:DestinationServiceArea>A5</v10:DestinationServiceArea><v10:SignatureOption>SERVICE_DEFAULT</v10:SignatureOption><v10:ActualRateType>PAYOR_ACCOUNT_PACKAGE</v10:ActualRateType><v10:RatedShipmentDetails><v10:ShipmentRateDetail><v10:RateType>PAYOR_ACCOUNT_PACKAGE</v10:RateType><v10:RateScale>7167</v10:RateScale><v10:RateZone>2</v10:RateZone><v10:PricingCode>PACKAGE</v10:PricingCode><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:DimDivisor>166</v10:DimDivisor><v10:FuelSurchargePercent>16.5</v10:FuelSurchargePercent><v10:TotalBillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:TotalBillingWeight><v10:TotalBaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>12.35</v10:Amount></v10:TotalBaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:TotalNetFreight><v10:Currency>USD</v10:Currency><v10:Amount>12.35</v10:Amount></v10:TotalNetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.54</v10:Amount></v10:TotalSurcharges><v10:TotalNetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>16.89</v10:Amount></v10:TotalNetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:TotalNetCharge><v10:Currency>USD</v10:Currency><v10:Amount>16.89</v10:Amount></v10:TotalNetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.15</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.39</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>PAYOR_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>12.35</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>12.35</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.54</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>16.89</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>16.89</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.15</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.39</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails><v10:RatedShipmentDetails><v10:ShipmentRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RateScale>7167</v10:RateScale><v10:RateZone>2</v10:RateZone><v10:PricingCode>PACKAGE</v10:PricingCode><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:DimDivisor>166</v10:DimDivisor><v10:FuelSurchargePercent>16.5</v10:FuelSurchargePercent><v10:TotalBillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:TotalBillingWeight><v10:TotalBaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>12.35</v10:Amount></v10:TotalBaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:TotalNetFreight><v10:Currency>USD</v10:Currency><v10:Amount>12.35</v10:Amount></v10:TotalNetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.54</v10:Amount></v10:TotalSurcharges><v10:TotalNetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>16.89</v10:Amount></v10:TotalNetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:TotalNetCharge><v10:Currency>USD</v10:Currency><v10:Amount>16.89</v10:Amount></v10:TotalNetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.15</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.39</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>12.35</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>12.35</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.54</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>16.89</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>16.89</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.15</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.39</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
     http_version: '1.1'
-  recorded_at: Mon, 19 Nov 2012 16:12:33 GMT
+  recorded_at: Tue, 04 Dec 2012 01:26:47 GMT
+- request:
+    method: post
+    uri: https://gatewaybeta.fedex.com/xml/
+    body:
+      encoding: US-ASCII
+      string: ! "<RateRequest xmlns=\"http://fedex.com/ws/rate/v10\">\n  <WebAuthenticationDetail>\n
+        \   <UserCredential>\n      <Key>wikjDtsCxIh2iohD</Key>\n      <Password>Cw10xEFUV6f0kmz861HJdf8NQ</Password>\n
+        \   </UserCredential>\n  </WebAuthenticationDetail>\n  <ClientDetail>\n    <AccountNumber>510087925</AccountNumber>\n
+        \   <MeterNumber>118569532</MeterNumber>\n    <Localization>\n      <LanguageCode>en</LanguageCode>\n
+        \     <LocaleCode>us</LocaleCode>\n    </Localization>\n  </ClientDetail>\n
+        \ <Version>\n    <ServiceId>crs</ServiceId>\n    <Major>10</Major>\n    <Intermediate>0</Intermediate>\n
+        \   <Minor>0</Minor>\n  </Version>\n  <RequestedShipment>\n    <DropoffType>REGULAR_PICKUP</DropoffType>\n
+        \   <ServiceType>FEDEX_GROUND</ServiceType>\n    <PackagingType>YOUR_PACKAGING</PackagingType>\n
+        \   <Shipper>\n      <Contact>\n        <PersonName>Wexford Jewlers</PersonName>\n
+        \       <CompanyName/>\n        <PhoneNumber>2317751289</PhoneNumber>\n      </Contact>\n
+        \     <Address>\n        <StreetLines>801 North Mitchell Street</StreetLines>\n
+        \       <City>Cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
+        \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
+        \     </Address>\n    </Shipper>\n    <Recipient>\n      <Contact>\n        <PersonName>Anonymous
+        User</PersonName>\n        <CompanyName/>\n        <PhoneNumber>1234567890</PhoneNumber>\n
+        \     </Contact>\n      <Address>\n        <StreetLines>2236 S 33 1/2 RD</StreetLines>\n
+        \       <City>cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
+        \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
+        \       <Residential>false</Residential>\n      </Address>\n    </Recipient>\n
+        \   <ShippingChargesPayment>\n      <PaymentType>SENDER</PaymentType>\n      <Payor>\n
+        \       <AccountNumber>510087925</AccountNumber>\n        <CountryCode>US</CountryCode>\n
+        \     </Payor>\n    </ShippingChargesPayment>\n    <RateRequestTypes>ACCOUNT</RateRequestTypes>\n
+        \   <PackageCount>1</PackageCount>\n    <RequestedPackageLineItems>\n      <GroupPackageCount>1</GroupPackageCount>\n
+        \     <Weight>\n        <Units>LB</Units>\n        <Value>2</Value>\n      </Weight>\n
+        \     <Dimensions>\n        <Length>10</Length>\n        <Width>5</Width>\n
+        \       <Height>4</Height>\n        <Units>IN</Units>\n      </Dimensions>\n
+        \   </RequestedPackageLineItems>\n  </RequestedShipment>\n</RateRequest>"
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Tue, 04 Dec 2012 01:26:47 GMT
+      server:
+      - Apache/2.2
+      content-length:
+      - '4822'
+      x-wily-servlet:
+      - Clear appServerIp=199.81.110.99&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=104&agentHost=qje20205&agentProcess=WebLogic
+      x-powered-by:
+      - Servlet/2.5 JSP/2.1
+      x-wily-info:
+      - Clear guid=6385BF14C7516E630D304D005A8443D0
+      vary:
+      - Accept-Encoding
+      connection:
+      - close
+      content-type:
+      - text/xml; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<v10:RateReply xmlns:v10=\"http://fedex.com/ws/rate/v10\"><v10:HighestSeverity
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">SUCCESS</v10:HighestSeverity><v10:Notifications
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><v10:Severity>SUCCESS</v10:Severity><v10:Source>crs</v10:Source><v10:Code>0</v10:Code><v10:Message>Request
+        was successfully processed. </v10:Message><v10:LocalizedMessage>Request was
+        successfully processed. </v10:LocalizedMessage></v10:Notifications><v10:Version>\n
+        \   <v10:ServiceId>crs</v10:ServiceId>\n    <v10:Major>10</v10:Major>\n    <v10:Intermediate>0</v10:Intermediate>\n
+        \   <v10:Minor>0</v10:Minor>\n  </v10:Version><v10:RateReplyDetails xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><v10:ServiceType>FEDEX_GROUND</v10:ServiceType><v10:PackagingType>YOUR_PACKAGING</v10:PackagingType><v10:DestinationAirportId>GRR</v10:DestinationAirportId><v10:IneligibleForMoneyBackGuarantee>false</v10:IneligibleForMoneyBackGuarantee><v10:OriginServiceArea>A5</v10:OriginServiceArea><v10:DestinationServiceArea>A5</v10:DestinationServiceArea><v10:SignatureOption>SERVICE_DEFAULT</v10:SignatureOption><v10:ActualRateType>PAYOR_ACCOUNT_PACKAGE</v10:ActualRateType><v10:RatedShipmentDetails><v10:ShipmentRateDetail><v10:RateType>PAYOR_ACCOUNT_PACKAGE</v10:RateType><v10:RateZone>2</v10:RateZone><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:DimDivisor>0</v10:DimDivisor><v10:FuelSurchargePercent>8.0</v10:FuelSurchargePercent><v10:TotalBillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:TotalBillingWeight><v10:TotalBaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>5.84</v10:Amount></v10:TotalBaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:TotalNetFreight><v10:Currency>USD</v10:Currency><v10:Amount>5.84</v10:Amount></v10:TotalNetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>2.63</v10:Amount></v10:TotalSurcharges><v10:TotalNetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>8.47</v10:Amount></v10:TotalNetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:TotalNetCharge><v10:Currency>USD</v10:Currency><v10:Amount>8.47</v10:Amount></v10:TotalNetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Level>PACKAGE</v10:Level><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Level>PACKAGE</v10:Level><v10:Description>FedEx
+        Ground Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>0.63</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>PAYOR_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>5.84</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>5.84</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>2.63</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>8.47</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>8.47</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Level>PACKAGE</v10:Level><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Level>PACKAGE</v10:Level><v10:Description>FedEx
+        Ground Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>0.63</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
+    http_version: '1.1'
+  recorded_at: Tue, 04 Dec 2012 01:26:48 GMT
+- request:
+    method: post
+    uri: https://gatewaybeta.fedex.com/xml/
+    body:
+      encoding: US-ASCII
+      string: ! "<RateRequest xmlns=\"http://fedex.com/ws/rate/v10\">\n  <WebAuthenticationDetail>\n
+        \   <UserCredential>\n      <Key>wikjDtsCxIh2iohD</Key>\n      <Password>Cw10xEFUV6f0kmz861HJdf8NQ</Password>\n
+        \   </UserCredential>\n  </WebAuthenticationDetail>\n  <ClientDetail>\n    <AccountNumber>510087925</AccountNumber>\n
+        \   <MeterNumber>118569532</MeterNumber>\n    <Localization>\n      <LanguageCode>en</LanguageCode>\n
+        \     <LocaleCode>us</LocaleCode>\n    </Localization>\n  </ClientDetail>\n
+        \ <Version>\n    <ServiceId>crs</ServiceId>\n    <Major>10</Major>\n    <Intermediate>0</Intermediate>\n
+        \   <Minor>0</Minor>\n  </Version>\n  <RequestedShipment>\n    <DropoffType>REGULAR_PICKUP</DropoffType>\n
+        \   <ServiceType>FEDEX_2_DAY</ServiceType>\n    <PackagingType>YOUR_PACKAGING</PackagingType>\n
+        \   <Shipper>\n      <Contact>\n        <PersonName>Wexford Jewlers</PersonName>\n
+        \       <CompanyName/>\n        <PhoneNumber>2317751289</PhoneNumber>\n      </Contact>\n
+        \     <Address>\n        <StreetLines>801 North Mitchell Street</StreetLines>\n
+        \       <City>Cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
+        \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
+        \     </Address>\n    </Shipper>\n    <Recipient>\n      <Contact>\n        <PersonName>Anonymous
+        User</PersonName>\n        <CompanyName/>\n        <PhoneNumber>1234567890</PhoneNumber>\n
+        \     </Contact>\n      <Address>\n        <StreetLines>2236 S 33 1/2 RD</StreetLines>\n
+        \       <City>cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
+        \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
+        \       <Residential>false</Residential>\n      </Address>\n    </Recipient>\n
+        \   <ShippingChargesPayment>\n      <PaymentType>SENDER</PaymentType>\n      <Payor>\n
+        \       <AccountNumber>510087925</AccountNumber>\n        <CountryCode>US</CountryCode>\n
+        \     </Payor>\n    </ShippingChargesPayment>\n    <RateRequestTypes>ACCOUNT</RateRequestTypes>\n
+        \   <PackageCount>1</PackageCount>\n    <RequestedPackageLineItems>\n      <GroupPackageCount>1</GroupPackageCount>\n
+        \     <Weight>\n        <Units>LB</Units>\n        <Value>2</Value>\n      </Weight>\n
+        \     <Dimensions>\n        <Length>10</Length>\n        <Width>5</Width>\n
+        \       <Height>4</Height>\n        <Units>IN</Units>\n      </Dimensions>\n
+        \   </RequestedPackageLineItems>\n  </RequestedShipment>\n</RateRequest>"
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Tue, 04 Dec 2012 01:26:48 GMT
+      server:
+      - Apache/2.2
+      content-length:
+      - '8097'
+      x-wily-servlet:
+      - Clear appServerIp=199.81.110.99&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=201&agentHost=qje20205&agentProcess=WebLogic
+      x-powered-by:
+      - Servlet/2.5 JSP/2.1
+      x-wily-info:
+      - Clear guid=6385C290C7516E630D304D00D0AC3138
+      vary:
+      - Accept-Encoding
+      connection:
+      - close
+      content-type:
+      - text/xml; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<v10:RateReply xmlns:v10=\"http://fedex.com/ws/rate/v10\"><v10:HighestSeverity
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">SUCCESS</v10:HighestSeverity><v10:Notifications
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><v10:Severity>SUCCESS</v10:Severity><v10:Source>crs</v10:Source><v10:Code>0</v10:Code><v10:Message>Request
+        was successfully processed. </v10:Message><v10:LocalizedMessage>Request was
+        successfully processed. </v10:LocalizedMessage></v10:Notifications><v10:Version>\n
+        \   <v10:ServiceId>crs</v10:ServiceId>\n    <v10:Major>10</v10:Major>\n    <v10:Intermediate>0</v10:Intermediate>\n
+        \   <v10:Minor>0</v10:Minor>\n  </v10:Version><v10:RateReplyDetails xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><v10:ServiceType>FEDEX_2_DAY</v10:ServiceType><v10:PackagingType>YOUR_PACKAGING</v10:PackagingType><v10:DestinationAirportId>GRR</v10:DestinationAirportId><v10:IneligibleForMoneyBackGuarantee>false</v10:IneligibleForMoneyBackGuarantee><v10:OriginServiceArea>A5</v10:OriginServiceArea><v10:DestinationServiceArea>A5</v10:DestinationServiceArea><v10:SignatureOption>SERVICE_DEFAULT</v10:SignatureOption><v10:ActualRateType>PAYOR_ACCOUNT_PACKAGE</v10:ActualRateType><v10:RatedShipmentDetails><v10:ShipmentRateDetail><v10:RateType>PAYOR_ACCOUNT_PACKAGE</v10:RateType><v10:RateScale>5980</v10:RateScale><v10:RateZone>2</v10:RateZone><v10:PricingCode>PACKAGE</v10:PricingCode><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:DimDivisor>166</v10:DimDivisor><v10:FuelSurchargePercent>16.5</v10:FuelSurchargePercent><v10:TotalBillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:TotalBillingWeight><v10:TotalBaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>13.15</v10:Amount></v10:TotalBaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:TotalNetFreight><v10:Currency>USD</v10:Currency><v10:Amount>13.15</v10:Amount></v10:TotalNetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.67</v10:Amount></v10:TotalSurcharges><v10:TotalNetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>17.82</v10:Amount></v10:TotalNetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:TotalNetCharge><v10:Currency>USD</v10:Currency><v10:Amount>17.82</v10:Amount></v10:TotalNetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.15</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.52</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>PAYOR_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>13.15</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>13.15</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.67</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>17.82</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>17.82</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.15</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.52</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails><v10:RatedShipmentDetails><v10:ShipmentRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RateScale>5980</v10:RateScale><v10:RateZone>2</v10:RateZone><v10:PricingCode>PACKAGE</v10:PricingCode><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:DimDivisor>166</v10:DimDivisor><v10:FuelSurchargePercent>16.5</v10:FuelSurchargePercent><v10:TotalBillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:TotalBillingWeight><v10:TotalBaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>13.15</v10:Amount></v10:TotalBaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:TotalNetFreight><v10:Currency>USD</v10:Currency><v10:Amount>13.15</v10:Amount></v10:TotalNetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.67</v10:Amount></v10:TotalSurcharges><v10:TotalNetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>17.82</v10:Amount></v10:TotalNetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:TotalNetCharge><v10:Currency>USD</v10:Currency><v10:Amount>17.82</v10:Amount></v10:TotalNetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.15</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.52</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>13.15</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>13.15</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.67</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>17.82</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>17.82</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.15</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.52</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
+    http_version: '1.1'
+  recorded_at: Tue, 04 Dec 2012 01:26:49 GMT
+- request:
+    method: post
+    uri: https://gatewaybeta.fedex.com/xml/
+    body:
+      encoding: US-ASCII
+      string: ! "<RateRequest xmlns=\"http://fedex.com/ws/rate/v10\">\n  <WebAuthenticationDetail>\n
+        \   <UserCredential>\n      <Key>wikjDtsCxIh2iohD</Key>\n      <Password>Cw10xEFUV6f0kmz861HJdf8NQ</Password>\n
+        \   </UserCredential>\n  </WebAuthenticationDetail>\n  <ClientDetail>\n    <AccountNumber>510087925</AccountNumber>\n
+        \   <MeterNumber>118569532</MeterNumber>\n    <Localization>\n      <LanguageCode>en</LanguageCode>\n
+        \     <LocaleCode>us</LocaleCode>\n    </Localization>\n  </ClientDetail>\n
+        \ <Version>\n    <ServiceId>crs</ServiceId>\n    <Major>10</Major>\n    <Intermediate>0</Intermediate>\n
+        \   <Minor>0</Minor>\n  </Version>\n  <RequestedShipment>\n    <DropoffType>REGULAR_PICKUP</DropoffType>\n
+        \   <ServiceType>STANDARD_OVERNIGHT</ServiceType>\n    <PackagingType>YOUR_PACKAGING</PackagingType>\n
+        \   <Shipper>\n      <Contact>\n        <PersonName>Wexford Jewlers</PersonName>\n
+        \       <CompanyName/>\n        <PhoneNumber>2317751289</PhoneNumber>\n      </Contact>\n
+        \     <Address>\n        <StreetLines>801 North Mitchell Street</StreetLines>\n
+        \       <City>Cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
+        \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
+        \     </Address>\n    </Shipper>\n    <Recipient>\n      <Contact>\n        <PersonName>Anonymous
+        User</PersonName>\n        <CompanyName/>\n        <PhoneNumber>1234567890</PhoneNumber>\n
+        \     </Contact>\n      <Address>\n        <StreetLines>2236 S 33 1/2 RD</StreetLines>\n
+        \       <City>cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
+        \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
+        \       <Residential>false</Residential>\n      </Address>\n    </Recipient>\n
+        \   <ShippingChargesPayment>\n      <PaymentType>SENDER</PaymentType>\n      <Payor>\n
+        \       <AccountNumber>510087925</AccountNumber>\n        <CountryCode>US</CountryCode>\n
+        \     </Payor>\n    </ShippingChargesPayment>\n    <RateRequestTypes>ACCOUNT</RateRequestTypes>\n
+        \   <PackageCount>1</PackageCount>\n    <RequestedPackageLineItems>\n      <GroupPackageCount>1</GroupPackageCount>\n
+        \     <Weight>\n        <Units>LB</Units>\n        <Value>2</Value>\n      </Weight>\n
+        \     <Dimensions>\n        <Length>10</Length>\n        <Width>5</Width>\n
+        \       <Height>4</Height>\n        <Units>IN</Units>\n      </Dimensions>\n
+        \   </RequestedPackageLineItems>\n  </RequestedShipment>\n</RateRequest>"
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Tue, 04 Dec 2012 01:26:49 GMT
+      server:
+      - Apache/2.2
+      content-length:
+      - '8092'
+      x-wily-servlet:
+      - Clear appServerIp=199.81.110.99&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=224&agentHost=qje20205&agentProcess=WebLogic
+      x-powered-by:
+      - Servlet/2.5 JSP/2.1
+      x-wily-info:
+      - Clear guid=6385C553C7516E630D304D007727B088
+      vary:
+      - Accept-Encoding
+      connection:
+      - close
+      content-type:
+      - text/xml; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<v10:RateReply xmlns:v10=\"http://fedex.com/ws/rate/v10\"><v10:HighestSeverity
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">SUCCESS</v10:HighestSeverity><v10:Notifications
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><v10:Severity>SUCCESS</v10:Severity><v10:Source>crs</v10:Source><v10:Code>0</v10:Code><v10:Message>Request
+        was successfully processed. </v10:Message><v10:LocalizedMessage>Request was
+        successfully processed. </v10:LocalizedMessage></v10:Notifications><v10:Version>\n
+        \   <v10:ServiceId>crs</v10:ServiceId>\n    <v10:Major>10</v10:Major>\n    <v10:Intermediate>0</v10:Intermediate>\n
+        \   <v10:Minor>0</v10:Minor>\n  </v10:Version><v10:RateReplyDetails xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><v10:ServiceType>STANDARD_OVERNIGHT</v10:ServiceType><v10:PackagingType>YOUR_PACKAGING</v10:PackagingType><v10:DestinationAirportId>GRR</v10:DestinationAirportId><v10:IneligibleForMoneyBackGuarantee>false</v10:IneligibleForMoneyBackGuarantee><v10:OriginServiceArea>A5</v10:OriginServiceArea><v10:DestinationServiceArea>A5</v10:DestinationServiceArea><v10:SignatureOption>SERVICE_DEFAULT</v10:SignatureOption><v10:ActualRateType>PAYOR_ACCOUNT_PACKAGE</v10:ActualRateType><v10:RatedShipmentDetails><v10:ShipmentRateDetail><v10:RateType>PAYOR_ACCOUNT_PACKAGE</v10:RateType><v10:RateScale>1283</v10:RateScale><v10:RateZone>2</v10:RateZone><v10:PricingCode>PACKAGE</v10:PricingCode><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:DimDivisor>194</v10:DimDivisor><v10:FuelSurchargePercent>13.5</v10:FuelSurchargePercent><v10:TotalBillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:TotalBillingWeight><v10:TotalBaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>20.1</v10:Amount></v10:TotalBaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:TotalNetFreight><v10:Currency>USD</v10:Currency><v10:Amount>20.1</v10:Amount></v10:TotalNetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.98</v10:Amount></v10:TotalSurcharges><v10:TotalNetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>25.08</v10:Amount></v10:TotalNetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:TotalNetCharge><v10:Currency>USD</v10:Currency><v10:Amount>25.08</v10:Amount></v10:TotalNetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.98</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>PAYOR_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>20.1</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>20.1</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.98</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>25.08</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>25.08</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.98</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails><v10:RatedShipmentDetails><v10:ShipmentRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RateScale>1283</v10:RateScale><v10:RateZone>2</v10:RateZone><v10:PricingCode>PACKAGE</v10:PricingCode><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:DimDivisor>194</v10:DimDivisor><v10:FuelSurchargePercent>13.5</v10:FuelSurchargePercent><v10:TotalBillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:TotalBillingWeight><v10:TotalBaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>20.1</v10:Amount></v10:TotalBaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:TotalNetFreight><v10:Currency>USD</v10:Currency><v10:Amount>20.1</v10:Amount></v10:TotalNetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.98</v10:Amount></v10:TotalSurcharges><v10:TotalNetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>25.08</v10:Amount></v10:TotalNetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:TotalNetCharge><v10:Currency>USD</v10:Currency><v10:Amount>25.08</v10:Amount></v10:TotalNetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.98</v10:Amount></v10:Amount></v10:Surcharges></v10:ShipmentRateDetail><v10:RatedPackages><v10:GroupNumber>0</v10:GroupNumber><v10:PackageRateDetail><v10:RateType>RATED_ACCOUNT_PACKAGE</v10:RateType><v10:RatedWeightMethod>ACTUAL</v10:RatedWeightMethod><v10:BillingWeight><v10:Units>LB</v10:Units><v10:Value>2.0</v10:Value></v10:BillingWeight><v10:BaseCharge><v10:Currency>USD</v10:Currency><v10:Amount>20.1</v10:Amount></v10:BaseCharge><v10:TotalFreightDiscounts><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalFreightDiscounts><v10:NetFreight><v10:Currency>USD</v10:Currency><v10:Amount>20.1</v10:Amount></v10:NetFreight><v10:TotalSurcharges><v10:Currency>USD</v10:Currency><v10:Amount>4.98</v10:Amount></v10:TotalSurcharges><v10:NetFedExCharge><v10:Currency>USD</v10:Currency><v10:Amount>25.08</v10:Amount></v10:NetFedExCharge><v10:TotalTaxes><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalTaxes><v10:NetCharge><v10:Currency>USD</v10:Currency><v10:Amount>25.08</v10:Amount></v10:NetCharge><v10:TotalRebates><v10:Currency>USD</v10:Currency><v10:Amount>0.0</v10:Amount></v10:TotalRebates><v10:Surcharges><v10:SurchargeType>DELIVERY_AREA</v10:SurchargeType><v10:Description>Delivery
+        Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.98</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
+    http_version: '1.1'
+  recorded_at: Tue, 04 Dec 2012 01:26:50 GMT
+- request:
+    method: post
+    uri: https://onlinetools.ups.com/ups.app/xml/Rate
+    body:
+      encoding: US-ASCII
+      string: <AccessRequest><AccessLicenseNumber>FCA9039C9A358F68</AccessLicenseNumber><UserId>wexfordjewelers</UserId><Password>CROUP59\iota</Password></AccessRequest><RatingServiceSelectionRequest><Request><RequestAction>Rate</RequestAction><RequestOption>Shop</RequestOption></Request><PickupType><Code>01</Code></PickupType><CustomerClassification><Code>01</Code></CustomerClassification><Shipment><Shipper><Address><City>Cadillac</City><StateProvinceCode>MI</StateProvinceCode><PostalCode>49601</PostalCode><CountryCode>US</CountryCode><ResidentialAddressIndicator>true</ResidentialAddressIndicator></Address></Shipper><ShipTo><Address><City>cadillac</City><StateProvinceCode>MI</StateProvinceCode><PostalCode>49601</PostalCode><CountryCode>US</CountryCode><ResidentialAddressIndicator>true</ResidentialAddressIndicator></Address></ShipTo><Package><PackagingType><Code>02</Code></PackagingType><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>36.614</Length><Width>3.937</Width><Height>3.937</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>0.22</Weight></PackageWeight></Package><Package><PackagingType><Code>02</Code></PackagingType><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>15.0</Length><Width>10.0</Width><Height>4.5</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>7.5</Weight></PackageWeight></Package></Shipment></RatingServiceSelectionRequest>
+    headers:
+      content-type:
+      - application/x-www-form-urlencoded
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Tue, 04 Dec 2012 01:26:50 GMT
+      server:
+      - Apache
+      x-frame-options:
+      - SAMEORIGIN
+      pragma:
+      - no-cache
+      content-length:
+      - '10085'
+      x-powered-by:
+      - Servlet/2.5 JSP/2.1
+      connection:
+      - close
+      content-type:
+      - application/xml
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0"?>
+
+        <RatingServiceSelectionResponse><Response><ResponseStatusCode>1</ResponseStatusCode><ResponseStatusDescription>Success</ResponseStatusDescription></Response><RatedShipment><Service><Code>03</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>9.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>25.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>25.06</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery/><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>11.71</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>11.71</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>1.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>13.35</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>13.35</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>12</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>35.07</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>35.07</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>3</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>16.40</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>16.40</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>18.67</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>18.67</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>02</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>43.64</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>43.64</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>2</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>20.66</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>20.66</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>22.98</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>22.98</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>13</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>69.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>69.06</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>32.40</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>32.40</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>36.66</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>36.66</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>14</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>149.99</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>149.99</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime>9:00
+        A.M.</ScheduledDeliveryTime><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>72.24</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>72.24</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>77.75</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>77.75</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>01</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>79.62</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>79.62</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime>10:30
+        A.M.</ScheduledDeliveryTime><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>37.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>37.06</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>42.56</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>42.56</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment></RatingServiceSelectionResponse>'
+    http_version: '1.1'
+  recorded_at: Tue, 04 Dec 2012 01:26:51 GMT
 recorded_with: VCR 2.2.5

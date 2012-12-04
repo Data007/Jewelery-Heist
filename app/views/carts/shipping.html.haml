@@ -7,7 +7,7 @@
   %fieldset
     %legend Shipping Options
 
-    = cart_form.select :shipping_type, options_for_select(shipping_options_for_select(@cart.shipping_options))
+    = cart_form.select :shipping_type, options_for_select(shipping_options_for_select(@cart.ups_shipping_options))
     = cart_form.submit 'Next'
     
 

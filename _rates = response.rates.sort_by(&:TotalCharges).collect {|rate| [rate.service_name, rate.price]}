@@ -1,0 +1,432 @@
+=> [32m[1;32m#<[0m[32mActiveMerchant::Shipping::RateResponse:0xaced664[0m
+ @message="Success",
+ @params=
+  {"Response"=[1;32m>[0m[32m[0m
+    {[32m[1;32m"[0m[32mResponseStatusCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m1[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mResponseStatusDescription[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mSuccess[1;32m"[0m[32m[0m},
+   [32m[1;32m"[0m[32mRatedShipment[1;32m"[0m[32m[0m=>
+    [{[32m[1;32m"[0m[32mService[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m03[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mRatedShipmentWarning[1;32m"[0m[32m[0m=>
+       [32m[1;32m"[0m[32mYour invoice may vary from the displayed reference rates[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m9.0[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m25.06[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m25.06[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mGuaranteedDaysToDelivery[1;32m"[0m[32m[0m=>[1;36mnil[0m,
+      [32m[1;32m"[0m[32mScheduledDeliveryTime[1;32m"[0m[32m[0m=>[1;36mnil[0m,
+      [32m[1;32m"[0m[32mRatedPackage[1;32m"[0m[32m[0m=>
+       [{[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m11.71[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m11.71[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.2[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m1.0[1;32m"[0m[32m[0m}},
+        {[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m13.35[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m13.35[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m7.5[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m8.0[1;32m"[0m[32m[0m}}]},
+     {[32m[1;32m"[0m[32mService[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m12[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mRatedShipmentWarning[1;32m"[0m[32m[0m=>
+       [32m[1;32m"[0m[32mYour invoice may vary from the displayed reference rates[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m12.0[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m35.07[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m35.07[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mGuaranteedDaysToDelivery[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m3[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mScheduledDeliveryTime[1;32m"[0m[32m[0m=>[1;36mnil[0m,
+      [32m[1;32m"[0m[32mRatedPackage[1;32m"[0m[32m[0m=>
+       [{[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m16.40[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m16.40[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.2[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m4.0[1;32m"[0m[32m[0m}},
+        {[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m18.67[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m18.67[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m7.5[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m8.0[1;32m"[0m[32m[0m}}]},
+     {[32m[1;32m"[0m[32mService[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m02[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mRatedShipmentWarning[1;32m"[0m[32m[0m=>
+       [32m[1;32m"[0m[32mYour invoice may vary from the displayed reference rates[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m12.0[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m43.64[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m43.64[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mGuaranteedDaysToDelivery[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m2[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mScheduledDeliveryTime[1;32m"[0m[32m[0m=>[1;36mnil[0m,
+      [32m[1;32m"[0m[32mRatedPackage[1;32m"[0m[32m[0m=>
+       [{[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m20.66[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m20.66[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.2[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m4.0[1;32m"[0m[32m[0m}},
+        {[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m22.98[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m22.98[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m7.5[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m8.0[1;32m"[0m[32m[0m}}]},
+     {[32m[1;32m"[0m[32mService[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m13[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mRatedShipmentWarning[1;32m"[0m[32m[0m=>
+       [32m[1;32m"[0m[32mYour invoice may vary from the displayed reference rates[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m12.0[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m69.06[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m69.06[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mGuaranteedDaysToDelivery[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m1[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mScheduledDeliveryTime[1;32m"[0m[32m[0m=>[1;36mnil[0m,
+      [32m[1;32m"[0m[32mRatedPackage[1;32m"[0m[32m[0m=>
+       [{[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m32.40[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m32.40[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.2[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m4.0[1;32m"[0m[32m[0m}},
+        {[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m36.66[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m36.66[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m7.5[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m8.0[1;32m"[0m[32m[0m}}]},
+     {[32m[1;32m"[0m[32mService[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m14[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mRatedShipmentWarning[1;32m"[0m[32m[0m=>
+       [32m[1;32m"[0m[32mYour invoice may vary from the displayed reference rates[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m12.0[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m149.99[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m149.99[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mGuaranteedDaysToDelivery[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m1[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mScheduledDeliveryTime[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m9:00 A.M.[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mRatedPackage[1;32m"[0m[32m[0m=>
+       [{[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m72.24[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m72.24[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.2[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m4.0[1;32m"[0m[32m[0m}},
+        {[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m77.75[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m77.75[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m7.5[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m8.0[1;32m"[0m[32m[0m}}]},
+     {[32m[1;32m"[0m[32mService[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m01[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mRatedShipmentWarning[1;32m"[0m[32m[0m=>
+       [32m[1;32m"[0m[32mYour invoice may vary from the displayed reference rates[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m12.0[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m79.62[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+       {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m79.62[1;32m"[0m[32m[0m},
+      [32m[1;32m"[0m[32mGuaranteedDaysToDelivery[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m1[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mScheduledDeliveryTime[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m10:30 A.M.[1;32m"[0m[32m[0m,
+      [32m[1;32m"[0m[32mRatedPackage[1;32m"[0m[32m[0m=>
+       [{[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m37.06[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m37.06[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.2[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m4.0[1;32m"[0m[32m[0m}},
+        {[32m[1;32m"[0m[32mTransportationCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m42.56[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mServiceOptionsCharges[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m0.00[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mTotalCharges[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCurrencyCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mUSD[1;32m"[0m[32m[0m, [32m[1;32m"[0m[32mMonetaryValue[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m42.56[1;32m"[0m[32m[0m},
+         [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m7.5[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mBillingWeight[1;32m"[0m[32m[0m=>
+          {[32m[1;32m"[0m[32mUnitOfMeasurement[1;32m"[0m[32m[0m=>{[32m[1;32m"[0m[32mCode[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mLBS[1;32m"[0m[32m[0m}, [32m[1;32m"[0m[32mWeight[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m8.0[1;32m"[0m[32m[0m}}]}]},
+ @rates=
+  [[32m[1;32m#<[0m[32mActiveMerchant::Shipping::RateEstimate:0xac5b3b8
+    @carrier="UPS",
+    @currency="USD",
+    @delivery_date=nil,
+    @delivery_range=[],
+    @destination=Cadillac, MI, 49601
+United States,
+    @origin=Cadillac, MI, 49601
+United States,
+    @package_rates=
+     [{:package=[1;32m>[0m[32m[0m
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a51e4
+         @currency=nil,
+         @cylinder=true,
+         @dimensions=
+          [#<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 93 centimetres>],
+         @gift=false,
+         @inches=[3.9370078740157477, 3.9370078740157477, 36.61417322834645],
+         @options={:cylinder=[1;32m>[0m[32m[0m[1;36mtrue[0m},
+         @unit_system=[1;32m:metric[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 100 grams[1;32m>[0m[32m[0m>},
+      {[1;32m:package[0m=>
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a4c30
+         @currency=nil,
+         @cylinder=false,
+         @dimensions=
+          [#<Quantified::Length: 4.5 inches>,
+           #<Quantified::Length: 10 inches>,
+           #<Quantified::Length: 15 inches>],
+         @gift=false,
+         @inches=[4.5, 10, 15],
+         @options={:units=[1;32m>[0m[32m[0m[1;32m:imperial[0m},
+         @unit_system=[1;32m:imperial[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 120.0 ounces[1;32m>[0m[32m[0m>}],
+    @service_code=[32m[1;32m"[0m[32m03[1;32m"[0m[32m[0m,
+    @service_name=[32m[1;32m"[0m[32mUPS Ground[1;32m"[0m[32m[0m,
+    @total_price=[1;34m2506[0m>,
+   [32m[1;32m#<[0m[32mActiveMerchant::Shipping::RateEstimate:0xabef000
+    @carrier="UPS",
+    @currency="USD",
+    @delivery_date=Thu, 06 Dec 2012 00:00:00 +0000,
+    @delivery_range=[Thu, 06 Dec 2012 00:00:00 +0000],
+    @destination=Cadillac, MI, 49601
+United States,
+    @origin=Cadillac, MI, 49601
+United States,
+    @package_rates=
+     [{:package=[1;32m>[0m[32m[0m
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a51e4
+         @currency=nil,
+         @cylinder=true,
+         @dimensions=
+          [#<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 93 centimetres>],
+         @gift=false,
+         @inches=[3.9370078740157477, 3.9370078740157477, 36.61417322834645],
+         @options={:cylinder=[1;32m>[0m[32m[0m[1;36mtrue[0m},
+         @unit_system=[1;32m:metric[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 100 grams[1;32m>[0m[32m[0m>},
+      {[1;32m:package[0m=>
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a4c30
+         @currency=nil,
+         @cylinder=false,
+         @dimensions=
+          [#<Quantified::Length: 4.5 inches>,
+           #<Quantified::Length: 10 inches>,
+           #<Quantified::Length: 15 inches>],
+         @gift=false,
+         @inches=[4.5, 10, 15],
+         @options={:units=[1;32m>[0m[32m[0m[1;32m:imperial[0m},
+         @unit_system=[1;32m:imperial[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 120.0 ounces[1;32m>[0m[32m[0m>}],
+    @service_code=[32m[1;32m"[0m[32m12[1;32m"[0m[32m[0m,
+    @service_name=[32m[1;32m"[0m[32mUPS Three-Day Select[1;32m"[0m[32m[0m,
+    @total_price=[1;34m3507[0m>,
+   [32m[1;32m#<[0m[32mActiveMerchant::Shipping::RateEstimate:0xa8dd90c
+    @carrier="UPS",
+    @currency="USD",
+    @delivery_date=Wed, 05 Dec 2012 00:00:00 +0000,
+    @delivery_range=[Wed, 05 Dec 2012 00:00:00 +0000],
+    @destination=Cadillac, MI, 49601
+United States,
+    @origin=Cadillac, MI, 49601
+United States,
+    @package_rates=
+     [{:package=[1;32m>[0m[32m[0m
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a51e4
+         @currency=nil,
+         @cylinder=true,
+         @dimensions=
+          [#<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 93 centimetres>],
+         @gift=false,
+         @inches=[3.9370078740157477, 3.9370078740157477, 36.61417322834645],
+         @options={:cylinder=[1;32m>[0m[32m[0m[1;36mtrue[0m},
+         @unit_system=[1;32m:metric[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 100 grams[1;32m>[0m[32m[0m>},
+      {[1;32m:package[0m=>
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a4c30
+         @currency=nil,
+         @cylinder=false,
+         @dimensions=
+          [#<Quantified::Length: 4.5 inches>,
+           #<Quantified::Length: 10 inches>,
+           #<Quantified::Length: 15 inches>],
+         @gift=false,
+         @inches=[4.5, 10, 15],
+         @options={:units=[1;32m>[0m[32m[0m[1;32m:imperial[0m},
+         @unit_system=[1;32m:imperial[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 120.0 ounces[1;32m>[0m[32m[0m>}],
+    @service_code=[32m[1;32m"[0m[32m02[1;32m"[0m[32m[0m,
+    @service_name=[32m[1;32m"[0m[32mUPS Second Day Air[1;32m"[0m[32m[0m,
+    @total_price=[1;34m4364[0m>,
+   [32m[1;32m#<[0m[32mActiveMerchant::Shipping::RateEstimate:0xa597108
+    @carrier="UPS",
+    @currency="USD",
+    @delivery_date=Tue, 04 Dec 2012 00:00:00 +0000,
+    @delivery_range=[Tue, 04 Dec 2012 00:00:00 +0000],
+    @destination=Cadillac, MI, 49601
+United States,
+    @origin=Cadillac, MI, 49601
+United States,
+    @package_rates=
+     [{:package=[1;32m>[0m[32m[0m
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a51e4
+         @currency=nil,
+         @cylinder=true,
+         @dimensions=
+          [#<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 93 centimetres>],
+         @gift=false,
+         @inches=[3.9370078740157477, 3.9370078740157477, 36.61417322834645],
+         @options={:cylinder=[1;32m>[0m[32m[0m[1;36mtrue[0m},
+         @unit_system=[1;32m:metric[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 100 grams[1;32m>[0m[32m[0m>},
+      {[1;32m:package[0m=>
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a4c30
+         @currency=nil,
+         @cylinder=false,
+         @dimensions=
+          [#<Quantified::Length: 4.5 inches>,
+           #<Quantified::Length: 10 inches>,
+           #<Quantified::Length: 15 inches>],
+         @gift=false,
+         @inches=[4.5, 10, 15],
+         @options={:units=[1;32m>[0m[32m[0m[1;32m:imperial[0m},
+         @unit_system=[1;32m:imperial[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 120.0 ounces[1;32m>[0m[32m[0m>}],
+    @service_code=[32m[1;32m"[0m[32m13[1;32m"[0m[32m[0m,
+    @service_name=[32m[1;32m"[0m[32mUPS Next Day Air Saver[1;32m"[0m[32m[0m,
+    @total_price=[1;34m6906[0m>,
+   [32m[1;32m#<[0m[32mActiveMerchant::Shipping::RateEstimate:0xa732e90
+    @carrier="UPS",
+    @currency="USD",
+    @delivery_date=Tue, 04 Dec 2012 00:00:00 +0000,
+    @delivery_range=[Tue, 04 Dec 2012 00:00:00 +0000],
+    @destination=Cadillac, MI, 49601
+United States,
+    @origin=Cadillac, MI, 49601
+United States,
+    @package_rates=
+     [{:package=[1;32m>[0m[32m[0m
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a51e4
+         @currency=nil,
+         @cylinder=true,
+         @dimensions=
+          [#<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 93 centimetres>],
+         @gift=false,
+         @inches=[3.9370078740157477, 3.9370078740157477, 36.61417322834645],
+         @options={:cylinder=[1;32m>[0m[32m[0m[1;36mtrue[0m},
+         @unit_system=[1;32m:metric[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 100 grams[1;32m>[0m[32m[0m>},
+      {[1;32m:package[0m=>
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a4c30
+         @currency=nil,
+         @cylinder=false,
+         @dimensions=
+          [#<Quantified::Length: 4.5 inches>,
+           #<Quantified::Length: 10 inches>,
+           #<Quantified::Length: 15 inches>],
+         @gift=false,
+         @inches=[4.5, 10, 15],
+         @options={:units=[1;32m>[0m[32m[0m[1;32m:imperial[0m},
+         @unit_system=[1;32m:imperial[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 120.0 ounces[1;32m>[0m[32m[0m>}],
+    @service_code=[32m[1;32m"[0m[32m14[1;32m"[0m[32m[0m,
+    @service_name=[32m[1;32m"[0m[32mUPS Next Day Air Early A.M.[1;32m"[0m[32m[0m,
+    @total_price=[1;34m14999[0m>,
+   [32m[1;32m#<[0m[32mActiveMerchant::Shipping::RateEstimate:0xab46f18
+    @carrier="UPS",
+    @currency="USD",
+    @delivery_date=Tue, 04 Dec 2012 00:00:00 +0000,
+    @delivery_range=[Tue, 04 Dec 2012 00:00:00 +0000],
+    @destination=Cadillac, MI, 49601
+United States,
+    @origin=Cadillac, MI, 49601
+United States,
+    @package_rates=
+     [{:package=[1;32m>[0m[32m[0m
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a51e4
+         @currency=nil,
+         @cylinder=true,
+         @dimensions=
+          [#<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 10 centimetres>,
+           #<Quantified::Length: 93 centimetres>],
+         @gift=false,
+         @inches=[3.9370078740157477, 3.9370078740157477, 36.61417322834645],
+         @options={:cylinder=[1;32m>[0m[32m[0m[1;36mtrue[0m},
+         @unit_system=[1;32m:metric[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 100 grams[1;32m>[0m[32m[0m>},
+      {[1;32m:package[0m=>
+        [32m[1;32m#<[0m[32mActiveMerchant::Shipping::Package:0xa1a4c30
+         @currency=nil,
+         @cylinder=false,
+         @dimensions=
+          [#<Quantified::Length: 4.5 inches>,
+           #<Quantified::Length: 10 inches>,
+           #<Quantified::Length: 15 inches>],
+         @gift=false,
+         @inches=[4.5, 10, 15],
+         @options={:units=[1;32m>[0m[32m[0m[1;32m:imperial[0m},
+         @unit_system=[1;32m:imperial[0m,
+         @value=[1;36mnil[0m,
+         @weight=[32m[1;32m#<[0m[32mQuantified::Mass: 120.0 ounces[1;32m>[0m[32m[0m>}],
+    @service_code=[32m[1;32m"[0m[32m01[1;32m"[0m[32m[0m,
+    @service_name=[32m[1;32m"[0m[32mUPS Next Day Air[1;32m"[0m[32m[0m,
+    @total_price=[1;34m7962[0m>],
+ @request=
+  [32m[1;32m"[0m[32m<AccessRequest><AccessLicenseNumber>FCA9039C9A358F68</AccessLicenseNumber><UserId>wexfordjewelers</UserId><Password>CROUP59[1;36m\\[0m[32miota</Password></AccessRequest><RatingServiceSelectionRequest><Request><RequestAction>Rate</RequestAction><RequestOption>Shop</RequestOption></Request><PickupType><Code>01</Code></PickupType><CustomerClassification><Code>01</Code></CustomerClassification><Shipment><Shipper><Address><City>Cadillac</City><StateProvinceCode>MI</StateProvinceCode><PostalCode>49601</PostalCode><CountryCode>US</CountryCode><ResidentialAddressIndicator>true</ResidentialAddressIndicator></Address></Shipper><ShipTo><Address><City>Cadillac</City><StateProvinceCode>MI</StateProvinceCode><PostalCode>49601</PostalCode><CountryCode>US</CountryCode><ResidentialAddressIndicator>true</ResidentialAddressIndicator></Address></ShipTo><Package><PackagingType><Code>02</Code></PackagingType><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>36.614</Length><Width>3.937</Width><Height>3.937</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>0.22</Weight></PackageWeight></Package><Package><PackagingType><Code>02</Code></PackagingType><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>15.0</Length><Width>10.0</Width><Height>4.5</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>7.5</Weight></PackageWeight></Package></Shipment></RatingServiceSelectionRequest>[1;32m"[0m[32m[0m,
+ @success=[1;36mtrue[0m,
+ @test=[1;36mfalse[0m,
+ @xml=
+  [32m[1;32m"[0m[32m<?xml version=[1;36m\"[0m[32m1.0[1;36m\"[0m[32m?>[1;36m\n[0m[32m<RatingServiceSelectionResponse><Response><ResponseStatusCode>1</ResponseStatusCode><ResponseStatusDescription>Success</ResponseStatusDescription></Response><RatedShipment><Service><Code>03</Code></Service><RatedShipmentWarning>Your invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>9.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>25.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>25.06</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery/><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>11.71</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>11.71</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>1.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>13.35</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>13.35</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>12</Code></Service><RatedShipmentWarning>Your invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>35.07</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>35.07</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>3</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>16.40</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>16.40</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>18.67</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>18.67</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>02</Code></Service><RatedShipmentWarning>Your invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>43.64</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>43.64</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>2</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>20.66</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>20.66</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>22.98</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>22.98</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>13</Code></Service><RatedShipmentWarning>Your invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>69.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>69.06</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>32.40</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>32.40</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>36.66</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>36.66</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>14</Code></Service><RatedShipmentWarning>Your invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>149.99</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>149.99</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime>9:00 A.M.</ScheduledDeliveryTime><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>72.24</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>72.24</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>77.75</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>77.75</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>01</Code></Service><RatedShipmentWarning>Your invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>79.62</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>79.62</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime>10:30 A.M.</ScheduledDeliveryTime><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>37.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>37.06</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>42.56</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>42.56</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment></RatingServiceSelectionResponse>[1;32m"[0m[32m[0m>

@@ -24,11 +24,48 @@ class Shipper
                     :zip => '90210')
     end
 
-    def sample_destination
+    def sample_international_destination
       Location.new( :country => 'CA',
                     :province => 'ON',
                     :city => 'Ottawa',
                     :postal_code => 'K1P 1J1')
+    end
+
+    def sample_destination
+      Location.new(
+        country:  'US',
+        state:    'MI',
+        city:     'Cadillac',
+        zip:      '49601'
+      )
+    end
+
+    def destination address
+      Location.new(
+        country:  "#{address.country}",
+        state:    "#{address.province}",
+        city:     "#{address.city}",
+        zip:      "#{address.postal_code}"
+      )
+    end
+
+    def get_ups_rate destination_address, packages
+      ups = UPS.new(test_mode: true, :login => 'wexfordjewelers', :password => 'CROUP59\iota', :key => 'FCA9039C9A358F68')
+      response = ups.find_rates(wexford_jewelers_address, destination(destination_address), sample_packages)
+      ups_rates = response.rates.sort_by(&:price).collect {|rate| [rate.service_name, rate.price]}
+    end
+
+    def get_fedex_rate destination_address, packages
+      binding.pry
+    end
+
+    def wexford_jewelers_address
+      Location.new(
+        country:  'US',
+        state:    'MI',
+        city:     'Cadillac',
+        zip:      '49601'
+      )
     end
   end
 end

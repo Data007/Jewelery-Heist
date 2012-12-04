@@ -93,6 +93,16 @@ class Cart
     end
   end
 
+  def ups_shipping_options
+    fedex_rates = shipping_options
+    ups_rates = Shipper.get_ups_rate(self.shipping_address, Shipper.sample_packages)
+    fedex_rates + ups_rates.collect {|rate| {name: rate[0], total_net_charge: (rate[1].to_f / 100).to_s}}
+  end
+
+  def ups_rates_to_hash_for_drop_down_select ups_rates
+    binding.pry
+  end
+
   def tax
     (line_items.where(taxable: true).map(&:total).sum * 0.06).round(2)
   end
