@@ -19,7 +19,6 @@ describe 'Email Migration' do
       execute_rake('email.rake', 'one_email')  
 
       @user.reload
-      @user.emails.should == []
       @user.email.should == first_email
     end
   end

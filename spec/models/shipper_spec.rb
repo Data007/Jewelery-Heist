@@ -22,6 +22,7 @@ describe Shipper do
           end
 
           it 'gets a fedex rate' do
+            pending 'Waiting for Bryan to complete this'
             fedex = FedEx.new(key: 'kjDtsCxIh2iohD', password: '1garnet', account: '510087925', login: 'wexfordjewelers')
             response = fedex.find_rates(Shipper.wexford_jewelers_address, Shipper.sample_destination, Shipper.sample_packages)
             response.should be
