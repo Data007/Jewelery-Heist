@@ -19,7 +19,9 @@ class User
   field :custom_id
 
   field :pretty_id,    type: Integer
+  field :pin,          type: Integer
   sequence :pretty_id
+  sequence :pin
 
   embeds_many :addresses
   has_many    :orders
