@@ -196,9 +196,12 @@ class User
   end
 
   def payments
-    orders.map(&:payments)
+    orders.map(&:invoices)
       .flatten
       .compact
+      .map(&:payments)
+        .flatten
+        .compact
   end
 
   def total_spent

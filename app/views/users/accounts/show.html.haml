@@ -55,7 +55,7 @@
       %tbody.payments
         - @current_user.payments.each do |payment|
           %tr.payment
-            %td= payment.order.pretty_id
+            %td= payment.invoice.order.pretty_id
             %td= l payment.created_at, format: :long
             %td= payment.payment_type
             %td= payment.amount

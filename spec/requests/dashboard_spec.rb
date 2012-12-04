@@ -7,7 +7,8 @@ describe 'Dashboard' do
     @item  = FactoryGirl.create :item
     @order = FactoryGirl.create :order, user: @user
     @address = FactoryGirl.create :address, order: @order 
-    @payment = FactoryGirl.create :payment, order: @order
+    @invoice = FactoryGirl.create :invoice, order: @order
+    @payment = FactoryGirl.create :payment, invoice: @invoice
 
     login_with_dh @user.email, 'password'
   end
@@ -66,7 +67,7 @@ describe 'Dashboard' do
       within '#payment-history' do
         page.should have_css('.payments .payment')
         all('.payments .payment').count.should == 1
-        page.should have_content(@payment.order.pretty_id)
+        page.should have_content(@payment.invoice.order.pretty_id)
         page.should have_content(localize(@payment.created_at, format: :long))
         page.should have_content(@payment.payment_type)
         page.should have_content(@payment.amount)

@@ -33,11 +33,11 @@ class Order
   # TODO: create a migration script to move old order[:payments] into an invoice with processed payments
   embeds_many :invoices
   # TODO: create a migration script to move order[:address] into order.shipping_address
-  embeds_one  :shipping_address
+  embeds_one  :address
   embeds_one  :ticket
   embeds_one  :cart
 
-  accepts_nested_attributes_for :shipping_address
+  accepts_nested_attributes_for :address
 
   before_save  :set_shipping_address
   after_create :setup_ticket
@@ -68,7 +68,7 @@ class Order
   end
   
   def set_shipping_address
-    self.shipping_address = self.shipping_address unless shipping_address
+    self.address = self.address unless address
   end
 
   def due_dates

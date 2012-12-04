@@ -50,7 +50,7 @@
           %tbody.payments
             - @current_user.payments.each do |payment|
               %tr.payment
-                %td= payment.order.pretty_id
+                %td= payment.invoice.order.pretty_id
                 %td= payment.created_at
                 %td= payment.payment_type
                 %td= payment.amount

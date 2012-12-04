@@ -8,7 +8,7 @@ class Payment
   field :check_number, type: Integer
   field :custom_id
 
-  embedded_in :order
+  embedded_in :invoice
   embedded_in :cart
 
   before_save :validate_amount

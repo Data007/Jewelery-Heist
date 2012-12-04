@@ -250,11 +250,11 @@ describe 'Shopping Cart' do
           end
 
           it 'selects a ups shipping option' do
-            select 'Ups Ground', from: 'cart_shipping_type'
+            select 'Ups Standard', from: 'cart_shipping_type'
             click_button 'Next'
 
             @cart.reload
-            @cart.shipping_type.should == 'UPS Ground'
+            @cart.shipping_type.should == 'UPS Standard'
           end
         end
 
@@ -471,12 +471,12 @@ describe 'Shopping Cart' do
           it 'picks UPS shipping option' do
             current_url.should == url_for([:shipping])
             
-            select 'UPS Ground', from: 'cart_shipping_type'
+            select 'Ups Standard', from: 'cart_shipping_type'
             click_button 'Next'
 
             current_url.should == url_for([:pay])
             @cart.reload
-            @cart.shipping_type.should == 'UPS_GROUND' #or something like that
+            @cart.shipping_type.should == 'UPS Standard' #or something like that
             @cart.total.should == '$18.47'
           end
         end

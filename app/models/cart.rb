@@ -52,13 +52,13 @@ class Cart
     self.order = Order.create(
       user:             self.user,
       line_items:       self.line_items,
-      payments:         self.payment,
-      shipping_address: self.shipping_address,
+      address:          self.shipping_address,
       shipping_option:  self.shipping_type,
       location:         'website'
     )
 
     invoice = self.order.invoices.create
+    invoice.payments.create self.payment
     # TODO: Add payment to invoice
     # invoice.add_payment(payment_type: 'credit_card', processed: false, amount: self.total)
     return self.order
@@ -73,6 +73,8 @@ class Cart
   end
 
   def get_rate shipping_type='FEDEX_GROUND'
+    binding.pry
+
     shipping_type = self.shipping_type ? self.shipping_type : shipping_type
     Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient("#{self.first_name} #{self.last_name}", self.shipping_address, self.phone), Fedexer.sample_package, shipping_type, Fedexer.default_shipping_details) 
   end
