@@ -45,6 +45,10 @@ gem 'stringex'
 gem 'will_paginate', '~> 3.0.2'
 gem 'puma'
 gem 'countries'
+gem 'active_shipping'
+gem 'activemerchant'
+
+
 
 group :production do
   gem 'newrelic_rpm', '3.4.1'

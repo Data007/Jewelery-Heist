@@ -248,6 +248,14 @@ describe 'Shopping Cart' do
             @cart.reload
             @cart.shipping_type.should == 'FEDEX_GROUND' #or something like that
           end
+
+          it 'selects a ups shipping option' do
+            select 'Ups Ground', from: 'cart_shipping_type'
+            click_button 'Next'
+
+            @cart.reload
+            @cart.shipping_type.should == 'UPS Ground'
+          end
         end
 
         context 'with an international shipping address', js:true do
@@ -353,7 +361,6 @@ describe 'Shopping Cart' do
               current_url.should == url_for(:summary)
 
               @cart.reload
-              binding.pry
               @cart.order.purchased.should be
             end
             it 'shows an order summary' 
@@ -449,7 +456,7 @@ describe 'Shopping Cart' do
             click_button 'Next'
           end
 
-          it 'picks a shipping option' do
+          it 'picks Fedex shipping option' do
             current_url.should == url_for([:shipping])
             
             select 'Fedex Ground', from: 'cart_shipping_type'
@@ -458,6 +465,18 @@ describe 'Shopping Cart' do
             current_url.should == url_for([:pay])
             @cart.reload
             @cart.shipping_type.should == 'FEDEX_GROUND' #or something like that
+            @cart.total.should == '$18.47'
+          end
+
+          it 'picks UPS shipping option' do
+            current_url.should == url_for([:shipping])
+            
+            select 'UPS Ground', from: 'cart_shipping_type'
+            click_button 'Next'
+
+            current_url.should == url_for([:pay])
+            @cart.reload
+            @cart.shipping_type.should == 'UPS_GROUND' #or something like that
             @cart.total.should == '$18.47'
           end
         end
