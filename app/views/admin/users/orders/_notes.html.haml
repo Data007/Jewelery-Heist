@@ -1,6 +1,0 @@
-= form_for [:admin, @user, @order], url: admin_user_order_path(@user.pretty_id, @order.pretty_id) do |order_form|
-  .field
-    = order_form.label :notes
-    = order_form.text_area :notes
-  .field
-    = order_form.submit "update order notes", :class => "submit button"

@@ -1,8 +1,0 @@
-= form_for @user, url: admin_user_path(@user.pretty_id) do |f|
-  %fieldset
-    .form
-      .field.required
-        = f.label :name
-        = f.text_field :name
-      .form_actions
-        = f.submit 'save'

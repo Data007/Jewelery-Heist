@@ -1,7 +1,0 @@
-- images = @variation.assets
-  
-- content_for :page_actions do
-  = raw button_for_url("<< #{@item.name}", edit_admin_item_path(@item.pretty_id), :class => "button")
-  
-- content_for :page_content do
-  = render :partial => "admin/items/variations/form"

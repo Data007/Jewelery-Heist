@@ -1,9 +1,0 @@
-- content_for :page_title do
-  %h1 Creating a new Collection
-
-- content_for :page_actions do
-  = raw button_for_url "cancel", admin_collections_path, :class => "button"
-
-- content_for :page_content do
-  - form_for :collection, @collection, :url => admin_collections_path, :html => { :method => :post, :multipart => true } do |collection|
-    = render :partial => "admin/collections/form", :locals => {:collection => collection}

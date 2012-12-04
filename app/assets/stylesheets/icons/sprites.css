@@ -1,0 +1,439 @@
+.icon-home,.icon-newspaper,.icon-pencil,.icon-pencil-2,.icon-pictures,.icon-picture,.icon-camera,.icon-broadcast,.icon-book,.icon-file,.icon-folder,.icon-tag,.icon-basket,.icon-calculate,.icon-support,.icon-phone,.icon-mail,.icon-location,.icon-compass,.icon-history,.icon-clock,.icon-bell,.icon-calendar,.icon-printer,.icon-mobile,.icon-cabinet,.icon-drawer,.icon-drawer-2,.icon-box,.icon-download,.icon-upload,.icon-undo,.icon-redo,.icon-forward,.icon-reply,.icon-reply-2,.icon-comments,.icon-comments-2,.icon-comments-3,.icon-user,.icon-busy,.icon-loading,.icon-search,.icon-zoomin,.icon-zoomout,.icon-key,.icon-locked,.icon-unlocked,.icon-wrench,.icon-equalizer,.icon-cog,.icon-pie,.icon-bars,.icon-stats-up,.icon-gift,.icon-trophy,.icon-diamond,.icon-rocket,.icon-meter-slow,.icon-meter-medium,.icon-meter-fast,.icon-dashboard,.icon-fire,.icon-lab,.icon-remove,.icon-briefcase,.icon-bus,.icon-cube,.icon-cube-2,.icon-puzzle,.icon-glasses,.icon-glasses-2,.icon-power,.icon-clipboard,.icon-clipboard-2,.icon-gridview,.icon-cloud,.icon-cloud-2,.icon-download-2,.icon-upload-2,.icon-upload-3,.icon-link,.icon-link-2,.icon-flag,.icon-flag-2,.icon-attachment,.icon-eye,.icon-eye-2,.icon-bookmark,.icon-bookmark-2,.icon-star,.icon-star-2,.icon-star-3,.icon-heart,.icon-heart-2,.icon-thumbsup,.icon-thumbsdown,.icon-plus,.icon-minus,.icon-help,.icon-cancel,.icon-cancel-2,.icon-checkmark,.icon-minus-2,.icon-plus-2,.icon-enter,.icon-exit,.icon-loop,.icon-arrow-up,.icon-arrow-right,.icon-arrow-down,.icon-arrow-left,.icon-menu,.icon-backspace,.icon-backspace-2,.icon-checkbox,.icon-checkbox-unchecked,.icon-radio-checked,.icon-radio-unchecked,.icon-font,.icon-paragraph-left,.icon-paragraph-center,.icon-paragraph-right,.icon-paragraph-justify,.icon-share,.icon-newtab,.icon-mail-2,.icon-googleplus,.icon-googleplus-2,.icon-googleplus-3,.icon-facebook,.icon-twitter,.icon-twitter-2,.icon-feed,.icon-joomla,.icon-paypal,.icon-paypal-2,.icon-libreoffice,.icon-file-pdf,.icon-file-openoffice,.icon-file-powerpoint,.icon-file-zip,.icon-left-quote-alt,.icon-right-quote-alt {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background-image: url(sprites.png);
+	background-repeat: no-repeat;
+}
+.icon-home {
+	background-position: 0 0;
+}
+.icon-newspaper {
+	background-position: -64px 0;
+}
+.icon-pencil {
+	background-position: -128px 0;
+}
+.icon-pencil-2 {
+	background-position: -192px 0;
+}
+.icon-pictures {
+	background-position: -256px 0;
+}
+.icon-picture {
+	background-position: -320px 0;
+}
+.icon-camera {
+	background-position: -384px 0;
+}
+.icon-broadcast {
+	background-position: -448px 0;
+}
+.icon-book {
+	background-position: -512px 0;
+}
+.icon-file {
+	background-position: -576px 0;
+}
+.icon-folder {
+	background-position: -640px 0;
+}
+.icon-tag {
+	background-position: -704px 0;
+}
+.icon-basket {
+	background-position: -768px 0;
+}
+.icon-calculate {
+	background-position: -832px 0;
+}
+.icon-support {
+	background-position: -896px 0;
+}
+.icon-phone {
+	background-position: -960px 0;
+}
+.icon-mail {
+	background-position: 0 -64px;
+}
+.icon-location {
+	background-position: -64px -64px;
+}
+.icon-compass {
+	background-position: -128px -64px;
+}
+.icon-history {
+	background-position: -192px -64px;
+}
+.icon-clock {
+	background-position: -256px -64px;
+}
+.icon-bell {
+	background-position: -320px -64px;
+}
+.icon-calendar {
+	background-position: -384px -64px;
+}
+.icon-printer {
+	background-position: -448px -64px;
+}
+.icon-mobile {
+	background-position: -512px -64px;
+}
+.icon-cabinet {
+	background-position: -576px -64px;
+}
+.icon-drawer {
+	background-position: -640px -64px;
+}
+.icon-drawer-2 {
+	background-position: -704px -64px;
+}
+.icon-box {
+	background-position: -768px -64px;
+}
+.icon-download {
+	background-position: -832px -64px;
+}
+.icon-upload {
+	background-position: -896px -64px;
+}
+.icon-undo {
+	background-position: -960px -64px;
+}
+.icon-redo {
+	background-position: 0 -128px;
+}
+.icon-forward {
+	background-position: -64px -128px;
+}
+.icon-reply {
+	background-position: -128px -128px;
+}
+.icon-reply-2 {
+	background-position: -192px -128px;
+}
+.icon-comments {
+	background-position: -256px -128px;
+}
+.icon-comments-2 {
+	background-position: -320px -128px;
+}
+.icon-comments-3 {
+	background-position: -384px -128px;
+}
+.icon-user {
+	background-position: -448px -128px;
+}
+.icon-busy {
+	background-position: -512px -128px;
+}
+.icon-loading {
+	background-position: -576px -128px;
+}
+.icon-search {
+	background-position: -640px -128px;
+}
+.icon-zoomin {
+	background-position: -704px -128px;
+}
+.icon-zoomout {
+	background-position: -768px -128px;
+}
+.icon-key {
+	background-position: -832px -128px;
+}
+.icon-locked {
+	background-position: -896px -128px;
+}
+.icon-unlocked {
+	background-position: -960px -128px;
+}
+.icon-wrench {
+	background-position: 0 -192px;
+}
+.icon-equalizer {
+	background-position: -64px -192px;
+}
+.icon-cog {
+	background-position: -128px -192px;
+}
+.icon-pie {
+	background-position: -192px -192px;
+}
+.icon-bars {
+	background-position: -256px -192px;
+}
+.icon-stats-up {
+	background-position: -320px -192px;
+}
+.icon-gift {
+	background-position: -384px -192px;
+}
+.icon-trophy {
+	background-position: -448px -192px;
+}
+.icon-diamond {
+	background-position: -512px -192px;
+}
+.icon-rocket {
+	background-position: -576px -192px;
+}
+.icon-meter-slow {
+	background-position: -640px -192px;
+}
+.icon-meter-medium {
+	background-position: -704px -192px;
+}
+.icon-meter-fast {
+	background-position: -768px -192px;
+}
+.icon-dashboard {
+	background-position: -832px -192px;
+}
+.icon-fire {
+	background-position: -896px -192px;
+}
+.icon-lab {
+	background-position: -960px -192px;
+}
+.icon-remove {
+	background-position: 0 -256px;
+}
+.icon-briefcase {
+	background-position: -64px -256px;
+}
+.icon-bus {
+	background-position: -128px -256px;
+}
+.icon-cube {
+	background-position: -192px -256px;
+}
+.icon-cube-2 {
+	background-position: -256px -256px;
+}
+.icon-puzzle {
+	background-position: -320px -256px;
+}
+.icon-glasses {
+	background-position: -384px -256px;
+}
+.icon-glasses-2 {
+	background-position: -448px -256px;
+}
+.icon-power {
+	background-position: -512px -256px;
+}
+.icon-clipboard {
+	background-position: -576px -256px;
+}
+.icon-clipboard-2 {
+	background-position: -640px -256px;
+}
+.icon-gridview {
+	background-position: -704px -256px;
+}
+.icon-cloud {
+	background-position: -768px -256px;
+}
+.icon-cloud-2 {
+	background-position: -832px -256px;
+}
+.icon-download-2 {
+	background-position: -896px -256px;
+}
+.icon-upload-2 {
+	background-position: -960px -256px;
+}
+.icon-upload-3 {
+	background-position: 0 -320px;
+}
+.icon-link {
+	background-position: -64px -320px;
+}
+.icon-link-2 {
+	background-position: -128px -320px;
+}
+.icon-flag {
+	background-position: -192px -320px;
+}
+.icon-flag-2 {
+	background-position: -256px -320px;
+}
+.icon-attachment {
+	background-position: -320px -320px;
+}
+.icon-eye {
+	background-position: -384px -320px;
+}
+.icon-eye-2 {
+	background-position: -448px -320px;
+}
+.icon-bookmark {
+	background-position: -512px -320px;
+}
+.icon-bookmark-2 {
+	background-position: -576px -320px;
+}
+.icon-star {
+	background-position: -640px -320px;
+}
+.icon-star-2 {
+	background-position: -704px -320px;
+}
+.icon-star-3 {
+	background-position: -768px -320px;
+}
+.icon-heart {
+	background-position: -832px -320px;
+}
+.icon-heart-2 {
+	background-position: -896px -320px;
+}
+.icon-thumbsup {
+	background-position: -960px -320px;
+}
+.icon-thumbsdown {
+	background-position: 0 -384px;
+}
+.icon-plus {
+	background-position: -64px -384px;
+}
+.icon-minus {
+	background-position: -128px -384px;
+}
+.icon-help {
+	background-position: -192px -384px;
+}
+.icon-cancel {
+	background-position: -256px -384px;
+}
+.icon-cancel-2 {
+	background-position: -320px -384px;
+}
+.icon-checkmark {
+	background-position: -384px -384px;
+}
+.icon-minus-2 {
+	background-position: -448px -384px;
+}
+.icon-plus-2 {
+	background-position: -512px -384px;
+}
+.icon-enter {
+	background-position: -576px -384px;
+}
+.icon-exit {
+	background-position: -640px -384px;
+}
+.icon-loop {
+	background-position: -704px -384px;
+}
+.icon-arrow-up {
+	background-position: -768px -384px;
+}
+.icon-arrow-right {
+	background-position: -832px -384px;
+}
+.icon-arrow-down {
+	background-position: -896px -384px;
+}
+.icon-arrow-left {
+	background-position: -960px -384px;
+}
+.icon-menu {
+	background-position: 0 -448px;
+}
+.icon-backspace {
+	background-position: -64px -448px;
+}
+.icon-backspace-2 {
+	background-position: -128px -448px;
+}
+.icon-checkbox {
+	background-position: -192px -448px;
+}
+.icon-checkbox-unchecked {
+	background-position: -256px -448px;
+}
+.icon-radio-checked {
+	background-position: -320px -448px;
+}
+.icon-radio-unchecked {
+	background-position: -384px -448px;
+}
+.icon-font {
+	background-position: -448px -448px;
+}
+.icon-paragraph-left {
+	background-position: -512px -448px;
+}
+.icon-paragraph-center {
+	background-position: -576px -448px;
+}
+.icon-paragraph-right {
+	background-position: -640px -448px;
+}
+.icon-paragraph-justify {
+	background-position: -704px -448px;
+}
+.icon-share {
+	background-position: -768px -448px;
+}
+.icon-newtab {
+	background-position: -832px -448px;
+}
+.icon-mail-2 {
+	background-position: -896px -448px;
+}
+.icon-googleplus {
+	background-position: -960px -448px;
+}
+.icon-googleplus-2 {
+	background-position: 0 -512px;
+}
+.icon-googleplus-3 {
+	background-position: -64px -512px;
+}
+.icon-facebook {
+	background-position: -128px -512px;
+}
+.icon-twitter {
+	background-position: -192px -512px;
+}
+.icon-twitter-2 {
+	background-position: -256px -512px;
+}
+.icon-feed {
+	background-position: -320px -512px;
+}
+.icon-joomla {
+	background-position: -384px -512px;
+}
+.icon-paypal {
+	background-position: -448px -512px;
+}
+.icon-paypal-2 {
+	background-position: -512px -512px;
+}
+.icon-libreoffice {
+	background-position: -576px -512px;
+}
+.icon-file-pdf {
+	background-position: -640px -512px;
+}
+.icon-file-openoffice {
+	background-position: -704px -512px;
+}
+.icon-file-powerpoint {
+	background-position: -768px -512px;
+}
+.icon-file-zip {
+	background-position: -832px -512px;
+}
+.icon-left-quote-alt {
+	background-position: -896px -512px;
+}
+.icon-right-quote-alt {
+	background-position: -960px -512px;
+}
