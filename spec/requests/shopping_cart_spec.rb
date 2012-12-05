@@ -344,6 +344,7 @@ describe 'Shopping Cart' do
           context 'with valid card' do
             before do
               @cart = FactoryGirl.create :anonymous_cart_ready_for_billing_address
+              page.set_rack_session cart_id: @cart.id
               visit url_for([:pay])
               fill_in 'cart_credit_card_attributes_number', with: '4111111111111111'
               fill_in 'cart_credit_card_attributes_ccv', with: '111'
@@ -356,6 +357,7 @@ describe 'Shopping Cart' do
               select '9', from: 'cart_credit_card_attributes_month'
               select '17', from: 'cart_credit_card_attributes_year'
             end
+
             it 'processes payment' do
               click_button 'Next'
               current_url.should == url_for(:summary)
@@ -363,6 +365,7 @@ describe 'Shopping Cart' do
               @cart.reload
               @cart.order.purchased.should be
             end
+
             it 'shows an order summary' 
           end
 

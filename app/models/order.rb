@@ -83,72 +83,7 @@ class Order
     shipping_address
   end
 
-  def full_shipping
-    # US Ground $0
-  	# US Second $10 < $300 > $0
-  	# US Express $20 < $500 > $0
-  	# Int Priority $30 < $500 > $0
-  	# Int Second $70 < $1000 > $0
-  	# Int Overnight $100 < $1500 > $0
-  	# Duties are the responsibility of the customer
-    options = [
-      ["US Ground", 0, 0],
-  	  ["US Second Day", 10, 300],
-  	  ["US Express", 20, 500],
-  	  ["Australia Regular", 30, 500],
-      ["Australia Priority (2 to 5 days)", 100, 1000],
-  	  ["New Zealand Regular", 30, 500],
-      ["New Zealand Priority (2 to 5 days)", 100, 1000],
-  	  ["International Priority", 30, 500],
-	    ["International Second Day", 70, 1000],
-	    ["International Overnight", 100, 1500]
-    ]
-    return options
-  end  
-
-  def shipping_by_country(country="US")
-    if country == "US"
-      options = [
-    	  ["US Ground", 0, 0],
-    	  ["US Second Day", 10, 300],
-    	  ["US Express", 20, 500]
-    	]
-  	elsif (country == "AT" || country == "at" || country == "AUS" || country == "aus" || country == "Australia" || country == "australia")
-  	  options =[
-  	    ["Australia Regular", 30, 500],
-	      ["Australia Priority (2 to 5 days)", 100, 1000]
-	    ]
-	  elsif (country == "NZ" || country == "nz" || country == "New Zealand" || country == "new zealand")
-  	  options =[
-  	    ["New Zealand Regular", 30, 500],
-	      ["New Zealand Priority (2 to 5 days)", 100, 1000]
-	    ]
-  	else
-  	  options =[
-  	    ["International Priority", 30, 500],
-	      ["International Second Day", 70, 1000],
-	      ["International Overnight", 100, 1500]
-	    ]
-    end
-    return options
-  end
-
-  def shipping_options
-    shipping_country = shipping_address ? shipping_address.country : 'US'
-    options = shipping_by_country(shipping_country).collect do |shipping_option|
-  	  ["#{shipping_option[0]} #{subtotal >= shipping_option[2] ? "Free Upgrade" : '$' + shipping_option[1].to_s + '.00'}", shipping_option[0]]
-	  end
-	  return options
-  end
-
   def shipping_cost
-    cost = 0
-    full_shipping.each do |option|
-      if self.shipping_option == option[0]
-        cost = self.subtotal >= option[2] ? 0 : option[1]
-      end
-    end
-    return cost
   end
 
   def refund_line_item(line_item_id)
@@ -188,11 +123,16 @@ class Order
   end
 
   def total
+    # TODO: get the real shipping cost
     subtotal + tax + (ship? ? shipping_cost : 0)
   end
 
   def payments_total
-    payments.where(:amount.gt => 0).map(&:amount).sum
+    invoices.map(&:payments)
+      .flatten.compact
+      .map(&:amount)
+        .flatten.compact
+        .sum
   end
 
   def paid
@@ -200,7 +140,15 @@ class Order
   end
 
   def credits_total
-    -payments.where(payment_type: /credit/, :amount.lt => 0).map(&:amount).sum
+    -invoices.map(&:payments)
+      .flatten.compact
+      .select do |payment|
+        payment if payment.payment_type == 'credit' && payment.amount < 0.0
+      end
+        .flatten.compact
+        .map(&:amount)
+          .sum
+    # -payments.where(payment_type: /credit/, :amount.lt => 0).map(&:amount).sum
   end
 
   def balance

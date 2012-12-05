@@ -57,10 +57,8 @@ class Cart
       location:         'website'
     )
 
-    invoice = self.order.invoices.create
-    invoice.payments.create self.payment
-    # TODO: Add payment to invoice
-    # invoice.add_payment(payment_type: 'credit_card', processed: false, amount: self.total)
+    invoice = self.order.invoices.create(amount: self.total)
+    invoice.add_payment(payment_type: 'credit_card', processed: false, amount: self.total)
     return self.order
   end
   
@@ -123,12 +121,11 @@ class Cart
   end
 
   def total
+    # TODO: get the shipping cost from a shipping model
     begin
       total = subtotal + tax + get_rate(shipping_type).total_net_charge.to_f
-      '$' + total.round(2).to_s
     rescue
       total = (subtotal + tax + (individual_ups_rate.to_f / 100))
-      '$' + total.round(2).to_s
     end
   end
 
