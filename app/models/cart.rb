@@ -107,6 +107,8 @@ class Cart
     ups_rates.each do |rate|
       if rate[0].upcase == shipping_type.upcase
         return rate[1]
+      else
+        errors.add(:field, 'UPS Does not support that shipping type')
       end
     end
   end
