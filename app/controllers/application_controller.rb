@@ -76,6 +76,11 @@ private
     }
   end
   
+  def redirect_back_or_default
+    back_url = session[:redirect_to]
+    session[:redirect_to] = nil
+    redirect_to back_url ? back_url : [:root]
+  end
 
   require 'will_paginate/collection'
   Array.class_eval do

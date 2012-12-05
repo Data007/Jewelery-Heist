@@ -17,4 +17,7 @@
     = javascript_include_tag 'manage', media: 'all'
 
   %body
+    - if flash.present?
+      - flash.each do |(key, value)|
+        = content_tag :div, raw(value), class: 'message', id: "#{key}-message"
     = yield
