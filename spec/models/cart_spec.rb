@@ -60,7 +60,15 @@ describe Cart do
           it 'gets a total 'do
             #2x item.price = 10, Fedex Ground = 15.27 + .60 tax
             @cart.line_items.count.should == 2
-            @cart.total.should == '$35.87'
+            @cart.total.should == "$" + (@cart.subtotal + @cart.get_rate.total_net_charge.to_f + @cart.tax).to_s
+          end
+
+          it 'gets a rate' do
+            fedex_rate = @cart.get_rate('FEDEX_EXPRESS_SAVER')
+            fedex_rate.should be
+
+            ups_rate = @cart.get_rate('UPS Ground') 
+            ups_rate.should be
           end
         end
       end

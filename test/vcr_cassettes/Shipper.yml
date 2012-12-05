@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       date:
-      - Tue, 04 Dec 2012 14:28:26 GMT
+      - Wed, 05 Dec 2012 02:21:43 GMT
       server:
       - Apache
       x-frame-options:
@@ -48,49 +48,5 @@ http_interactions:
         invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>79.62</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>79.62</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime>10:30
         A.M.</ScheduledDeliveryTime><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>37.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>37.06</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>42.56</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>42.56</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment></RatingServiceSelectionResponse>'
     http_version: '1.1'
-  recorded_at: Tue, 04 Dec 2012 14:28:27 GMT
-- request:
-    method: post
-    uri: https://gateway.fedex.com/xml
-    body:
-      encoding: US-ASCII
-      string: <RateRequest xmlns='http://fedex.com/ws/rate/v6'><WebAuthenticationDetail><UserCredential><Key>kjDtsCxIh2iohD</Key><Password>1garnet</Password></UserCredential></WebAuthenticationDetail><ClientDetail><AccountNumber>510087925</AccountNumber><MeterNumber>wexfordjewelers</MeterNumber></ClientDetail><TransactionDetail><CustomerTransactionId>ActiveShipping</CustomerTransactionId></TransactionDetail><Version><ServiceId>crs</ServiceId><Major>6</Major><Intermediate>0</Intermediate><Minor>0</Minor></Version><ReturnTransitAndCommit>true</ReturnTransitAndCommit><VariableOptions>SATURDAY_DELIVERY</VariableOptions><RequestedShipment><ShipTimestamp>2012-12-04T09:35:33-05:00</ShipTimestamp><DropoffType>REGULAR_PICKUP</DropoffType><PackagingType>YOUR_PACKAGING</PackagingType><Shipper><Address><PostalCode>49601</PostalCode><CountryCode>US</CountryCode><Residential>true</Residential></Address></Shipper><Recipient><Address><PostalCode>49601</PostalCode><CountryCode>US</CountryCode><Residential>true</Residential></Address></Recipient><RateRequestTypes>ACCOUNT</RateRequestTypes><PackageCount>2</PackageCount><RequestedPackages><Weight><Units>LB</Units><Value>0.22</Value></Weight><Dimensions><Length>37</Length><Width>4</Width><Height>4</Height><Units>IN</Units></Dimensions></RequestedPackages><RequestedPackages><Weight><Units>LB</Units><Value>7.5</Value></Weight><Dimensions><Length>15</Length><Width>10</Width><Height>5</Height><Units>IN</Units></Dimensions></RequestedPackages></RequestedShipment></RateRequest>
-    headers:
-      content-type:
-      - application/x-www-form-urlencoded
-      accept:
-      - ! '*/*'
-      user-agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      date:
-      - Tue, 04 Dec 2012 14:35:35 GMT
-      server:
-      - Apache/2.2
-      content-length:
-      - '567'
-      x-wily-servlet:
-      - Clear appServerIp=204.135.251.232&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=24&agentHost=pje20363&agentProcess=WebLogic
-      x-powered-by:
-      - Servlet/2.5 JSP/2.1
-      x-wily-info:
-      - Clear guid=6657E980CC87FBE80CA39F51620D70A8
-      vary:
-      - Accept-Encoding
-      connection:
-      - close
-      content-type:
-      - text/xml; charset=utf-8
-    body:
-      encoding: US-ASCII
-      string: ! '<?xml version="1.0" encoding="UTF-8"?>
-
-        <ns:RateReply xmlns:ns="http://fedex.com/ws/rate/v6"><ns:HighestSeverity>ERROR</ns:HighestSeverity><ns:Notifications><ns:Severity>ERROR</ns:Severity><ns:Source>prof</ns:Source><ns:Code>1000</ns:Code><ns:Message>Authentication
-        Failed</ns:Message></ns:Notifications><ns:TransactionDetail><ns:CustomerTransactionId>ActiveShipping</ns:CustomerTransactionId></ns:TransactionDetail><ns:Version><ns:ServiceId>crs</ns:ServiceId><ns:Major>6</ns:Major><ns:Intermediate>0</ns:Intermediate><ns:Minor>0</ns:Minor></ns:Version></ns:RateReply>'
-    http_version: '1.1'
-  recorded_at: Tue, 04 Dec 2012 14:35:35 GMT
+  recorded_at: Wed, 05 Dec 2012 02:21:44 GMT
 recorded_with: VCR 2.2.5

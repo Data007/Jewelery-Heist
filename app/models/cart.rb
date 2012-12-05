@@ -73,8 +73,6 @@ class Cart
   end
 
   def get_rate shipping_type='FEDEX_GROUND'
-    binding.pry
-
     shipping_type = self.shipping_type ? self.shipping_type : shipping_type
     Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient("#{self.first_name} #{self.last_name}", self.shipping_address, self.phone), Fedexer.sample_package, shipping_type, Fedexer.default_shipping_details) 
   end
