@@ -11,6 +11,8 @@ FactoryGirl.define do
       after(:create) do |cart, evaluator|
         address = FactoryGirl.build :shipping_address
         cart.shipping_address = address
+        cart.shipping_type    = 'FEDEX-GROUND_HOME_DELIVERY'
+        cart.save
 
         item = FactoryGirl.create :item
         cart.add_item(item)
@@ -19,6 +21,10 @@ FactoryGirl.define do
         after(:create) do |cart, evaluator|
           credit_card = FactoryGirl.build :credit_card
           cart.credit_card = credit_card
+          address = FactoryGirl.build :shipping_address
+          cart.shipping_address = address
+          cart.shipping_type    = 'FEDEX-GROUND_HOME_DELIVERY'
+          cart.save
         end
       end
 
@@ -28,6 +34,7 @@ FactoryGirl.define do
           cart.credit_card = credit_card
           address = FactoryGirl.build :billing_address
           cart.billing_address = address
+          cart.save
         end
       end
     end

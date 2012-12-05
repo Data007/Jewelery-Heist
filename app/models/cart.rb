@@ -8,7 +8,7 @@ class Cart
   field :email
   field :phone
   field :current_stage
-  field :shipping_type, default: Fedexer::SHIPPING_OPTIONS.first
+  field :shipping_type
 
   attr_accessor :shipping_address_id
 
@@ -76,21 +76,7 @@ class Cart
   end
 
   def shipping_options
-    if self.shipping_address.country == 'US' || self.shipping_address.country == 'United States - US'
-      Fedexer::SHIPPING_OPTIONS.collect do |shipping_option|
-        self.shipping_type = shipping_option
-        self.save
-        rate = self.get_rate(shipping_option).total_net_charge
-        {name: shipping_option, total_net_charge: rate}
-      end
-    else
-      Fedexer::INTERNATIONAL_SHIPPING_OPTIONS.collect do |shipping_option|
-        self.shipping_type = shipping_option
-        self.save
-        rate = self.get_rate(shipping_option).total_net_charge
-        {name: shipping_option, total_net_charge: rate}
-      end
-    end
+    Shipper.rates(Shipper.destination(shipping_address), Shipper.sample_packages)
   end
 
   def ups_shipping_options
@@ -127,13 +113,7 @@ class Cart
   end
 
   def total
-    # TODO: get the shipping cost from a shipping model
-    begin
-      total = subtotal + tax + get_rate(shipping_type).total_net_charge.to_f
-      '$' + total.round(2).to_s
-    rescue
-      total = '$' + (subtotal + tax + (individual_ups_rate.to_f / 100)).round(2).to_s
-    end
+      total = subtotal + tax + shipping_options[shipping_type.to_sym][:price]
   end
 
   private

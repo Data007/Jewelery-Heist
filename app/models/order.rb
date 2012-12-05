@@ -123,9 +123,9 @@ class Order
   end
 
   def total
-    # TODO: get the real shipping cost
-
-    subtotal + tax + Shipper.order_rate(self)
+    rates = Shipper.rates(Shipper.destination(address), Shipper.sample_packages)
+    
+    subtotal + tax + rates[shipping_option.to_sym][:price]
   end
 
   def payments_total
