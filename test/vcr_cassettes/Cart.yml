@@ -144,4 +144,240 @@ http_interactions:
         Area Surcharge Commercial</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>2.0</v10:Amount></v10:Amount></v10:Surcharges><v10:Surcharges><v10:SurchargeType>FUEL</v10:SurchargeType><v10:Description>Fuel</v10:Description><v10:Amount><v10:Currency>USD</v10:Currency><v10:Amount>1.82</v10:Amount></v10:Amount></v10:Surcharges></v10:PackageRateDetail></v10:RatedPackages></v10:RatedShipmentDetails></v10:RateReplyDetails></v10:RateReply>"
     http_version: '1.1'
   recorded_at: Wed, 05 Dec 2012 02:17:40 GMT
+- request:
+    method: post
+    uri: https://onlinetools.ups.com/ups.app/xml/Rate
+    body:
+      encoding: US-ASCII
+      string: <AccessRequest><AccessLicenseNumber>FCA9039C9A358F68</AccessLicenseNumber><UserId>wexfordjewelers</UserId><Password>CROUP59\iota</Password></AccessRequest><RatingServiceSelectionRequest><Request><RequestAction>Rate</RequestAction><RequestOption>Shop</RequestOption></Request><PickupType><Code>01</Code></PickupType><CustomerClassification><Code>01</Code></CustomerClassification><Shipment><Shipper><Address><City>Cadillac</City><StateProvinceCode>MI</StateProvinceCode><PostalCode>49601</PostalCode><CountryCode>US</CountryCode><ResidentialAddressIndicator>true</ResidentialAddressIndicator></Address></Shipper><ShipTo><Address><City>cadillac</City><StateProvinceCode>MI</StateProvinceCode><PostalCode>49601</PostalCode><CountryCode>US</CountryCode><ResidentialAddressIndicator>true</ResidentialAddressIndicator></Address></ShipTo><Package><PackagingType><Code>02</Code></PackagingType><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>36.614</Length><Width>3.937</Width><Height>3.937</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>0.22</Weight></PackageWeight></Package><Package><PackagingType><Code>02</Code></PackagingType><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>15.0</Length><Width>10.0</Width><Height>4.5</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>7.5</Weight></PackageWeight></Package></Shipment></RatingServiceSelectionRequest>
+    headers:
+      content-type:
+      - application/x-www-form-urlencoded
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Wed, 05 Dec 2012 02:39:49 GMT
+      server:
+      - Apache
+      x-frame-options:
+      - SAMEORIGIN
+      pragma:
+      - no-cache
+      content-length:
+      - '10085'
+      x-powered-by:
+      - Servlet/2.5 JSP/2.1
+      connection:
+      - close
+      content-type:
+      - application/xml
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0"?>
+
+        <RatingServiceSelectionResponse><Response><ResponseStatusCode>1</ResponseStatusCode><ResponseStatusDescription>Success</ResponseStatusDescription></Response><RatedShipment><Service><Code>03</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>9.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>25.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>25.06</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery/><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>11.71</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>11.71</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>1.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>13.35</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>13.35</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>12</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>35.07</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>35.07</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>3</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>16.40</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>16.40</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>18.67</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>18.67</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>02</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>43.64</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>43.64</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>2</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>20.66</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>20.66</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>22.98</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>22.98</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>13</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>69.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>69.06</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>32.40</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>32.40</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>36.66</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>36.66</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>14</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>149.99</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>149.99</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime>9:00
+        A.M.</ScheduledDeliveryTime><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>72.24</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>72.24</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>77.75</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>77.75</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>01</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>79.62</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>79.62</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime>10:30
+        A.M.</ScheduledDeliveryTime><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>37.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>37.06</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>42.56</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>42.56</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment></RatingServiceSelectionResponse>'
+    http_version: '1.1'
+  recorded_at: Wed, 05 Dec 2012 02:39:50 GMT
+- request:
+    method: post
+    uri: https://onlinetools.ups.com/ups.app/xml/Rate
+    body:
+      encoding: US-ASCII
+      string: <AccessRequest><AccessLicenseNumber>FCA9039C9A358F68</AccessLicenseNumber><UserId>wexfordjewelers</UserId><Password>CROUP59\iota</Password></AccessRequest><RatingServiceSelectionRequest><Request><RequestAction>Rate</RequestAction><RequestOption>Shop</RequestOption></Request><PickupType><Code>01</Code></PickupType><CustomerClassification><Code>01</Code></CustomerClassification><Shipment><Shipper><Address><City>Cadillac</City><StateProvinceCode>MI</StateProvinceCode><PostalCode>49601</PostalCode><CountryCode>US</CountryCode><ResidentialAddressIndicator>true</ResidentialAddressIndicator></Address></Shipper><ShipTo><Address><City>cadillac</City><StateProvinceCode>MI</StateProvinceCode><PostalCode>49601</PostalCode><CountryCode>US</CountryCode><ResidentialAddressIndicator>true</ResidentialAddressIndicator></Address></ShipTo><Package><PackagingType><Code>02</Code></PackagingType><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>36.614</Length><Width>3.937</Width><Height>3.937</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>0.22</Weight></PackageWeight></Package><Package><PackagingType><Code>02</Code></PackagingType><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>15.0</Length><Width>10.0</Width><Height>4.5</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>7.5</Weight></PackageWeight></Package></Shipment></RatingServiceSelectionRequest>
+    headers:
+      content-type:
+      - application/x-www-form-urlencoded
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Wed, 05 Dec 2012 02:40:00 GMT
+      server:
+      - Apache
+      x-frame-options:
+      - SAMEORIGIN
+      pragma:
+      - no-cache
+      content-length:
+      - '10085'
+      x-powered-by:
+      - Servlet/2.5 JSP/2.1
+      connection:
+      - close
+      content-type:
+      - application/xml
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0"?>
+
+        <RatingServiceSelectionResponse><Response><ResponseStatusCode>1</ResponseStatusCode><ResponseStatusDescription>Success</ResponseStatusDescription></Response><RatedShipment><Service><Code>03</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>9.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>25.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>25.06</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery/><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>11.71</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>11.71</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>1.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>13.35</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>13.35</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>12</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>35.07</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>35.07</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>3</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>16.40</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>16.40</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>18.67</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>18.67</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>02</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>43.64</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>43.64</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>2</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>20.66</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>20.66</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>22.98</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>22.98</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>13</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>69.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>69.06</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime/><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>32.40</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>32.40</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>36.66</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>36.66</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>14</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>149.99</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>149.99</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime>9:00
+        A.M.</ScheduledDeliveryTime><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>72.24</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>72.24</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>77.75</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>77.75</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment><RatedShipment><Service><Code>01</Code></Service><RatedShipmentWarning>Your
+        invoice may vary from the displayed reference rates</RatedShipmentWarning><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>12.0</Weight></BillingWeight><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>79.62</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>79.62</MonetaryValue></TotalCharges><GuaranteedDaysToDelivery>1</GuaranteedDaysToDelivery><ScheduledDeliveryTime>10:30
+        A.M.</ScheduledDeliveryTime><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>37.06</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>37.06</MonetaryValue></TotalCharges><Weight>0.2</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>4.0</Weight></BillingWeight></RatedPackage><RatedPackage><TransportationCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>42.56</MonetaryValue></TransportationCharges><ServiceOptionsCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>0.00</MonetaryValue></ServiceOptionsCharges><TotalCharges><CurrencyCode>USD</CurrencyCode><MonetaryValue>42.56</MonetaryValue></TotalCharges><Weight>7.5</Weight><BillingWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>8.0</Weight></BillingWeight></RatedPackage></RatedShipment></RatingServiceSelectionResponse>'
+    http_version: '1.1'
+  recorded_at: Wed, 05 Dec 2012 02:40:00 GMT
+- request:
+    method: post
+    uri: https://gatewaybeta.fedex.com/xml/
+    body:
+      encoding: US-ASCII
+      string: ! "<RateRequest xmlns=\"http://fedex.com/ws/rate/v10\">\n  <WebAuthenticationDetail>\n
+        \   <UserCredential>\n      <Key>wikjDtsCxIh2iohD</Key>\n      <Password>Cw10xEFUV6f0kmz861HJdf8NQ</Password>\n
+        \   </UserCredential>\n  </WebAuthenticationDetail>\n  <ClientDetail>\n    <AccountNumber>510087925</AccountNumber>\n
+        \   <MeterNumber>118569532</MeterNumber>\n    <Localization>\n      <LanguageCode>en</LanguageCode>\n
+        \     <LocaleCode>us</LocaleCode>\n    </Localization>\n  </ClientDetail>\n
+        \ <Version>\n    <ServiceId>crs</ServiceId>\n    <Major>10</Major>\n    <Intermediate>0</Intermediate>\n
+        \   <Minor>0</Minor>\n  </Version>\n  <RequestedShipment>\n    <DropoffType>REGULAR_PICKUP</DropoffType>\n
+        \   <ServiceType>Ups Ground</ServiceType>\n    <PackagingType>YOUR_PACKAGING</PackagingType>\n
+        \   <Shipper>\n      <Contact>\n        <PersonName>Wexford Jewlers</PersonName>\n
+        \       <CompanyName/>\n        <PhoneNumber>2317751289</PhoneNumber>\n      </Contact>\n
+        \     <Address>\n        <StreetLines>801 North Mitchell Street</StreetLines>\n
+        \       <City>Cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
+        \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
+        \     </Address>\n    </Shipper>\n    <Recipient>\n      <Contact>\n        <PersonName>Anonymous
+        User</PersonName>\n        <CompanyName/>\n        <PhoneNumber>1234567890</PhoneNumber>\n
+        \     </Contact>\n      <Address>\n        <StreetLines>2236 S 33 1/2 RD</StreetLines>\n
+        \       <City>cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
+        \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
+        \       <Residential>false</Residential>\n      </Address>\n    </Recipient>\n
+        \   <ShippingChargesPayment>\n      <PaymentType>SENDER</PaymentType>\n      <Payor>\n
+        \       <AccountNumber>510087925</AccountNumber>\n        <CountryCode>US</CountryCode>\n
+        \     </Payor>\n    </ShippingChargesPayment>\n    <RateRequestTypes>ACCOUNT</RateRequestTypes>\n
+        \   <PackageCount>1</PackageCount>\n    <RequestedPackageLineItems>\n      <GroupPackageCount>1</GroupPackageCount>\n
+        \     <Weight>\n        <Units>LB</Units>\n        <Value>2</Value>\n      </Weight>\n
+        \     <Dimensions>\n        <Length>10</Length>\n        <Width>5</Width>\n
+        \       <Height>4</Height>\n        <Units>IN</Units>\n      </Dimensions>\n
+        \   </RequestedPackageLineItems>\n  </RequestedShipment>\n</RateRequest>"
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Wed, 05 Dec 2012 02:48:55 GMT
+      server:
+      - Apache/2.2
+      content-length:
+      - '828'
+      x-wily-servlet:
+      - Clear appServerIp=199.81.111.133&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=36&agentHost=qje20204&agentProcess=WebLogic
+      x-powered-by:
+      - Servlet/2.5 JSP/2.1
+      x-wily-info:
+      - Clear guid=68F74B82C7516F850ECB5E30C92FFE08
+      vary:
+      - Accept-Encoding
+      connection:
+      - close
+      content-type:
+      - text/xml; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+        <soapenv:Fault xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><faultcode>soapenv:Server</faultcode><faultstring>Schema
+        validation failed for request.</faultstring><detail><con:fault xmlns:con="http://www.bea.com/wli/sb/context"><con:errorCode>5</con:errorCode><con:reason>Schema
+        validation failed for request.</con:reason><con:details><con1:ValidationFailureDetail
+        xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"><con1:message>string
+        value ''Ups Ground'' is not a valid enumeration value for ServiceType in namespace
+        http://fedex.com/ws/rate/v10</con1:message><con1:xmlLocation><v10:ServiceType
+        xmlns:v10="http://fedex.com/ws/rate/v10">Ups Ground</v10:ServiceType></con1:xmlLocation></con1:ValidationFailureDetail></con:details></con:fault></detail></soapenv:Fault>'
+    http_version: '1.1'
+  recorded_at: Wed, 05 Dec 2012 02:48:55 GMT
+- request:
+    method: post
+    uri: https://gatewaybeta.fedex.com/xml/
+    body:
+      encoding: US-ASCII
+      string: ! "<RateRequest xmlns=\"http://fedex.com/ws/rate/v10\">\n  <WebAuthenticationDetail>\n
+        \   <UserCredential>\n      <Key>wikjDtsCxIh2iohD</Key>\n      <Password>Cw10xEFUV6f0kmz861HJdf8NQ</Password>\n
+        \   </UserCredential>\n  </WebAuthenticationDetail>\n  <ClientDetail>\n    <AccountNumber>510087925</AccountNumber>\n
+        \   <MeterNumber>118569532</MeterNumber>\n    <Localization>\n      <LanguageCode>en</LanguageCode>\n
+        \     <LocaleCode>us</LocaleCode>\n    </Localization>\n  </ClientDetail>\n
+        \ <Version>\n    <ServiceId>crs</ServiceId>\n    <Major>10</Major>\n    <Intermediate>0</Intermediate>\n
+        \   <Minor>0</Minor>\n  </Version>\n  <RequestedShipment>\n    <DropoffType>REGULAR_PICKUP</DropoffType>\n
+        \   <ServiceType>Ups Ground</ServiceType>\n    <PackagingType>YOUR_PACKAGING</PackagingType>\n
+        \   <Shipper>\n      <Contact>\n        <PersonName>Wexford Jewlers</PersonName>\n
+        \       <CompanyName/>\n        <PhoneNumber>2317751289</PhoneNumber>\n      </Contact>\n
+        \     <Address>\n        <StreetLines>801 North Mitchell Street</StreetLines>\n
+        \       <City>Cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
+        \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
+        \     </Address>\n    </Shipper>\n    <Recipient>\n      <Contact>\n        <PersonName>Anonymous
+        User</PersonName>\n        <CompanyName/>\n        <PhoneNumber>1234567890</PhoneNumber>\n
+        \     </Contact>\n      <Address>\n        <StreetLines>2236 S 33 1/2 RD</StreetLines>\n
+        \       <City>cadillac</City>\n        <StateOrProvinceCode>MI</StateOrProvinceCode>\n
+        \       <PostalCode>49601</PostalCode>\n        <CountryCode>US</CountryCode>\n
+        \       <Residential>false</Residential>\n      </Address>\n    </Recipient>\n
+        \   <ShippingChargesPayment>\n      <PaymentType>SENDER</PaymentType>\n      <Payor>\n
+        \       <AccountNumber>510087925</AccountNumber>\n        <CountryCode>US</CountryCode>\n
+        \     </Payor>\n    </ShippingChargesPayment>\n    <RateRequestTypes>ACCOUNT</RateRequestTypes>\n
+        \   <PackageCount>1</PackageCount>\n    <RequestedPackageLineItems>\n      <GroupPackageCount>1</GroupPackageCount>\n
+        \     <Weight>\n        <Units>LB</Units>\n        <Value>2</Value>\n      </Weight>\n
+        \     <Dimensions>\n        <Length>10</Length>\n        <Width>5</Width>\n
+        \       <Height>4</Height>\n        <Units>IN</Units>\n      </Dimensions>\n
+        \   </RequestedPackageLineItems>\n  </RequestedShipment>\n</RateRequest>"
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Wed, 05 Dec 2012 02:59:55 GMT
+      server:
+      - Apache/2.2
+      content-length:
+      - '828'
+      x-wily-servlet:
+      - Clear appServerIp=204.135.253.46&agentName=ESB-servicebus-1&servletName=HttpTransportServlet&servletResponseTime=27&agentHost=qje20223&agentProcess=WebLogic
+      x-powered-by:
+      - Servlet/2.5 JSP/2.1
+      x-wily-info:
+      - Clear guid=69015E85CC87FD2E0C977EDE8D6CF66D
+      vary:
+      - Accept-Encoding
+      connection:
+      - close
+      content-type:
+      - text/xml; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+        <soapenv:Fault xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><faultcode>soapenv:Server</faultcode><faultstring>Schema
+        validation failed for request.</faultstring><detail><con:fault xmlns:con="http://www.bea.com/wli/sb/context"><con:errorCode>5</con:errorCode><con:reason>Schema
+        validation failed for request.</con:reason><con:details><con1:ValidationFailureDetail
+        xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"><con1:message>string
+        value ''Ups Ground'' is not a valid enumeration value for ServiceType in namespace
+        http://fedex.com/ws/rate/v10</con1:message><con1:xmlLocation><v10:ServiceType
+        xmlns:v10="http://fedex.com/ws/rate/v10">Ups Ground</v10:ServiceType></con1:xmlLocation></con1:ValidationFailureDetail></con:details></con:fault></detail></soapenv:Fault>'
+    http_version: '1.1'
+  recorded_at: Wed, 05 Dec 2012 02:59:55 GMT
 recorded_with: VCR 2.2.5

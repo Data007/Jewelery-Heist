@@ -101,8 +101,16 @@ class Cart
     fedex_rates + ups_rates.collect {|rate| {name: rate[0], total_net_charge: (rate[1].to_f / 100).to_s}}
   end
 
-  def ups_rates_to_hash_for_drop_down_select ups_rates
+  def individual_ups_rate
+    ups_rates = Shipper.get_ups_rate(self.shipping_address, Shipper.sample_packages)
+
+    ups_rates.each do |rate|
+      if rate[0].upcase == shipping_type.upcase
+        return rate[1]
+      end
+    end
   end
+
 
   def tax
     (line_items.where(taxable: true).map(&:total).sum * 0.06).round(2)
@@ -113,8 +121,13 @@ class Cart
   end
 
   def total
-    total = subtotal + tax + get_rate(shipping_type).total_net_charge.to_f
-    '$' + total.round(2).to_s
+    begin
+      total = subtotal + tax + get_rate(shipping_type).total_net_charge.to_f
+      '$' + total.round(2).to_s
+    rescue
+      total = (subtotal + tax + (individual_ups_rate.to_f / 100))
+      '$' + total.round(2).to_s
+    end
   end
 
   private
