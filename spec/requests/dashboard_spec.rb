@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'Dashboard' do
+  use_vcr_cassette
   
   before do
     @user  = FactoryGirl.create :web_user
