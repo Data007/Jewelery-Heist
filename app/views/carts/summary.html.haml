@@ -35,7 +35,7 @@
         %td= line_item_form.quantity
 %h3 Shipping and Handling
 %pre
-  = '$' + @cart.get_rate(@cart.shipping_type).total_net_charge
+  = '$' + @cart.shipping_rate(@cart.shipping_type).to_s
 %h2 Total
 %pre
-  = @cart.total
+  = number_to_currency(@cart.total)

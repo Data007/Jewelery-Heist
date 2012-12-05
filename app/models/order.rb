@@ -124,7 +124,8 @@ class Order
 
   def total
     # TODO: get the real shipping cost
-    subtotal + tax + (ship? ? shipping_cost : 0)
+
+    subtotal + tax + Shipper.order_rate(self)
   end
 
   def payments_total

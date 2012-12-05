@@ -55,7 +55,22 @@ class Shipper
       ups_rates = response.rates.sort_by(&:price).collect {|rate| [rate.service_name, rate.price]}
     end
 
-    def get_fedex_rate destination_address, packages
+    def order_rate order
+      begin
+        rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(order.cart.full_name, order.address, '2319203456' ), Fedexer.sample_packages, order.shipping_option, Fedexer.default_shipping_details)
+      rescue
+        rate = individual_ups_rate(order.address, order.shipping_option) 
+      end
+    end
+
+    def individual_ups_rate shipping_address, shipping_type
+      ups_rates = get_ups_rate(shipping_address, sample_packages)
+
+      ups_rates.each do |rate|
+        if rate[0].upcase == shipping_type.upcase
+          return rate[1]
+        end
+      end
     end
 
     def wexford_jewelers_address

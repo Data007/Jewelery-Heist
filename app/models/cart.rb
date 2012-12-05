@@ -105,12 +105,18 @@ class Cart
     ups_rates.each do |rate|
       if rate[0].upcase == shipping_type.upcase
         return rate[1]
-      else
-        errors.add(:field, 'UPS Does not support that shipping type')
       end
     end
   end
 
+  def shipping_rate shipping_type
+    #please fix to use regex
+    begin
+      rate = get_rate(shipping_type).total_net_charge
+    rescue 
+      rate = individual_ups_rate.to_f / 100
+    end
+  end
 
   def tax
     (line_items.where(taxable: true).map(&:total).sum * 0.06).round(2)
@@ -124,8 +130,9 @@ class Cart
     # TODO: get the shipping cost from a shipping model
     begin
       total = subtotal + tax + get_rate(shipping_type).total_net_charge.to_f
+      '$' + total.round(2).to_s
     rescue
-      total = (subtotal + tax + (individual_ups_rate.to_f / 100))
+      total = '$' + (subtotal + tax + (individual_ups_rate.to_f / 100)).round(2).to_s
     end
   end
 
