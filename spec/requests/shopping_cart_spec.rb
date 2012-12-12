@@ -468,21 +468,20 @@ describe 'Shopping Cart' do
 
             current_url.should == url_for([:pay])
             @cart.reload
-            @cart.shipping_type.should == 'FedEx Ground Home Delivery' #or something like that
-            binding.pry
-            @cart.total.should == @cart.subtotal + @cart.tax + @cart.shipping_options[:shipping_option][:price]
+            @cart.shipping_type.should == 'FEDEX-GROUND_HOME_DELIVERY' #or something like that
+            @cart.total.should == @cart.subtotal + @cart.tax + @cart.shipping_options[@cart.shipping_type.to_sym][:price]
           end
 
           it 'picks UPS shipping option' do
             current_url.should == url_for([:shipping])
             
-            select 'Ups Standard', from: 'cart_shipping_type'
+            select 'Ups Ground', from: 'cart_shipping_type'
             click_button 'Next'
 
             current_url.should == url_for([:pay])
             @cart.reload
-            @cart.shipping_type.should == 'UPS Standard' #or something like that
-            @cart.total.should == '$18.47'
+            @cart.shipping_type.should == 'UPS-03' #or something like that
+            @cart.total.should == @cart.subtotal + @cart.tax + @cart.shipping_options[@cart.shipping_type.to_sym][:price]
           end
         end
       end

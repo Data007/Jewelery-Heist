@@ -119,7 +119,7 @@ class Cart
   end
 
   def total
-      total = subtotal + tax + shipping_options[shipping_type.to_sym][:price]
+    total = subtotal + tax + shipping_options[shipping_type.to_sym][:price]
   end
 
   private
