@@ -242,11 +242,11 @@ describe 'Shopping Cart' do
           end
 
           it 'selects a shipping option' do
-            select 'Fedex Ground', from: 'cart_shipping_type'
+            select 'Ups Standard', from: 'cart_shipping_type'
             click_button 'Next'
 
             @cart.reload
-            @cart.shipping_type.should == 'FEDEX_GROUND' #or something like that
+            @cart.shipping_type.should == 'UPS Standard' #or something like that
           end
 
           it 'selects a ups shipping option' do
