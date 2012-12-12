@@ -242,19 +242,19 @@ describe 'Shopping Cart' do
           end
 
           it 'selects a shipping option' do
-            select 'Fedex Ground', from: 'cart_shipping_type'
+            select 'Ups Ground', from: 'cart_shipping_type'
             click_button 'Next'
 
             @cart.reload
-            @cart.shipping_type.should == 'FEDEX_GROUND' #or something like that
+            @cart.shipping_type.should == 'UPS-03' #or something like that
           end
 
           it 'selects a ups shipping option' do
-            select 'Ups Standard', from: 'cart_shipping_type'
+            select 'Ups Ground', from: 'cart_shipping_type'
             click_button 'Next'
 
             @cart.reload
-            @cart.shipping_type.should == 'UPS Standard'
+            @cart.shipping_type.should == 'UPS-03'
           end
         end
 
@@ -274,12 +274,11 @@ describe 'Shopping Cart' do
           end
 
           it 'selects a shipping option' do
-            
-            select 'International Priority', from: 'cart_shipping_type'
+            select 'Ups Ground', from: 'cart_shipping_type'
             click_button 'Next'
 
             @cart.reload
-            @cart.shipping_type.should == 'INTERNATIONAL_PRIORITY' #or something like that
+            @cart.shipping_type.should == 'UPS-03' #or something like that
           end
         end
 
@@ -393,7 +392,6 @@ describe 'Shopping Cart' do
               #page.should have_content(@cart.get_rate(@cart.shipping_type).total_net_charge)
              # page.should have_content(@cart.total)
               @cart.shipping_type = 'Ups Ground'
-              soap
             end
           end
         end
@@ -464,26 +462,25 @@ describe 'Shopping Cart' do
 
           it 'picks Fedex shipping option' do
             current_url.should == url_for([:shipping])
-            
-            select 'Fedex Ground', from: 'cart_shipping_type'
+            select 'Fed Ex Ground Home Delivery', from: 'cart_shipping_type'
             click_button 'Next'
 
             current_url.should == url_for([:pay])
             @cart.reload
-            @cart.shipping_type.should == 'FEDEX_GROUND' #or something like that
-            @cart.total.should == '$18.47'
+            @cart.shipping_type.should == 'FEDEX-GROUND_HOME_DELIVERY' #or something like that
+            @cart.total.should == @cart.subtotal + @cart.tax + @cart.shipping_options[@cart.shipping_type.to_sym][:price]
           end
 
           it 'picks UPS shipping option' do
             current_url.should == url_for([:shipping])
             
-            select 'Ups Standard', from: 'cart_shipping_type'
+            select 'Ups Ground', from: 'cart_shipping_type'
             click_button 'Next'
 
             current_url.should == url_for([:pay])
             @cart.reload
-            @cart.shipping_type.should == 'UPS Standard' #or something like that
-            @cart.total.should == '$18.47'
+            @cart.shipping_type.should == 'UPS-03' #or something like that
+            @cart.total.should == @cart.subtotal + @cart.tax + @cart.shipping_options[@cart.shipping_type.to_sym][:price]
           end
         end
       end

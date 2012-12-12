@@ -5,5 +5,6 @@ FactoryGirl.define do
     purchased false
     location 'website'
     notes 'testing order'
+    shipping_option "UPS-03"
   end
 end

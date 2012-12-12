@@ -140,11 +140,6 @@ describe Fedexer do
           rate = Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient(@cart.first_name + " " + @cart.last_name, @cart.shipping_address, @cart.phone), Fedexer.sample_package, 'FEDEX_EXPRESS_SAVER', Fedexer.default_shipping_details) 
           rate.should be_an_instance_of(Fedex::Rate)
         end
-
-        it 'gets a rate from the cart instance method' do
-          rate = @cart.get_rate 'FEDEX_EXPRESS_SAVER'
-          rate.should be_an_instance_of(Fedex::Rate)
-        end
       end
     end
   end

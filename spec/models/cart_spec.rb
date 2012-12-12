@@ -57,23 +57,6 @@ describe Cart do
             @cart.reload
           end
 
-          it 'gets a total 'do
-            #2x item.price = 10, Fedex Ground = 15.27 + .60 tax
-            @cart.line_items.count.should == 2
-            @cart.total.should == '$' + (@cart.subtotal + @cart.get_rate.total_net_charge.to_f + @cart.tax).to_s
-
-            @cart.shipping_type = 'Ups Ground'
-            @cart.total.should == '$' + ((@cart.subtotal + (@cart.individual_ups_rate.to_f / 100) + @cart.tax).round(2)).to_s
-          end
-
-          it 'gets a rate' do
-            fedex_rate = @cart.get_rate('FEDEX_EXPRESS_SAVER')
-            fedex_rate.should be
-
-            ups_rate = @cart.individual_ups_rate 
-            ups_rate.should be
-          end
-
           it 'gets a ups rate' do
             @cart.shipping_type = 'UPS Ground'
             @cart.individual_ups_rate.should be

@@ -1,7 +1,7 @@
 module CartsHelper
   def shipping_options_for_select(shipping_options)
     shipping_options.collect do |shipping_option|
-      ["#{shipping_option[:name].titleize} #{number_to_currency(shipping_option[:total_net_charge])}", shipping_option[:name]]
+      ["#{shipping_option[1][:name].titleize} #{number_to_currency(shipping_option[1][:price])}", shipping_option[0]]
     end
   end
 end
