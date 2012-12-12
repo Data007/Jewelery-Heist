@@ -101,13 +101,8 @@ class Cart
     end
   end
 
-  def shipping_rate shipping_type
-    #please fix to use regex
-    begin
-      rate = get_rate(shipping_type).total_net_charge
-    rescue 
-      rate = individual_ups_rate.to_f / 100
-    end
+  def shipping_rate
+    shipping_options[shipping_type.to_sym][:price]
   end
 
   def tax
