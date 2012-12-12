@@ -274,12 +274,11 @@ describe 'Shopping Cart' do
           end
 
           it 'selects a shipping option' do
-            
-            select 'International Priority', from: 'cart_shipping_type'
+            select 'Ups Worldwide Expedited', from: 'cart_shipping_type'
             click_button 'Next'
 
             @cart.reload
-            @cart.shipping_type.should == 'INTERNATIONAL_PRIORITY' #or something like that
+            @cart.shipping_type.should == 'UPS Worldwide Expedited' #or something like that
           end
         end
 
@@ -464,14 +463,14 @@ describe 'Shopping Cart' do
 
           it 'picks Fedex shipping option' do
             current_url.should == url_for([:shipping])
-            
-            select 'Fedex Ground', from: 'cart_shipping_type'
+            select 'Fed Ex Ground Home Delivery', from: 'cart_shipping_type'
             click_button 'Next'
 
             current_url.should == url_for([:pay])
             @cart.reload
-            @cart.shipping_type.should == 'FEDEX_GROUND' #or something like that
-            @cart.total.should == '$18.47'
+            @cart.shipping_type.should == 'FedEx Ground Home Delivery' #or something like that
+            binding.pry
+            @cart.total.should == @cart.subtotal + @cart.tax + @cart.shipping_options[:shipping_option][:price]
           end
 
           it 'picks UPS shipping option' do
