@@ -57,14 +57,6 @@ describe Cart do
             @cart.reload
           end
 
-          it 'gets a rate' do
-            fedex_rate = @cart.get_rate('FEDEX_EXPRESS_SAVER')
-            fedex_rate.should be
-
-            ups_rate = @cart.individual_ups_rate 
-            ups_rate.should be
-          end
-
           it 'gets a ups rate' do
             @cart.shipping_type = 'UPS Ground'
             @cart.individual_ups_rate.should be

@@ -70,11 +70,6 @@ class Cart
     line_items.create(options.merge!(item: (item.is_a?(Item) ? item : Item.find(item))))
   end
 
-  def get_rate shipping_type='FEDEX_GROUND'
-    shipping_type = self.shipping_type ? self.shipping_type : shipping_type
-    Fedexer.get_rate(Fedexer.shipment, Fedexer.recipient("#{self.first_name} #{self.last_name}", self.shipping_address, self.phone), Fedexer.sample_package, shipping_type, Fedexer.default_shipping_details) 
-  end
-
   def shipping_options
     Shipper.rates(Shipper.destination(shipping_address), Shipper.sample_packages)
   end
@@ -82,7 +77,6 @@ class Cart
   def ups_shipping_options
     fedex_rates = shipping_options
     ups_rates = Shipper.get_ups_rate(self.shipping_address, Shipper.sample_packages)
-    binding.pry
     ups_rates_hash = {}
     ups_rates.each do |rate|
       ups_rates_hash[rate[0].to_s] = (rate[1].to_f / 100).to_s
