@@ -392,7 +392,6 @@ describe 'Shopping Cart' do
               #page.should have_content(@cart.get_rate(@cart.shipping_type).total_net_charge)
              # page.should have_content(@cart.total)
               @cart.shipping_type = 'Ups Ground'
-              soap
             end
           end
         end
