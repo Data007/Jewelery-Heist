@@ -123,6 +123,7 @@ class Order
   end
 
   def total
+    binding.pry
     rates = Shipper.rates(Shipper.destination(address), Shipper.sample_packages)
     
     subtotal + tax + rates[shipping_option.to_sym][:price]
