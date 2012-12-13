@@ -95,8 +95,16 @@ class Shipper
       ups_response.rates.sort_by(&:price).each {|rate| rates["UPS-#{rate.service_code}".to_sym] = {name: rate.service_name, price: (rate.price.to_f)/100}}
       
       fedex = FedEx.new(key: 'wikjDtsCxIh2iohD', password: 'Cw10xEFUV6f0kmz861HJdf8NQ', account: '510087925', login: '118569532', test: true)
-      fedex_response = fedex.find_rates(Shipper.wexford_jewelers_address, Shipper.sample_destination, Shipper.sample_packages)
+      fedex_response = fedex.find_rates(Shipper.wexford_jewelers_address, destination(address), Shipper.sample_packages)
       fedex_response.rates.sort_by(&:price).each {|rate| rates["FEDEX-#{rate.service_code}".to_sym] = {name: rate.service_name, price: (rate.price.to_f)/100}}
+
+      usps = USPS.new(:login => '029WEXFO3351', :test => true)
+      usps.valid_credentials?
+      usps_response = usps.find_rates(Shipper.wexford_jewelers_address, destination(address), Shipper.sample_packages)
+
+      usps_rates = usps_response.rates.sort_by(&:price).each do |rate| 
+        rates["USPS-#{rate.service_code}".to_sym] = { name: rate.service_name, price: (rate.price.to_f) / 100}
+      end
 
       rates
     end

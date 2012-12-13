@@ -270,4 +270,168 @@ http_interactions:
         Ground Fuel</v6:Description><v6:Amount><v6:Currency>USD</v6:Currency><v6:Amount>1.05</v6:Amount></v6:Amount></v6:Surcharges></v6:PackageRateDetail></v6:RatedPackages></v6:RatedShipmentDetails></v6:RateReplyDetails></v6:RateReply>'
     http_version: '1.1'
   recorded_at: Wed, 12 Dec 2012 18:08:27 GMT
+- request:
+    method: get
+    uri: https://secure.shippingapis.com/ShippingAPITest.dll?API=CarrierPickupAvailability&XML=%3CCarrierPickupAvailabilityRequest%20USERID=%22029WEXFO3351%22%3E%20%0A%3CFirmName%3EABC%20Corp.%3C/FirmName%3E%20%0A%3CSuiteOrApt%3ESuite%20777%3C/SuiteOrApt%3E%20%0A%3CAddress2%3E1390%20Market%20Street%3C/Address2%3E%20%0A%3CUrbanization%3E%3C/Urbanization%3E%20%0A%3CCity%3EHouston%3C/City%3E%20%0A%3CState%3ETX%3C/State%3E%20%0A%3CZIP5%3E77058%3C/ZIP5%3E%20%0A%3CZIP4%3E1234%3C/ZIP4%3E%20%0A%3C/CarrierPickupAvailabilityRequest%3E%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      connection:
+      - close
+      date:
+      - Wed, 12 Dec 2012 23:59:29 GMT
+      server:
+      - Microsoft-IIS/6.0
+      x-powered-by:
+      - ASP.NET
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<CarrierPickupAvailabilityResponse><FirmName>ABC
+        Corp.</FirmName><SuiteOrApt>Suite 777</SuiteOrApt><Address2>1390 Market Street</Address2><Urbanization></Urbanization><City>HOUSTON</City><State>TX</State><ZIP5>77058</ZIP5><ZIP4>1234</ZIP4><DayOfWeek>Monday</DayOfWeek><Date>3/1/2004</Date><CarrierRoute>C</CarrierRoute></CarrierPickupAvailabilityResponse>\r\n"
+    http_version: '1.1'
+  recorded_at: Wed, 12 Dec 2012 23:59:29 GMT
+- request:
+    method: get
+    uri: http://production.shippingapis.com/ShippingAPI.dll?API=RateV4&XML=%3CRateV4Request%20USERID='029WEXFO3351'%3E%3CPackage%20ID='0'%3E%3CService%3EALL%3C/Service%3E%3CZipOrigination%3E49601%3C/ZipOrigination%3E%3CZipDestination%3E49601%3C/ZipDestination%3E%3CPounds%3E0%3C/Pounds%3E%3COunces%3E3.5%3C/Ounces%3E%3CContainer/%3E%3CSize%3ELARGE%3C/Size%3E%3CWidth%3E3.94%3C/Width%3E%3CLength%3E36.61%3C/Length%3E%3CHeight%3E3.94%3C/Height%3E%3CGirth%3E12.37%3C/Girth%3E%3CMachinable%3EFALSE%3C/Machinable%3E%3C/Package%3E%3CPackage%20ID='1'%3E%3CService%3EALL%3C/Service%3E%3CZipOrigination%3E49601%3C/ZipOrigination%3E%3CZipDestination%3E49601%3C/ZipDestination%3E%3CPounds%3E0%3C/Pounds%3E%3COunces%3E120.0%3C/Ounces%3E%3CContainer/%3E%3CSize%3ELARGE%3C/Size%3E%3CWidth%3E10.00%3C/Width%3E%3CLength%3E15.00%3C/Length%3E%3CHeight%3E4.50%3C/Height%3E%3CGirth%3E29.00%3C/Girth%3E%3CMachinable%3ETRUE%3C/Machinable%3E%3C/Package%3E%3C/RateV4Request%3E
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      connection:
+      - close
+      date:
+      - Wed, 12 Dec 2012 23:59:30 GMT
+      server:
+      - Microsoft-IIS/6.0
+      x-powered-by:
+      - ASP.NET
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<RateV4Response><Package ID=\"0\"><ZipOrigination>49601</ZipOrigination><ZipDestination>49601</ZipDestination><Pounds>0</Pounds><Ounces>3.5</Ounces><Size>LARGE</Size><Width>4</Width><Length>37</Length><Height>4</Height><Girth>12</Girth><Machinable>FALSE</Machinable><Zone>1</Zone><Postage
+        CLASSID=\"3\"><MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>12.95</Rate></Postage><Postage
+        CLASSID=\"2\"><MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;
+        Hold For Pickup</MailService><Rate>12.95</Rate></Postage><Postage CLASSID=\"23\"><MailService>Express
+        Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt; Sunday/Holiday Delivery</MailService><Rate>25.45</Rate></Postage><Postage
+        CLASSID=\"1\"><MailService>Priority Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>5.20</Rate></Postage><Postage
+        CLASSID=\"0\"><MailService>First-Class Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;
+        Parcel</MailService><Rate>2.12</Rate></Postage><Postage CLASSID=\"4\"><MailService>Parcel
+        Post&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>5.20</Rate></Postage><Postage
+        CLASSID=\"6\"><MailService>Media Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>2.47</Rate></Postage><Postage
+        CLASSID=\"7\"><MailService>Library Mail</MailService><Rate>2.35</Rate></Postage></Package><Package
+        ID=\"1\"><ZipOrigination>49601</ZipOrigination><ZipDestination>49601</ZipDestination><Pounds>0</Pounds><Ounces>120.0</Ounces><Size>LARGE</Size><Width>10</Width><Length>15</Length><Height>4</Height><Girth>29</Girth><Machinable>TRUE</Machinable><Zone>1</Zone><Postage
+        CLASSID=\"3\"><MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>29.05</Rate></Postage><Postage
+        CLASSID=\"2\"><MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;
+        Hold For Pickup</MailService><Rate>29.05</Rate></Postage><Postage CLASSID=\"23\"><MailService>Express
+        Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt; Sunday/Holiday Delivery</MailService><Rate>41.55</Rate></Postage><Postage
+        CLASSID=\"1\"><MailService>Priority Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>10.20</Rate></Postage><Postage
+        CLASSID=\"4\"><MailService>Parcel Post&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>8.77</Rate></Postage><Postage
+        CLASSID=\"6\"><MailService>Media Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>5.39</Rate></Postage><Postage
+        CLASSID=\"7\"><MailService>Library Mail</MailService><Rate>5.13</Rate></Postage></Package></RateV4Response>\r\n"
+    http_version: '1.1'
+  recorded_at: Wed, 12 Dec 2012 23:59:30 GMT
+- request:
+    method: get
+    uri: https://secure.shippingapis.com/ShippingAPITest.dll?API=CarrierPickupAvailability&XML=%3CCarrierPickupAvailabilityRequest%20USERID=%22029WEXFO3351%22%3E%20%0A%3CFirmName%3EABC%20Corp.%3C/FirmName%3E%20%0A%3CSuiteOrApt%3ESuite%20777%3C/SuiteOrApt%3E%20%0A%3CAddress2%3E1390%20Market%20Street%3C/Address2%3E%20%0A%3CUrbanization%3E%3C/Urbanization%3E%20%0A%3CCity%3EHouston%3C/City%3E%20%0A%3CState%3ETX%3C/State%3E%20%0A%3CZIP5%3E77058%3C/ZIP5%3E%20%0A%3CZIP4%3E1234%3C/ZIP4%3E%20%0A%3C/CarrierPickupAvailabilityRequest%3E%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      connection:
+      - close
+      date:
+      - Wed, 12 Dec 2012 23:59:32 GMT
+      server:
+      - Microsoft-IIS/6.0
+      x-powered-by:
+      - ASP.NET
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<CarrierPickupAvailabilityResponse><FirmName>ABC
+        Corp.</FirmName><SuiteOrApt>Suite 777</SuiteOrApt><Address2>1390 Market Street</Address2><Urbanization></Urbanization><City>HOUSTON</City><State>TX</State><ZIP5>77058</ZIP5><ZIP4>1234</ZIP4><DayOfWeek>Monday</DayOfWeek><Date>3/1/2004</Date><CarrierRoute>C</CarrierRoute></CarrierPickupAvailabilityResponse>\r\n"
+    http_version: '1.1'
+  recorded_at: Wed, 12 Dec 2012 23:59:32 GMT
+- request:
+    method: get
+    uri: http://production.shippingapis.com/ShippingAPI.dll?API=RateV4&XML=%3CRateV4Request%20USERID='029WEXFO3351'%3E%3CPackage%20ID='0'%3E%3CService%3EALL%3C/Service%3E%3CZipOrigination%3E49601%3C/ZipOrigination%3E%3CZipDestination%3E49601%3C/ZipDestination%3E%3CPounds%3E0%3C/Pounds%3E%3COunces%3E3.5%3C/Ounces%3E%3CContainer/%3E%3CSize%3ELARGE%3C/Size%3E%3CWidth%3E3.94%3C/Width%3E%3CLength%3E36.61%3C/Length%3E%3CHeight%3E3.94%3C/Height%3E%3CGirth%3E12.37%3C/Girth%3E%3CMachinable%3EFALSE%3C/Machinable%3E%3C/Package%3E%3CPackage%20ID='1'%3E%3CService%3EALL%3C/Service%3E%3CZipOrigination%3E49601%3C/ZipOrigination%3E%3CZipDestination%3E49601%3C/ZipDestination%3E%3CPounds%3E0%3C/Pounds%3E%3COunces%3E120.0%3C/Ounces%3E%3CContainer/%3E%3CSize%3ELARGE%3C/Size%3E%3CWidth%3E10.00%3C/Width%3E%3CLength%3E15.00%3C/Length%3E%3CHeight%3E4.50%3C/Height%3E%3CGirth%3E29.00%3C/Girth%3E%3CMachinable%3ETRUE%3C/Machinable%3E%3C/Package%3E%3C/RateV4Request%3E
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      connection:
+      - close
+      date:
+      - Wed, 12 Dec 2012 23:59:33 GMT
+      server:
+      - Microsoft-IIS/6.0
+      x-powered-by:
+      - ASP.NET
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\"?>\r\n<RateV4Response><Package ID=\"0\"><ZipOrigination>49601</ZipOrigination><ZipDestination>49601</ZipDestination><Pounds>0</Pounds><Ounces>3.5</Ounces><Size>LARGE</Size><Width>4</Width><Length>37</Length><Height>4</Height><Girth>12</Girth><Machinable>FALSE</Machinable><Zone>1</Zone><Postage
+        CLASSID=\"3\"><MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>12.95</Rate></Postage><Postage
+        CLASSID=\"2\"><MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;
+        Hold For Pickup</MailService><Rate>12.95</Rate></Postage><Postage CLASSID=\"23\"><MailService>Express
+        Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt; Sunday/Holiday Delivery</MailService><Rate>25.45</Rate></Postage><Postage
+        CLASSID=\"1\"><MailService>Priority Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>5.20</Rate></Postage><Postage
+        CLASSID=\"0\"><MailService>First-Class Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;
+        Parcel</MailService><Rate>2.12</Rate></Postage><Postage CLASSID=\"4\"><MailService>Parcel
+        Post&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>5.20</Rate></Postage><Postage
+        CLASSID=\"6\"><MailService>Media Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>2.47</Rate></Postage><Postage
+        CLASSID=\"7\"><MailService>Library Mail</MailService><Rate>2.35</Rate></Postage></Package><Package
+        ID=\"1\"><ZipOrigination>49601</ZipOrigination><ZipDestination>49601</ZipDestination><Pounds>0</Pounds><Ounces>120.0</Ounces><Size>LARGE</Size><Width>10</Width><Length>15</Length><Height>4</Height><Girth>29</Girth><Machinable>TRUE</Machinable><Zone>1</Zone><Postage
+        CLASSID=\"3\"><MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>29.05</Rate></Postage><Postage
+        CLASSID=\"2\"><MailService>Express Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;
+        Hold For Pickup</MailService><Rate>29.05</Rate></Postage><Postage CLASSID=\"23\"><MailService>Express
+        Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt; Sunday/Holiday Delivery</MailService><Rate>41.55</Rate></Postage><Postage
+        CLASSID=\"1\"><MailService>Priority Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>10.20</Rate></Postage><Postage
+        CLASSID=\"4\"><MailService>Parcel Post&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>8.77</Rate></Postage><Postage
+        CLASSID=\"6\"><MailService>Media Mail&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;</MailService><Rate>5.39</Rate></Postage><Postage
+        CLASSID=\"7\"><MailService>Library Mail</MailService><Rate>5.13</Rate></Postage></Package></RateV4Response>\r\n"
+    http_version: '1.1'
+  recorded_at: Wed, 12 Dec 2012 23:59:33 GMT
 recorded_with: VCR 2.2.5
