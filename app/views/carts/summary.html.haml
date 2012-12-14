@@ -16,7 +16,7 @@
       %th Quantity
       %th &nbsp;
   %tbody.items
-    = @cart.line_items.each do |line_item_form|
+    - @cart.line_items.each do |line_item_form|
       - line_item = line_item_form
       - item      = line_item.item
       %tr.item{id: item.id}
