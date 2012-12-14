@@ -36,6 +36,10 @@ describe Shipper do
           it 'gets ups rates' do
             Shipper.get_ups_rate(@address, Shipper.sample_packages)
           end
+
+          it 'gets usps, ups, and fedex rates' do
+            Shipper.rates(@address, Shipper.sample_packages)
+          end
         end
       end
     end
