@@ -32,9 +32,24 @@ describe 'Managing Sales' do
     end
 
     context 'with a valid pin' do
-      pending 'valid pin test'
-      context 'with a new customer' do
+      before do
+        fill_in 'Employee ID', with: employee.pin
+        click_button 'Enter'
       end
+
+      context 'purchasing an item' do
+        it 'fails to find an item by id' do
+          fill_in 'Item Number', with: 'id30'
+          click_button 'Enter'
+
+          page.should have_content('That item could not be found')
+        end
+
+        it 'finds an item by id'
+      end
+
+      context 'with no customer'
+      context 'with a current customer'
     end
   end
 end
