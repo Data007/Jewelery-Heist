@@ -13,5 +13,6 @@
  *= require screens/phone
  *= require screens/tablet
  *= require screens/full
- *= require_tree .
+ *= require_tree ./screens/
+ *= require_directory .
  */
