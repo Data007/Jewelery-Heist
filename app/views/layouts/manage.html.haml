@@ -22,19 +22,26 @@
         %li#logo logo
         %li#search search
         %li#advanced-options admin
-      %ul#menu
+      %ul
         %li= link_to 'Home', '/manage'
         %li= link_to 'Sale'
 
-    %section#main
-      %nav#left-sidebar
+    %section
+      %nav
         left sidebar
-      %article#content
+      %article
+        %section
+          %nav
+            lefty
+          %article
+            centy
+          %aside
+            righty
         centered content
         - if flash.present?
           %section
             - flash.each do |(key, value)|
               = content_tag :article, raw(value), class: 'message', id: "#{key}-message"
         %section= yield
-      %aside#right-sidebar
+      %aside
         right sidebar

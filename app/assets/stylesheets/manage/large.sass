@@ -1,41 +1,75 @@
-header
-  display: block
-  margin: 0px
-  padding: 5px
-
-#main
-  min-height: 670px
-  margin: 0px
-  padding: 0px
+body
   display: -webkit-flex
   display: -moz-flex
   display: flex
-  -webkit-flex-flow: row
-  -moz-flex-flow: row
-  flex-flow: row
+  -webkit-flex-wrap: wrap
+  -moz-flex-wrap: wrap
+  flex-wrap: wrap
+  *
+    border: 1px solid red
+  
+  header:nth-child(1)
+    display: block
 
-  nav, article, aside
+    width: 100%
+    margin: 0
     padding: 5px
-  nav
-    -webkit-flex: 1 6 20%
-    -moz-flex: 1 6 20%
-    flex: 1 6 20%
-    -webkit-order: 1
-    -moz-order: 1
-    order: 1
 
-  article
-    -webkit-flex: 3 6 20%
-    -moz-flex: 3 6 20%
-    flex: 3 6 20%
-    -webkit-order: 2
-    -moz-order: 2
-    order: 2
-  aside
-    -webkit-flex: 1 6 20%
-    -moz-flex: 1 6 20%
-    flex: 1 6 20%
-    -webkit-order: 3
-    -moz-order: 3
-    order: 3
+    ul
+      display: -webkit-flex
+      display: -moz-flex
+      display: flex
+
+      width: 100%
+      padding: 0
+      margin: 0
+
+      li
+        list-style: none
+        margin-left: 5px
+        &:nth-child(1)
+          margin-left: 0
+      
+      &:nth-child(1)
+        li:nth-last-child(1)
+          margin-right: 0
+          margin-left: auto
+      &:nth-child(2)
+        li:nth-child(1)
+          margin-left: 160px
+  
+  section:nth-child(2)
+    display: -webkit-flex
+    display: -moz-flex
+    display: flex
+
+    width: 100%
+    margin: 0
+    padding: 0
+
+    nav, article, aside
+      padding: 5px
+
+    nav, aside
+      -webkit-flex: 150px
+      -moz-flex: 150px
+      flex: 150px
+
+    nav:nth-child(1)
+      -webkit-order: 1
+      -moz-order: 1
+      order: 1
+
+    article:nth-child(2)
+      -webkit-flex: 1
+      -moz-flex: 1
+      flex: 1
+      -webkit-order: 2
+      -moz-order: 2
+      order: 2
+
+    aside:nth-child(3)
+      -webkit-order: 3
+      -moz-order: 3
+      order: 3
 
