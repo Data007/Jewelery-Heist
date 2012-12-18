@@ -1,14 +1,12 @@
-body
+body#manage-layout
   display: -webkit-flex
   display: -moz-flex
   display: flex
   -webkit-flex-wrap: wrap
   -moz-flex-wrap: wrap
   flex-wrap: wrap
-  *
-    border: 1px solid red
   
-  header:nth-child(1)
+  #header
     display: block
 
     width: 100%
@@ -29,16 +27,18 @@ body
         margin-left: 5px
         &:nth-child(1)
           margin-left: 0
+        &:nth-last-child(1)
+          margin-right: 0
       
-      &:nth-child(1)
+      &#top-menu
         li:nth-last-child(1)
           margin-right: 0
           margin-left: auto
-      &:nth-child(2)
+      &#bottom-menu
         li:nth-child(1)
           margin-left: 160px
   
-  section:nth-child(2)
+  #main
     display: -webkit-flex
     display: -moz-flex
     display: flex
@@ -47,20 +47,20 @@ body
     margin: 0
     padding: 0
 
-    nav, article, aside
+    #left-sidebar, #content, #right-sidebar
       padding: 5px
 
-    nav, aside
+    #left-sidebar, #right-sidebar
       -webkit-flex: 150px
       -moz-flex: 150px
       flex: 150px
 
-    nav:nth-child(1)
+    #left-sidebar
       -webkit-order: 1
       -moz-order: 1
       order: 1
 
-    article:nth-child(2)
+    #content
       -webkit-flex: 1
       -moz-flex: 1
       flex: 1
@@ -68,7 +68,7 @@ body
       -moz-order: 2
       order: 2
 
-    aside:nth-child(3)
+    #right-sidebar
       -webkit-order: 3
       -moz-order: 3
       order: 3

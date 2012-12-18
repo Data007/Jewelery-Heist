@@ -16,32 +16,24 @@
     = stylesheet_link_tag 'manage', media: 'all'
     = javascript_include_tag 'manage', media: 'all'
 
-  %body
-    %header
-      %ul
+  %body#manage-layout
+    %header#header
+      %ul#top-menu
         %li#logo logo
         %li#search search
         %li#advanced-options admin
-      %ul
+      %ul#bottom-menu
         %li= link_to 'Home', '/manage'
         %li= link_to 'Sale'
 
-    %section
-      %nav
+    %section#main
+      %nav#left-sidebar
         left sidebar
-      %article
-        %section
-          %nav
-            lefty
-          %article
-            centy
-          %aside
-            righty
-        centered content
+      %article#content
         - if flash.present?
           %section
             - flash.each do |(key, value)|
               = content_tag :article, raw(value), class: 'message', id: "#{key}-message"
         %section= yield
-      %aside
+      %aside#right-sidebar
         right sidebar
