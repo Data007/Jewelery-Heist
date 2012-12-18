@@ -1,0 +1,4 @@
+= form_for [:new, :manage, @order, :item] do |f|
+  = f.label :pretty_id, 'Item Number'
+  = f.text_field :pretty_id
+  = submit_tag 'Enter'

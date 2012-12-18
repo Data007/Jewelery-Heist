@@ -17,7 +17,31 @@
     = javascript_include_tag 'manage', media: 'all'
 
   %body
-    - if flash.present?
-      - flash.each do |(key, value)|
-        = content_tag :div, raw(value), class: 'message', id: "#{key}-message"
-    = yield
+    %header
+      %ul
+        %li#logo logo
+        %li#search search
+        %li#advanced-options admin
+      %ul
+        %li= link_to 'Home', '/manage'
+        %li= link_to 'Sale'
+
+    %section
+      %nav
+        left sidebar
+      %article
+        %section
+          %nav
+            lefty
+          %article
+            centy
+          %aside
+            righty
+        centered content
+        - if flash.present?
+          %section
+            - flash.each do |(key, value)|
+              = content_tag :article, raw(value), class: 'message', id: "#{key}-message"
+        %section= yield
+      %aside
+        right sidebar

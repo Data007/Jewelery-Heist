@@ -1,0 +1,16 @@
+@mixin flexbox($display: box, $box_align: stretch, $box_pack: auto, $box_flex: 1)
+  display: -webkit-#{$display}
+  display: -moz-#{$display}
+  display: #{$display}
+
+  -webkit-box-align: #{$box_align}
+  -moz-box-align: #{$box_align}
+  box-align: #{$box_align}
+
+  -webkit-box-pack: #{$box_pack}
+  -moz-box-pack: #{$box_pack}
+  box-pack: #{$box_pack}
+
+  -webkit-box-flex: #{$box_flex}
+  -moz-box-flex: #{$box_flex}
+  box-flex: #{$box_flex}
