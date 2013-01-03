@@ -1,0 +1,25 @@
+!!! 5
+%html{:'ng-app' => ''}
+  %head
+    %title Angular authentication tests
+    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js'
+    = javascript_include_tag 'angular'
+  %body
+    #hello-angular{:'ng-controller' => 'HelloController'}
+      %a{:'ng-click' => 'getResponse()'} Hello Angular!
+      %h3 {{responseText}}
+
+      .authenticated
+
+        %a{:'ng-click' => 'authenticate()'} Authenticate
+        %h3 Authenticated? {{session.authenticated}}
+        %h3 Token: {{session.token}}
+
+      .listed
+        %h3 List from the server
+        %a{:'ng-click' => 'getItems()'} Get items
+        .message{:'ng-repeat' => 'error in errors'}
+          %b {{error.message}}
+        .item{:'ng-repeat' => 'item in items'}
+          %p name: {{item.name}}
+          %p cost: {{item.cost | currency}}

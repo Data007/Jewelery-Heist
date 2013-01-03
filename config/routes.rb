@@ -1,5 +1,12 @@
 DragonHoardRails32::Application.routes.draw do
 
+  namespace :angular_tests do
+    get :index
+    get :hello_angular
+    get :authenticate
+    get :items
+  end
+
   namespace :manage do
     resources :sales, controller: 'orders'
     resource  :session
