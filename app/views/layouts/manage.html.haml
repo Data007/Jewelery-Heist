@@ -11,12 +11,13 @@
     = stylesheet_link_tag 'manage', media: 'all'
     = javascript_include_tag 'manage', media: 'all'
 
-  %body#manage-layout
+  %body
     %header#header
+      = link_to image_tag('manage-logo-white.png'), root_path, class: 'brand'
+      %form
+        %input{type: 'text', placeholder: 'Search'}
       %ul#top-menu
-        %li#logo logo
-        %li#search search
-        %li#advanced-options admin
+        %li= link_to 'Administration', '#'
       %ul#bottom-menu
         %li= link_to 'Home', '/manage'
         %li= link_to 'Sale'
