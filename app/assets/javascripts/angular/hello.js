@@ -27,7 +27,8 @@ function HelloController($scope, $http) {
   $scope.getItems = function() {
     $http.get('/angular_tests/items?token=' + $scope.session.token)
       .success(function(data, status, handlers, config) {
-        $scope.items = data;;
+        $scope.errors = [];
+        $scope.items = data;
       })
       .error(function(data, status, handlers, config) {
         if(status == 401){
